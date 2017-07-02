@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="betahouse.mapper.FileMapper">
+  <resultMap id="BaseResultMap" type="betahouse.model.File">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="pre_name" jdbcType="VARCHAR" property="preName" />
+    <result column="after_name" jdbcType="VARCHAR" property="afterName" />
+    <result column="folder" jdbcType="VARCHAR" property="folder" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from b_file
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="betahouse.model.File">
+    insert into b_file (id, pre_name, after_name, 
+      folder)
+    values (#{id,jdbcType=INTEGER}, #{preName,jdbcType=VARCHAR}, #{afterName,jdbcType=VARCHAR}, 
+      #{folder,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="betahouse.model.File">
+    update b_file
+    set pre_name = #{preName,jdbcType=VARCHAR},
+      after_name = #{afterName,jdbcType=VARCHAR},
+      folder = #{folder,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, pre_name, after_name, folder
+    from b_file
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, pre_name, after_name, folder
+    from b_file
+  </select>
+</mapper>

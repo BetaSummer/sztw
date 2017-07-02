@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="betahouse.mapper.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="betahouse.model.UserInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="school_id" jdbcType="VARCHAR" property="schoolId" />
+    <result column="lv" jdbcType="VARCHAR" property="lv" />
+    <result column="e_mail" jdbcType="VARCHAR" property="eMail" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from b_user_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="betahouse.model.UserInfo">
+    insert into b_user_info (id, real_name, school_id, 
+      lv, e_mail, tel)
+    values (#{id,jdbcType=INTEGER}, #{realName,jdbcType=VARCHAR}, #{schoolId,jdbcType=VARCHAR}, 
+      #{lv,jdbcType=VARCHAR}, #{eMail,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="betahouse.model.UserInfo">
+    update b_user_info
+    set real_name = #{realName,jdbcType=VARCHAR},
+      school_id = #{schoolId,jdbcType=VARCHAR},
+      lv = #{lv,jdbcType=VARCHAR},
+      e_mail = #{eMail,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, real_name, school_id, lv, e_mail, tel
+    from b_user_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, real_name, school_id, lv, e_mail, tel
+    from b_user_info
+  </select>
+</mapper>

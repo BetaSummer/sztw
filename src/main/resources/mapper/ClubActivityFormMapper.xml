@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="betahouse.mapper.ClubActivityFormMapper">
+  <resultMap id="BaseResultMap" type="betahouse.model.ClubActivityForm">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="apply_date" jdbcType="VARCHAR" property="applyDate" />
+    <result column="club" jdbcType="VARCHAR" property="club" />
+    <result column="chief_name" jdbcType="VARCHAR" property="chiefName" />
+    <result column="chief_id" jdbcType="VARCHAR" property="chiefId" />
+    <result column="chief_tel" jdbcType="VARCHAR" property="chiefTel" />
+    <result column="activity_name" jdbcType="VARCHAR" property="activityName" />
+    <result column="activity_place" jdbcType="VARCHAR" property="activityPlace" />
+    <result column="activity_time" jdbcType="VARCHAR" property="activityTime" />
+    <result column="activity_people" jdbcType="VARCHAR" property="activityPeople" />
+    <result column="is_apply_fine" jdbcType="INTEGER" property="isApplyFine" />
+    <result column="activity_info" jdbcType="VARCHAR" property="activityInfo" />
+    <result column="apply_self_money" jdbcType="INTEGER" property="applySelfMoney" />
+    <result column="apply_reserve_money" jdbcType="INTEGER" property="applyReserveMoney" />
+    <result column="self_money" jdbcType="INTEGER" property="selfMoney" />
+    <result column="reserve_money" jdbcType="INTEGER" property="reserveMoney" />
+    <result column="club_id" jdbcType="INTEGER" property="clubId" />
+    <result column="file_id" jdbcType="INTEGER" property="fileId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from b_form_club_activity
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="betahouse.model.ClubActivityForm">
+    insert into b_form_club_activity (id, apply_date, club, 
+      chief_name, chief_id, chief_tel, 
+      activity_name, activity_place, activity_time, 
+      activity_people, is_apply_fine, activity_info, 
+      apply_self_money, apply_reserve_money, self_money, 
+      reserve_money, club_id, file_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{applyDate,jdbcType=VARCHAR}, #{club,jdbcType=VARCHAR}, 
+      #{chiefName,jdbcType=VARCHAR}, #{chiefId,jdbcType=VARCHAR}, #{chiefTel,jdbcType=VARCHAR}, 
+      #{activityName,jdbcType=VARCHAR}, #{activityPlace,jdbcType=VARCHAR}, #{activityTime,jdbcType=VARCHAR}, 
+      #{activityPeople,jdbcType=VARCHAR}, #{isApplyFine,jdbcType=INTEGER}, #{activityInfo,jdbcType=VARCHAR}, 
+      #{applySelfMoney,jdbcType=INTEGER}, #{applyReserveMoney,jdbcType=INTEGER}, #{selfMoney,jdbcType=INTEGER}, 
+      #{reserveMoney,jdbcType=INTEGER}, #{clubId,jdbcType=INTEGER}, #{fileId,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="betahouse.model.ClubActivityForm">
+    update b_form_club_activity
+    set apply_date = #{applyDate,jdbcType=VARCHAR},
+      club = #{club,jdbcType=VARCHAR},
+      chief_name = #{chiefName,jdbcType=VARCHAR},
+      chief_id = #{chiefId,jdbcType=VARCHAR},
+      chief_tel = #{chiefTel,jdbcType=VARCHAR},
+      activity_name = #{activityName,jdbcType=VARCHAR},
+      activity_place = #{activityPlace,jdbcType=VARCHAR},
+      activity_time = #{activityTime,jdbcType=VARCHAR},
+      activity_people = #{activityPeople,jdbcType=VARCHAR},
+      is_apply_fine = #{isApplyFine,jdbcType=INTEGER},
+      activity_info = #{activityInfo,jdbcType=VARCHAR},
+      apply_self_money = #{applySelfMoney,jdbcType=INTEGER},
+      apply_reserve_money = #{applyReserveMoney,jdbcType=INTEGER},
+      self_money = #{selfMoney,jdbcType=INTEGER},
+      reserve_money = #{reserveMoney,jdbcType=INTEGER},
+      club_id = #{clubId,jdbcType=INTEGER},
+      file_id = #{fileId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, apply_date, club, chief_name, chief_id, chief_tel, activity_name, activity_place, 
+    activity_time, activity_people, is_apply_fine, activity_info, apply_self_money, apply_reserve_money, 
+    self_money, reserve_money, club_id, file_id
+    from b_form_club_activity
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, apply_date, club, chief_name, chief_id, chief_tel, activity_name, activity_place, 
+    activity_time, activity_people, is_apply_fine, activity_info, apply_self_money, apply_reserve_money, 
+    self_money, reserve_money, club_id, file_id
+    from b_form_club_activity
+  </select>
+</mapper>

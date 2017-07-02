@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="betahouse.mapper.ClubActivityApproveMapper">
+  <resultMap id="BaseResultMap" type="betahouse.model.ClubActivityApprove">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="approve_user_id" jdbcType="INTEGER" property="approveUserId" />
+    <result column="is_approve" jdbcType="INTEGER" property="isApprove" />
+    <result column="form_id" jdbcType="INTEGER" property="formId" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <result column="lv" jdbcType="INTEGER" property="lv" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from b_approve_club_activity
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="betahouse.model.ClubActivityApprove">
+    insert into b_approve_club_activity (id, approve_user_id, is_approve, 
+      form_id, comment, lv
+      )
+    values (#{id,jdbcType=INTEGER}, #{approveUserId,jdbcType=INTEGER}, #{isApprove,jdbcType=INTEGER}, 
+      #{formId,jdbcType=INTEGER}, #{comment,jdbcType=VARCHAR}, #{lv,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="betahouse.model.ClubActivityApprove">
+    update b_approve_club_activity
+    set approve_user_id = #{approveUserId,jdbcType=INTEGER},
+      is_approve = #{isApprove,jdbcType=INTEGER},
+      form_id = #{formId,jdbcType=INTEGER},
+      comment = #{comment,jdbcType=VARCHAR},
+      lv = #{lv,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, approve_user_id, is_approve, form_id, comment, lv
+    from b_approve_club_activity
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, approve_user_id, is_approve, form_id, comment, lv
+    from b_approve_club_activity
+  </select>
+</mapper>

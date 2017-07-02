@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="betahouse.mapper.ClubMapper">
+  <resultMap id="BaseResultMap" type="betahouse.model.Club">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="club_name" jdbcType="VARCHAR" property="clubName" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="self_money" jdbcType="INTEGER" property="selfMoney" />
+    <result column="reserve_money" jdbcType="INTEGER" property="reserveMoney" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from b_club
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="betahouse.model.Club">
+    insert into b_club (id, club_name, user_id, 
+      self_money, reserve_money)
+    values (#{id,jdbcType=INTEGER}, #{clubName,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
+      #{selfMoney,jdbcType=INTEGER}, #{reserveMoney,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="betahouse.model.Club">
+    update b_club
+    set club_name = #{clubName,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      self_money = #{selfMoney,jdbcType=INTEGER},
+      reserve_money = #{reserveMoney,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, club_name, user_id, self_money, reserve_money
+    from b_club
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, club_name, user_id, self_money, reserve_money
+    from b_club
+  </select>
+</mapper>

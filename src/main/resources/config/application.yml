@@ -1,0 +1,12 @@
+server:
+  port: 8088
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url:
+    username:
+    password:
+mybatis:
+  mapperLocations: classpath:mapper/*.xml
+  typeAliasesPackage: tk.mapper.model

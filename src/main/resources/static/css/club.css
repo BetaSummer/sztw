@@ -1,0 +1,81 @@
+.approval-right {
+  position: fixed;
+  right: 0px;
+  top: 30%; }
+
+.approval-entry {
+  float: top;
+  width: 20px;
+  height: 60px;
+  font-size: 20px;
+  padding: 20px;
+  background-color: #5c5a5d;
+  color: #FFF; }
+
+#club-load {
+  border-top: solid #FFF 1px; }
+
+#club-loadfile {
+  border-top: solid #FFF 1px; }
+
+.approval-entry:hover {
+  cursor: pointer;
+  background-color: #aaaaaa; }
+
+.approval-form {
+  width: 200px;
+  float: right;
+  display: none;
+  background-color: #ececec;
+  height: 260px; }
+  .approval-form p {
+    color: #5c5a5d;
+    font-size: 16px;
+    margin: 5px; }
+  .approval-form textarea {
+    outline: none;
+    width: 100%;
+    height: 200px;
+    border: solid #CCCCCC 1px; }
+  .approval-form button {
+    width: 95px; }
+
+.appli-form {
+  width: 100%; }
+  .appli-form .form-inline {
+    margin: 0 auto;
+    width: 100%;
+    clear: both; }
+    .appli-form .form-inline .form-group {
+      position: relative;
+      width: 45%;
+      float: left;
+      margin-bottom: 30px; }
+      .appli-form .form-inline .form-group label {
+        margin: 0 1%; }
+      .appli-form .form-inline .form-group input[type='text'] {
+        width: 70%;
+        height: 30px; }
+    .appli-form .form-inline .form-money input[type='text'] {
+      width: 35%;
+      height: 30px;
+      text-indent: 10px; }
+    .appli-form .form-inline .form-money .form-money-input {
+      margin-bottom: 15px;
+      float: left;
+      width: 50%; }
+    .appli-form .form-inline textarea {
+      width: 70%;
+      height: 120px;
+      margin-left: 77px; }
+    .appli-form .form-inline .areatitle {
+      position: absolute;
+      margin-top: 0; }
+  .appli-form input[type='submit'] {
+    clear: both;
+    display: block;
+    width: 200px;
+    height: 30px;
+    margin-left: 35%; }
+
+/*# sourceMappingURL=club.css.map */

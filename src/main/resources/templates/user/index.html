@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户中心</title>
+    <link id="tabset-css" rel="stylesheet" href="<?php echo _STATIC_; ?>css/tabset.css">
+    <link rel="stylesheet" href="<?php echo _STATIC_; ?>css/base.css">
+    <link rel="stylesheet" href="<?php echo _STATIC_; ?>css/common.css">
+    <link rel="stylesheet" href="<?php echo _STATIC_; ?>css/club.css">
+</head>
+<body>
+    <nav>
+        <ul class="nav-left">
+            <a>
+                <li>
+                    信息管理
+                </li>
+            </a>
+            <a href="#">
+                <li class="on">
+                    申请管理
+                </li>
+            </a>
+            <a href="/user/logout">
+                <li>退出</li>
+            </a>
+        </ul>
+    </nav>
+    <content>
+        <div class="sub-nav">
+            <div class="sub-ft sub-item">
+                社团活动申请表
+            </div>
+            <div class="sub-child">
+                <ul>
+                    <li class="sub-item" id="form-appli">申请</li>
+                    <li class="sub-item" id="form-view">查看</li>
+                </ul>
+            </div>
+            <div class="sub-ft sub-item">
+                subnav 2
+            </div>
+            <div class="sub-child">
+                <ul>
+                    <li class="sub-item">option1</li>
+                    <li class="sub-item">option2</li>
+                    <li class="sub-item">option3</li>
+                </ul>
+            </div>
+            <div class="sub-ft sub-item">
+                subnav 3
+            </div>
+            <div class="sub-child">
+                <ul>
+                    <li class="sub-item">option1</li>
+                    <li class="sub-item">option2</li>
+                    <li class="sub-item">option3</li>
+                </ul>
+            </div>
+        </div>
+        <div id='circular' class='loading'>
+            <div id='circular_1' class='circular'></div>
+            <div id='circular_2' class='circular'></div>
+            <div id='circular_3' class='circular'></div>
+            <div id='circular_4' class='circular'></div>
+            <div id='circular_5' class='circular'></div>
+            <div id='circular_6' class='circular'></div>
+            <div id='circular_7' class='circular'></div>
+            <div id='circular_8' class='circular'></div>
+            <div class='clearfix'></div>
+        </div>
+        <div class="sub-content">
+            <div class="content-nav">
+                欢迎你，<?php echo $user['real_name']; ?>
+            </div>
+            <div class="content-body">
+
+            </div>
+        </div>
+    </content>
+<script src="<?php echo _STATIC_; ?>js/jquery.js"></script>
+<script src="<?php echo _STATIC_; ?>js/main.js"></script>
+<script src="<?php echo _STATIC_; ?>js/tabset.js"></script>
+<script src="<?php echo _STATIC_; ?>js/laydate.js"></script>
+</body>
+</html>

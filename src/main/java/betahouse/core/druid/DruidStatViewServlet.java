@@ -1,4 +1,4 @@
-package betahouse.druid;
+package betahouse.core.druid;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 

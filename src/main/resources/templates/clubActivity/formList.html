@@ -1,0 +1,47 @@
+<ul>
+    <?php forEach($statusList as $key){ ?>
+    <li><a class="left clear" target="_blank" href="/approveForm/getClubActivityById/id/<?php echo $key['form_id'] ?>/status/<?php echo $key['status'] ?>">【<?php echo $FORM_STATUS[$key['status']].'/'.$ARR_APPROVE_LV[$key['approve_lv']].'】'.$key['activity_name'];?></a>
+        <?php if($key['approve_lv']<=$user['lv']){
+        echo "<a target=".'"_blank"'."  class=".'"tab-btn"'." href=".'"'."/approveForm/gotoApproveById/id/".$key['form_id'].'"'.">审核</a>";
+        }?>
+    </li>
+    <?php } ?>
+</ul>
+<script>
+    $("#apply-btn").click(function () {
+        var club = $("#club").val();
+        var act_name = $("#activity_name").val();
+        var act_place = $("#activity_place").val();
+        var act_time = $("#activity_time").val();
+        var act_people = $("#activity_people").val();
+        var is_fine = $("#is_apply_fine").val();
+        var act_info = $("#activity_info").val();
+        var data={
+            "club":club,
+            "activityName":act_name,
+            "activityPlace":act_place,
+            "activityTime":act_time,
+            "activityPeople":act_people,
+            "isApplyFine":is_fine,
+            "activityInfo":act_info
+        };
+        console.log(data);
+        $.ajax({
+            type: "POST",
+            url: "/applyForm/commitClubActivity",
+            data: data,
+            dataType:"json",
+            success: function(data){
+                if(data.status==0){
+                    alert(data.info);
+                }
+                else {
+                    alert('wrong');
+                }
+            },
+            error: function(data){
+                alert('Error');
+            }
+        });
+    }) ;
+</script>

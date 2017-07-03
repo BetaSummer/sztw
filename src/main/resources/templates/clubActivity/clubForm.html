@@ -1,0 +1,100 @@
+<form action="/applyClubForm/commitClubActivity" method="post" class="appli-form" enctype ="multipart/form-data">
+    <div class="form-inline">
+        <div class="form-group">
+            <label>申办社团</label>
+            <input disabled="disabled" value="<?php echo $clubInfo['club_name']; ?>" id="club" type="text" name="club">
+        </div>
+        <div class="form-group">
+            <label>活动名称</label>
+            <input id="activity_name" type="text" name="activityName">
+        </div>
+    </div>
+    <div class="form-inline">
+        <div class="form-group">
+            <label>活动地点</label>
+            <input id="activity_place" type="text" name="activityPlace">
+        </div>
+        <div class="form-group">
+            <label>活动人数</label>
+            <input id="activity_people" type="text" name="activityPeople">
+        </div>
+    </div>
+    <div class="form-inline">
+        <div class="form-group">
+            <label>活动时间</label>
+            <input name="activityTime" placeholder="请输入日期" class="laydate-icon" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})">
+        </div>
+        <div class="form-group">
+            <label>是否申请优质社团</label>
+            <label><input name="isApplyFine" type="radio" value="0">是</label>
+            <label><input name="isApplyFine" type="radio" value="1">否</label>
+        </div>
+    </div>
+    <div class="form-inline">
+        <div class="form-group">
+            <label class="areatitle">活动简介</label>
+            <textarea id="activity_info" name="activityInfo"></textarea>
+        </div>
+        <div class="form-group form-money">
+            <div class="form-money-input">
+                <label>自留经费:</label><input disabled="disabled" value="<?php echo $clubInfo['self_money']; ?>"  id="now_self_money" type="text">
+            </div>
+            <div class="form-money-input">
+                <label>自留经费使用:</label><input id="apply_self_money" type="text" name="applySelfMoney" value="0">
+            </div>
+            <div class="form-money-input">
+                <label>预留经费:</label><input disabled="disabled" value="<?php echo $clubInfo['reserve_money']; ?>" id="now_reserve_money" type="text">
+            </div>
+            <div class="form-money-input">
+                <label>预留经费使用:</label><input id="apply_reserve_money" type="text" name="applyReserveMoney" disabled="disabled" value="0">
+            </div>
+            <label>文件</label><input id="apply_file" type="file" name="applyFile">
+        </div>
+    </div>
+    <input type="submit" value="提交">
+</form>
+<script type="text/javascript">
+    $(function () {
+        $("#apply_self_money").bind('input propertychange',function () {
+           if(parseFloat($("#apply_self_money").val())>=parseFloat($("#now_self_money").val())){
+               $("#apply_reserve_money").val(parseFloat($("#apply_self_money").val())-parseFloat($("#now_self_money").val()));
+               $("#apply_self_money").val($("#now_self_money").val());
+               $("#apply_reserve_money").removeAttr('disabled');
+           }
+           else {
+               $("#apply_reserve_money").attr('disabled','disabled');
+               $("#apply_reserve_money").val("0")
+           }
+        });
+        $("#apply_self_money").focus(function () {
+            if($(this).val()==0){
+                $(this).val("");
+            }
+        });
+        $("#apply_self_money").blur(function () {
+           if($(this).val()==""){
+               $(this).val("0");
+           }
+        });
+        $("#apply_reserve_money").focus(function () {
+            if($(this).val()==0){
+                $(this).val("");
+            }
+        });
+        $("#apply_reserve_money").blur(function () {
+            if($(this).val()==""){
+                $(this).val("0");
+            }
+        });
+        $("#apply_reserve_money").bind('input propertychange',function () {
+           if(parseFloat($("#apply_reserve_money").val())>parseFloat($("#now_reserve_money").val())) {
+               $("#apply_reserve_money").val($("#now_reserve_money").val());
+           }
+        });
+        $(".appli-form").submit(function () {
+           $("#apply_reserve_money").removeAttr('disabled');
+           $(this).submit();
+           alert("提交成功");
+        });
+    });
+</script>

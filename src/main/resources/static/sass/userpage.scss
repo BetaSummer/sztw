@@ -1,0 +1,57 @@
+$logincolor:#5c5a5d;
+.login{
+  -webkit-box-shadow: 0 1px 3px  $logincolor;
+  -moz-box-shadow:0 1px 3px $logincolor;
+  box-shadow:0 1px 3px $logincolor;
+  height: 280px;
+  width: 450px;
+  margin:25px;
+  position: absolute;
+  right: 10%;
+  label,input{
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+  label{
+    color:$logincolor;
+    text-align: center;
+    display:inline-block;
+    width: 90px;
+    height: 30px;
+    margin:0 10px;
+  }
+  input[type='submit'],input[type='button']{
+    outline: none;
+    margin-left: 50px;
+    width: 150px;
+    height: 30px;
+    border:solid $logincolor 1px;
+    color:$logincolor;
+  }
+  input[type='submit']:hover,input[type='button']:hover{
+    cursor: pointer;
+    color:#FFF;
+    background-color: $logincolor;
+  }
+  input[type='text']{
+    width: 300px;
+    height: 30px;
+    border:solid $logincolor 1px;
+    color:$logincolor;
+  }
+  input[type='password']{
+    width: 300px;
+    height: 35px;
+    border:solid $logincolor 1px;
+    color:$logincolor;
+  }
+  h1{
+    color: $logincolor;
+    margin:10px 0 10px 40px;
+  }
+  hr{
+    -webkit-box-shadow: 0 1px 1px  $logincolor;
+    -moz-box-shadow:0 1px 1px $logincolor;
+    box-shadow:0 1px 1px $logincolor;
+  }
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>formList</title>
+    <script type="text/javascript" src="<?php echo _STATIC_; ?>js/jquery.js"></script>
+</head>
+<body>
+<h1>管理员界面</h1>
+<h2>欢迎你，<?php echo $user['real_name']; ?></h2>
+<button type="button"  id="admin">管理社团申请表</button>
+<script>
+    $("#admin").click(function () {
+        $(location).attr('href',"/approveForm/listClubActivity");
+    }) ;
+    $("#apply-btn").click(function () {
+        var club = $("#club").val();
+        var act_name = $("#activity_name").val();
+        var act_place = $("#activity_place").val();
+        var act_time = $("#activity_time").val();
+        var act_people = $("#activity_people").val();
+        var is_fine = $("#is_apply_fine").val();
+        var act_info = $("#activity_info").val();
+        var data={
+            "club":club,
+            "activityName":act_name,
+            "activityPlace":act_place,
+            "activityTime":act_time,
+            "activityPeople":act_people,
+            "isApplyFine":is_fine,
+            "activityInfo":act_info
+        };
+        console.log(data);
+        $.ajax({
+            type: "POST",
+            url: "/applyForm/commitClubActivity",
+            data: data,
+            dataType:"json",
+            success: function(data){
+                if(data.status==0){
+                    alert(data.info);
+                }
+                else {
+                    alert('wrong');
+                }
+            },
+            error: function(data){
+                alert('Error');
+            }
+        });
+    }) ;
+</script>
+<a href="/user/logout">退出登录</a>
+
+</body>
+</html>

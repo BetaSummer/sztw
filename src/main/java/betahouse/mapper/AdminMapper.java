@@ -12,6 +12,8 @@ public interface AdminMapper {
 
     Admin selectByPrimaryKey(Integer id);
 
+    Admin selectByPrimaryKey(String username);
+
     List<Admin> selectAll();
 
     int updateByPrimaryKey(Admin record);

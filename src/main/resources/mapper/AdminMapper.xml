@@ -29,7 +29,7 @@
     from b_admin
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
     select id, username, password, nike_name
     from b_admin
     where username = #{username,jdbcType=VARCHAR}

@@ -1,12 +1,12 @@
 <!-- saved from url=(0049)http://www.docpe.com/Download/04262357287/22.html -->
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="Content-Style-Type" content="text/css">
-    <meta name="generator" content="Aspose.Words for .NET 15.1.0.0">
-    <link id="base-css" rel="stylesheet" href="<?php echo _STATIC_; ?>css/base.css">
-    <link id="common-css" rel="stylesheet" href="<?php echo _STATIC_; ?>css/common.css">
-    <link id="club-css" rel="stylesheet" href="<?php echo _STATIC_; ?>css/club.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="Content-Style-Type" content="text/css"/>
+    <meta name="generator" content="Aspose.Words for .NET 15.1.0.0"/>
+    <link id="base-css" rel="stylesheet" href="/css/base.css"/>
+    <link id="common-css" rel="stylesheet" href="/css/common.css"/>
+    <link id="club-css" rel="stylesheet" href="/css/club.css"/>
     <title>申请表详情</title></head>
 <body>
 <div id="form-loadbody"><p style="margin:10pt 0pt; orphans:0; text-align:center; widows:0"><span
@@ -218,58 +218,62 @@
         <div class="approval-entry" id="club-load">
             下载
         </div>
-        <a href="/approveForm/downloadFileId/file_id/<?php echo $form['file_id']; ?>"><div class="approval-entry" id="club-loadfile">
+        <a href="*"><div class="approval-entry" id="club-loadfile">
+            <!-- 原 href="/approveForm/downloadFileId/file_id/<?php echo $form['file_id']; ?>"-->
             附件
         </div></a>
     </div>
     <form class="approval-form" action="/index/login" method="post">
-        <p>意见</p><textarea id="comment" type="text"></textarea><br>
+        <p>意见</p><textarea id="comment" type="text"></textarea><br/>
         <button type="button"  id="agree-btn">同意</button>
         <button type="button"  id="disgree-btn">否决</button>
     </form>
 </div>
-<script type="text/javascript" src="<?php echo _STATIC_; ?>js/jquery.js"></script>
-<script type="text/javascript" src="<?php echo _STATIC_; ?>js/main.js"></script>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
 <script type="text/javascript">
-        $(function () {
-            if(<?php echo is_null($form['file_id']); ?>) {
-                $("#extrafile").removeAttr('href');
-                $("#extrafile").click(function () {
-                    alert("没有附件！");
-                });
-            }
-        });
+    //<![CDATA[
+    $(function () {
+        if(<?php echo is_null($form['file_id']); ?>) {
+            $("#extrafile").removeAttr('href');
+            $("#extrafile").click(function () {
+                alert("没有附件！");
+            });
+        }
+    });
     $("#agree-btn").click(function () {
         var comment = $("#comment").val();
-            var data={
-                "comment":comment,
-                "apply_self_money":<?php echo$data['apply_self_money'];?>,
-                "apply_reserve_money":<?php echo$data['apply_reserve_money'];?>,
-                "club_id":<?php echo$clubInfo['id'];?>,
-                "is_approve":1,
-                "form_id":<?php echo $data['id'];?>
-            };
+        var data={
+            "comment":comment,
+            "apply_self_money":<?php echo$data['apply_self_money'];?>,
+        "apply_reserve_money":<?php echo$data['apply_reserve_money'];?>,
+        "club_id":<?php echo$clubInfo['id'];?>,
+        "is_approve":1,
+            "form_id":<?php echo $data['id'];?>
+    };
         console.log(data);
-            $.ajax({
-                type: "POST",
-                url: "/approveForm/approveForm/",
-                data: data,
-                dataType:"json",
-                success: function(data){
-                    if(data.status==0){
-                        alert(data.info);
-                        window.opener=null;
-                        window.close();
-                    }
-                    else {
-                        alert('wrong');
-                    }
-                },
-                error: function(data){
-                    alert('Error');
+        $.ajax({
+            type: "POST",
+            url: "/approveForm/approveForm/",
+            data: data,
+            dataType:"json",
+            success: function(data){
+                if(data.status==0){
+                    alert(data.info);
+                    window.opener=null;
+                    window.close();
                 }
-            });
+                else {
+                    alert('wrong');
+                }
+            },
+            error: function(data){
+                alert('Error');
+            }
+        });
     }) ;
+    // ]]>
+
 </script>
 </body>
 </html>

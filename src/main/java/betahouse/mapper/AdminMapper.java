@@ -12,7 +12,7 @@ public interface AdminMapper {
 
     Admin selectByPrimaryKey(Integer id);
 
-    Admin selectByPrimaryKey(String username);
+    Admin selectByUsername(String username);
 
     List<Admin> selectAll();
 

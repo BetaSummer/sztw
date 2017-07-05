@@ -1,6 +1,7 @@
 package betahouse.mapper;
 
 import betahouse.model.ClubActivityApprove;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -15,4 +16,10 @@ public interface ClubActivityApproveMapper {
     List<ClubActivityApprove> selectAll();
 
     int updateByPrimaryKey(ClubActivityApprove record);
+
+    List<ClubActivityApprove> selectByLv(Integer lv);
+
+    List<ClubActivityApprove> selectByLvAndFormId(@Param("lv") Integer lv, @Param("formId") Integer formId);
+
+    List<ClubActivityApprove> selectByFormId(Integer formId);
 }

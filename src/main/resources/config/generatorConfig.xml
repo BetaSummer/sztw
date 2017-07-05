@@ -128,6 +128,8 @@
                 3，XMLMAPPER：会生成Mapper接口，接口完全依赖XML；
             注意，如果context是MyBatis3Simple：只支持ANNOTATEDMAPPER和XMLMAPPER
         -->
+
+
         <javaClientGenerator targetPackage="betahouse.mapper"
                              type="XMLMAPPER"
                              targetProject="src/main/java">

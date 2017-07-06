@@ -4,8 +4,8 @@
   <resultMap id="BaseResultMap" type="betahouse.model.ClubActivityStatus">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="form_id" jdbcType="INTEGER" property="formId" />
-    <result column="form_user_id" jdbcType="VARCHAR" property="formUserId" />
-    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="form_user_id" jdbcType="INTEGER" property="formUserId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
     <result column="approve_date" jdbcType="VARCHAR" property="approveDate" />
     <result column="approve_lv" jdbcType="INTEGER" property="approveLv" />
   </resultMap>
@@ -17,15 +17,15 @@
     insert into b_status_club_activity (id, form_id, form_user_id, 
       status, approve_date, approve_lv
       )
-    values (#{id,jdbcType=INTEGER}, #{formId,jdbcType=INTEGER}, #{formUserId,jdbcType=VARCHAR}, 
-      #{status,jdbcType=VARCHAR}, #{approveDate,jdbcType=VARCHAR}, #{approveLv,jdbcType=INTEGER}
+    values (#{id,jdbcType=INTEGER}, #{formId,jdbcType=INTEGER}, #{formUserId,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{approveDate,jdbcType=VARCHAR}, #{approveLv,jdbcType=INTEGER}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.ClubActivityStatus">
     update b_status_club_activity
     set form_id = #{formId,jdbcType=INTEGER},
-      form_user_id = #{formUserId,jdbcType=VARCHAR},
-      status = #{status,jdbcType=VARCHAR},
+      form_user_id = #{formUserId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
       approve_date = #{approveDate,jdbcType=VARCHAR},
       approve_lv = #{approveLv,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}

@@ -3,8 +3,9 @@ package betahouse.service.club;
 import betahouse.model.ClubActivityForm;
 import betahouse.model.ClubActivityStatus;
 import betahouse.model.User;
-
+import betahouse.model.UserInfo;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by x1654 on 2017/7/3.
@@ -17,12 +18,12 @@ public interface ClubActivityStatusService {
 
     ClubActivityStatus getStatusByFormId(int formId);
 
-    int saveStatus(ClubActivityForm form, User user);
+    int saveStatus(ClubActivityForm form, UserInfo userInfo);
 
-    String[][] listStatusByFormUserId(int formUserId);
+    Map listStatusByFormUserId(int formUserId);
 
-    int updateLvByFormId(User user, int formId);
+    int updateLvByFormId(int lv, int formId);
 
-    String[][] listAllByLv(User user);
+    Map listAllByLv(int lv);
 
 }

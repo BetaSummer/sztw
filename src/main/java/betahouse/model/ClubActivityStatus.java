@@ -5,9 +5,9 @@ public class ClubActivityStatus {
 
     private Integer formId;
 
-    private String formUserId;
+    private Integer formUserId;
 
-    private String status;
+    private Integer status;
 
     private String approveDate;
 
@@ -29,20 +29,20 @@ public class ClubActivityStatus {
         this.formId = formId;
     }
 
-    public String getFormUserId() {
+    public Integer getFormUserId() {
         return formUserId;
     }
 
-    public void setFormUserId(String formUserId) {
-        this.formUserId = formUserId == null ? null : formUserId.trim();
+    public void setFormUserId(Integer formUserId) {
+        this.formUserId = formUserId;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status == null ? null : status.trim();
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public String getApproveDate() {

@@ -1,6 +1,7 @@
 <ul>
     <?php forEach($statusList as $key){ ?>
-    <li><a class="left clear" target="_blank" href="/approveForm/getClubActivityById/id/<?php echo $key['form_id'] ?>/status/<?php echo $key['status'] ?>">【<?php echo $FORM_STATUS[$key['status']].'/'.$ARR_APPROVE_LV[$key['approve_lv']].'】'.$key['activity_name'];?></a>
+    <li><a class="left clear" target="_blank" href="*">【<?php echo $FORM_STATUS[$key['status']].'/'.$ARR_APPROVE_LV[$key['approve_lv']].'】'.$key['activity_name'];?></a>
+        <!--  原  href="/approveForm/getClubActivityById/id/<?php echo $key['form_id'] ?>/status/<?php echo $key['status'] ?>"-->
         <?php if($key['approve_lv']<=$user['lv']){
         echo "<a target=".'"_blank"'."  class=".'"tab-btn"'." href=".'"'."/approveForm/gotoApproveById/id/".$key['form_id'].'"'.">审核</a>";
         }?>
@@ -8,6 +9,7 @@
     <?php } ?>
 </ul>
 <script>
+    //<![CDATA[
     $("#apply-btn").click(function () {
         var club = $("#club").val();
         var act_name = $("#activity_name").val();
@@ -44,4 +46,5 @@
             }
         });
     }) ;
+    //]]>
 </script>

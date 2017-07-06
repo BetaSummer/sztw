@@ -39,4 +39,22 @@
     select id, form_id, form_user_id, status, approve_date, approve_lv
     from b_status_club_activity
   </select>
+  <select id="selectByFormId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, form_id, form_user_id, status, approve_date, approve_lv
+    from b_status_club_activity
+    where form_id = #{form_id,jdbcType=INTEGER}
+  </select>
+  <update id="updateByFormId" parameterType="betahouse.model.ClubActivityStatus">
+    update b_status_club_activity
+    set form_user_id = #{formUserId,jdbcType=VARCHAR},
+    status = #{status,jdbcType=VARCHAR},
+    approve_date = #{approveDate,jdbcType=VARCHAR},
+    approve_lv = #{approveLv,jdbcType=INTEGER}
+    where form_id = #{form_id,jdbcType=INTEGER}
+  </update>
+  <select id="listStatusByLv" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, form_id, form_user_id, status, approve_date, approve_lv
+    from b_status_club_activity
+    where approve_lv = #{approve_lv,jdbcType=INTEGER}
+  </select>
 </mapper>

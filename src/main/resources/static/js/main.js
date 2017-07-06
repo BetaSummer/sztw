@@ -7,7 +7,7 @@
 
 /* login */
 $(function () {
-   $("#login-form").submit(function () {
+   $("#login-btn").click(function () {
        var username = $("#username").val();
        var password = $("#password").val();
        if(username!=""&&password!=""){
@@ -20,16 +20,12 @@ $(function () {
                url: "/user/login",
                data: data,
                dataType:"json",
-               success: function(data){
-                   if(data.status==0){
-                       $(location).attr('href',"/user/index");
-                   }
-                   else {
-                       alert('wrong');
-                   }
+               success: function(r){
+                   alert(r.message);
+                   window.location.href = "/index";
                },
-               error: function(data){
-                   alert('Error');
+               error: function(r){
+                   alert('网络异常');
                }
            });
        }
@@ -45,37 +41,38 @@ $(function () {
 
 /* tabset  */
 /*******************************************/
-$(function () {
-    $.ajax({
-        type: "POST",
-        url: "/user/getLv",
-        dataType:"json",
-        success: function(r){
-            if(r.data>1){
-                $("#form-view").after("<li class='sub-item' id='form-manage'>管理</li>");
-                $("#form-view").hide();
-                $("#form-appli").hide();
-                $("#form-manage").click(function () {
-                   $(".loading").show();
-                    $.get("/approveForm/listClubActivity",function () {
-                        $(".content-body").load("/approveForm/listClubActivity",function () {
-                            $(".loading").hide();
-                        });
-                   });
-                });
-                //re creat js(because new html code has not events)
-                $(".sub-nav").find("li").click(function () {
-                    $(".sub-nav").find("li").removeClass("on");
-                    $(this).addClass("on");
-                    $(".content-nav").html($(this).parent().parent().prev().html()+"/ "+$(this).html());
-                }) ;
-            }
-        },
-        error: function(data){
-            alert('Error');
-        }
-    });
-}) ;
+//TODO 登陆后再验证LV
+// $(function () {
+//     $.ajax({
+//         type: "POST",
+//         url: "/user/getLv",
+//         dataType:"json",
+//         success: function(r){
+//             if(r.data>1){
+//                 $("#form-view").after("<li class='sub-item' id='form-manage'>管理</li>");
+//                 $("#form-view").hide();
+//                 $("#form-appli").hide();
+//                 $("#form-manage").click(function () {
+//                    $(".loading").show();
+//                     $.get("/approveForm/listClubActivity",function () {
+//                         $(".content-body").load("/approveForm/listClubActivity",function () {
+//                             $(".loading").hide();
+//                         });
+//                    });
+//                 });
+//                 //re creat js(because new html code has not events)
+//                 $(".sub-nav").find("li").click(function () {
+//                     $(".sub-nav").find("li").removeClass("on");
+//                     $(this).addClass("on");
+//                     $(".content-nav").html($(this).parent().parent().prev().html()+"/ "+$(this).html());
+//                 }) ;
+//             }
+//         },
+//         error: function(data){
+//             alert('Error11111');
+//         }
+//     });
+// }) ;
 
 $(function () {
    $("#form-view").click(function () {

@@ -15,4 +15,10 @@ public interface ClubActivityStatusMapper {
     List<ClubActivityStatus> selectAll();
 
     int updateByPrimaryKey(ClubActivityStatus record);
+
+    ClubActivityStatus selectByFormId(Integer formId);
+
+    int updateByFormId(ClubActivityStatus record);
+
+    List<ClubActivityStatus> listStatusByLv(int lv);
 }

@@ -35,4 +35,9 @@
     select id, club_name, user_id, self_money, reserve_money
     from b_club
   </select>
+  <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, club_name, user_id, self_money, reserve_money
+    from b_club
+    where user_id = #{user_id,jdbcType=INTEGER}
+  </select>
 </mapper>

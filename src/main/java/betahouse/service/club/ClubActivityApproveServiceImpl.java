@@ -33,7 +33,7 @@ public class ClubActivityApproveServiceImpl implements ClubActivityApproveServic
     public int saveApprove(User user, int isApprove, int formId, String comment, int clubId, int applySelfMoney, int applyReserveMoney) {
         UserInfo userInfoDTO = userInfoMapper.selectByPrimaryKey(user.getId());
         // FIXME: 2017/7/5 
-        if(Integer.parseInt(userInfoDTO.getLv())==4){
+        if(userInfoDTO.getLv()==4){
             Club club = clubMapper.selectByPrimaryKey(clubId);
             if(isApprove==1){
                 ClubActivityStatus clubActivityStatusDTO = new ClubActivityStatus();
@@ -69,7 +69,7 @@ public class ClubActivityApproveServiceImpl implements ClubActivityApproveServic
     public List<ClubActivityApprove> listApproveByLv(User user) {
         UserInfo userInfoDTO = userInfoMapper.selectByPrimaryKey(user.getId());
         // FIXME: 2017/7/5
-        return clubActivityApproveMapper.selectByLv(Integer.parseInt(userInfoDTO.getLv()));
+        return clubActivityApproveMapper.selectByLv(userInfoDTO.getLv());
     }
 
     @Override

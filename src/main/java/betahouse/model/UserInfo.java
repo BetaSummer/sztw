@@ -7,7 +7,7 @@ public class UserInfo {
 
     private String schoolId;
 
-    private String lv;
+    private Integer lv;
 
     private String eMail;
 
@@ -37,12 +37,12 @@ public class UserInfo {
         this.schoolId = schoolId == null ? null : schoolId.trim();
     }
 
-    public String getLv() {
+    public Integer getLv() {
         return lv;
     }
 
-    public void setLv(String lv) {
-        this.lv = lv == null ? null : lv.trim();
+    public void setLv(Integer lv) {
+        this.lv = lv;
     }
 
     public String geteMail() {

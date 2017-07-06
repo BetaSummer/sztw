@@ -10,7 +10,9 @@ import betahouse.model.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by x1654 on 2017/7/5.
@@ -43,50 +45,42 @@ public class ClubActivityStatusServiceImpl implements ClubActivityStatusService 
     }
 
     @Override
-    public int saveStatus(ClubActivityForm form, User user) {
+    public int saveStatus(ClubActivityForm form, UserInfo userInfo) {
         ClubActivityStatus clubActivityStatusDTO = new ClubActivityStatus();
         clubActivityStatusDTO.setFormId(form.getId());
-        // FIXME: 2017/7/5 
+        // FIXME: 2017/7/5
 //        clubActivityStatusDTO.setFormUserId(user.getId());
 //        return clubActivityStatusMapper.insert();
         return 0;
     }
 
     @Override
-    public String[][] listStatusByFormUserId(int formUserId) {
-        return new String[0][];
-        // FIXME: 2017/7/5 
+    public Map listStatusByFormUserId(int formUserId) {
+        Map m = new HashMap<Integer, String>();
+        // TODO: 2017/7/6
+        //m.put(1, "活动名称");
+        return m;
     }
 
     @Override
-    public int updateLvByFormId(User user, int formId) {
-        String lv = userInfoMapper.selectByPrimaryKey(user.getId()).getLv();
+    public int updateLvByFormId(int lv, int formId) {
         // FIXME: 2017/7/5
-        if(Integer.parseInt(lv)>4){
+        if(lv>4){
             return 0;
         }
         ClubActivityStatus clubActivityStatusDTO = new ClubActivityStatus();
         clubActivityStatusDTO.setFormId(formId);
-        clubActivityStatusDTO.setApproveLv(Integer.parseInt(lv)+1);
+        clubActivityStatusDTO.setApproveLv(lv+1);
         clubActivityStatusMapper.updateByFormId(clubActivityStatusDTO);
         return 0;
     }
 
     @Override
-    public String[][] listAllByLv(User user) {
-        // FIXME: 2017/7/5
-        String lv = userInfoMapper.selectByPrimaryKey(user.getId()).getLv();
-        List<ClubActivityStatus> listDTO = clubActivityStatusMapper.listStatusByLv(Integer.parseInt(lv));
+    public Map listAllByLv(int lv) {
+        // TODO: 2017/7/6 取出指定lv的formid 再通过id获取对应表单数据
+        List<ClubActivityStatus> listDTO = clubActivityStatusMapper.listStatusByLv(lv);
         String[][] res = new String[listDTO.size()][7];
-        for(int i=0;i<listDTO.size();i++){
-            res[i][0] = listDTO.get(i).getId().toString();
-            res[i][1] = listDTO.get(i).getFormId().toString();
-            res[i][2] = listDTO.get(i).getFormUserId();
-            res[i][3] = listDTO.get(i).getStatus();
-            res[i][4] = listDTO.get(i).getApproveDate();
-            res[i][5] = listDTO.get(i).getApproveLv().toString();
-            res[i][6] = clubActivityFormMapper.selectByPrimaryKey(listDTO.get(i).getId()).getActivityName();
-        }
-        return res;
+
+        return null;
     }
 }

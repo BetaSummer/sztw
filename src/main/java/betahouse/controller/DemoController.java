@@ -19,6 +19,7 @@ public class DemoController extends BaseController {
     }
     @RequestMapping("/hi")
     public String hi(HttpServletRequest request, HttpServletResponse response, Model model){
+
         return "index/index";
     }
 

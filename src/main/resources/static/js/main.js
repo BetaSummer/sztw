@@ -5,6 +5,37 @@
 /* user */
 /****************************************/
 
+$(function () {
+    $.ajax({
+        type: "POST",
+        url: "/user/getLv",
+        dataType:"json",
+        success: function(r){
+            if(r.data>1){
+                $("#form-view").after("<li class='sub-item' id='form-manage'>管理</li>");
+                $("#form-view").hide();
+                $("#form-appli").hide();
+                $("#form-manage").click(function () {
+                    $(".loading").show();
+                    $.get("/approveForm/listClubActivity",function () {
+                        $(".content-body").load("/approveForm/listClubActivity",function () {
+                            $(".loading").hide();
+                        });
+                    });
+                });
+                //re creat js(because new html code has not events)
+                $(".sub-nav").find("li").click(function () {
+                    $(".sub-nav").find("li").removeClass("on");
+                    $(this).addClass("on");
+                    $(".content-nav").html($(this).parent().parent().prev().html()+"/ "+$(this).html());
+                }) ;
+            }
+        },
+        error: function(data){
+
+        }
+    });
+});
 /* login */
 $(function () {
    $("#login-btn").click(function () {
@@ -21,12 +52,14 @@ $(function () {
                data: data,
                dataType:"json",
                success: function(r){
-                   alert(r.message);
                    window.location.href = "/index";
+                   window.location.replace();
                },
-               error: function(r){
-                   alert('网络异常');
-               }
+               error: function(XMLHttpRequest, textStatus, errorThrown){
+                   alert(XMLHttpRequest.status);
+                   alert(XMLHttpRequest.readyState);
+                   alert(textStatus);
+               },
            });
        }
        else{
@@ -41,38 +74,6 @@ $(function () {
 
 /* tabset  */
 /*******************************************/
-//TODO 登陆后再验证LV
-// $(function () {
-//     $.ajax({
-//         type: "POST",
-//         url: "/user/getLv",
-//         dataType:"json",
-//         success: function(r){
-//             if(r.data>1){
-//                 $("#form-view").after("<li class='sub-item' id='form-manage'>管理</li>");
-//                 $("#form-view").hide();
-//                 $("#form-appli").hide();
-//                 $("#form-manage").click(function () {
-//                    $(".loading").show();
-//                     $.get("/approveForm/listClubActivity",function () {
-//                         $(".content-body").load("/approveForm/listClubActivity",function () {
-//                             $(".loading").hide();
-//                         });
-//                    });
-//                 });
-//                 //re creat js(because new html code has not events)
-//                 $(".sub-nav").find("li").click(function () {
-//                     $(".sub-nav").find("li").removeClass("on");
-//                     $(this).addClass("on");
-//                     $(".content-nav").html($(this).parent().parent().prev().html()+"/ "+$(this).html());
-//                 }) ;
-//             }
-//         },
-//         error: function(data){
-//             alert('Error11111');
-//         }
-//     });
-// }) ;
 
 $(function () {
    $("#form-view").click(function () {

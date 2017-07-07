@@ -38,7 +38,7 @@ public class ClubActivityApproveServiceImpl implements ClubActivityApproveServic
             if(isApprove==1){
                 ClubActivityStatus clubActivityStatusDTO = new ClubActivityStatus();
                 clubActivityStatusDTO.setFormId(formId);
-                clubActivityStatusDTO.setStatus("1");
+                clubActivityStatusDTO.setStatus(1);
                 clubActivityStatusMapper.updateByFormId(clubActivityStatusDTO);
                 ClubActivityForm clubActivityFormDTO = new ClubActivityForm();
                 clubActivityFormDTO.setClubId(formId);
@@ -53,7 +53,7 @@ public class ClubActivityApproveServiceImpl implements ClubActivityApproveServic
             }else if(isApprove==0){
                 ClubActivityStatus clubActivityStatusDTO = new ClubActivityStatus();
                 clubActivityStatusDTO.setFormId(formId);
-                clubActivityStatusDTO.setStatus("2");
+                clubActivityStatusDTO.setStatus(2);
                 clubActivityStatusMapper.updateByFormId(clubActivityStatusDTO);
             }
         }

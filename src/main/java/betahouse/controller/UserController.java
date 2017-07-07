@@ -65,4 +65,8 @@ public class UserController extends BaseController {
         }
         return "redirect:/index";
     }
+    @RequestMapping(value = "/getLv")
+    public String getLv(HttpServletRequest request, HttpServletResponse response, Model model){
+        return ajaxReturn(response, getCurrentUser(request).getLv(), "用户Lv", 0);
+    }
 }

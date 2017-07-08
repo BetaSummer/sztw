@@ -1,10 +1,8 @@
 package betahouse.mapper;
 
 import betahouse.model.UserInfo;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
-@Component
+
 public interface UserInfoMapper {
     int deleteByPrimaryKey(Integer id);
 

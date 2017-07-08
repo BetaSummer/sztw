@@ -3,6 +3,7 @@
 <mapper namespace="betahouse.mapper.ClubActivityStatusMapper">
   <resultMap id="BaseResultMap" type="betahouse.model.ClubActivityStatus">
     <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="form_type" jdbcType="INTEGER" property="formType" />
     <result column="form_id" jdbcType="INTEGER" property="formId" />
     <result column="form_user_id" jdbcType="INTEGER" property="formUserId" />
     <result column="status" jdbcType="INTEGER" property="status" />
@@ -14,16 +15,17 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="betahouse.model.ClubActivityStatus">
-    insert into b_status_club_activity (id, form_id, form_user_id, 
-      status, approve_date, approve_lv
-      )
-    values (#{id,jdbcType=INTEGER}, #{formId,jdbcType=INTEGER}, #{formUserId,jdbcType=INTEGER}, 
-      #{status,jdbcType=INTEGER}, #{approveDate,jdbcType=VARCHAR}, #{approveLv,jdbcType=INTEGER}
-      )
+    insert into b_status_club_activity (id, form_type, form_id, 
+      form_user_id, status, approve_date, 
+      approve_lv)
+    values (#{id,jdbcType=INTEGER}, #{formType,jdbcType=INTEGER}, #{formId,jdbcType=INTEGER}, 
+      #{formUserId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{approveDate,jdbcType=VARCHAR}, 
+      #{approveLv,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.ClubActivityStatus">
     update b_status_club_activity
-    set form_id = #{formId,jdbcType=INTEGER},
+    set form_type = #{formType,jdbcType=INTEGER},
+      form_id = #{formId,jdbcType=INTEGER},
       form_user_id = #{formUserId,jdbcType=INTEGER},
       status = #{status,jdbcType=INTEGER},
       approve_date = #{approveDate,jdbcType=VARCHAR},
@@ -31,12 +33,12 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, form_id, form_user_id, status, approve_date, approve_lv
+    select id, form_type, form_id, form_user_id, status, approve_date, approve_lv
     from b_status_club_activity
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id, form_id, form_user_id, status, approve_date, approve_lv
+    select id, form_type, form_id, form_user_id, status, approve_date, approve_lv
     from b_status_club_activity
   </select>
   <select id="selectByFormId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -52,9 +54,14 @@
     approve_lv = #{approveLv,jdbcType=INTEGER}
     where form_id = #{form_id,jdbcType=INTEGER}
   </update>
-  <select id="listStatusByLv" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByLv" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select id, form_id, form_user_id, status, approve_date, approve_lv
     from b_status_club_activity
     where approve_lv = #{approve_lv,jdbcType=INTEGER}
+  </select>
+  <select id="selectByFormUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, form_id, form_user_id, status, approve_date, approve_lv
+    from b_status_club_activity
+    where form_user_id = #{form_user_id,jdbcType=INTEGER}
   </select>
 </mapper>

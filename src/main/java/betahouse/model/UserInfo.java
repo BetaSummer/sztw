@@ -7,8 +7,6 @@ public class UserInfo {
 
     private String schoolId;
 
-    private Integer lv;
-
     private String eMail;
 
     private String tel;
@@ -35,14 +33,6 @@ public class UserInfo {
 
     public void setSchoolId(String schoolId) {
         this.schoolId = schoolId == null ? null : schoolId.trim();
-    }
-
-    public Integer getLv() {
-        return lv;
-    }
-
-    public void setLv(Integer lv) {
-        this.lv = lv;
     }
 
     public String geteMail() {

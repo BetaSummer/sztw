@@ -16,5 +16,5 @@ public interface ClubMapper {
 
     int updateByPrimaryKey(Club record);
 
-    List<Club> selectByUserId(Integer userId);
+    Club selectByUserId(Integer userId);
 }

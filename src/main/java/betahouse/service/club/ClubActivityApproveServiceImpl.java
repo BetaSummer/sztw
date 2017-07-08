@@ -32,13 +32,12 @@ public class ClubActivityApproveServiceImpl implements ClubActivityApproveServic
     @Override
     public int saveApprove(User user, int isApprove, int formId, String comment, int clubId, int applySelfMoney, int applyReserveMoney) {
         UserInfo userInfoDTO = userInfoMapper.selectByPrimaryKey(user.getId());
-        // FIXME: 2017/7/5 
         if(userInfoDTO.getLv()==4){
             Club club = clubMapper.selectByPrimaryKey(clubId);
             if(isApprove==1){
                 ClubActivityStatus clubActivityStatusDTO = new ClubActivityStatus();
                 clubActivityStatusDTO.setFormId(formId);
-                clubActivityStatusDTO.setStatus("1");
+                clubActivityStatusDTO.setStatus(1);
                 clubActivityStatusMapper.updateByFormId(clubActivityStatusDTO);
                 ClubActivityForm clubActivityFormDTO = new ClubActivityForm();
                 clubActivityFormDTO.setClubId(formId);
@@ -53,7 +52,7 @@ public class ClubActivityApproveServiceImpl implements ClubActivityApproveServic
             }else if(isApprove==0){
                 ClubActivityStatus clubActivityStatusDTO = new ClubActivityStatus();
                 clubActivityStatusDTO.setFormId(formId);
-                clubActivityStatusDTO.setStatus("2");
+                clubActivityStatusDTO.setStatus(2);
                 clubActivityStatusMapper.updateByFormId(clubActivityStatusDTO);
             }
         }
@@ -66,10 +65,8 @@ public class ClubActivityApproveServiceImpl implements ClubActivityApproveServic
     }
 
     @Override
-    public List<ClubActivityApprove> listApproveByLv(User user) {
-        UserInfo userInfoDTO = userInfoMapper.selectByPrimaryKey(user.getId());
-        // FIXME: 2017/7/5
-        return clubActivityApproveMapper.selectByLv(userInfoDTO.getLv());
+    public List<ClubActivityApprove> listApproveByLv(int lv) {
+        return clubActivityApproveMapper.selectByLv(lv);
     }
 
     @Override

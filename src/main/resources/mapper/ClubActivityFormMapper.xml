@@ -75,4 +75,8 @@
     self_money, reserve_money, club_id, file_id
     from b_form_club_activity
   </select>
+  <select id="selectLastInsertId" resultMap="BaseResultMap">
+    select LAST(id)
+    from b_form_club_activity
+  </select>
 </mapper>

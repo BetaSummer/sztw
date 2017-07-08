@@ -1,10 +1,8 @@
 package betahouse.mapper;
 
 import betahouse.model.ClubActivityStatus;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
-@Component
+
 public interface ClubActivityStatusMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -20,5 +18,7 @@ public interface ClubActivityStatusMapper {
 
     int updateByFormId(ClubActivityStatus record);
 
-    List<ClubActivityStatus> listStatusByLv(int lv);
+    List<ClubActivityStatus> selectByLv(int lv);
+
+    List<ClubActivityStatus> selectByFormUserId(int formUsereId);
 }

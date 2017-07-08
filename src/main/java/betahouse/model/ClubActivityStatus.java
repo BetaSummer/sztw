@@ -3,6 +3,8 @@ package betahouse.model;
 public class ClubActivityStatus {
     private Integer id;
 
+    private Integer formType;
+
     private Integer formId;
 
     private Integer formUserId;
@@ -19,6 +21,14 @@ public class ClubActivityStatus {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getFormType() {
+        return formType;
+    }
+
+    public void setFormType(Integer formType) {
+        this.formType = formType;
     }
 
     public Integer getFormId() {

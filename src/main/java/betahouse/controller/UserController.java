@@ -2,8 +2,6 @@ package betahouse.controller;
 
 
 import betahouse.controller.Base.BaseController;
-import betahouse.mapper.UserInfoMapper;
-import betahouse.model.Admin;
 import betahouse.model.User;
 import betahouse.model.UserInfo;
 import betahouse.service.user.*;
@@ -64,5 +62,10 @@ public class UserController extends BaseController {
             return "redirect:/index";
         }
         return "redirect:/index";
+    }
+
+    @RequestMapping(value = "/getLv")
+    public String getLv(HttpServletRequest request, HttpServletResponse response, Model model){
+        return ajaxReturn(response, getCurrentUser(request).getLv(), "用户Lv", 0);
     }
 }

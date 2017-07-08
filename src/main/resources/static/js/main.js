@@ -86,7 +86,18 @@ $(function () {
        });
    }) ;
 });
-
+$(function () {
+    $("#f-list").click(function () {
+        // $(".content-body").html("");
+        $("#f-flow").show();$("#manage-a-show").hide();
+    });
+});
+$(function () {
+    $("#manage-a").click(function () {
+        // $(".content-body").html("");
+        $("#manage-a-show").show();$("#f-flow").hide();
+    });
+});
 
 /* club */
 /********************************/

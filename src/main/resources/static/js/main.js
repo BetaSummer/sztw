@@ -145,7 +145,7 @@ function heightListener() {
     }
     else{
         $("footer").css("position","static");
-        $("footer").css("top", $(document.body).height());
+        $("footer").css("top", $(document.body).height()-53.2);
 
     }
 }

@@ -1,5 +1,5 @@
 server:
-  port: 8088
+  port: 8089
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -13,6 +13,7 @@ spring:
       max-request-size: 10Mb
   thymeleaf:
     cache: false
+
 mybatis:
   mapperLocations: classpath:mapper/*.xml
   typeAliasesPackage: tk.mapper.model

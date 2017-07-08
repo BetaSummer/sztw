@@ -5,10 +5,10 @@ import betahouse.mapper.ClubActivityStatusMapper;
 import betahouse.mapper.UserInfoMapper;
 import betahouse.model.ClubActivityForm;
 import betahouse.model.ClubActivityStatus;
-import betahouse.model.User;
 import betahouse.model.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,25 +47,28 @@ public class ClubActivityStatusServiceImpl implements ClubActivityStatusService 
     public int saveStatus(ClubActivityForm form, UserInfo userInfo) {
         ClubActivityStatus clubActivityStatusDTO = new ClubActivityStatus();
         clubActivityStatusDTO.setFormId(form.getId());
-        // FIXME: 2017/7/5
-//        clubActivityStatusDTO.setFormUserId(user.getId());
-//        return clubActivityStatusMapper.insert();
-        return 0;
+        clubActivityStatusDTO.setFormUserId(userInfo.getId());
+        clubActivityStatusDTO.setStatus(0);
+        clubActivityStatusDTO.setApproveLv(1);
+        return clubActivityStatusMapper.insert(clubActivityStatusDTO);
     }
 
     @Override
     public Map listStatusByFormUserId(int formUserId) {
-        Map m = new HashMap<Integer, String>();
-        // TODO: 2017/7/6
-        //m.put(1, "活动名称");
-        return m;
+        List<ClubActivityStatus> listDTO = clubActivityStatusMapper.selectByFormUserId(formUserId);
+        Map<String, Integer> mapDTO = new HashMap<String, Integer>();
+        for(ClubActivityStatus c: listDTO){
+            int status = c.getStatus();
+            String activityName = clubActivityFormMapper.selectByPrimaryKey(c.getFormId()).getActivityName();
+            mapDTO.put(activityName, status);
+        }
+        return mapDTO;
     }
 
     @Override
     public int updateLvByFormId(int lv, int formId) {
-        // FIXME: 2017/7/5
         if(lv>4){
-            return 0;
+            return 1;
         }
         ClubActivityStatus clubActivityStatusDTO = new ClubActivityStatus();
         clubActivityStatusDTO.setFormId(formId);
@@ -75,11 +78,15 @@ public class ClubActivityStatusServiceImpl implements ClubActivityStatusService 
     }
 
     @Override
+    // TODO: 2017/7/7 type and lv
     public Map listAllByLv(int lv) {
-        // TODO: 2017/7/6 取出指定lv的formid 再通过id获取对应表单数据
-        List<ClubActivityStatus> listDTO = clubActivityStatusMapper.listStatusByLv(lv);
-        String[][] res = new String[listDTO.size()][7];
-
-        return null;
+        List<ClubActivityStatus> listDTO = clubActivityStatusMapper.selectByLv(lv);
+        Map<String, Integer> mapDTO = new HashMap<String, Integer>();
+        for(ClubActivityStatus c: listDTO){
+            int status = c.getStatus();
+            String activityName = clubActivityFormMapper.selectByPrimaryKey(c.getFormId()).getActivityName();
+            mapDTO.put(activityName, status);
+        }
+        return mapDTO;
     }
 }

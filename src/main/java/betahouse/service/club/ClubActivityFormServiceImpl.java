@@ -16,8 +16,11 @@ public class ClubActivityFormServiceImpl implements ClubActivityFormService {
 
     @Override
     public int commitForm(String club, String chiefName, String activityName, String activityPlace,
-                          String activityTime, String activityPeople, int isApplyFine, String activityInfo,
-                          int applySelfMoney, int applyReserveMoney, int clubId, int fileId) {
+                          String activityTime, String activityPeople, String isApplyFine, String activityInfo,
+                          String applySelfMoney, String applyReserveMoney,int clubId, int fileId) {
+        int isApplyFineDTO = Integer.parseInt(isApplyFine);
+        int applySelfMoneyDTO = Integer.parseInt(applySelfMoney);
+        int applyReserveMoneyDTO = Integer.parseInt(applyReserveMoney);
         ClubActivityForm clubActivityFormDTO = new ClubActivityForm();
         clubActivityFormDTO.setClub(club);
         clubActivityFormDTO.setChiefName(chiefName);
@@ -25,10 +28,10 @@ public class ClubActivityFormServiceImpl implements ClubActivityFormService {
         clubActivityFormDTO.setActivityPlace(activityPlace);
         clubActivityFormDTO.setActivityTime(activityTime);
         clubActivityFormDTO.setActivityPeople(activityPeople);
-        clubActivityFormDTO.setIsApplyFine(isApplyFine);
+        clubActivityFormDTO.setIsApplyFine(isApplyFineDTO);
         clubActivityFormDTO.setActivityInfo(activityInfo);
-        clubActivityFormDTO.setApplySelfMoney(applySelfMoney);
-        clubActivityFormDTO.setReserveMoney(applyReserveMoney);
+        clubActivityFormDTO.setApplySelfMoney(applySelfMoneyDTO);
+        clubActivityFormDTO.setReserveMoney(applyReserveMoneyDTO);
         clubActivityFormDTO.setClubId(clubId);
         clubActivityFormDTO.setFileId(fileId);
         return clubActivityFormMapper.insert(clubActivityFormDTO);
@@ -47,5 +50,10 @@ public class ClubActivityFormServiceImpl implements ClubActivityFormService {
     @Override
     public int deleteFormById(int id) {
         return clubActivityFormMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public int getLastInsertId() {
+        return clubActivityFormMapper.selectLastInsertId();
     }
 }

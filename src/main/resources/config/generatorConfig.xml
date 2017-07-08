@@ -140,14 +140,18 @@
             <property name="rootInterface" value=""/>
              -->
         </javaClientGenerator>
-        <table tableName="b_admin" domainObjectName="Admin"/>
-        <table tableName="b_approve_club_activity" domainObjectName="ClubActivityApprove"/>
-        <table tableName="b_club" domainObjectName="Club"/>
-        <table tableName="b_file" domainObjectName="File"/>
-        <table tableName="b_form_club_activity" domainObjectName="ClubActivityForm"/>
-        <table tableName="b_status_club_activity" domainObjectName="ClubActivityStatus"/>
-        <table tableName="b_user" domainObjectName="User"/>
-        <table tableName="b_user_info" domainObjectName="UserInfo"/>
+        <!--<table tableName="test" domainObjectName="Test"/>-->
+        <!--<table tableName="b_admin" domainObjectName="Admin"/>-->
+        <!--<table tableName="b_approve_club_activity" domainObjectName="ClubActivityApprove"/>-->
+        <!--<table tableName="b_club" domainObjectName="Club"/>-->
+        <!--<table tableName="b_file" domainObjectName="File"/>-->
+        <!--<table tableName="b_form_club_activity" domainObjectName="ClubActivityForm"/>-->
+        <!--<table tableName="b_status_club_activity" domainObjectName="ClubActivityStatus"/>-->
+        <!--<table tableName="b_user" domainObjectName="User"/>-->
+        <!--<table tableName="b_user_info" domainObjectName="UserInfo"/>-->
+        <!--<table tableName="b_form_type" domainObjectName="FormType"/>-->
+        <!--<table tableName="b_form_manager" domainObjectName="FormManager"/>-->
+        
 
         <!--<table tableName="people" domainObjectName="People"/>-->
         <!--<table tableName="b_%"/>-->

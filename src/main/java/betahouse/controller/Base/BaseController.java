@@ -12,9 +12,11 @@ public class BaseController extends betahouse.core.Base.BaseController {
     public String demo (){
         return SESSION_CURRENT_USER;
     }
+
     protected HttpSession getHttpSession(HttpServletRequest request) {
         return request.getSession();
     }
+
     protected UserInfo getCurrentUser(HttpServletRequest request) {
         UserInfo cu = (UserInfo) getHttpSession(request).getAttribute(SESSION_CURRENT_USER);
         return cu;

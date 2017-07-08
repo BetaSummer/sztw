@@ -13,7 +13,7 @@ public interface ClubActivityApproveService {
     int saveApprove(User user, int isApprove, int formId, String comment, int clubId, int applySelfMoney,
                     int applyReserveMoney);
 
-    List<ClubActivityApprove> listApproveByLv(User user);
+    List<ClubActivityApprove> listApproveByLv(int lv);
 
     List<ClubActivityApprove> listApproveByLvAndFormId(int lv, int formId);
 

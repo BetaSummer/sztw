@@ -1,9 +1,10 @@
-<form action="/applyClubForm/commitClubActivity" method="post" class="appli-form" enctype ="multipart/form-data">
+<html
+        xmlns:th="http://www.w3.org/1999/xhtml">
+<form action="/applyClubForm/commitClubActivity" method="post" class="appli-form" id="appli-form" enctype="multipart/form-data">
     <div class="form-inline">
         <div class="form-group">
             <label>申办社团</label>
-            <input disabled="disabled" value="获取社团名称" id="club"  type="text" name="club"/>
-            <!-- 原 value="<?php echo $clubInfo['club_name']; ?>"-->
+            <input disabled="disabled" th:value="${club.clubName}" id="club"  type="text" name="clubName"/>
         </div>
         <div class="form-group">
             <label>活动名称</label>
@@ -40,15 +41,13 @@
         </div>
         <div class="form-group form-money">
             <div class="form-money-input">
-                <label>自留经费:</label><input disabled="disabled" value="获取自留经费" id="now_self_money" type="text"/>
-                <!-- 原  value="<?php echo $clubInfo['self_money']; ?>"-->
+                <label>自留经费:</label><input disabled="disabled" th:value="${club.selfMoney}" id="now_self_money" type="text"/>
             </div>
             <div class="form-money-input">
                 <label>自留经费使用:</label><input id="apply_self_money" type="text" name="applySelfMoney" value="0"/>
             </div>
             <div class="form-money-input">
-                <label>预留经费:</label><input disabled="disabled" value="获取" id="now_reserve_money" type="text"/>
-                <!-- 原 value="<?php echo $clubInfo['reserve_money']; ?>"-->
+                <label>预留经费:</label><input disabled="disabled" th:value="${club.reserveMoney}" id="now_reserve_money" type="text"/>
             </div>
             <div class="form-money-input">
                 <label>预留经费使用:</label><input id="apply_reserve_money" type="text" name="applyReserveMoney" disabled="disabled" value="0"/>
@@ -56,7 +55,7 @@
             <label>文件</label><input id="apply_file" type="file" name="applyFile"/>
         </div>
     </div>
-    <input type="submit" value="提交"/>
+    <input id="submit" type="button" value="提交"/>
 </form>
 <script type="text/javascript">
     //<![CDATA[
@@ -105,3 +104,4 @@
     });
     //]]>
 </script>
+</html>

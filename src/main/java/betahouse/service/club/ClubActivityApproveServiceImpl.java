@@ -32,8 +32,8 @@ public class ClubActivityApproveServiceImpl implements ClubActivityApproveServic
     @Override
     public int saveApprove(User user, int isApprove, int formId, String comment, int clubId, int applySelfMoney, int applyReserveMoney) {
         UserInfo userInfoDTO = userInfoMapper.selectByPrimaryKey(user.getId());
-        // FIXME: 2017/7/5 
-        if(userInfoDTO.getLv()==4){
+        // TODO: 2017/7/8 userInfo 中没有lv属性了
+        //if(userInfoDTO.getLv()==4){
             Club club = clubMapper.selectByPrimaryKey(clubId);
             if(isApprove==1){
                 ClubActivityStatus clubActivityStatusDTO = new ClubActivityStatus();
@@ -56,7 +56,7 @@ public class ClubActivityApproveServiceImpl implements ClubActivityApproveServic
                 clubActivityStatusDTO.setStatus(2);
                 clubActivityStatusMapper.updateByFormId(clubActivityStatusDTO);
             }
-        }
+       // }
         ClubActivityApprove clubActivityApproveDTO = new ClubActivityApprove();
         clubActivityApproveDTO.setId(user.getId());
         clubActivityApproveDTO.setFormId(formId);
@@ -66,10 +66,8 @@ public class ClubActivityApproveServiceImpl implements ClubActivityApproveServic
     }
 
     @Override
-    public List<ClubActivityApprove> listApproveByLv(User user) {
-        UserInfo userInfoDTO = userInfoMapper.selectByPrimaryKey(user.getId());
-        // FIXME: 2017/7/5
-        return clubActivityApproveMapper.selectByLv(userInfoDTO.getLv());
+    public List<ClubActivityApprove> listApproveByLv(int lv) {
+        return clubActivityApproveMapper.selectByLv(lv);
     }
 
     @Override

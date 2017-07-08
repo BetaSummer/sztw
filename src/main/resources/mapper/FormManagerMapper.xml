@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="betahouse.mapper.FormManagerMapper">
+  <resultMap id="BaseResultMap" type="betahouse.model.FormManager">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="form_type" jdbcType="INTEGER" property="formType" />
+    <result column="approver" jdbcType="INTEGER" property="approver" />
+    <result column="approver_lv" jdbcType="INTEGER" property="approverLv" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from b_form_manager
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="betahouse.model.FormManager">
+    insert into b_form_manager (id, form_type, approver, 
+      approver_lv)
+    values (#{id,jdbcType=INTEGER}, #{formType,jdbcType=INTEGER}, #{approver,jdbcType=INTEGER}, 
+      #{approverLv,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="betahouse.model.FormManager">
+    update b_form_manager
+    set form_type = #{formType,jdbcType=INTEGER},
+      approver = #{approver,jdbcType=INTEGER},
+      approver_lv = #{approverLv,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, form_type, approver, approver_lv
+    from b_form_manager
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, form_type, approver, approver_lv
+    from b_form_manager
+  </select>
+</mapper>

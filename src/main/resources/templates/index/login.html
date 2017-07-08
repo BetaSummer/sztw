@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
     <title>登录</title>
     <link rel="stylesheet" href="/css/base.css"/>
     <link rel="stylesheet" href="/css/common.css"/>
     <link rel="stylesheet" href="/css/userpage.css"/>
+    <link rel="stylesheet" href="/css/inform.css"/>
 </head>
 <body>
 <nav>
     <ul class="nav-right">
-        <li>
+        <li onclick="window.location.href='register.html'">
             注册
         </li>
         <li class="on">
@@ -18,6 +19,22 @@
         </li>
     </ul>
 </nav>
+
+<footer>
+    <div class="foot-left">
+        <ul><p>关于</p>
+            <address>qq：<a th:href="@{*}">123456789</a><br/>
+                phone:<a>1516668899</a><br/>xx：<a>xxxxxxx</a></address></ul>
+        <ul><p>了解</p>
+            <a th:href="@{*}">登陆权限</a><br/>
+            <a th:href="@{*}">审核流程</a></ul>
+        <ul style="border-right: none;"><p>二维码</p></ul>
+    </div>
+    <ul class="foot-right">
+        <li><a style="font-size: 15px;" th:href="@{*}">杭州电子科技大学信息工程学院</a></li>
+    </ul>
+</footer>
+
 <div class="login">
     <h1>用户登录</h1>
     <hr/>
@@ -28,7 +45,83 @@
         <input type="button" id="login-reset" value="重置"/>
     </form>
 </div>
+
+<div class="inform">
+    <h1>通知公告</h1>
+    <hr/>
+    <div class="news" id="demo">
+        <div id="demo1">
+            <li target="_blank">
+                <div class="deta">
+                    <dd class="day">"deta"</dd>
+                </div>
+                <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
+                    ----------获取通知------------------------------------------</a>
+            </li>
+            <li target="_blank">
+                <div class="deta">
+                    <dd class="day">"deta"</dd>
+                </div>
+                <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
+                    ----------获取通知------------------------------------------</a>
+            </li>
+            <li target="_blank">
+                <div class="deta">
+                    <dd class="day">"deta"</dd>
+                </div>
+                <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
+                    ----------获取通知------------------------------------------</a>
+            </li>
+            <li target="_blank">
+                <div class="deta">
+                    <dd class="day">"deta"</dd>
+                </div>
+                <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
+                    ----------获取通知------------------------------------------</a>
+            </li>
+            <li target="_blank">
+                <div class="deta">
+                    <dd class="day">"deta"</dd>
+                </div>
+                <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
+                    ----------获取通知------------------------------------------</a>
+            </li>
+            <li target="_blank">
+                <div class="deta">
+                    <dd class="day">"deta"</dd>
+                </div>
+                <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
+                    ----------获取通知------------------------------------------</a>
+            </li>
+        </div>
+        <div id="demo2"></div>
+    </div>
+</div>
+
+
+
 <script type="text/javascript" src="/js/jquery.js"></script>
 <script type="text/javascript" src="/js/main.js"></script>
 </body>
 </html>
+
+
+<script>
+    //<![CDATA[
+    var speed=40;
+    var demo2=document.getElementById("demo2");
+    var demo1=document.getElementById("demo1");
+    var demo=document.getElementById("demo");
+    demo2.innerHTML=demo1.innerHTML
+    function Marquee(){
+        if(demo2.offsetTop-demo.scrollTop<=0)
+            demo.scrollTop-=demo1.offsetHeight;
+        else{
+            demo.scrollTop++;
+        }
+    }
+    var MyMar=setInterval(Marquee,speed);
+    demo.onmouseover=function() {clearInterval(MyMar)}
+    demo.onmouseout=function() {MyMar=setInterval(Marquee,speed)}
+    //]]>
+</script>

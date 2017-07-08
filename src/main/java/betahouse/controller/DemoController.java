@@ -30,7 +30,7 @@ public class DemoController extends BaseController {
     }
     @RequestMapping("/hi")
     public String hi(HttpServletRequest request, HttpServletResponse response, Model model){
-        return ajaxReturn(response,null,"sz",0);
+        return "index/login";
     }
 
 }

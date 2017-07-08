@@ -121,7 +121,44 @@
 }
 @media screen and (max-width: 767px){
   .login{
-    width: 94%;
+    background-color: #f6f6f6;
+    width: 100%;
     margin:0 auto;
+    border:none;
+    -webkit-box-shadow: 0 ;
+    -moz-box-shadow: 0 ;
+    box-shadow: 0 ;
+  }
+  hr{
+    display: none;
+    margin:0;
+  }
+  h1{
+    font-size: 22px;
+    margin-top:0;
+    width: 100%;
+    display: block;
+  }
+  #login-form{
+    background-color: #FFFFFF;
+  }
+  #login-form div{
+    border-bottom: solid 0.5px #f4f4f4;
+  }
+  .login input[type='button']{
+    background-color: #4a8eff;
+    border:none;
+    color:#FFFFFF;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+  }
+  #login-btn{
+    background-color: #36c963;
+    border:none;
+    corlor:#FFFFFF;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
   }
 }

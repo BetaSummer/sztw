@@ -32,8 +32,8 @@
     <h1>用户登录</h1>
     <hr/>
     <form method="post" id="login-form">
-        <label>用户名</label><input id="username" type="text" name="username"/>
-        <label>密码</label><input id="password" type="password" name="password"/>
+        <div><label>用户名</label><input id="username" type="text" name="username"/></div>
+        <div><label>密码</label><input id="password" type="password" name="password"/></div>
         <input type="button" id="login-btn" value="登录"/>
         <input type="button" id="login-reset" value="重置"/>
     </form>
@@ -44,42 +44,42 @@
     <hr/>
     <div class="news" id="demo">
         <div id="demo1">
-            <li target="_blank">
+            <li target="_blank" class="news-li">
                 <div class="deta">
                     <dd class="day">"deta"</dd>
                 </div>
                 <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
                     ----------获取通知------------------------------------------</a>
             </li>
-            <li target="_blank">
+            <li target="_blank" class="news-li">
                 <div class="deta">
                     <dd class="day">"deta"</dd>
                 </div>
                 <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
                     ----------获取通知------------------------------------------</a>
             </li>
-            <li target="_blank">
+            <li target="_blank" class="news-li">
                 <div class="deta">
                     <dd class="day">"deta"</dd>
                 </div>
                 <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
                     ----------获取通知------------------------------------------</a>
             </li>
-            <li target="_blank">
+            <li target="_blank" class="news-li">
                 <div class="deta">
                     <dd class="day">"deta"</dd>
                 </div>
                 <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
                     ----------获取通知------------------------------------------</a>
             </li>
-            <li target="_blank">
+            <li target="_blank" class="news-li">
                 <div class="deta">
                     <dd class="day">"deta"</dd>
                 </div>
                 <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
                     ----------获取通知------------------------------------------</a>
             </li>
-            <li target="_blank">
+            <li target="_blank" class="news-li">
                 <div class="deta">
                     <dd class="day">"deta"</dd>
                 </div>
@@ -123,4 +123,6 @@
     demo.onmouseover=function() {clearInterval(MyMar)}
     demo.onmouseout=function() {MyMar=setInterval(Marquee,speed)}
     //]]>
+    $('.news-li:odd').css('background-color','#f8f8f8');
+    $('.news-li:even').css('background-color','#ebebeb');
 </script>

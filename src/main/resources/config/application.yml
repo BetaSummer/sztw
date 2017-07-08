@@ -5,7 +5,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
     url:
-    username:
+    username: 
     password:
 mybatis:
   mapperLocations: classpath:mapper/*.xml

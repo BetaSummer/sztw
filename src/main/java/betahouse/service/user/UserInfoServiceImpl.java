@@ -1,5 +1,6 @@
 package betahouse.service.user;
 
+import betahouse.mapper.UserInfoMapper;
 import betahouse.model.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

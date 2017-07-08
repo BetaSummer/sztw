@@ -63,9 +63,10 @@ public class UserController extends BaseController {
         }
         return "redirect:/index";
     }
-
     @RequestMapping(value = "/getLv")
     public String getLv(HttpServletRequest request, HttpServletResponse response, Model model){
-        return ajaxReturn(response, getCurrentUser(request).getLv(), "用户Lv", 0);
+        // TODO: 2017/7/8 userinfo 没有lv了 根据userid 去managerform中 找到 formtype 返回 type的list
+        //return ajaxReturn(response, getCurrentUser(request).getLv(), "用户Lv", 0);
+        return null;
     }
 }

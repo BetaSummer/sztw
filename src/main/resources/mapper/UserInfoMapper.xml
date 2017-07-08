@@ -15,7 +15,7 @@
   <insert id="insert" parameterType="betahouse.model.UserInfo">
     insert into b_user_info (id, real_name, school_id, 
       e_mail, tel)
-    values (#{id,jdbcType=INTEGER}, #{realName,jdbcType=VARCHAR}, #{schoolId,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{realName,jdbcType=VARCHAR}, #{schoolId,jdbcType=VARCHAR},
       #{eMail,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.UserInfo">

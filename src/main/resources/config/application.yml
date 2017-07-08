@@ -6,7 +6,13 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     url:
     username:
-    password: 
+    password:
+  http:
+    multipart:
+      max-file-size: 10Mb
+      max-request-size: 10Mb
+  thymeleaf:
+    cache: false
 mybatis:
   mapperLocations: classpath:mapper/*.xml
   typeAliasesPackage: tk.mapper.model

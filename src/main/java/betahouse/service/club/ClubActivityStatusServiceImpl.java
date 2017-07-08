@@ -1,6 +1,8 @@
 package betahouse.service.club;
 
 import betahouse.mapper.ClubActivityFormMapper;
+import betahouse.mapper.ClubActivityStatusMapper;
+import betahouse.mapper.UserInfoMapper;
 import betahouse.model.ClubActivityForm;
 import betahouse.model.ClubActivityStatus;
 import betahouse.model.UserInfo;

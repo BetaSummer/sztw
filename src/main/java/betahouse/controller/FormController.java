@@ -23,7 +23,6 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @RequestMapping("/applyClubForm")
 public class FormController extends BaseController {
-
     @Autowired
     private ClubService clubService;
 

@@ -4,7 +4,6 @@ import betahouse.model.ClubActivityForm;
 import betahouse.model.ClubActivityStatus;
 import betahouse.model.User;
 import betahouse.model.UserInfo;
-
 import java.util.List;
 import java.util.Map;
 

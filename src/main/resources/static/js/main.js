@@ -134,3 +134,23 @@ $(function () {
        $(".approval-form").toggle(300);
     });
 });
+
+/* footer */
+
+function heightListener() {
+    var $height = $(window).height();
+    if($height>$(document.body).height()){
+        $("footer").css("position","fixed");
+        $("footer").css("top", $height-53.2);
+    }
+    else{
+        $("footer").css("position","static");
+        $("footer").css("top", $(document.body).height());
+
+    }
+}
+
+$(function () {
+    $(document).ready(heightListener());
+    $(window).resize(heightListener());
+});

@@ -16,7 +16,7 @@ nav a:hover, nav a:visited, nav a:link, nav a:active {
   color: #c1bdba; }
 nav li {
   color: #c1bdba;
-  width: 140px;
+  width: 10%;
   text-align: center; }
 nav li:hover {
   background-color: #5c5a5d; }
@@ -31,48 +31,23 @@ nav .nav-left li {
 nav .on {
   color: #FFF; }
 
-footer{
-  position:absolute;
-  bottom:0;
-  width:100%;
-  height:90px;
-  background-color: #000;}
-footer .foot-right{
-  margin-right: 10%;}
-footer .foot-right li{
-  float: right;
-  padding: 35px 22px 0 0;
-  color: #c1bdba;}
-footer .foot-right li a{
-  color: #FFF;}
-footer .foot-left{
-  height: 75px;
-  width: 500px;
-  margin: 7px 0 7px 12%;
-  float: left;}
-footer .foot-left ul{
-  width: 145px;
-  height: 75px;
-  float: left;
-  border-right: 1px solid #FFF;
+.copyright {
+  background: #111;
+  font-size: 13px;
   text-align: center;
-  color: #fff;
+  color: #555;
+  padding-top: 14px;
+  padding-bottom: 20px;
+  border-top: 1px solid #303030;
 }
-footer .foot-left ul address{
-  font-size: 10px;
-  padding: 7px;
+.copyright a {
+  color: #555;
+  text-decoration: none;
+  background-color: transparent;
 }
-footer a{
-  font-size: 10px;
-  padding: 5px;
-  color: #fff;
-}
-#foot-ul{
-  border-right: none;
-  width: 75px;
-  height: 75px;
-  margin-left: 45px;
-  background-color: white;
+footer{
+  height: 53.2px;
+  width: 100%;
 }
 
 .tab-btn {
@@ -91,3 +66,14 @@ footer a{
   border-color: #ececec; }
 
 /*# sourceMappingURL=common.css.map */
+
+
+@media screen and (max-width: 767px){
+  nav{
+    height: 60px;
+    line-height: 60px;
+  }
+  nav li{
+    width: 20%;
+  }
+}

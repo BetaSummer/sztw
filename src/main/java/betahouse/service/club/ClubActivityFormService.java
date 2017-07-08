@@ -8,7 +8,7 @@ import betahouse.model.ClubActivityForm;
 public interface ClubActivityFormService {
 
     int commitForm(String club, String chiefName, String activityName, String activityPlace, String activityTime,
-               String activityPeople, int isApplyFine, String activityInfo, int applySelfMoney, int applyReserveMoney,
+               String activityPeople, String isApplyFine, String activityInfo, String applySelfMoney, String applyReserveMoney,
                int clubId, int fileId);
 
     ClubActivityForm getFormById(int id);
@@ -16,5 +16,7 @@ public interface ClubActivityFormService {
     ClubActivityForm getLastForm();
 
     int deleteFormById(int id);
+
+    int getLastInsertId();
 
 }

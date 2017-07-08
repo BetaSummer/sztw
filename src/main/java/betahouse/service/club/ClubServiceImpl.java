@@ -17,7 +17,7 @@ public class ClubServiceImpl implements ClubService {
     private ClubMapper clubMapper;
 
     @Override
-    public List<Club> listClubByUserId(int userId) {
+    public Club getClubByUserId(int userId) {
         return clubMapper.selectByUserId(userId);
     }
 

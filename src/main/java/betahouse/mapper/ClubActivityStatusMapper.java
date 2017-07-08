@@ -20,5 +20,7 @@ public interface ClubActivityStatusMapper {
 
     int updateByFormId(ClubActivityStatus record);
 
-    List<ClubActivityStatus> listStatusByLv(int lv);
+    List<ClubActivityStatus> selectByLv(int lv);
+
+    List<ClubActivityStatus> selectByFormUserId(int formUsereId);
 }

@@ -3,12 +3,19 @@
 <head>
     <meta charset="UTF-8"/>
     <title>信息管理</title>
+    <link id="tabset-css" rel="stylesheet" href="/css/tabset.css"/>
     <link rel="stylesheet" href="/css/base.css"/>
+    <link rel="stylesheet" href="/css/common.css"/>
+    <link rel="stylesheet" href="/css/club.css"/>
+    <link rel="stylesheet" href="/css/inform.css"/>
 </head>
 <body>
 <nav>
     <ul class="nav-left">
-        <a href="#">
+        <a>
+            <li id="nav-left-li">
+                首页
+            </li>
             <li class="on">
                 信息管理
             </li>
@@ -23,5 +30,98 @@
         </a>
     </ul>
 </nav>
+
+<content>
+
+    <div class="sub-nav">
+        <div class="sub-ft sub-item">
+            用户管理
+        </div>
+        <div class="sub-child">
+            <ul>
+                <li class="sub-item" id="manage-a">xx管理</li>
+                <li class="sub-item" id="form-view">option2</li>
+            </ul>
+        </div>
+        <div class="sub-ft sub-item">
+            财务管理
+        </div>
+        <div class="sub-child">
+            <ul>
+                <li class="sub-item" id="f-list">财务流水</li>
+                <li class="sub-item">财务审核</li>
+                <li class="sub-item">option3</li>
+            </ul>
+        </div>
+        <div class="sub-ft sub-item">
+            信息管理
+        </div>
+        <div class="sub-child">
+            <ul>
+                <li class="sub-item">option1</li>
+                <li class="sub-item">option2</li>
+                <li class="sub-item">option3</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="sub-content">
+        <div class="content-nav">
+            欢迎你，
+        </div>
+        <div class="content-body">
+
+            <div id='f-flow' class='f-flow'>
+                <ul>
+                    <input type="text" id="*" class="*"/>
+                    <input type="button" id="*" class="*" value="serch"/>
+                </ul>
+                <table>
+                    <tr><th>日期</th><th>社团</th><th>活动</th><th>XX</th><th>使用金额</th><th>明细</th></tr>
+                    <tr><td>date</td><td>xx</td><td>xx</td><td>xx</td><td>￥xx</td><td><a id="check">查看</a></td></tr>
+                    <tr><td>date</td><td>xx</td><td>xx</td><td>xx</td><td>￥xx</td><td><a id="check2">查看</a></td></tr>
+                </table>
+            </div>
+            <div id='manage-a-show' class='f-flow'>
+                <ul>
+                    <input type="text" id="*" class="*"/>
+                    <input type="button" id="*" class="*" value="serch"/>
+                </ul>
+                <table>
+                    <tr><th>头衔</th><th>社团</th><th>学号</th><th>XX</th><th>XX</th><th>管理</th></tr>
+                    <tr><td>xx</td><td>xx</td><td>xx</td><td>xx</td><td>￥xx</td><td><a id="check">授权</a></td></tr>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+</content>
+
+<div class="check-view" id="check-view">
+</div>
+<div class="check-window" id="check-window">
+    <ul>
+        <input type="button" id="check-window-out" value="退出"/>
+    </ul>
+</div>
+
+
+<script src="/js/jquery.js"></script>
+<script src="/js/main.js"></script>
+<script src="c/js/tabset.js"></script>
+<script src="/js/laydate.js"></script>
 </body>
 </html>
+
+
+<script type="text/javascript">
+    //<![CDATA[
+    $("#check").bind("click",function (event) {
+        $("#check-view").show();$("#check-window").show();
+    });
+    $("#check-window-out").bind("click",function (event) {
+        $("#check-view").hide();$("#check-window").hide();
+    });
+    //]]>
+</script>

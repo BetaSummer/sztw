@@ -5,7 +5,6 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="real_name" jdbcType="VARCHAR" property="realName" />
     <result column="school_id" jdbcType="VARCHAR" property="schoolId" />
-    <result column="lv" jdbcType="INTEGER" property="lv" />
     <result column="e_mail" jdbcType="VARCHAR" property="eMail" />
     <result column="tel" jdbcType="VARCHAR" property="tel" />
   </resultMap>
@@ -15,26 +14,25 @@
   </delete>
   <insert id="insert" parameterType="betahouse.model.UserInfo">
     insert into b_user_info (id, real_name, school_id, 
-      lv, e_mail, tel)
-    values (#{id,jdbcType=INTEGER}, #{realName,jdbcType=VARCHAR}, #{schoolId,jdbcType=VARCHAR}, 
-      #{lv,jdbcType=INTEGER}, #{eMail,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR})
+      e_mail, tel)
+    values (#{id,jdbcType=INTEGER}, #{realName,jdbcType=VARCHAR}, #{schoolId,jdbcType=VARCHAR},
+      #{eMail,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.UserInfo">
     update b_user_info
     set real_name = #{realName,jdbcType=VARCHAR},
       school_id = #{schoolId,jdbcType=VARCHAR},
-      lv = #{lv,jdbcType=INTEGER},
       e_mail = #{eMail,jdbcType=VARCHAR},
       tel = #{tel,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, real_name, school_id, lv, e_mail, tel
+    select id, real_name, school_id, e_mail, tel
     from b_user_info
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id, real_name, school_id, lv, e_mail, tel
+    select id, real_name, school_id, e_mail, tel
     from b_user_info
   </select>
 </mapper>

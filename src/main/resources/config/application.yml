@@ -4,9 +4,17 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/xgtw_digital
-    username: root
-    password: ZXCVBNM123
+    url:
+    username:
+    password: 
+
+  http:
+    multipart:
+      max-file-size: 10Mb
+      max-request-size: 10Mb
+  thymeleaf:
+    cache: false
+
 mybatis:
   mapperLocations: classpath:mapper/*.xml
   typeAliasesPackage: tk.mapper.model

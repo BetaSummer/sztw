@@ -7,11 +7,15 @@
     <link rel="stylesheet" href="/css/base.css"/>
     <link rel="stylesheet" href="/css/common.css"/>
     <link rel="stylesheet" href="/css/club.css"/>
+    <link rel="stylesheet" href="/css/inform.css"/>
 </head>
 <body>
     <nav>
         <ul class="nav-left">
             <a>
+                <li style="margin-left: -5%;" onclick="location=location">
+                    首页
+                </li>
                 <li>
                     信息管理
                 </li>
@@ -71,10 +75,77 @@
         </div>
         <div class="sub-content">
             <div class="content-nav">
-                欢迎你，<sapn th:text="${user.realName}"></sapn>
+                欢迎你，
             </div>
             <div class="content-body">
 
+
+
+                <div class="inform" id="inform">
+                    <h1>通知公告</h1>
+                    <hr/>
+                    <ul id="inform-ul">
+                        <a id="news-g">公告</a>
+                        <a id="news-t">通知</a>
+                    </ul>
+
+
+
+
+                    <div class="news" id="demo-t">
+                        <div id="demo1" class="suit">
+                            <li target="_blank">
+                                <div class="deta">
+                                    <dd class="day">"deta"</dd>
+                                </div>
+                                <a title="-----获取通知---------全部信息显示----------" href="*" >
+                                    ----------获取-------------------通知-----------------------</a>
+                            </li>
+                            <li target="_blank">
+                                <div class="deta">
+                                    <dd class="day">"deta"</dd>
+                                </div>
+                                <a title="-----获取通知---------全部信息显示----------" href="*" >
+                                    ----------获取-------------------通知-----------------------</a>
+                            </li>
+                            <li target="_blank">
+                                <div class="deta">
+                                    <dd class="day">"deta"</dd>
+                                </div>
+                                <a title="-----获取通知---------全部信息显示----------" href="*" >
+                                    ----------获取-------------------通知-----------------------</a>
+                            </li>
+                            <li target="_blank">
+                                <div class="deta">
+                                    <dd class="day">"deta"</dd>
+                                </div>
+                                <a title="-----获取通知---------全部信息显示----------" href="*" >
+                                    ----------获取-------------------通知-----------------------</a>
+                            </li>
+                        </div>
+                        <div id="demo2"></div>
+                    </div>
+
+
+
+                    <div class="news" id="demo-g">
+                        <div id="demo1" class="suit">
+                            <li target="_blank">
+                                <div class="deta">
+                                    <dd class="day">"deta"</dd>
+                                </div>
+                                <a title="-----获取通知---------全部信息显示----------" href="*" >
+                                    ----------获取-------------------通知-----------------------</a>
+                            </li>
+                        </div>
+                        <div id="demo2"></div>
+                    </div>
+
+
+                    <ul style="margin-top: 310px;">
+                        <a href="*">More>></a></ul>
+
+                </div>
             </div>
         </div>
     </content>
@@ -84,3 +155,15 @@
 <script src="/js/laydate.js"></script>
 </body>
 </html>
+
+
+<script type="text/javascript">
+    //<![CDATA[
+    $("#news-g").bind("click",function (event) {
+        $("#demo-t").hide();$("#demo-g").show();
+    });
+    $("#news-t").bind("click",function (event) {
+        $("#demo-g").hide();$("#demo-t").show();
+    });
+    //]]>
+</script>

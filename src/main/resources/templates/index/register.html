@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
     <title>注册</title>
     <link rel="stylesheet" href="/css/base.css"/>
     <link rel="stylesheet" href="/css/common.css"/>
+    <link rel="stylesheet" href="/css/userpage.css"/>
 </head>
 <body>
 <nav>
@@ -12,10 +13,43 @@
         <li class="on">
             注册
         </li>
-        <li>
+        <li onclick="window.location.href='login.html'">
             登录
         </li>
     </ul>
 </nav>
+
+<footer>
+    <div class="foot-left">
+        <ul><p>关于</p>
+            <address>qq：<a href="*">123456789</a><br/>
+                phone:<a>1516668899</a><br/>xx：<a th:href="@{*}">xxxxxxx</a></address></ul>
+        <ul><p>了解</p>
+            <a th:href="@{*}">登陆权限</a><br/>
+            <a th:href="@{*}">审核流程</a></ul>
+        <ul style="border-right: none;"><p>二维码</p></ul>
+    </div>
+    <ul class="foot-right">
+        <li><a th:href="@{*}" style="font-size: 15px;">杭州电子科技大学信息工程学院</a></li>
+    </ul>
+</footer>
+
+<div class="register">
+    <h1>用户注册</h1>
+    <hr/>
+    <form action="/index/register" method="post">
+        <label>UserName</label><input id="reg_username" type="text"/>
+        <label>Password</label><input id="reg_password" type="password"/>
+        <label>RealName</label><input id="reg_realname" type="text"/>
+        <label>SchoolId</label><input id="reg_school_id" type="text"/>
+        <label>E-Mail</label><input id="reg_email" type="E-Mail"/>
+        <label>Club</label><input id="reg_club" type="text"/>
+        <label>E-Mail</label><input id="reg_tel" type="E-Mail"/>
+        <input type="button"  id="register-btn" value="注册" style="margin-left: 110px;"/>
+        <input type="button" id="register-reset" value="重置"/>
+    </form>
+</div>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
 </body>
 </html>

@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html lang="zh-CN" xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>登录</title>
     <link rel="stylesheet" href="/css/base.css"/>
     <link rel="stylesheet" href="/css/common.css"/>
     <link rel="stylesheet" href="/css/userpage.css"/>
     <link rel="stylesheet" href="/css/inform.css"/>
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
 <nav>
@@ -20,20 +26,7 @@
     </ul>
 </nav>
 
-<footer>
-    <div class="foot-left">
-        <ul><p>关于</p>
-            <address>qq：<a th:href="@{*}">123456789</a><br/>
-                phone:<a>1516668899</a><br/>xx：<a>xxxxxxx</a></address></ul>
-        <ul><p>了解</p>
-            <a th:href="@{*}">登陆权限</a><br/>
-            <a th:href="@{*}">审核流程</a></ul>
-        <ul style="border-right: none;"><p>二维码</p></ul>
-    </div>
-    <ul class="foot-right">
-        <li><a style="font-size: 15px;" th:href="@{*}">杭州电子科技大学信息工程学院</a></li>
-    </ul>
-</footer>
+
 
 <div class="login">
     <h1>用户登录</h1>
@@ -99,6 +92,12 @@
 </div>
 
 
+<footer>
+    <div class="copyright">
+        <span>Copyright © <a href="http://expo.bootcss.com"></a></span> |
+        <span><a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备11008151号</a></span> | hdxg 版权所有
+    </div>
+</footer>
 
 <script type="text/javascript" src="/js/jquery.js"></script>
 <script type="text/javascript" src="/js/main.js"></script>

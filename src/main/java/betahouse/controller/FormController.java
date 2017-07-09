@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
+import java.util.function.BiConsumer;
 
 /**
  * Created by x1654 on 2017/7/6.
@@ -69,5 +70,12 @@ public class FormController extends BaseController {
         Map mapDTO = clubActivityStatusService.listStatusByFormUserId(getCurrentUser(request).getId());
         model.addAttribute("data",mapDTO);
         return "clubActivity/formList";
+    }
+
+    @RequestMapping(value = "/getFormById")
+    public String getFormById(HttpServletRequest request, HttpServletResponse response, Model model,
+                              @RequestParam int id){
+        String activityNameDTO = clubActivityFormService.getFormById(id).getActivityName();
+        return ajaxReturn(response, activityNameDTO);
     }
 }

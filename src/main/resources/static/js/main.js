@@ -52,8 +52,13 @@ $(function () {
                data: data,
                dataType:"json",
                success: function(r){
-                   window.location.href = "/index";
-                   window.location.replace();
+                   if(r.status === 0){
+                       window.location.href = "/index";
+                       window.location.replace();
+                   }else if(r.status === 1){
+                       alert(r.message);
+                   }
+
                },
                error: function(XMLHttpRequest, textStatus, errorThrown){
                    alert(XMLHttpRequest.status);
@@ -131,4 +136,23 @@ $(function () {
     $("#club-entry").click(function () {
        $(".approval-form").toggle(300);
     });
+});
+
+/* footer */
+
+function heightListener() {
+    var $height = $(window).height();
+    if($height>$(document.body).height()){
+        $("footer").css("position","fixed");
+        $("footer").css("top", $height-53.2);
+    }
+    else{
+        $("footer").css("position","static");
+        $("footer").css("top", $(document.body).height()-53.2);
+    }
+}
+
+$(function () {
+    $(document).ready(heightListener());
+    $(window).resize(heightListener());
 });

@@ -18,8 +18,13 @@
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.FormType">
     update b_form_type
-    set form_type = #{formType,jdbcType=INTEGER},
+    set
+    <if test="null != formType and '' != formType">
+      form_type = #{formType,jdbcType=INTEGER},
+    </if>
+    <if test="null != formName and '' != formName">
       form_name = #{formName,jdbcType=VARCHAR}
+    </if>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

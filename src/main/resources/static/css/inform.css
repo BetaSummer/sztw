@@ -3,18 +3,16 @@
     -moz-box-shadow: 0 1px 3px #5c5a5d;
     box-shadow: 0 1px 3px #5c5a5d;
     height: 280px;
-    width: 650px;
-    margin: 25px;
-    position: absolute;
-    left: 10%;
+    width: 40%;
+    margin: 2%;
 }
 .inform ul{
     float: right;
     text-align: left;
-    padding-right: 35px;
+    padding-right: 1%;
     height: 20px;
     white-space: nowrap;
-    font-size: 15px;
+    font-size: 40%;
     border-top: 1px solid #e2e2e2;
     transition: all .2s;
     -webkit-transition: all .2s;
@@ -62,7 +60,7 @@
     width: 90%;
     overflow: hidden;
     height: 30px;
-    margin: 12px 0 10px 70px;}
+    margin: 12px 0 10px 1%;}
 .news li .date{
     width: 57px;
     height: 52px;
@@ -79,7 +77,7 @@
 .news li a{
     float: left;
     overflow: hidden;
-    width: 80%;
+    width: 100%;
     margin-top: -21px;
     margin-left: 100px;
     line-height: 26px;
@@ -93,3 +91,43 @@
     height: 290px;}
 #demo1{
     width: 90%;}
+@media screen and (min-width: 1600px){
+    .inform{
+        position: absolute;
+        left: 10%;
+    }
+}
+@media screen and (min-width: 1400px) and (max-width: 1600px) {
+    .inform{
+        position: absolute;
+        left: 5%;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 1400px) {
+    .inform{
+        position: absolute;
+        left: 3%;
+        width: 50%;
+
+    }
+}
+@media screen and (max-width: 767px){
+    .inform{
+        width: 100%;
+        margin:5% auto;
+        border:none;
+        -webkit-box-shadow: 0 ;
+        -moz-box-shadow: 0 ;
+        box-shadow: 0 ;
+    }
+    .news li{
+        display: block;
+        height: 60px;
+        width: 100%;
+        margin:0;
+        padding:0;
+    }
+    .inform h1{
+        font-size: 22px;
+    }
+}

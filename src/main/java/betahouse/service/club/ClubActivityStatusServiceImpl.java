@@ -59,11 +59,14 @@ public class ClubActivityStatusServiceImpl implements ClubActivityStatusService 
     @Override
     public Map listStatusByFormUserId(int formUserId) {
         List<ClubActivityStatus> listDTO = clubActivityStatusMapper.selectByFormUserId(formUserId);
-        Map<String, Integer> mapDTO = new HashMap<String, Integer>();
+        Map<Integer, String[]> mapDTO = new HashMap<Integer, String[]>();
         for(ClubActivityStatus c: listDTO){
-            int status = c.getStatus();
-            String activityName = clubActivityFormMapper.selectByPrimaryKey(c.getFormId()).getActivityName();
-            mapDTO.put(activityName, status);
+            ClubActivityForm clubActivityFormDTO = clubActivityFormMapper.selectByPrimaryKey(c.getFormId());
+            int statusDTO = c.getStatus();
+            int idDTO = clubActivityFormDTO.getId();
+            String activityNameDTO = clubActivityFormDTO.getActivityName();
+            String[] arrDTO = new String[]{activityNameDTO, String.valueOf(statusDTO)};
+            mapDTO.put(idDTO, arrDTO);
         }
         return mapDTO;
     }
@@ -84,11 +87,15 @@ public class ClubActivityStatusServiceImpl implements ClubActivityStatusService 
     // TODO: 2017/7/7 type and lv
     public Map listAllByLv(int lv) {
         List<ClubActivityStatus> listDTO = clubActivityStatusMapper.selectByLv(lv);
-        Map<String, Integer> mapDTO = new HashMap<String, Integer>();
+        Map<Integer, Map> mapDTO = new HashMap<Integer, Map>();
         for(ClubActivityStatus c: listDTO){
-            int status = c.getStatus();
-            String activityName = clubActivityFormMapper.selectByPrimaryKey(c.getFormId()).getActivityName();
-            mapDTO.put(activityName, status);
+            ClubActivityForm clubActivityFormDTO = clubActivityFormMapper.selectByPrimaryKey(c.getFormId());
+            int statusDTO = c.getStatus();
+            int idDTO = clubActivityFormDTO.getId();
+            String activityNameDTO = clubActivityFormDTO.getActivityName();
+            Map<String, Integer> mapDTO2 = new HashMap<String, Integer>();
+            mapDTO2.put(activityNameDTO, statusDTO);
+            mapDTO.put(idDTO, mapDTO2);
         }
         return mapDTO;
     }

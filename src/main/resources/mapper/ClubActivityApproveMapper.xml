@@ -23,11 +23,22 @@
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.ClubActivityApprove">
     update b_approve_club_activity
-    set approve_user_id = #{approveUserId,jdbcType=INTEGER},
+    set
+    <if test="null != approveUserId and '' != approveUserId">
+      approve_user_id = #{approveUserId,jdbcType=INTEGER},
+    </if>
+    <if test="null != isApprove and '' != isApprove">
       is_approve = #{isApprove,jdbcType=INTEGER},
+    </if>
+    <if test="null != formId and '' != formId">
       form_id = #{formId,jdbcType=INTEGER},
+    </if>
+    <if test="null != comment and '' != comment">
       comment = #{comment,jdbcType=VARCHAR},
+    </if>
+    <if test="null != lv and '' != lv">
       lv = #{lv,jdbcType=INTEGER}
+    </if>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

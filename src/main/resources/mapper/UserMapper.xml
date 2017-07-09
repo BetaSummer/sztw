@@ -18,8 +18,13 @@
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.User">
     update b_user
-    set username = #{username,jdbcType=VARCHAR},
+    set
+    <if test="null != username and '' != username">
+      username = #{username,jdbcType=VARCHAR},
+    </if>
+    <if test="null != password and '' != password">
       password = #{password,jdbcType=VARCHAR}
+    </if>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

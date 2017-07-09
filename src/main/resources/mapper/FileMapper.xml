@@ -16,6 +16,9 @@
       folder)
     values (#{id,jdbcType=INTEGER}, #{preName,jdbcType=VARCHAR}, #{afterName,jdbcType=VARCHAR}, 
       #{folder,jdbcType=VARCHAR})
+    <selectKey resultType="Integer" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID() AS id
+    </selectKey>
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.File">
     update b_file

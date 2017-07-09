@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static betahouse.core.constant.FormConstant.CLUB_ACTIVITY_TYPE;
+
 /**
  * Created by x1654 on 2017/7/5.
  */
@@ -47,6 +49,7 @@ public class ClubActivityStatusServiceImpl implements ClubActivityStatusService 
     public int saveStatus(ClubActivityForm form, UserInfo userInfo) {
         ClubActivityStatus clubActivityStatusDTO = new ClubActivityStatus();
         clubActivityStatusDTO.setFormId(form.getId());
+        clubActivityStatusDTO.setFormType(CLUB_ACTIVITY_TYPE);
         clubActivityStatusDTO.setFormUserId(userInfo.getId());
         clubActivityStatusDTO.setStatus(0);
         clubActivityStatusDTO.setApproveLv(1);

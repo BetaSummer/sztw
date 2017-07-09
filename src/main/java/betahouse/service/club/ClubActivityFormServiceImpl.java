@@ -5,6 +5,10 @@ import betahouse.model.ClubActivityForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
 /**
  * Created by x1654 on 2017/7/4.
  */
@@ -31,10 +35,14 @@ public class ClubActivityFormServiceImpl implements ClubActivityFormService {
         clubActivityFormDTO.setIsApplyFine(isApplyFineDTO);
         clubActivityFormDTO.setActivityInfo(activityInfo);
         clubActivityFormDTO.setApplySelfMoney(applySelfMoneyDTO);
-        clubActivityFormDTO.setReserveMoney(applyReserveMoneyDTO);
+        clubActivityFormDTO.setApplyReserveMoney(applyReserveMoneyDTO);
         clubActivityFormDTO.setClubId(clubId);
         clubActivityFormDTO.setFileId(fileId);
-        return clubActivityFormMapper.insert(clubActivityFormDTO);
+        Date dateDTO = new Date();
+        SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        clubActivityFormDTO.setApplyDate(sdfDTO.format(dateDTO));
+        clubActivityFormMapper.insert(clubActivityFormDTO);
+        return clubActivityFormDTO.getId();
     }
 
     @Override
@@ -53,7 +61,8 @@ public class ClubActivityFormServiceImpl implements ClubActivityFormService {
     }
 
     @Override
-    public int getLastInsertId() {
-        return clubActivityFormMapper.selectLastInsertId();
+    public List<ClubActivityForm> listFormByClubName(String clubName) {
+        return clubActivityFormMapper.selectByClubName(clubName);
     }
+
 }

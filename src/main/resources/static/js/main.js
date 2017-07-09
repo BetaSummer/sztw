@@ -79,12 +79,10 @@ $(function () {
    $("#form-view").click(function () {
        $(".content-body").html("");
        $(".loading").show();
-       $.get("/applyClubForm/getListAllForm",function () {
-          $(".content-body").load("/applyClubForm/getListAllForm",function () {
-              $(".loading").hide();
-          }) ;
-       });
-   }) ;
+       $(".content-body").load("/applyClubForm/listAllForm",function () {
+           $(".loading").hide();
+       }) ;
+   });
 });
 $(function () {
     $("#f-list").click(function () {

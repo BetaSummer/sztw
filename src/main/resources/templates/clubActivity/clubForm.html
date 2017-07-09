@@ -24,8 +24,8 @@
     <div class="form-inline">
         <div class="form-group">
             <label>活动时间</label>
-            <input id="time1" placeholder="请输入开始日期" class="laydate-icon" style="width: 26%; " onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/>  -
-            <input id="time2" placeholder="请输入结束日期" class="laydate-icon" style="width: 26%; " onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/>
+            <input id="time1" placeholder="开始日期" class="laydate-icon" style="width: 26%; " onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/>  -
+            <input id="time2" placeholder="结束日期" class="laydate-icon" style="width: 26%; " onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/>
             <input id="timekey" type="text" name="activityTime" style="display: none;"/>
         </div>
         <div class="form-group">
@@ -55,7 +55,7 @@
             <label>文件</label><input id="apply_file" type="file" name="applyFile"/>
         </div>
     </div>
-    <input id="submit" type="button" value="提交"/>
+    <input type="submit" value="提交"/>
 </form>
 <script type="text/javascript">
     //<![CDATA[
@@ -77,7 +77,6 @@
             }
         });
         $("#apply_self_money").blur(function () {
-            alert($("#time1").val());
            if($(this).val()==""){
                $(this).val("0");
            }
@@ -100,6 +99,7 @@
         $(".appli-form").submit(function () {
             $("#timekey").val($("#time1").val()+" - "+$("#time2").val());
             $("#apply_reserve_money").removeAttr('disabled');
+            $("#club").removeAttr('disabled');
         });
     });
     //]]>

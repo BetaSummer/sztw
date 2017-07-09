@@ -197,6 +197,7 @@ a:hover{
     margin: 5px auto;
     float: none;
     clear: both;
+    background-color: #FFFFFF;
   }
   .sub-item{
     border-radius: 2px;
@@ -224,5 +225,8 @@ a:hover{
   .sub-child .sub-item{
     color:#b3b3b3;
     background-color: #faf5f5;
+  }
+  .sub-content .content-body {
+    padding:0;
   }
 }

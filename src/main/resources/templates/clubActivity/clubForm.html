@@ -60,9 +60,11 @@
 <script type="text/javascript">
     //<![CDATA[
     $(function () {
-        var formHeight = $(document.body).height();
-        $("#form-sub").css('position','absolute');
-        $("#form-sub").css('top',formHeight-30);
+        if( window.screen.width<767){
+            var formHeight = $(document.body).height();
+            $("#form-sub").css('position','absolute');
+            $("#form-sub").css('top',formHeight-30);
+        }
     });
     $(function () {
         $("#apply_self_money").bind('input propertychange',function () {

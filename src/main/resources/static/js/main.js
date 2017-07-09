@@ -125,6 +125,7 @@ $(function () {
     $("#form-appli").click(function () {
         $(".loading").hide();
        $(".content-body").load("/applyClubForm/applyFormClubActivity");
+       $(document.body).height(1050);
     });
 });
 

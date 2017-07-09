@@ -55,10 +55,15 @@
             <label>文件</label><input id="apply_file" type="file" name="applyFile"/>
         </div>
     </div>
-    <input  type="submit" value="提交"/>
+    <input id="form-sub" type="submit" value="提交"/>
 </form>
 <script type="text/javascript">
     //<![CDATA[
+    $(function () {
+        var formHeight = $(document.body).height();
+        $("#form-sub").css('position','absolute');
+        $("#form-sub").css('top',formHeight-30);
+    });
     $(function () {
         $("#apply_self_money").bind('input propertychange',function () {
            if(parseFloat($("#apply_self_money").val())>=parseFloat($("#now_self_money").val())){

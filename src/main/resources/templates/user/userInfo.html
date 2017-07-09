@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
     <title>信息管理</title>
@@ -12,15 +12,17 @@
 <body>
 <nav>
     <ul class="nav-left">
-        <a>
-            <li id="nav-left-li">
+        <a th:href="@{userInfo.html}">
+            <li style="margin-left: -5%;" class="on">
                 首页
             </li>
-            <li class="on">
+        </a>
+        <a>
+            <li href="#" class="on">
                 信息管理
             </li>
         </a>
-        <a href="#">
+        <a th:href="@{#}">
             <li>
                 申请管理
             </li>
@@ -98,9 +100,13 @@
     </div>
 </content>
 
+
+<!--弹出框系列-->
+
 <div class="check-view" id="check-view">
 </div>
 <div class="check-window" id="check-window">
+
     <ul>
         <input type="button" id="check-window-out" value="退出"/>
     </ul>
@@ -109,7 +115,7 @@
 
 <script src="/js/jquery.js"></script>
 <script src="/js/main.js"></script>
-<script src="c/js/tabset.js"></script>
+<script src="/js/tabset.js"></script>
 <script src="/js/laydate.js"></script>
 </body>
 </html>

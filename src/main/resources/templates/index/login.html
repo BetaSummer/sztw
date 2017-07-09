@@ -11,9 +11,11 @@
 <body>
 <nav>
     <ul class="nav-right">
-        <li onclick="window.location.href='register.html'">
+        <a th:href="@{register.html}">
+        <li>
             注册
         </li>
+        </a>
         <li class="on">
             登录
         </li>
@@ -23,12 +25,12 @@
 <footer>
     <div class="foot-left">
         <ul><p>关于</p>
-            <address>qq：<a th:href="@{*}">123456789</a><br/>
-                phone:<a>1516668899</a><br/>xx：<a>xxxxxxx</a></address></ul>
+            <a th:href="@{*}">xx:xxxx</a><br/>
+            <a th:href="@{*}">xx:xxxxxx</a><br/></ul>
         <ul><p>了解</p>
             <a th:href="@{*}">登陆权限</a><br/>
             <a th:href="@{*}">审核流程</a></ul>
-        <ul style="border-right: none;"><p>二维码</p></ul>
+        <ul id="foot-ul" ><img src="*"/></ul>
     </div>
     <ul class="foot-right">
         <li><a style="font-size: 15px;" th:href="@{*}">杭州电子科技大学信息工程学院</a></li>

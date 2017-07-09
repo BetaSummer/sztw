@@ -153,21 +153,21 @@ a:hover{
   float: left;
   position: absolute;
   top: 0;
+  text-align: center;
   z-index: 9998;
   opacity: 0.6;
   background-color: #cccccc;}
 .check-window{
-  width: 700px;
-  height: 400px;
+  width: 60%;
+  height: 60%;
   position: absolute;
   z-index: 9999;
   display: none;
   overflow-y: visible;
-  float: top;
-  border: 2px solid #FFAEB9;
-  margin-left: 400px;
-  margin-top: 100px;
+  margin: 80px 20%;
+  border: 1px solid #FFAEB9;
   background-color: #fff;}
+
 .check-window ul{
   position:absolute;
   bottom:0;
@@ -178,4 +178,5 @@ a:hover{
   padding: 0 5px 0 5px;
   margin-bottom:5px;
   margin-right: 10px;}
+
 /*# sourceMappingURL=tabset.css.map */

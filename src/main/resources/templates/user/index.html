@@ -12,11 +12,13 @@
 <body>
     <nav>
         <ul class="nav-left">
-            <a>
-                <li style="margin-left: -5%;" onclick="location=location">
+            <a th:href="@{index.html}">
+                <li style="margin-left: -5%;" class="on">
                     首页
                 </li>
-                <li>
+            </a>
+            <a th:href="@{userInfo.html}">
+                <li id="inform-manage">
                     信息管理
                 </li>
             </a>
@@ -142,8 +144,8 @@
                     </div>
 
 
-                    <ul style="margin-top: 310px;">
-                        <a href="*">More>></a></ul>
+                    <ul style="margin-top: 310px">
+                        <a href="*" id="*" style="float: left;">More>></a></ul>
 
                 </div>
             </div>

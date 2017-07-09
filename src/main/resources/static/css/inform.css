@@ -3,7 +3,7 @@
     -moz-box-shadow: 0 1px 3px #5c5a5d;
     box-shadow: 0 1px 3px #5c5a5d;
     height: 280px;
-    width: 650px;
+    width: 40%;
     margin: 25px;
     position: absolute;
     left: 10%;
@@ -21,8 +21,8 @@
 }
 .inform ul a{
     float: right;
-    width: 20px;
-    padding-right: 20px;
+    width: 8%;
+    padding-right: 8%;
     line-height: 20px;
     color: #050001;
     text-decoration:none;
@@ -46,7 +46,8 @@
     margin-top: 0px;}
 #inform-ul{
     margin-top: -30px;
-    border-top: none;}
+    border-top: none;
+    width:35%;}
 #demo-g{
     display: none;
 }
@@ -57,21 +58,23 @@
     overflow:hidden;
     position: absolute;
 }
+#demo2{width: 90%}
+#demo1{width: 90%}
 .news li{
     list-style-type: none;
     width: 90%;
     overflow: hidden;
     height: 30px;
-    margin: 12px 0 10px 70px;}
+    margin: 12px 0 10px 50px;}
 .news li .date{
-    width: 57px;
+    width: 5%;
     height: 52px;
     float: left;}
 .news li .date dd{
     text-align: left;}
 .news li .date dd .day{
     text-align: center !important;
-    width: 46px;
+    width: 8%;
     border-bottom: solid 1px white;
     margin-left: 3px;
     padding: 4px 0;
@@ -79,7 +82,7 @@
 .news li a{
     float: left;
     overflow: hidden;
-    width: 80%;
+    width: 100%;
     margin-top: -21px;
     margin-left: 100px;
     line-height: 26px;
@@ -91,5 +94,3 @@
     text-decoration:underline;}
 #demo-g,#demo-t{
     height: 290px;}
-#demo1{
-    width: 90%;}

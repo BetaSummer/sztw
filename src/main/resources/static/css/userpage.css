@@ -3,24 +3,25 @@
   -moz-box-shadow: 0 1px 3px #5c5a5d;
   box-shadow: 0 1px 3px #5c5a5d;
   height: 280px;
-  width: 450px;
+  width: 30%;
   margin: 25px;
   position: absolute;
   right: 10%; }
 .login label, .login input {
   margin-bottom: 20px;
-  margin-top: 20px; }
+  margin-top: 20px;
+  font-size: 1.0vw}
 .login label {
   color: #5c5a5d;
   text-align: center;
   display: inline-block;
-  width: 90px;
+  width: 20%;
   height: 30px;
   margin: 0 10px; }
 .login input[type='submit'], .login input[type='button'] {
   outline: none;
-  margin-left: 50px;
-  width: 150px;
+  margin-left: 10%;
+  width: 30%;
   height: 30px;
   border: solid #5c5a5d 1px;
   color: #5c5a5d; }
@@ -29,12 +30,12 @@
   color: #FFF;
   background-color: #5c5a5d; }
 .login input[type='text'] {
-  width: 300px;
+  width: 66%;
   height: 30px;
   border: solid #5c5a5d 1px;
   color: #5c5a5d; }
 .login input[type='password'] {
-  width: 300px;
+  width: 66%;
   height: 35px;
   border: solid #5c5a5d 1px;
   color: #5c5a5d; }
@@ -51,25 +52,26 @@
   -webkit-box-shadow: 0 1px 3px #5c5a5d;
   -moz-box-shadow: 0 1px 3px #5c5a5d;
   box-shadow: 0 1px 3px #5c5a5d;
-  height: 440px;
-  width: 850px;
+  height: 390px;
+  width: 57%;
   margin: 25px;
   position: absolute;
   left: 10%;
 }
 .register label, .register input {
   margin-bottom: 20px;
-  margin-top: 20px; }
+  margin-top: 20px;
+  font-size: 1.1vw;}
 .register label {
   color: #5c5a5d;
   text-align: center;
   display: inline-block;
-  width: 90px;
+  width: 15%;
   height: 30px;
-  margin: 0 10px; }
+  margin: 0 0; }
 .register input[type='submit'], .register input[type='button'] {
   outline: none;
-  width: 150px;
+  width: 17.7%;
   height: 30px;
   border: solid #5c5a5d 1px;
   color: #5c5a5d; }
@@ -78,17 +80,17 @@
   color: #FFF;
   background-color: #5c5a5d; }
 .register input[type='text'] {
-  width: 300px;
+  width: 31%;
   height: 30px;
   border: solid #5c5a5d 1px;
   color: #5c5a5d; }
 .register input[type='password'] {
-  width: 300px;
+  width: 31%;
   height: 35px;
   border: solid #5c5a5d 1px;
   color: #5c5a5d; }
 .register input[type='E-mail'] {
-  width: 300px;
+  width: 31%;
   height: 30px;
   border: solid #5c5a5d 1px;
   color: #5c5a5d; }

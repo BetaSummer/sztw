@@ -56,10 +56,9 @@ public class FormController extends BaseController {
         BaseFile baseFile = new BaseFile();
         baseFile.upload(file,clubName,activityName,true);
         int fileIdDTO = fileService.insert(file.getOriginalFilename(), activityName, clubName);
-        Club clubDTO = clubService.getClubByUserId(this.getCurrentUser(request).getId());
-        int idDTO = clubActivityFormService.commitForm(clubName, getCurrentUser(request).getRealName(), activityName,
+        int idDTO = clubActivityFormService.commitForm(clubName, activityName,
                 activityPlace, activityTime, activityPeople, isApplyFine, activityInfo, applySelfMoney,
-                applyReserveMoney, clubDTO.getId(), fileIdDTO);
+                applyReserveMoney,fileIdDTO, getCurrentUser(request));
         ClubActivityForm clubActivityFormDTO = clubActivityFormService.getFormById(idDTO);
         clubActivityStatusService.saveStatus(clubActivityFormDTO, getCurrentUser(request));
         return "user/index";
@@ -75,7 +74,7 @@ public class FormController extends BaseController {
     @RequestMapping(value = "/getFormById")
     public String getFormById(HttpServletRequest request, HttpServletResponse response, Model model,
                               @RequestParam int id){
-        String activityNameDTO = clubActivityFormService.getFormById(id).getActivityName();
-        return ajaxReturn(response, activityNameDTO);
+        ClubActivityForm clubActivityFormDTO = clubActivityFormService.getFormById(id);
+        return ajaxReturn(response, clubActivityFormDTO);
     }
 }

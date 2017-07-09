@@ -1,6 +1,7 @@
 package betahouse.service.club;
 
 import betahouse.model.ClubActivityForm;
+import betahouse.model.UserInfo;
 
 import java.util.List;
 
@@ -9,9 +10,9 @@ import java.util.List;
  */
 public interface ClubActivityFormService {
 
-    int commitForm(String club, String chiefName, String activityName, String activityPlace, String activityTime,
-               String activityPeople, String isApplyFine, String activityInfo, String applySelfMoney, String applyReserveMoney,
-               int clubId, int fileId);
+    int commitForm(String club, String activityName, String activityPlace, String activityTime,
+                   String activityPeople, String isApplyFine, String activityInfo, String applySelfMoney,
+                   String applyReserveMoney, int fileId, UserInfo userInfo);
 
     ClubActivityForm getFormById(int id);
 

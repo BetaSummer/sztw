@@ -63,9 +63,17 @@ public class ClubActivityStatusServiceImpl implements ClubActivityStatusService 
         for(ClubActivityStatus c: listDTO){
             ClubActivityForm clubActivityFormDTO = clubActivityFormMapper.selectByPrimaryKey(c.getFormId());
             int statusDTO = c.getStatus();
+            String statusDTO2 = "";
+            if(statusDTO==0){
+                statusDTO2 = "未审核";
+            }else if(statusDTO==1){
+                statusDTO2 = "审核中";
+            }else if(statusDTO == 2){
+                statusDTO2 = "审核通过";
+            }
             int idDTO = clubActivityFormDTO.getId();
             String activityNameDTO = clubActivityFormDTO.getActivityName();
-            String[] arrDTO = new String[]{activityNameDTO, String.valueOf(statusDTO)};
+            String[] arrDTO = new String[]{activityNameDTO, statusDTO2};
             mapDTO.put(idDTO, arrDTO);
         }
         return mapDTO;

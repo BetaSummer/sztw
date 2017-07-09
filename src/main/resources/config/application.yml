@@ -7,7 +7,6 @@ spring:
     url: 
     username: 
     password: 
-
   http:
     multipart:
       max-file-size: 10Mb

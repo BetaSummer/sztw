@@ -113,7 +113,7 @@
 }
 @media screen and (max-width: 767px){
     .inform{
-        width: 100%;
+        width: 95%;
         margin:5% auto;
         border:none;
         -webkit-box-shadow: 0 ;
@@ -123,7 +123,7 @@
     .news li{
         display: block;
         height: 60px;
-        width: 100%;
+        width: 95%;
         margin:0;
         padding:0;
     }

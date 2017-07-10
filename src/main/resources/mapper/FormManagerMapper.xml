@@ -40,4 +40,9 @@
     select id, form_type, approver, approver_lv
     from b_form_manager
   </select>
+  <select id="selectFormManagerByApprover" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, form_type, approver, approver_lv
+    from b_form_manager
+    where approver = #{approver,jdbcType=INTEGER}
+  </select>
 </mapper>

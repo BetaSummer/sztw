@@ -4,9 +4,11 @@ import betahouse.controller.Base.BaseController;
 import betahouse.core.Base.BaseFile;
 import betahouse.model.Club;
 import betahouse.model.ClubActivityForm;
+import betahouse.model.FormManager;
 import betahouse.service.club.ClubActivityFormService;
 import betahouse.service.club.ClubActivityStatusService;
 import betahouse.service.club.ClubService;
+import betahouse.service.club.FormManagerService;
 import betahouse.service.file.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,6 +41,9 @@ public class FormController extends BaseController {
     @Autowired
     private FileService fileService;
 
+    @Autowired
+    private FormManagerService formManagerService;
+
     @RequestMapping("/applyFormClubActivity")
     public String applyFormClubActivity(HttpServletRequest request, HttpServletResponse response, Model model){
         Club club = clubService.getClubByUserId(this.getCurrentUser(request).getId());
@@ -60,13 +65,20 @@ public class FormController extends BaseController {
                 activityPlace, activityTime, activityPeople, isApplyFine, activityInfo, applySelfMoney,
                 applyReserveMoney,fileIdDTO, getCurrentUser(request));
         ClubActivityForm clubActivityFormDTO = clubActivityFormService.getFormById(idDTO);
-        clubActivityStatusService.saveStatus(clubActivityFormDTO, getCurrentUser(request));
+        clubActivityStatusService.commitFormStatus(clubActivityFormDTO, getCurrentUser(request));
         return "user/index";
     }
 
     @RequestMapping(value = "/listAllForm")
     public String listAllForm(HttpServletRequest request, HttpServletResponse response, Model model){
-        Map mapDTO = clubActivityStatusService.listStatusByFormUserId(getCurrentUser(request).getId());
+        int idDTO = getCurrentUser(request).getId();
+        FormManager formManagerDTO = formManagerService.getFormManagerByApprover(idDTO);
+        if(formManagerDTO.getApproverLv() == 1){
+            Map mapDTO = clubActivityStatusService.listStatusByFormUserId(idDTO);
+            model.addAttribute("data",mapDTO);
+            return "clubActivity/formList";
+        }
+        Map mapDTO = clubActivityStatusService.listStatusByTypeAndLv(formManagerDTO.getFormType(), formManagerDTO.getApproverLv());
         model.addAttribute("data",mapDTO);
         return "clubActivity/formList";
     }
@@ -75,6 +87,7 @@ public class FormController extends BaseController {
     public String getFormById(HttpServletRequest request, HttpServletResponse response, Model model,
                               @RequestParam int id){
         ClubActivityForm clubActivityFormDTO = clubActivityFormService.getFormById(id);
-        return ajaxReturn(response, clubActivityFormDTO);
+        model.addAttribute("clubActivityForm",clubActivityFormDTO);
+        return "clubActivity/clubActivityForm";
     }
 }

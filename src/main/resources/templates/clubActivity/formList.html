@@ -1,6 +1,6 @@
 <ul xmlns:th="http://www.w3.org/1999/xhtml">
     <li th:each="data:${data}">
-        <a class="left clear" target="_blank" th:href="'/applyClubForm/getFormById?id='+${data.key}" th:text="'活动名：'+${data.value[0]}+' 状态：'+${data.value[1]}"></a>
+        <a class="left clear" target="_blank" th:href="'/applyClubForm/getFormById?id='+${data.key}" th:text="'【'+${data.value[1]}+'/'+${data.value[2]}+'】'+${data.value[0]}"></a>
     </li>
 </ul>
 <script>

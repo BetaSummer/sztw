@@ -79,19 +79,15 @@
     </if>
     where form_id = #{form_id,jdbcType=INTEGER}
   </update>
-  <select id="selectByLv" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByTypeAndLv" resultMap="BaseResultMap">
     select id, form_type, form_id, form_user_id, status, approve_date, approve_lv
     from b_status_club_activity
-    where approve_lv = #{approve_lv,jdbcType=INTEGER}
+    where form_type = #{formType,jdbcType=INTEGER}
+    and approve_lv = #{lv,jdbcType=INTEGER}
   </select>
   <select id="selectByFormUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select id, form_type, form_id, form_user_id, status, approve_date, approve_lv
     from b_status_club_activity
     where form_user_id = #{form_user_id,jdbcType=INTEGER}
-  </select>
-  <select id="listStatusByLv" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, form_type, form_id, form_user_id, status, approve_date, approve_lv
-    from b_status_club_activity
-    where approve_lv = #{approve_lv,jdbcType=INTEGER}
   </select>
 </mapper>

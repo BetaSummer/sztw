@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static betahouse.core.constant.FormConstant.CLUB_ACTIVITY_TYPE;
+import static betahouse.core.constant.FormConstant.*;
 
 /**
  * Created by x1654 on 2017/7/5.
@@ -46,13 +46,13 @@ public class ClubActivityStatusServiceImpl implements ClubActivityStatusService 
     }
 
     @Override
-    public int saveStatus(ClubActivityForm form, UserInfo userInfo) {
+    public int commitFormStatus(ClubActivityForm form, UserInfo userInfo) {
         ClubActivityStatus clubActivityStatusDTO = new ClubActivityStatus();
         clubActivityStatusDTO.setFormId(form.getId());
         clubActivityStatusDTO.setFormType(CLUB_ACTIVITY_TYPE);
         clubActivityStatusDTO.setFormUserId(userInfo.getId());
         clubActivityStatusDTO.setStatus(0);
-        clubActivityStatusDTO.setApproveLv(1);
+        clubActivityStatusDTO.setApproveLv(2);
         return clubActivityStatusMapper.insert(clubActivityStatusDTO);
     }
 
@@ -62,18 +62,10 @@ public class ClubActivityStatusServiceImpl implements ClubActivityStatusService 
         Map<Integer, String[]> mapDTO = new HashMap<Integer, String[]>();
         for(ClubActivityStatus c: listDTO){
             ClubActivityForm clubActivityFormDTO = clubActivityFormMapper.selectByPrimaryKey(c.getFormId());
-            int statusDTO = c.getStatus();
-            String statusDTO2 = "";
-            if(statusDTO==0){
-                statusDTO2 = "未审核";
-            }else if(statusDTO==1){
-                statusDTO2 = "审核中";
-            }else if(statusDTO == 2){
-                statusDTO2 = "审核通过";
-            }
             int idDTO = clubActivityFormDTO.getId();
             String activityNameDTO = clubActivityFormDTO.getActivityName();
-            String[] arrDTO = new String[]{activityNameDTO, statusDTO2};
+            String[] arrDTO = new String[]{activityNameDTO, CLUB_ACTIVITY_STATUS_1[c.getStatus()],
+                    CLUB_ACTIVITY_STATUS_2[c.getApproveLv()-1]};
             mapDTO.put(idDTO, arrDTO);
         }
         return mapDTO;
@@ -92,18 +84,30 @@ public class ClubActivityStatusServiceImpl implements ClubActivityStatusService 
     }
 
     @Override
-    // TODO: 2017/7/7 type and lv
-    public Map listAllByLv(int lv) {
-        List<ClubActivityStatus> listDTO = clubActivityStatusMapper.selectByLv(lv);
-        Map<Integer, Map> mapDTO = new HashMap<Integer, Map>();
+    public Map listStatusByTypeAndLv(int type, int lv) {
+        List<ClubActivityStatus> listDTO = clubActivityStatusMapper.selectByTypeAndLv(type, lv);
+        Map<Integer, String[]> mapDTO = new HashMap<Integer, String[]>();
         for(ClubActivityStatus c: listDTO){
             ClubActivityForm clubActivityFormDTO = clubActivityFormMapper.selectByPrimaryKey(c.getFormId());
-            int statusDTO = c.getStatus();
             int idDTO = clubActivityFormDTO.getId();
             String activityNameDTO = clubActivityFormDTO.getActivityName();
-            Map<String, Integer> mapDTO2 = new HashMap<String, Integer>();
-            mapDTO2.put(activityNameDTO, statusDTO);
-            mapDTO.put(idDTO, mapDTO2);
+            String[] arrDTO = new String[]{activityNameDTO, CLUB_ACTIVITY_STATUS_1[c.getStatus()],
+                    CLUB_ACTIVITY_STATUS_2[c.getApproveLv()-1]};
+            mapDTO.put(idDTO, arrDTO);
+        }
+        return mapDTO;
+    }
+
+    public Map listStatusOverTypeAndLv(int type, int lv) {
+        List<ClubActivityStatus> listDTO = clubActivityStatusMapper.selectOverTypeAndLv(type, lv);
+        Map<Integer, String[]> mapDTO = new HashMap<Integer, String[]>();
+        for(ClubActivityStatus c: listDTO){
+            ClubActivityForm clubActivityFormDTO = clubActivityFormMapper.selectByPrimaryKey(c.getFormId());
+            int idDTO = clubActivityFormDTO.getId();
+            String activityNameDTO = clubActivityFormDTO.getActivityName();
+            String[] arrDTO = new String[]{activityNameDTO, CLUB_ACTIVITY_STATUS_1[c.getStatus()],
+                    CLUB_ACTIVITY_STATUS_2[c.getApproveLv()-1]};
+            mapDTO.put(idDTO, arrDTO);
         }
         return mapDTO;
     }

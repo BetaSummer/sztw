@@ -25,3 +25,5 @@ nbdist/
 
 ### Others ###
 File/
+src/main/java/test/**/
+logs/

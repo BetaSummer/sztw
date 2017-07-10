@@ -7,7 +7,6 @@ spring:
     url:
     username:
     password:
-
   http:
     multipart:
       max-file-size: 10Mb
@@ -18,3 +17,5 @@ spring:
 mybatis:
   mapperLocations: classpath:mapper/*.xml
   typeAliasesPackage: tk.mapper.model
+logging:
+  config: classpath:logback.xml

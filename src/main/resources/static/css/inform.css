@@ -89,6 +89,7 @@
 #demo-g,#demo-t{
     height: 290px; }
 
+
 @media screen and (min-width: 768px){
     .inform{
         -webkit-box-shadow: 0 1px 3px #5c5a5d;
@@ -96,6 +97,7 @@
         box-shadow: 0 1px 3px #5c5a5d;
     }
 }
+
 @media screen and (min-width: 1600px){
     .inform{
         width: 45%;

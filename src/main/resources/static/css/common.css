@@ -78,5 +78,8 @@ footer{
     width: 20%;
     margin-left:2%;
   }
+  footer{
+    display: none;
+  }
 
 }

@@ -58,9 +58,8 @@
         </div>
         <div class="sub-child">
             <ul>
-                <li class="sub-item">option1</li>
-                <li class="sub-item">option2</li>
-                <li class="sub-item">option3</li>
+                <li class="sub-item" id="public-news">公告</li>
+                <li class="sub-item" id="person-inform">通知</li>
             </ul>
         </div>
     </div>
@@ -71,6 +70,9 @@
         </div>
         <div class="content-body">
 
+            <div id='public-news-' class='f-flow'>
+                <h2>写/查看 公告/通知</h2>
+            </div>
             <div id='f-flow' class='f-flow'>
                 <ul>
                     <input type="text" id="*" class="*"/>
@@ -89,7 +91,7 @@
                 </ul>
                 <table>
                     <tr><th>头衔</th><th>社团</th><th>学号</th><th>XX</th><th>XX</th><th>管理</th></tr>
-                    <tr><td>xx</td><td>xx</td><td>xx</td><td>xx</td><td>￥xx</td><td><a id="check">授权</a></td></tr>
+                    <tr><td>xx</td><td>xx</td><td>xx</td><td>xx</td><td>￥xx</td><td><a id="power">授权</a></td></tr>
                 </table>
             </div>
 
@@ -102,14 +104,76 @@
 </div>
 <div class="check-window" id="check-window">
     <ul>
-        <input type="button" id="check-window-out" value="退出"/>
+        <li><p>社团：</p></li>
+        <li><p>社长：</p></li>
+        <li><p>XX：</p></li>
+        <li><p>XX：</p></li>
+        <li><p>XX：</p></li>
     </ul>
+    <ul>
+        <li><p>开销金额：</p></li>
+        <li><p>详情：</p></li>
+        <li><p>XX：</p></li>
+        <li><p>XX：</p></li>
+    </ul>
+    <li id="check-out">
+        <input type="button" id="check-out-click" value="退出"/>
+    </li>
+</div>
+
+<div class="check-window" id="power-window">
+    <ul>
+        <li><h3>当前信息</h3></li>
+        <li>姓名：</li>
+        <li>等级：</li>
+        <li>权限：</li>
+        <li>职称：</li>
+        <li>所属：</li>
+        <li>XX：</li>
+    </ul>
+    <ul>
+        <li><h3>修改权限</h3></li>
+        <li>等级：
+            <label><input id="*" type="radio" value="" name="lv"/>选择1</label>
+            <label><input id="*" type="radio" value="" name="lv"/>选择2</label>
+            <label><input id="*" type="radio" value="" name="lv"/>选择3</label>
+            <label><input id="*" type="radio" value="" name="lv"/>选择4</label>
+        </li>
+        <li>权限：
+            <label><input id="*" type="checkbox" value=""/>选择1</label>
+            <label><input id="*" type="checkbox" value=""/>选择2</label>
+            <label><input id="*" type="checkbox" value=""/>选择3</label>
+            <label><input id="*" type="checkbox" value=""/>选择4</label>
+        </li>
+        <li>职称：
+            <select>
+                <option value="#">#</option>
+                <option value="#">##</option>
+                <option value="#">###</option>
+                <option value="#">####</option>
+            </select>
+        </li>
+        <li>所属：
+            <select>
+                <option value="#">####</option>
+                <option value="#">###</option>
+                <option value="#">##</option>
+                <option value="#">#</option>
+            </select>
+        </li>
+        <li>XX：</li>
+
+    </ul>
+    <li id="power-out">
+        <input type="button" id="power-out-click" value="退出"/>
+        <input type="button" id="power-admin" value="确认授权"/>
+    </li>
 </div>
 
 
 <script src="/js/jquery.js"></script>
 <script src="/js/main.js"></script>
-<script src="c/js/tabset.js"></script>
+<script src="/js/tabset.js"></script>
 <script src="/js/laydate.js"></script>
 </body>
 </html>
@@ -120,8 +184,15 @@
     $("#check").bind("click",function (event) {
         $("#check-view").show();$("#check-window").show();
     });
-    $("#check-window-out").bind("click",function (event) {
+    $("#check-out-click").bind("click",function (event) {
         $("#check-view").hide();$("#check-window").hide();
+    });
+
+    $("#power").bind("click",function (event) {
+        $("#check-view").show();$("#power-window").show();
+    });
+    $("#power-out-click").bind("click",function (event) {
+        $("#check-view").hide();$("#power-window").hide();
     });
     //]]>
 </script>

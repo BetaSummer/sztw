@@ -92,13 +92,19 @@ $(function () {
 $(function () {
     $("#f-list").click(function () {
         // $(".content-body").html("");
-        $("#f-flow").show();$("#manage-a-show").hide();
+        $("#f-flow").show();$("#manage-a-show").hide();$("#public-news-").hide();
     });
 });
 $(function () {
     $("#manage-a").click(function () {
         // $(".content-body").html("");
-        $("#manage-a-show").show();$("#f-flow").hide();
+        $("#manage-a-show").show();$("#f-flow").hide();$("#public-news-").hide();
+    });
+});
+$(function () {
+    $("#public-news").click(function () {
+        // $(".content-body").html("");
+        $("#public-news-").fadeIn();$("#f-flow").hide();$("#manage-a-show").hide();
     });
 });
 
@@ -128,6 +134,9 @@ $(function () {
     $("#form-appli").click(function () {
         $(".loading").hide();
        $(".content-body").load("/applyClubForm/applyFormClubActivity");
+       if( window.screen.width<767){
+           $(document.body).height(1050);
+       }
     });
 });
 

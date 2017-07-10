@@ -1,13 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>用户中心</title>
     <link id="tabset-css" rel="stylesheet" href="/css/tabset.css"/>
     <link rel="stylesheet" href="/css/base.css"/>
     <link rel="stylesheet" href="/css/common.css"/>
     <link rel="stylesheet" href="/css/club.css"/>
     <link rel="stylesheet" href="/css/inform.css"/>
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
     <nav>
@@ -32,7 +38,7 @@
     </nav>
     <content>
         <div class="sub-nav">
-            <div class="sub-ft sub-item">
+            <div class="sub-ft sub-item" id="sub-n1">
                 社团活动申请表
             </div>
             <div class="sub-child">
@@ -41,24 +47,22 @@
                     <li class="sub-item" id="form-view">查看</li>
                 </ul>
             </div>
-            <div class="sub-ft sub-item">
+            <div class="sub-ft sub-item" id="sub-n2">
                 subnav 2
             </div>
             <div class="sub-child">
                 <ul>
                     <li class="sub-item">option1</li>
                     <li class="sub-item">option2</li>
-                    <li class="sub-item">option3</li>
                 </ul>
             </div>
-            <div class="sub-ft sub-item">
+            <div class="sub-ft sub-item" id="sub-n3">
                 subnav 3
             </div>
             <div class="sub-child">
                 <ul>
                     <li class="sub-item">option1</li>
                     <li class="sub-item">option2</li>
-                    <li class="sub-item">option3</li>
                 </ul>
             </div>
         </div>
@@ -142,7 +146,7 @@
                     </div>
 
 
-                    <ul style="margin-top: 310px;">
+                    <ul style="margin-top: 310px;font-size: 1vw">
                         <a href="*">More>></a></ul>
 
                 </div>

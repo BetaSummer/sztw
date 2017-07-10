@@ -1,6 +1,8 @@
 package betahouse.core.Base;
 
 import com.alibaba.fastjson.JSON;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -12,6 +14,7 @@ import java.util.Map;
  * Created by Yxm on 2017/7/3.
  */
 public class BaseController {
+    protected  Logger logger = LoggerFactory.getLogger(this.getClass());
     public BaseController(){
 
     }

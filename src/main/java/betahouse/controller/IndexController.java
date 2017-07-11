@@ -1,6 +1,9 @@
 package betahouse.controller;
 
 import betahouse.controller.Base.BaseController;
+import betahouse.model.UserInfo;
+import betahouse.service.club.FormManagerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,10 +17,15 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class IndexController extends BaseController{
 
+    @Autowired
+    private FormManagerService formManagerService;
+
     @RequestMapping(value = {"/index","/"})
     public String index(HttpServletRequest request, HttpServletResponse response, Model model){
         if(this.getCurrentUser(request)!=null){
-            model.addAttribute("user",this.getCurrentUser(request));
+            UserInfo userInfoDTO = this.getCurrentUser(request);
+            model.addAttribute("user",userInfoDTO);
+            model.addAttribute("licence", formManagerService.getFormManagerByApprover(userInfoDTO.getId()));
             return "user/index";
         }
         return "index/login";

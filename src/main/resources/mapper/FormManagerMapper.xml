@@ -19,9 +19,16 @@
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.FormManager">
     update b_form_manager
-    set form_type = #{formType,jdbcType=INTEGER},
+    set
+    <if test="null != formType and '' != formType">
+      form_type = #{formType,jdbcType=INTEGER},
+    </if>
+    <if test="null != approver and '' != approver">
       approver = #{approver,jdbcType=INTEGER},
+    </if>
+    <if test="null != approverLv and '' != approverLv">
       approver_lv = #{approverLv,jdbcType=INTEGER}
+    </if>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -32,5 +39,10 @@
   <select id="selectAll" resultMap="BaseResultMap">
     select id, form_type, approver, approver_lv
     from b_form_manager
+  </select>
+  <select id="selectFormManagerByApprover" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, form_type, approver, approver_lv
+    from b_form_manager
+    where approver = #{approver,jdbcType=INTEGER}
   </select>
 </mapper>

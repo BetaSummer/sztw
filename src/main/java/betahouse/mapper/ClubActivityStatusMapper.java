@@ -1,9 +1,12 @@
 package betahouse.mapper;
 
 import betahouse.model.ClubActivityStatus;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
+
 @Component
 public interface ClubActivityStatusMapper {
     int deleteByPrimaryKey(Integer id);
@@ -20,7 +23,9 @@ public interface ClubActivityStatusMapper {
 
     int updateByFormId(ClubActivityStatus record);
 
-    List<ClubActivityStatus> selectByLv(int lv);
+    List<ClubActivityStatus> selectByTypeAndLv(@Param("formType") Integer formType, @Param("lv") Integer lv);
 
-    List<ClubActivityStatus> selectByFormUserId(int formUsereId);
+    List<ClubActivityStatus> selectOverTypeAndLv(@Param("formType") Integer formType, @Param("lv") Integer lv);
+
+    List<ClubActivityStatus> selectByFormUserId(Integer formUserId);
 }

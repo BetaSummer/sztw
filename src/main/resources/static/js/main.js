@@ -31,8 +31,13 @@ $(function () {
                data: data,
                dataType:"json",
                success: function(r){
-                   window.location.href = "/index";
-                   window.location.replace();
+                   if(r.status === 0){
+                       window.location.href = "/index";
+                       window.location.replace();
+                   }else if(r.status === 1){
+                       alert(r.message);
+                   }
+
                },
                error: function(XMLHttpRequest, textStatus, errorThrown){
                    alert(XMLHttpRequest.status);
@@ -58,12 +63,10 @@ $(function () {
    $("#form-view").click(function () {
        $(".content-body").html("");
        $(".loading").show();
-       $.get("/applyClubForm/getListAllForm",function () {
-          $(".content-body").load("/applyClubForm/getListAllForm",function () {
-              $(".loading").hide();
-          }) ;
-       });
-   }) ;
+       $(".content-body").load("/applyClubForm/listAllForm",function () {
+           $(".loading").hide();
+       }) ;
+   });
 });
 $(function () {
     $("#f-list").click(function () {

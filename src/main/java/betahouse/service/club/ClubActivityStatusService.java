@@ -18,12 +18,12 @@ public interface ClubActivityStatusService {
 
     ClubActivityStatus getStatusByFormId(int formId);
 
-    int saveStatus(ClubActivityForm form, UserInfo userInfo);
+    int commitFormStatus(ClubActivityForm form, UserInfo userInfo);
 
     Map listStatusByFormUserId(int formUserId);
 
     int updateLvByFormId(int lv, int formId);
 
-    Map listAllByLv(int lv);
+    Map listStatusByTypeAndLv(int type, int lv);
 
 }

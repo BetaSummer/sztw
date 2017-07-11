@@ -1,8 +1,10 @@
 package betahouse.mapper;
 
 import betahouse.model.FormManager;
-import java.util.List;
+import org.springframework.stereotype.Component;
 
+import java.util.List;
+@Component
 public interface FormManagerMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -13,4 +15,6 @@ public interface FormManagerMapper {
     List<FormManager> selectAll();
 
     int updateByPrimaryKey(FormManager record);
+
+    FormManager selectFormManagerByApprover(Integer ApproverId);
 }

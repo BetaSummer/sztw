@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import static betahouse.core.constant.UserConstant.SESSION_CURRENT_USER;
+import static betahouse.core.constant.UserConstant.SESSION_USER_POWER;
 
 /**
  * Created by x1654 on 2017/7/3.
@@ -25,24 +26,14 @@ import static betahouse.core.constant.UserConstant.SESSION_CURRENT_USER;
 public class UserController extends BaseController {
 
     @Autowired
-    private AdminService adminService;
-
-    @Autowired
     private UserService userService;
 
     @Autowired
     private UserInfoService userInfoService;
+
+    @Autowired
+    private PowerService powerService;
         //return "redirect:/url";
-//        @RequestMapping(value = "/login",method = RequestMethod.GET)
-//        public String admin(HttpServletRequest request, HttpServletResponse response, Model model){
-//            User user = userService.checkLogin(username, password);
-//            if(user != null){
-//                UserInfo userInfo = userInfoService.getUserInfoById(user.getId());
-//                request.getSession().setAttribute(SESSION_CURRENT_USER_INFO, userInfo);
-//                return ajaxReturn(response,null,"登陆成功",0);
-//            }
-//            return ajaxReturn(response,null,"用户不存在或用户名密码错误",1);
-//        }
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public String admin(HttpServletRequest request, HttpServletResponse response, Model model,
                         @RequestParam String username,
@@ -51,6 +42,7 @@ public class UserController extends BaseController {
         if(user != null){
             UserInfo userInfo = userInfoService.getUserInfoById(user.getId());
             request.getSession().setAttribute(SESSION_CURRENT_USER, userInfo);
+            request.getSession().setAttribute(SESSION_USER_POWER, powerService.getPowerByUserId(userInfo.getId()));
             return ajaxReturn(response,null,"登陆成功",0);
         }
         return ajaxReturn(response,null,"用户不存在或用户名密码错误",1);
@@ -73,5 +65,10 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/register")
     public String register(HttpServletRequest request, HttpServletResponse response, Model model){
         return "index/register";
+    }
+
+    @RequestMapping(value = "/userInfo")
+    public String userInfo(HttpServletRequest request, HttpServletResponse response, Model model){
+        return "user/userInfo";
     }
 }

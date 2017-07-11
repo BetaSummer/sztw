@@ -3,11 +3,9 @@ package betahouse.model;
 public class FormManager {
     private Integer id;
 
-    private Integer formType;
-
     private Integer approver;
 
-    private Integer approverLv;
+    private String approverForm;
 
     public Integer getId() {
         return id;
@@ -15,14 +13,6 @@ public class FormManager {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getFormType() {
-        return formType;
-    }
-
-    public void setFormType(Integer formType) {
-        this.formType = formType;
     }
 
     public Integer getApprover() {
@@ -33,11 +23,11 @@ public class FormManager {
         this.approver = approver;
     }
 
-    public Integer getApproverLv() {
-        return approverLv;
+    public String getApproverForm() {
+        return approverForm;
     }
 
-    public void setApproverLv(Integer approverLv) {
-        this.approverLv = approverLv;
+    public void setApproverForm(String approverForm) {
+        this.approverForm = approverForm == null ? null : approverForm.trim();
     }
 }

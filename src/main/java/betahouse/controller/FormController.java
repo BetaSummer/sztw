@@ -10,6 +10,7 @@ import betahouse.service.club.ClubActivityStatusService;
 import betahouse.service.club.ClubService;
 import betahouse.service.club.FormManagerService;
 import betahouse.service.file.FileService;
+import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,8 +21,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
+
+import static betahouse.core.constant.CommonConstant.noPower;
 
 /**
  * Created by x1654 on 2017/7/6.
@@ -73,12 +76,17 @@ public class FormController extends BaseController {
     public String listAllForm(HttpServletRequest request, HttpServletResponse response, Model model){
         int idDTO = getCurrentUser(request).getId();
         FormManager formManagerDTO = formManagerService.getFormManagerByApprover(idDTO);
-        if(formManagerDTO.getApproverLv() == 1){
+        List<Integer> listDTO = JSON.parseArray(formManagerDTO.getApproverForm(), Integer.class);
+        int lvDTO = listDTO.get(0);
+        if(lvDTO == -1){
+            return noPower;
+        }
+        if(lvDTO == 1){
             Map mapDTO = clubActivityStatusService.listStatusByFormUserId(idDTO);
             model.addAttribute("data",mapDTO);
             return "clubActivity/formList";
         }
-        Map mapDTO = clubActivityStatusService.listStatusByTypeAndLv(formManagerDTO.getFormType(), formManagerDTO.getApproverLv());
+        Map mapDTO = clubActivityStatusService.listStatusByTypeAndLv(1, lvDTO);
         model.addAttribute("data",mapDTO);
         return "clubActivity/formList";
     }

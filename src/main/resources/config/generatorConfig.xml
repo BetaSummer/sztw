@@ -141,7 +141,7 @@
              -->
         </javaClientGenerator>
         <!--<table tableName="test" domainObjectName="Test"/>-->
-        <!--<table tableName="b_admin" domainObjectName="Admin"/>-->
+        <!--<table tableName="b_power" domainObjectName="Power"/>-->
         <!--<table tableName="b_approve_club_activity" domainObjectName="ClubActivityApprove"/>-->
         <!--<table tableName="b_club" domainObjectName="Club"/>-->
         <!--<table tableName="b_file" domainObjectName="File"/>-->
@@ -151,7 +151,7 @@
         <!--<table tableName="b_user_info" domainObjectName="UserInfo"/>-->
         <!--<table tableName="b_form_type" domainObjectName="FormType"/>-->
         <!--<table tableName="b_form_manager" domainObjectName="FormManager"/>-->
-        
+        <!--<table tableName="b_power_type" domainObjectName="PowerType"/>-->
 
         <!--<table tableName="people" domainObjectName="People"/>-->
         <!--<table tableName="b_%"/>-->

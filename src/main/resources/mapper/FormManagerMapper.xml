@@ -23,7 +23,7 @@
       approver = #{approver,jdbcType=INTEGER},
     </if>
     <if test="null != approverForm and '' != approverForm">
-      pre_name = #{preName,jdbcType=VARCHAR},
+      approver_form = #{approverForm,jdbcType=CHAR}
     </if>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -36,9 +36,17 @@
     select id, approver, approver_form
     from b_form_manager
   </select>
-  <select id="selectFormManagerByApprover" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByApprover" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select id, approver, approver_form
     from b_form_manager
     where approver = #{approver,jdbcType=INTEGER}
   </select>
+  <update id="updateByApprover" parameterType="betahouse.model.FormManager">
+    update b_form_manager
+    set
+    <if test="null != approverForm and '' != approverForm">
+      approver_form = #{approverForm,jdbcType=CHAR}
+    </if>
+    where approver = #{approver,jdbcType=INTEGER}
+  </update>
 </mapper>

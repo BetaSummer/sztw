@@ -25,9 +25,6 @@ import static betahouse.core.constant.UserConstant.SESSION_CURRENT_USER;
 public class UserController extends BaseController {
 
     @Autowired
-    private AdminService adminService;
-
-    @Autowired
     private UserService userService;
 
     @Autowired

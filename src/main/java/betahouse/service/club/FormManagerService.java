@@ -9,4 +9,8 @@ public interface FormManagerService {
 
     FormManager getFormManagerByApprover(int approverId);
 
+    int insertFormManager();
+
+    int updateFormManager(int approver);
+
 }

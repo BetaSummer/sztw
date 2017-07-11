@@ -13,6 +13,9 @@ spring:
       max-request-size: 10Mb
   thymeleaf:
     cache: false
+  output:
+    ansi:
+      enabled: detect
 
 mybatis:
   mapperLocations: classpath:mapper/*.xml

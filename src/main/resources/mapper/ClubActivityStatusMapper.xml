@@ -85,6 +85,12 @@
     where form_type = #{formType,jdbcType=INTEGER}
     and approve_lv = #{lv,jdbcType=INTEGER}
   </select>
+  <select id="selectOverTypeAndLv" resultMap="BaseResultMap">
+    select id, form_type, form_id, form_user_id, status, approve_date, approve_lv
+    from b_status_club_activity
+    where form_type = #{formType,jdbcType=INTEGER}
+    and approve_lv > #{lv,jdbcType=INTEGER}
+  </select>
   <select id="selectByFormUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select id, form_type, form_id, form_user_id, status, approve_date, approve_lv
     from b_status_club_activity

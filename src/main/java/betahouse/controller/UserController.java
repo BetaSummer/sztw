@@ -74,4 +74,9 @@ public class UserController extends BaseController {
     public String register(HttpServletRequest request, HttpServletResponse response, Model model){
         return "index/register";
     }
+
+    @RequestMapping(value = "/userInfo")
+    public String userInfo(HttpServletRequest request, HttpServletResponse response, Model model){
+        return "user/userInfo";
+    }
 }

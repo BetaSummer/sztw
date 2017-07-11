@@ -16,5 +16,7 @@ public interface FormManagerMapper {
 
     int updateByPrimaryKey(FormManager record);
 
-    FormManager selectFormManagerByApprover(int approver);
+    FormManager selectByApprover(int approver);
+
+    int updateByApprover(FormManager formManager);
 }

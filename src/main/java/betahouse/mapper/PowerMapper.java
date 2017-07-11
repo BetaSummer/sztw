@@ -15,4 +15,6 @@ public interface PowerMapper {
     List<Power> selectAll();
 
     int updateByPrimaryKey(Power record);
+
+    Power selectByUserId(int userId);
 }

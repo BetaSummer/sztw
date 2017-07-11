@@ -28,8 +28,7 @@ public class DemoController extends BaseController {
     }
     @RequestMapping("/hi")
     public String hi(HttpServletRequest request, HttpServletResponse response, Model model){
-        int index = formManagerService.updateFormManager(1);
-        return ajaxReturn(response, index);
+        return "user/userInfo";
     }
 
 }

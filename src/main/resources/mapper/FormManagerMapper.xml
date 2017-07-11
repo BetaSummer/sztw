@@ -3,45 +3,41 @@
 <mapper namespace="betahouse.mapper.FormManagerMapper">
   <resultMap id="BaseResultMap" type="betahouse.model.FormManager">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="form_type" jdbcType="INTEGER" property="formType" />
     <result column="approver" jdbcType="INTEGER" property="approver" />
-    <result column="approver_lv" jdbcType="INTEGER" property="approverLv" />
+    <result column="approver_form" jdbcType="CHAR" property="approverForm" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from b_form_manager
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="betahouse.model.FormManager">
-    insert into b_form_manager (id, form_type, approver, 
-      approver_lv)
-    values (#{id,jdbcType=INTEGER}, #{formType,jdbcType=INTEGER}, #{approver,jdbcType=INTEGER}, 
-      #{approverLv,jdbcType=INTEGER})
+    insert into b_form_manager (id, approver, approver_form
+      )
+    values (#{id,jdbcType=INTEGER}, #{approver,jdbcType=INTEGER}, #{approverForm,jdbcType=CHAR}
+      )
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.FormManager">
     update b_form_manager
     set
-    <if test="null != formType and '' != formType">
-      form_type = #{formType,jdbcType=INTEGER},
-    </if>
     <if test="null != approver and '' != approver">
       approver = #{approver,jdbcType=INTEGER},
     </if>
-    <if test="null != approverLv and '' != approverLv">
-      approver_lv = #{approverLv,jdbcType=INTEGER}
+    <if test="null != approverForm and '' != approverForm">
+      pre_name = #{preName,jdbcType=VARCHAR},
     </if>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, form_type, approver, approver_lv
+    select id, approver, approver_form
     from b_form_manager
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id, form_type, approver, approver_lv
+    select id, approver, approver_form
     from b_form_manager
   </select>
   <select id="selectFormManagerByApprover" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, form_type, approver, approver_lv
+    select id, approver, approver_form
     from b_form_manager
     where approver = #{approver,jdbcType=INTEGER}
   </select>

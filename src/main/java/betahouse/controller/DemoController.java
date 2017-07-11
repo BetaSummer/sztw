@@ -28,6 +28,7 @@ public class DemoController extends BaseController {
     }
     @RequestMapping("/hi")
     public String hi(HttpServletRequest request, HttpServletResponse response, Model model){
+        logger.warn("你妹啊");
         return "user/userInfo";
     }
 

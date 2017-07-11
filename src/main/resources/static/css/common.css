@@ -74,6 +74,11 @@ footer{
     line-height: 60px;
   }
   nav li{
+    font-size: 14px;
     width: 20%;
+    margin-left:2%;
+  }
+  footer{
+    display: none;
   }
 }

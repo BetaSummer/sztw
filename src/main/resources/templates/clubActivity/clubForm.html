@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="form-inline">
-        <div class="form-group">
+        <div class="form-group area">
             <label class="areatitle">活动简介</label>
             <textarea id="activity_info" name="activityInfo"></textarea>
         </div>
@@ -55,10 +55,17 @@
             <label>文件</label><input id="apply_file" type="file" name="applyFile"/>
         </div>
     </div>
-    <input type="submit" value="提交"/>
+    <input id="form-sub" type="submit" value="提交"/>
 </form>
 <script type="text/javascript">
     //<![CDATA[
+    $(function () {
+        if( window.screen.width<767){
+            var formHeight = $(document.body).height();
+            $("#form-sub").css('position','absolute');
+            $("#form-sub").css('top',formHeight-30);
+        }
+    });
     $(function () {
         $("#apply_self_money").bind('input propertychange',function () {
            if(parseFloat($("#apply_self_money").val())>=parseFloat($("#now_self_money").val())){

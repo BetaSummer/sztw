@@ -3,8 +3,9 @@
     -moz-box-shadow: 0 1px 3px #5c5a5d;
     box-shadow: 0 1px 3px #5c5a5d;
     height: 280px;
-    width: 40%;
+    width: 50%;
     margin: 2%;
+    overflow: hidden;
 }
 .inform ul{
     float: right;
@@ -44,13 +45,14 @@
     margin-top: 0px;}
 #inform-ul{
     margin-top: -30px;
-    border-top: none;}
+    border-top: none;
+    font-size: 1vw;}
 #demo-g{
     display: none;
 }
 .news{
     margin-top: 10px;
-    height: 210px;
+    height: 100%;
     width: 100%;
     overflow:hidden;
     position: absolute;
@@ -59,17 +61,18 @@
     list-style-type: none;
     width: 90%;
     overflow: hidden;
-    height: 30px;
-    margin: 12px 0 10px 1%;}
+    min-height: 30px;
+    font-size: 1vw;
+    margin: 12px 0 10px 5%;}
 .news li .date{
-    width: 57px;
+    width: 10%;
     height: 52px;
     float: left;}
 .news li .date dd{
     text-align: left;}
 .news li .date dd .day{
     text-align: center !important;
-    width: 46px;
+    width: 90%;
     border-bottom: solid 1px white;
     margin-left: 3px;
     padding: 4px 0;
@@ -77,9 +80,9 @@
 .news li a{
     float: left;
     overflow: hidden;
-    width: 100%;
+    width: 90%;
     margin-top: -21px;
-    margin-left: 100px;
+    margin-left: 10%;
     line-height: 26px;
     color: #050001;
     text-decoration:none;
@@ -88,9 +91,8 @@
     color:#000;
     text-decoration:underline;}
 #demo-g,#demo-t{
-    height: 290px;}
-#demo1{
-    width: 90%;}
+    height: 290px; 
+}
 @media screen and (min-width: 1600px){
     .inform{
         position: absolute;
@@ -113,7 +115,7 @@
 }
 @media screen and (max-width: 767px){
     .inform{
-        width: 100%;
+        width: 95%;
         margin:5% auto;
         border:none;
         -webkit-box-shadow: 0 ;
@@ -123,7 +125,7 @@
     .news li{
         display: block;
         height: 60px;
-        width: 100%;
+        width: 95%;
         margin:0;
         padding:0;
     }

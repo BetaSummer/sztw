@@ -40,26 +40,64 @@
       #{applySelfMoney,jdbcType=INTEGER}, #{applyReserveMoney,jdbcType=INTEGER}, #{selfMoney,jdbcType=INTEGER}, 
       #{reserveMoney,jdbcType=INTEGER}, #{clubId,jdbcType=INTEGER}, #{fileId,jdbcType=INTEGER}
       )
+    <selectKey resultType="Integer" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID() AS id
+    </selectKey>
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.ClubActivityForm">
     update b_form_club_activity
-    set apply_date = #{applyDate,jdbcType=VARCHAR},
+    set
+    <if test="null != applyDate and '' != applyDate">
+      apply_date = #{applyDate,jdbcType=VARCHAR},
+    </if>
+    <if test="null != club and '' != club">
       club = #{club,jdbcType=VARCHAR},
+    </if>
+    <if test="null != chiefName and '' != chiefName">
       chief_name = #{chiefName,jdbcType=VARCHAR},
+    </if>
+    <if test="null != chiefId and '' != chiefId">
       chief_id = #{chiefId,jdbcType=VARCHAR},
+    </if>
+    <if test="null != chiefTel and '' != chiefTel">
       chief_tel = #{chiefTel,jdbcType=VARCHAR},
+    </if>
+    <if test="null != activityName and '' != activityName">
       activity_name = #{activityName,jdbcType=VARCHAR},
+    </if>
+    <if test="null != activityPlace and '' != activityPlace">
       activity_place = #{activityPlace,jdbcType=VARCHAR},
+    </if>
+    <if test="null != activityTime and '' != activityTime">
       activity_time = #{activityTime,jdbcType=VARCHAR},
+    </if>
+    <if test="null != activityPeople and '' != activityPeople">
       activity_people = #{activityPeople,jdbcType=VARCHAR},
+    </if>
+    <if test="null != isApplyFine and '' != isApplyFine">
       is_apply_fine = #{isApplyFine,jdbcType=INTEGER},
+    </if>
+    <if test="null != activityInfo and '' != activityInfo">
       activity_info = #{activityInfo,jdbcType=VARCHAR},
+    </if>
+    <if test="null != applySelfMoney and '' != applySelfMoney">
       apply_self_money = #{applySelfMoney,jdbcType=INTEGER},
+    </if>
+    <if test="null != applyReserveMoney and '' != applyReserveMoney">
       apply_reserve_money = #{applyReserveMoney,jdbcType=INTEGER},
+    </if>
+    <if test="null != selfMoney and '' != selfMoney">
       self_money = #{selfMoney,jdbcType=INTEGER},
+    </if>
+    <if test="null != reserveMoney and '' != reserveMoney">
       reserve_money = #{reserveMoney,jdbcType=INTEGER},
+    </if>
+    <if test="null != clubId and '' != clubId">
       club_id = #{clubId,jdbcType=INTEGER},
+    </if>
+    <if test="null != fileId and '' != fileId">
       file_id = #{fileId,jdbcType=INTEGER}
+    </if>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -75,8 +113,11 @@
     self_money, reserve_money, club_id, file_id
     from b_form_club_activity
   </select>
-  <select id="selectLastInsertId" resultMap="BaseResultMap">
-    select LAST(id)
+  <select id="selectByClubName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, apply_date, club, chief_name, chief_id, chief_tel, activity_name, activity_place,
+    activity_time, activity_people, is_apply_fine, activity_info, apply_self_money, apply_reserve_money,
+    self_money, reserve_money, club_id, file_id
     from b_form_club_activity
+    where club_name = #{club_name,jdbcType=VARCHAR}
   </select>
 </mapper>

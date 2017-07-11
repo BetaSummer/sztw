@@ -69,4 +69,9 @@ public class UserController extends BaseController {
         //return ajaxReturn(response, getCurrentUser(request).getLv(), "用户Lv", 0);
         return null;
     }
+
+    @RequestMapping(value = "/register")
+    public String register(HttpServletRequest request, HttpServletResponse response, Model model){
+        return "index/register";
+    }
 }

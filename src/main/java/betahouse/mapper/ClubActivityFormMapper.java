@@ -16,6 +16,6 @@ public interface ClubActivityFormMapper {
 
     int updateByPrimaryKey(ClubActivityForm record);
 
-    int selectLastInsertId();
+    List<ClubActivityForm> selectByClubName(String clubName);
 
 }

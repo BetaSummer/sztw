@@ -1,9 +1,15 @@
 package betahouse.service.club;
 
 import betahouse.mapper.ClubActivityFormMapper;
+import betahouse.mapper.ClubMapper;
 import betahouse.model.ClubActivityForm;
+import betahouse.model.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by x1654 on 2017/7/4.
@@ -14,16 +20,19 @@ public class ClubActivityFormServiceImpl implements ClubActivityFormService {
     @Autowired
     private ClubActivityFormMapper clubActivityFormMapper;
 
+    @Autowired
+    private ClubMapper clubMapper;
+
     @Override
-    public int commitForm(String club, String chiefName, String activityName, String activityPlace,
+    public int commitForm(String club, String activityName, String activityPlace,
                           String activityTime, String activityPeople, String isApplyFine, String activityInfo,
-                          String applySelfMoney, String applyReserveMoney,int clubId, int fileId) {
+                          String applySelfMoney, String applyReserveMoney, int fileId, UserInfo userInfo) {
         int isApplyFineDTO = Integer.parseInt(isApplyFine);
         int applySelfMoneyDTO = Integer.parseInt(applySelfMoney);
         int applyReserveMoneyDTO = Integer.parseInt(applyReserveMoney);
         ClubActivityForm clubActivityFormDTO = new ClubActivityForm();
         clubActivityFormDTO.setClub(club);
-        clubActivityFormDTO.setChiefName(chiefName);
+        clubActivityFormDTO.setChiefName(userInfo.getRealName());
         clubActivityFormDTO.setActivityName(activityName);
         clubActivityFormDTO.setActivityPlace(activityPlace);
         clubActivityFormDTO.setActivityTime(activityTime);
@@ -31,10 +40,16 @@ public class ClubActivityFormServiceImpl implements ClubActivityFormService {
         clubActivityFormDTO.setIsApplyFine(isApplyFineDTO);
         clubActivityFormDTO.setActivityInfo(activityInfo);
         clubActivityFormDTO.setApplySelfMoney(applySelfMoneyDTO);
-        clubActivityFormDTO.setReserveMoney(applyReserveMoneyDTO);
-        clubActivityFormDTO.setClubId(clubId);
+        clubActivityFormDTO.setApplyReserveMoney(applyReserveMoneyDTO);
+        clubActivityFormDTO.setClubId(clubMapper.selectByUserId(userInfo.getId()).getId());
         clubActivityFormDTO.setFileId(fileId);
-        return clubActivityFormMapper.insert(clubActivityFormDTO);
+        clubActivityFormDTO.setChiefId(userInfo.getSchoolId());
+        clubActivityFormDTO.setChiefTel(userInfo.getTel());
+        Date dateDTO = new Date();
+        SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        clubActivityFormDTO.setApplyDate(sdfDTO.format(dateDTO));
+        clubActivityFormMapper.insert(clubActivityFormDTO);
+        return clubActivityFormDTO.getId();
     }
 
     @Override
@@ -53,7 +68,8 @@ public class ClubActivityFormServiceImpl implements ClubActivityFormService {
     }
 
     @Override
-    public int getLastInsertId() {
-        return clubActivityFormMapper.selectLastInsertId();
+    public List<ClubActivityForm> listFormByClubName(String clubName) {
+        return clubActivityFormMapper.selectByClubName(clubName);
     }
+
 }

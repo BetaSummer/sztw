@@ -97,7 +97,7 @@ public class ClubActivityStatusServiceImpl implements ClubActivityStatusService 
         }
         return mapDTO;
     }
-
+    @Override
     public Map listStatusOverTypeAndLv(int type, int lv) {
         List<ClubActivityStatus> listDTO = clubActivityStatusMapper.selectOverTypeAndLv(type, lv);
         Map<Integer, String[]> mapDTO = new HashMap<Integer, String[]>();

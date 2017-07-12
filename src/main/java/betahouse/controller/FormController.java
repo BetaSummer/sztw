@@ -86,7 +86,7 @@ public class FormController extends BaseController {
             model.addAttribute("data",mapDTO);
             return "clubActivity/formList";
         }
-        Map mapDTO = clubActivityStatusService.listStatusByTypeAndLv(1, lvDTO);
+        Map mapDTO = clubActivityStatusService.listStatusOverTypeAndLv(1, lvDTO);
         model.addAttribute("data",mapDTO);
         return "clubActivity/formList";
     }

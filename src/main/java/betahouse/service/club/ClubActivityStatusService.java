@@ -26,4 +26,6 @@ public interface ClubActivityStatusService {
 
     Map listStatusByTypeAndLv(int type, int lv);
 
+    Map listStatusOverTypeAndLv(int type, int lv);
+
 }

@@ -1,6 +1,6 @@
 package betahouse.model;
 
-public class Notice {
+public class Message {
     private Integer id;
 
     private Integer fromId;
@@ -11,7 +11,7 @@ public class Notice {
 
     private String toId;
 
-    private String time;
+    private String date;
 
     public Integer getId() {
         return id;
@@ -53,11 +53,11 @@ public class Notice {
         this.toId = toId == null ? null : toId.trim();
     }
 
-    public String getTime() {
-        return time;
+    public String getDate() {
+        return date;
     }
 
-    public void setTime(String time) {
-        this.time = time == null ? null : time.trim();
+    public void setDate(String date) {
+        this.date = date == null ? null : date.trim();
     }
 }

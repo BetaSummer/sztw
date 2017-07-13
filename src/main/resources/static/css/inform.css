@@ -51,36 +51,40 @@
     margin-top: 10px;
     height: 100%;
     width: 100%;
-    overflow:hidden;
-    position: absolute;
-}
+    overflow:auto;
+    position: absolute;  }
+.news::-webkit-scrollbar {
+    display: none;}
 .news li{
     list-style-type: none;
     width: 90%;
     overflow: hidden;
     min-height: 30px;
     font-size: 1vw;
-    margin: 12px 0 10px 5%;}
-.news li .date{
-    width: 10%;
-    height: 52px;
-    float: left;}
-.news li .date dd{
-    text-align: left;}
-.news li .date dd .day{
-    text-align: center !important;
-    width: 90%;
-    border-bottom: solid 1px white;
-    margin-left: 3px;
-    padding: 4px 0;
-    color: white;}
+    margin: 8px 0 10px 5%;}
+.news li p{
+    padding: 3px;
+    width: 15%;
+    font-size: 0.9vw;
+    white-space:nowrap;
+    display:inline;
+    height: 30px;  }
+        /*.news li .date dd{*/
+            /*text-align: left;}*/
+        /*.news li .date dd .day{*/
+            /*text-align: center !important;*/
+            /*width: 90%;*/
+            /*border-bottom: solid 1px white;*/
+            /*margin-left: 3px;*/
+            /*padding: 4px 0;*/
+            /*color: white;}*/
 .news li a{
-    float: left;
     overflow: hidden;
-    width: 90%;
-    margin-top: -21px;
-    line-height: 26px;
+    margin-left: 5%;
+    width: 100%;
+    line-height: 30px;
     color: #050001;
+    font-size: 1.1vw;
     text-decoration:none;
     outline:none;}
 .news li a:hover{

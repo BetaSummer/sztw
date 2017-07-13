@@ -152,8 +152,9 @@
         <!--<table tableName="b_form_type" domainObjectName="FormType"/>-->
         <!--<table tableName="b_form_manager" domainObjectName="FormManager"/>-->
         <!--<table tableName="b_power_type" domainObjectName="PowerType"/>-->
-        <!--<table tableName="b_notice" domainObjectName="Notice"/>-->
+        <!--<table tableName="b_message" domainObjectName="Message"/>-->
         <!--<table tableName="b_announcement" domainObjectName="Announcement"/>-->
+        <!--<table tableName="b_message_box" domainObjectName="MessageBox"/>-->
 
         <!--<table tableName="people" domainObjectName="People"/>-->
         <!--<table tableName="b_%"/>-->

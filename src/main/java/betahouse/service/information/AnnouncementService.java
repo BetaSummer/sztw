@@ -11,4 +11,6 @@ public interface AnnouncementService {
 
     List<Announcement> listAll();
 
+    int sendAnnouncement(int fromId, String title, String comment);
+
 }

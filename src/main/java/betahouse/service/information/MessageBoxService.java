@@ -7,8 +7,8 @@ import java.util.List;
 /**
  * Created by x1654 on 2017/7/13.
  */
-public interface MessageServvice {
+public interface MessageBoxService {
 
-    List<Message> listAll();
+    List<Message> listAllByUserId(int userId);
 
 }

@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port:
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -20,3 +20,5 @@ spring:
 mybatis:
   mapperLocations: classpath:mapper/*.xml
   typeAliasesPackage: tk.mapper.model
+logging:
+  config: classpath:logback.xml

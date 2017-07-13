@@ -3,15 +3,15 @@ package betahouse.controller;
 import betahouse.controller.Base.BaseController;
 import betahouse.core.Base.BaseFile;
 import betahouse.model.Club;
+import betahouse.model.ClubActivityApprove;
 import betahouse.model.ClubActivityForm;
 import betahouse.model.FormManager;
-import betahouse.service.club.ClubActivityFormService;
-import betahouse.service.club.ClubActivityStatusService;
-import betahouse.service.club.ClubService;
-import betahouse.service.club.FormManagerService;
+import betahouse.service.club.*;
 import betahouse.service.file.FileService;
+import betahouse.service.user.UserInfoService;
 import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 import static betahouse.core.constant.CommonConstant.noPower;
+import static betahouse.core.constant.FormConstant.CLUB_ACTIVITY_NOT_APPROVE;
 
 /**
  * Created by x1654 on 2017/7/6.
@@ -46,6 +47,12 @@ public class FormController extends BaseController {
 
     @Autowired
     private FormManagerService formManagerService;
+
+    @Autowired
+    private UserInfoService userInfoService;
+
+    @Autowired
+    private ClubActivityApproveService clubActivityApproveService;
 
     @RequestMapping("/applyFormClubActivity")
     public String applyFormClubActivity(HttpServletRequest request, HttpServletResponse response, Model model){
@@ -95,7 +102,21 @@ public class FormController extends BaseController {
     public String getFormById(HttpServletRequest request, HttpServletResponse response, Model model,
                               @RequestParam int id){
         ClubActivityForm clubActivityFormDTO = clubActivityFormService.getFormById(id);
+        List<ClubActivityApprove> listDTO = clubActivityApproveService.listApproveByFormId(id);
+        String[][] approverDTO = new String[4][2];
+        approverDTO[0] = new String[]{userInfoService.getUserInfoById(clubService.getClubById(clubActivityFormDTO.getClubId()).getUserId()).getRealName(), ""};
+        for(int i = 1; i<approverDTO.length; i++){
+            approverDTO[i] = new String[]{CLUB_ACTIVITY_NOT_APPROVE[0], CLUB_ACTIVITY_NOT_APPROVE[1]};
+        }
+        for(int i = 0; i<listDTO.size(); i++){
+            String realNameDTO = userInfoService.getUserInfoById(listDTO.get(i).getApproveUserId()).getRealName();
+            approverDTO[i+1] = new String[]{realNameDTO, listDTO.get(i).getComment()};
+        }
+        Club clubDTO = clubService.getClubById(clubActivityFormDTO.getClubId());
+        int[] moneyDTO = new int[]{clubDTO.getSelfMoney(), clubDTO.getReserveMoney()};
         model.addAttribute("clubActivityForm",clubActivityFormDTO);
+        model.addAttribute("approver", approverDTO);
+        model.addAttribute("money", moneyDTO);
         return "clubActivity/clubActivityForm";
     }
 }

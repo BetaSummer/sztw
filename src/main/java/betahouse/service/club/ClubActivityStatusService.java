@@ -22,10 +22,12 @@ public interface ClubActivityStatusService {
 
     Map listStatusByFormUserId(int formUserId);
 
-    int updateLvByFormId(int lv, int formId);
+    int updateLvByFormId(int formId);
 
     Map listStatusByTypeAndLv(int type, int lv);
 
     Map listStatusOverTypeAndLv(int type, int lv);
+
+    int updateStatusByFormId(int formId, int status);
 
 }

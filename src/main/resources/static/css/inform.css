@@ -1,7 +1,4 @@
 .inform{
-    -webkit-box-shadow: 0 1px 3px #5c5a5d;
-    -moz-box-shadow: 0 1px 3px #5c5a5d;
-    box-shadow: 0 1px 3px #5c5a5d;
     height: 280px;
     width: 50%;
     margin: 2%;
@@ -82,7 +79,6 @@
     overflow: hidden;
     width: 90%;
     margin-top: -21px;
-    margin-left: 10%;
     line-height: 26px;
     color: #050001;
     text-decoration:none;
@@ -91,10 +87,20 @@
     color:#000;
     text-decoration:underline;}
 #demo-g,#demo-t{
-    height: 290px; 
+    height: 290px; }
+
+
+@media screen and (min-width: 768px){
+    .inform{
+        -webkit-box-shadow: 0 1px 3px #5c5a5d;
+        -moz-box-shadow: 0 1px 3px #5c5a5d;
+        box-shadow: 0 1px 3px #5c5a5d;
+    }
 }
+
 @media screen and (min-width: 1600px){
     .inform{
+        width: 45%;
         position: absolute;
         left: 10%;
     }
@@ -114,6 +120,9 @@
     }
 }
 @media screen and (max-width: 767px){
+    .news{
+        width: 97%;
+    }
     .inform{
         width: 95%;
         margin:5% auto;

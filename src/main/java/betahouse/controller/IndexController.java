@@ -33,9 +33,8 @@ public class IndexController extends BaseController{
         if(this.getCurrentUser(request)!=null){
             UserInfo userInfoDTO = this.getCurrentUser(request);
             model.addAttribute("user",userInfoDTO);
-            model.addAttribute("licence", this.getlicence(request));
+            model.addAttribute("licence", this.getLicence(request));
             model.addAttribute("announcement",announcementService.listAll());
-            logger.warn(JSON.toJSONString(model));
             return "user/index";
         }
         model.addAttribute("announcement",announcementService.listAll());

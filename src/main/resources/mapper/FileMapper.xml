@@ -22,16 +22,17 @@
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.File">
     update b_file
-    set
-    <if test="null != preName and '' != preName">
-      pre_name = #{preName,jdbcType=VARCHAR},
-    </if>
-    <if test="null != afterName and '' != afterName">
-      after_name = #{afterName,jdbcType=VARCHAR},
-    </if>
-    <if test="null != folder and '' != folder">
-      folder = #{folder,jdbcType=VARCHAR}
-    </if>
+    <set>
+      <if test="null != preName and '' != preName">
+        pre_name = #{preName,jdbcType=VARCHAR},
+      </if>
+      <if test="null != afterName and '' != afterName">
+        after_name = #{afterName,jdbcType=VARCHAR},
+      </if>
+      <if test="null != folder and '' != folder">
+        folder = #{folder,jdbcType=VARCHAR}
+      </if>
+    </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

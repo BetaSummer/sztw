@@ -43,11 +43,8 @@
 
 
 /*# sourceMappingURL=club.css.map */
-@media screen and (max-width: 400px) {
-  .form-group input[type='text'],textarea{
-    width: 60%;
-  }
-}
+
+
 @media screen and (min-width: 768px){
   .appli-form {
     width: 100%; }
@@ -128,5 +125,16 @@
     font-size:24px;
     padding-top:1px;
     margin-left: 10%;
+  }
+}
+@media screen and   (min-width: 350px) and (max-width: 400px){
+  .form-group input[type='text'],textarea{
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .form-group input[type='text'], textarea {
+    width: 50%;
   }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -16,6 +16,7 @@
     <![endif]-->
 </head>
 <body>
+<p th:each="licence:${licence}" style="display: none"><span th:text="${licence}" class="licence"></span></p>
     <nav>
         <ul class="nav-left">
             <a>
@@ -45,6 +46,7 @@
                 <ul>
                     <li class="sub-item" id="form-appli">申请</li>
                     <li class="sub-item" id="form-view">查看</li>
+                    <li class='sub-item' id='form-manage'>管理</li>
                 </ul>
             </div>
             <div class="sub-ft sub-item" id="sub-n2">
@@ -160,7 +162,6 @@
             <span><a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备11008151号</a></span> | hdxg 版权所有
         </div>
     </footer>
-
 <script src="/js/jquery.js"></script>
 <script src="/js/main.js"></script>
 <script src="/js/tabset.js"></script>
@@ -170,6 +171,27 @@
 
 
 <script type="text/javascript">
+
+    //VIEW CONTROL
+    function  licenceControl(index) {
+        if(index==3){
+            $("#form-appli").show();
+        }
+        if(index==4){
+            $("#form-view").show();
+        }
+        if(index==5){
+            $("#form-manage").show();
+        }
+    }
+    $(function () {
+        $(".licence").each(function () {
+            licenceControl($(this).html());
+        });
+    });
+
+
+
     //<![CDATA[
     $("#news-g").bind("click",function (event) {
         $("#demo-t").hide();$("#demo-g").show();

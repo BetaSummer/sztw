@@ -46,9 +46,9 @@
         <div id="demo1">
             <li target="_blank" class="news-li" th:each="data:${announcement}">
                 <div class="deta">
-                    <dd class="day" th:text="${data.key}"></dd>
+                    <dd class="day" th:text="${data.date}"></dd>
                 </div>
-                <a th:href="@{*}" th:text="${data.value}"></a>
+                <a th:href="@{*}" th:text="${data.title}"></a>
             </li>
         </div>
         <div id="demo2"></div>

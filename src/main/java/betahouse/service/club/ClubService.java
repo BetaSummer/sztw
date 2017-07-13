@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface ClubService {
 
-    int updateMoneyById(int id, int selfMoney, int reserveMoney);
+    int updateMoneyById(int id, int applySelfMoney, int applyReserveMoney);
 
     Club getClubById(int id);
 

@@ -72,18 +72,6 @@ public class ClubActivityStatusServiceImpl implements ClubActivityStatusService 
     }
 
     @Override
-    public int updateLvByFormId(int lv, int formId) {
-        if(lv>4){
-            return 1;
-        }
-        ClubActivityStatus clubActivityStatusDTO = new ClubActivityStatus();
-        clubActivityStatusDTO.setFormId(formId);
-        clubActivityStatusDTO.setApproveLv(lv+1);
-        clubActivityStatusMapper.updateByFormId(clubActivityStatusDTO);
-        return 0;
-    }
-
-    @Override
     public Map listStatusByTypeAndLv(int type, int lv) {
         List<ClubActivityStatus> listDTO = clubActivityStatusMapper.selectByTypeAndLv(type, lv);
         Map<Integer, String[]> mapDTO = new HashMap<Integer, String[]>();
@@ -110,5 +98,26 @@ public class ClubActivityStatusServiceImpl implements ClubActivityStatusService 
             mapDTO.put(idDTO, arrDTO);
         }
         return mapDTO;
+    }
+
+    @Override
+    public int updateLvByFormId(int formId) {
+        int lvDTO = clubActivityStatusMapper.selectByFormId(formId).getApproveLv();
+        if(lvDTO>4){
+            return 1;
+        }
+        ClubActivityStatus clubActivityStatusDTO = new ClubActivityStatus();
+        clubActivityStatusDTO.setFormId(formId);
+        clubActivityStatusDTO.setApproveLv(lvDTO+1);
+        clubActivityStatusMapper.updateByFormId(clubActivityStatusDTO);
+        return 0;
+    }
+
+    @Override
+    public int updateStatusByFormId(int formId, int status) {
+        ClubActivityStatus clubActivityStatusDTO = new ClubActivityStatus();
+        clubActivityStatusDTO.setFormId(formId);
+        clubActivityStatusDTO.setStatus(status);
+        return clubActivityStatusMapper.updateByFormId(clubActivityStatusDTO);
     }
 }

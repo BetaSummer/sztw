@@ -6,34 +6,13 @@
 /****************************************/
 
 $(function () {
-    $.ajax({
-        type: "POST",
-        url: "/user/getLv",
-        dataType:"json",
-        success: function(r){
-            if(r.data>1){
-                $("#form-view").after("<li class='sub-item' id='form-manage'>管理</li>");
-                $("#form-view").hide();
-                $("#form-appli").hide();
-                $("#form-manage").click(function () {
-                    $(".loading").show();
-                    $.get("/approveForm/listClubActivity",function () {
-                        $(".content-body").load("/approveForm/listClubActivity",function () {
-                            $(".loading").hide();
-                        });
-                    });
-                });
-                //re creat js(because new html code has not events)
-                $(".sub-nav").find("li").click(function () {
-                    $(".sub-nav").find("li").removeClass("on");
-                    $(this).addClass("on");
-                    $(".content-nav").html($(this).parent().parent().prev().html()+"/ "+$(this).html());
-                }) ;
-            }
-        },
-        error: function(data){
-
-        }
+    $("#form-manage").click(function () {
+        $(".loading").show();
+        $.get("/approveForm/listClubActivity",function () {
+            $(".content-body").load("/approveForm/listClubActivity",function () {
+                $(".loading").hide();
+            });
+        });
     });
 });
 /* login */
@@ -144,6 +123,27 @@ $(function () {
 $(function () {
     $("#club-entry").click(function () {
        $(".approval-form").toggle(300);
+        var data={
+            "formId": $("#formId").html(),
+            "comment":"",
+            "applySelfMoney":$("#applySelfMoney").html(),
+            "applyReserveMoney":$("#applyReserveMoney").html()
+        };
+        $.ajax({
+            type: "GET",
+            url: "/approveForm/approve",
+            data: data,
+            dataType:"json",
+            success: function(r){
+                alert(r.message);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            },
+        });
+
     });
 });
 

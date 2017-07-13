@@ -20,19 +20,20 @@
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.UserInfo">
     update b_user_info
-    set
-    <if test="null != realName and '' != realName">
-      real_name = #{realName,jdbcType=VARCHAR},
-    </if>
-    <if test="null != schoolId and '' != schoolId">
-      school_id = #{schoolId,jdbcType=VARCHAR},
-    </if>
-    <if test="null != eMail and '' != eMail">
-      e_mail = #{eMail,jdbcType=VARCHAR},
-    </if>
-    <if test="null != tel and '' != tel">
-      tel = #{tel,jdbcType=VARCHAR}
-    </if>
+    <set>
+      <if test="null != realName and '' != realName">
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="null != schoolId and '' != schoolId">
+        school_id = #{schoolId,jdbcType=VARCHAR},
+      </if>
+      <if test="null != eMail and '' != eMail">
+        e_mail = #{eMail,jdbcType=VARCHAR},
+      </if>
+      <if test="null != tel and '' != tel">
+        tel = #{tel,jdbcType=VARCHAR}
+      </if>
+    </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">

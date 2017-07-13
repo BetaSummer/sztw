@@ -1,5 +1,6 @@
 package betahouse.service.club;
 
+import betahouse.model.Club;
 import betahouse.model.ClubActivityForm;
 import betahouse.model.UserInfo;
 
@@ -21,5 +22,7 @@ public interface ClubActivityFormService {
     int deleteFormById(int id);
 
     List<ClubActivityForm> listFormByClubName(String clubName);
+
+    int updateFormById(int id, Club club);
 
 }

@@ -2,8 +2,10 @@ package betahouse.controller;
 
 
 import betahouse.controller.Base.BaseController;
+import betahouse.model.Club;
 import betahouse.model.User;
 import betahouse.model.UserInfo;
+import betahouse.service.club.ClubService;
 import betahouse.service.user.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static betahouse.core.constant.UserConstant.SESSION_CURRENT_USER;
 import static betahouse.core.constant.UserConstant.SESSION_USER_POWER;
@@ -33,6 +39,10 @@ public class UserController extends BaseController {
 
     @Autowired
     private PowerService powerService;
+
+    @Autowired
+    private ClubService clubService;
+
         //return "redirect:/url";
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public String admin(HttpServletRequest request, HttpServletResponse response, Model model,
@@ -69,6 +79,15 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "/userInfo")
     public String userInfo(HttpServletRequest request, HttpServletResponse response, Model model){
+        List<UserInfo> listDTO = userInfoService.listAllUserInfo();
+        Map<String, UserInfo> mapDTO = new HashMap<String, UserInfo>();
+        for(UserInfo u: listDTO){
+            Club clubDTO = clubService.getClubByUserId(u.getId());
+            if(clubDTO!=null){
+                mapDTO.put(clubDTO.getClubName(), u);
+            }
+        }
+        model.addAttribute("data", mapDTO);
         return "user/userInfo";
     }
 }

@@ -31,7 +31,8 @@ public class BaseController extends betahouse.core.Base.BaseController {
         UserInfo userInfoDTO = (UserInfo) getHttpSession(request).getAttribute(SESSION_CURRENT_USER);
         return userInfoDTO;
     }
-    protected List<Integer> getlicence(HttpServletRequest request) {
+  
+    protected List<Integer> getLicence(HttpServletRequest request) {
         List<Integer> licence = (List<Integer>) getHttpSession(request).getAttribute(SESSION_USER_POWER);
         return licence;
     }

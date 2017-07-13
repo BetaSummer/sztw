@@ -24,25 +24,26 @@
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.ClubActivityStatus">
     update b_status_club_activity
-    set
-    <if test="null != formType and '' != formType">
-      form_type = #{formType,jdbcType=INTEGER},
-    </if>
-    <if test="null != formId and '' != formId">
-      form_id = #{formId,jdbcType=INTEGER},
-    </if>
-    <if test="null != formUserId and '' != formUserId">
-      form_user_id = #{formUserId,jdbcType=INTEGER},
-    </if>
-    <if test="null != status and '' != status">
-      status = #{status,jdbcType=INTEGER},
-    </if>
-    <if test="null != approveDate and '' != approveDate">
-      approve_date = #{approveDate,jdbcType=VARCHAR},
-    </if>
-    <if test="null != approveLv and '' != approveLv">
-      approve_lv = #{approveLv,jdbcType=INTEGER}
-    </if>
+    <set>
+      <if test="null != formType and '' != formType">
+        form_type = #{formType,jdbcType=INTEGER},
+      </if>
+      <if test="null != formId and '' != formId">
+        form_id = #{formId,jdbcType=INTEGER},
+      </if>
+      <if test="null != formUserId and '' != formUserId">
+        form_user_id = #{formUserId,jdbcType=INTEGER},
+      </if>
+      <if test="null != status and '' != status or 0 == status">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="null != approveDate and '' != approveDate">
+        approve_date = #{approveDate,jdbcType=VARCHAR},
+      </if>
+      <if test="null != approveLv and '' != approveLv">
+        approve_lv = #{approveLv,jdbcType=INTEGER}
+      </if>
+    </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -57,27 +58,28 @@
   <select id="selectByFormId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select id, form_type, form_id, form_user_id, status, approve_date, approve_lv
     from b_status_club_activity
-    where form_id = #{form_id,jdbcType=INTEGER}
+    where form_id = #{formId,jdbcType=INTEGER}
   </select>
   <update id="updateByFormId" parameterType="betahouse.model.ClubActivityStatus">
     update b_status_club_activity
-    set
-    <if test="null != formType and '' != formType">
-      form_type = #{formType,jdbcType=INTEGER},
-    </if>
-    <if test="null != formUserId and '' != formUserId">
-      form_user_id = #{formUserId,jdbcType=INTEGER},
-    </if>
-    <if test="null != status and '' != status">
-      status = #{status,jdbcType=INTEGER},
-    </if>
-    <if test="null != approveDate and '' != approveDate">
-      approve_date = #{approveDate,jdbcType=VARCHAR},
-    </if>
-    <if test="null != approveLv and '' != approveLv">
-      approve_lv = #{approveLv,jdbcType=INTEGER}
-    </if>
-    where form_id = #{form_id,jdbcType=INTEGER}
+    <set>
+      <if test="null != formType and '' != formType">
+        form_type = #{formType,jdbcType=INTEGER},
+      </if>
+      <if test="null != formUserId and '' != formUserId">
+        form_user_id = #{formUserId,jdbcType=INTEGER},
+      </if>
+      <if test="null != status and '' != status or 0 == status">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="null != approveDate and '' != approveDate">
+        approve_date = #{approveDate,jdbcType=VARCHAR},
+      </if>
+      <if test="null != approveLv and '' != approveLv">
+        approve_lv = #{approveLv,jdbcType=INTEGER}
+      </if>
+    </set>
+    where form_id = #{formId,jdbcType=INTEGER}
   </update>
   <select id="selectByTypeAndLv" resultMap="BaseResultMap">
     select id, form_type, form_id, form_user_id, status, approve_date, approve_lv
@@ -94,6 +96,6 @@
   <select id="selectByFormUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select id, form_type, form_id, form_user_id, status, approve_date, approve_lv
     from b_status_club_activity
-    where form_user_id = #{form_user_id,jdbcType=INTEGER}
+    where form_user_id = #{formUserId,jdbcType=INTEGER}
   </select>
 </mapper>

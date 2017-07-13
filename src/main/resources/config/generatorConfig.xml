@@ -155,6 +155,7 @@
         <!--<table tableName="b_notice" domainObjectName="Notice"/>-->
         <!--<table tableName="b_announcement" domainObjectName="Announcement"/>-->
 
+
         <!--<table tableName="people" domainObjectName="People"/>-->
         <!--<table tableName="b_%"/>-->
         <!-- 选择一个table来生成相关文件，可以有一个或多个table，必须要有table元素

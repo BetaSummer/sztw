@@ -44,15 +44,10 @@
     <h1>通知公告</h1>
     <hr/>
     <div class="news" id="demo">
-        <div id="demo1">
             <li target="_blank" class="news-li" th:each="data:${announcement}">
-                <div class="deta">
-                    <dd class="day" th:text="${data.date}"></dd>
-                </div>
+                    <p th:text="${data.date}"></p>
                 <a th:href="@{*}" th:text="${data.title}"></a>
             </li>
-        </div>
-        <div id="demo2"></div>
     </div>
 </div>
 

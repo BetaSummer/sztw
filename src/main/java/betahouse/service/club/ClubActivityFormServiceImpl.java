@@ -2,6 +2,7 @@ package betahouse.service.club;
 
 import betahouse.mapper.ClubActivityFormMapper;
 import betahouse.mapper.ClubMapper;
+import betahouse.model.Club;
 import betahouse.model.ClubActivityForm;
 import betahouse.model.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,4 +73,12 @@ public class ClubActivityFormServiceImpl implements ClubActivityFormService {
         return clubActivityFormMapper.selectByClubName(clubName);
     }
 
+    @Override
+    public int updateFormById(int id, Club club) {
+        ClubActivityForm clubActivityFormDTO = new ClubActivityForm();
+        clubActivityFormDTO.setId(id);
+        clubActivityFormDTO.setSelfMoney(club.getSelfMoney());
+        clubActivityFormDTO.setReserveMoney(club.getReserveMoney());
+        return clubActivityFormMapper.updateByPrimaryKey(clubActivityFormDTO);
+    }
 }

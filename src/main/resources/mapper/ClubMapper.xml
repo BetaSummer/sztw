@@ -20,19 +20,20 @@
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.Club">
     update b_club
-    set
-    <if test="null != clubName and '' != clubName">
-      club_name = #{clubName,jdbcType=VARCHAR},
-    </if>
-    <if test="null != userId and '' != userId">
-      user_id = #{userId,jdbcType=INTEGER},
-    </if>
-    <if test="null != selfMoney and '' != selfMoney">
-      self_money = #{selfMoney,jdbcType=INTEGER},
-    </if>
-    <if test="null != reserveMoney and '' != reserveMoney">
-      reserve_money = #{reserveMoney,jdbcType=INTEGER}
-    </if>
+    <set>
+      <if test="null != clubName and '' != clubName">
+        club_name = #{clubName,jdbcType=VARCHAR},
+      </if>
+      <if test="null != userId and '' != userId">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="null != selfMoney and '' != selfMoney or 0 == selfMoney">
+        self_money = #{selfMoney,jdbcType=INTEGER},
+      </if>
+      <if test="null != reserveMoney and '' != reserveMoney or 0 == reserveMoney">
+        reserve_money = #{reserveMoney,jdbcType=INTEGER}
+      </if>
+    </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -47,6 +48,6 @@
   <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select id, club_name, user_id, self_money, reserve_money
     from b_club
-    where user_id = #{user_id,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
   </select>
 </mapper>

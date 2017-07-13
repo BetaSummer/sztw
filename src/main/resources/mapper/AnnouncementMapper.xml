@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="betahouse.mapper.AnnouncementMapper">
+  <resultMap id="BaseResultMap" type="betahouse.model.Announcement">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="from_id" jdbcType="INTEGER" property="fromId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <result column="date" jdbcType="VARCHAR" property="date" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from b_announcement
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="betahouse.model.Announcement">
+    insert into b_announcement (id, from_id, title, 
+      comment, date)
+    values (#{id,jdbcType=INTEGER}, #{fromId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{comment,jdbcType=VARCHAR}, #{date,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="betahouse.model.Announcement">
+    update b_announcement
+    set from_id = #{fromId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      comment = #{comment,jdbcType=VARCHAR},
+      date = #{date,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, from_id, title, comment, date
+    from b_announcement
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, from_id, title, comment, date
+    from b_announcement
+  </select>
+</mapper>

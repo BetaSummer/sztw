@@ -29,17 +29,6 @@ public class InformationController extends BaseController{
     @Autowired
     private UserInfoService userInfoService;
 
-    @RequestMapping(value = "/listAllUserInfo")
-    public String listAllUserInfo(HttpServletRequest request, HttpServletResponse response, Model model){
-        List<UserInfo> listDTO = userInfoService.listAllUserInfo();
-        Map<String, UserInfo> mapDTO = new HashMap<String, UserInfo>();
-        for(UserInfo u: listDTO){
-            String clubName = clubService.getClubByUserId(u.getId()).getClubName();
-            mapDTO.put(clubName, u);
-        }
-        return ajaxReturn(response, mapDTO, "获取所有用户及其社团名称", 0);
-    }
-
     @RequestMapping(value = "/listAllFinancialFlow")
     public String listAllFinancialFlow(HttpServletRequest request, HttpServletResponse response, Model model){
         return null;

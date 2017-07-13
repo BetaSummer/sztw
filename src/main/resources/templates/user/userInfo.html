@@ -145,9 +145,8 @@
                     <ul id="manage-a-show-download">下载</ul>
                 </div>
                 <table>
-                    <tr><th><input type="checkbox" name="manage-a-show-all" id="manage-a-show-all" onclick="checkAll()"/>全选</th><th>学号/工号</th><th>姓名</th><th>管理</th></tr>
-                    <tr><td><input type="checkbox" value="*" name="m-a-s-all"/></td><td>xx</td><td>xx</td><td><a id="power">修改</a></td></tr>
-                    <tr><td><input type="checkbox" value="*" name="m-a-s-all"/></td><td>xx</td><td>xx</td><td><a id="*">修改</a></td></tr>
+                    <tr><th>头衔</th><th>社团</th><th>学号</th><th>XX</th><th>XX</th><th>管理</th></tr>
+                    <tr th:each="data:${data}"><td>xx</td><td th:text="${data.key}"></td><td th:text="${data.value.schoolId}"></td><td>xx</td><td>￥xx</td><td><a id="power">授权</a></td></tr>
                 </table>
             </div>
             <div id='president-management' class='f-flow'>

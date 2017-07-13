@@ -2,7 +2,6 @@ package betahouse.mapper;
 
 import betahouse.model.Announcement;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 
 import java.util.List;
 @Component

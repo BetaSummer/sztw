@@ -2,6 +2,7 @@ package betahouse.service.club;
 
 import betahouse.mapper.*;
 import betahouse.model.*;
+import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,47 +22,45 @@ public class ClubActivityApproveServiceImpl implements ClubActivityApproveServic
 
     @Autowired
     private ClubActivityFormMapper clubActivityFormMapper;
-    
-    @Autowired
-    private UserInfoMapper userInfoMapper;
 
     @Autowired
     private ClubActivityApproveMapper clubActivityApproveMapper;
 
+    @Autowired
+    private ClubActivityStatusService clubActivityStatusService;
+
+    @Autowired
+    private ClubActivityFormService clubActivityFormService;
+
+    @Autowired
+    private ClubService clubService;
+
+    @Autowired
+    private FormManagerService formManagerService;
+
 
     @Override
-    public int saveApprove(User user, int isApprove, int formId, String comment, int clubId, int applySelfMoney, int applyReserveMoney) {
-        UserInfo userInfoDTO = userInfoMapper.selectByPrimaryKey(user.getId());
-        // TODO: 2017/7/8 userInfo 中没有lv属性了
-        //if(userInfoDTO.getLv()==4){
-            Club club = clubMapper.selectByPrimaryKey(clubId);
-            if(isApprove==1){
-                ClubActivityStatus clubActivityStatusDTO = new ClubActivityStatus();
-                clubActivityStatusDTO.setFormId(formId);
-                clubActivityStatusDTO.setStatus(1);
-                clubActivityStatusMapper.updateByFormId(clubActivityStatusDTO);
-                ClubActivityForm clubActivityFormDTO = new ClubActivityForm();
-                clubActivityFormDTO.setClubId(formId);
-                clubActivityFormDTO.setSelfMoney(club.getSelfMoney());
-                clubActivityFormDTO.setReserveMoney(club.getReserveMoney());
-                clubActivityFormMapper.updateByPrimaryKey(clubActivityFormDTO);
-                Club clubDTO = new Club();
-                clubDTO.setId(clubId);
-                club.setSelfMoney(club.getSelfMoney()-applySelfMoney);
-                club.setReserveMoney(club.getReserveMoney()-applyReserveMoney);
-                clubMapper.updateByPrimaryKey(clubDTO);
-            }else if(isApprove==0){
-                ClubActivityStatus clubActivityStatusDTO = new ClubActivityStatus();
-                clubActivityStatusDTO.setFormId(formId);
-                clubActivityStatusDTO.setStatus(2);
-                clubActivityStatusMapper.updateByFormId(clubActivityStatusDTO);
+    public int saveApprove(UserInfo userInfo, int isApprove, int formId, String comment, int applySelfMoney, int applyReserveMoney) {
+        int clubIdDTO = clubActivityFormService.getFormById(formId).getClubId();
+        if(isApprove==1){
+            if(clubActivityStatusService.getStatusByFormId(formId).getApproveLv()==4){
+                Club clubDTO = clubMapper.selectByPrimaryKey(clubIdDTO);
+                clubActivityFormService.updateFormById(formId, clubDTO);
+                clubService.updateMoneyById(clubIdDTO, applySelfMoney, applyReserveMoney);
+                clubActivityStatusService.updateStatusByFormId(formId, 1);
             }
-       // }
+            clubActivityStatusService.updateLvByFormId(formId);
+        }else if(isApprove==0){
+            clubActivityStatusService.updateStatusByFormId(formId, 2);
+        }
+        String approveFormDTO = formManagerService.getFormManagerByApprover(userInfo.getId()).getApproverForm();
+        int lvDTO = JSON.parseArray(approveFormDTO, Integer.class).get(0);
         ClubActivityApprove clubActivityApproveDTO = new ClubActivityApprove();
-        clubActivityApproveDTO.setId(user.getId());
+        clubActivityApproveDTO.setApproveUserId(userInfo.getId());
         clubActivityApproveDTO.setFormId(formId);
         clubActivityApproveDTO.setIsApprove(isApprove);
         clubActivityApproveDTO.setComment(comment);
+        clubActivityApproveDTO.setLv(lvDTO);
         return clubActivityApproveMapper.insert(clubActivityApproveDTO);
     }
 

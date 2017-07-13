@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -44,47 +44,11 @@
     <hr/>
     <div class="news" id="demo">
         <div id="demo1">
-            <li target="_blank" class="news-li">
+            <li target="_blank" class="news-li" th:each="data:${announcement}">
                 <div class="deta">
-                    <dd class="day">"deta"</dd>
+                    <dd class="day" th:text="${data.date}"></dd>
                 </div>
-                <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
-                    ----------获取通知------------------------------------------</a>
-            </li>
-            <li target="_blank" class="news-li">
-                <div class="deta">
-                    <dd class="day">"deta"</dd>
-                </div>
-                <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
-                    ----------获取通知------------------------------------------</a>
-            </li>
-            <li target="_blank" class="news-li">
-                <div class="deta">
-                    <dd class="day">"deta"</dd>
-                </div>
-                <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
-                    ----------获取通知------------------------------------------</a>
-            </li>
-            <li target="_blank" class="news-li">
-                <div class="deta">
-                    <dd class="day">"deta"</dd>
-                </div>
-                <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
-                    ----------获取通知------------------------------------------</a>
-            </li>
-            <li target="_blank" class="news-li">
-                <div class="deta">
-                    <dd class="day">"deta"</dd>
-                </div>
-                <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
-                    ----------获取通知------------------------------------------</a>
-            </li>
-            <li target="_blank" class="news-li">
-                <div class="deta">
-                    <dd class="day">"deta"</dd>
-                </div>
-                <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
-                    ----------获取通知------------------------------------------</a>
+                <a th:href="@{*}" th:text="${data.title}"></a>
             </li>
         </div>
         <div id="demo2"></div>

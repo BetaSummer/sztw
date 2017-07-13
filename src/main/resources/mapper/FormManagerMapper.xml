@@ -18,13 +18,14 @@
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.FormManager">
     update b_form_manager
-    set
-    <if test="null != approver and '' != approver">
-      approver = #{approver,jdbcType=INTEGER},
-    </if>
-    <if test="null != approverForm and '' != approverForm">
-      approver_form = #{approverForm,jdbcType=CHAR}
-    </if>
+    <set>
+      <if test="null != approver and '' != approver">
+        approver = #{approver,jdbcType=INTEGER},
+      </if>
+      <if test="null != approverForm and '' != approverForm">
+        approver_form = #{approverForm,jdbcType=CHAR}
+      </if>
+    </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -43,10 +44,11 @@
   </select>
   <update id="updateByApprover" parameterType="betahouse.model.FormManager">
     update b_form_manager
-    set
-    <if test="null != approverForm and '' != approverForm">
-      approver_form = #{approverForm,jdbcType=CHAR}
-    </if>
+    <set>
+      <if test="null != approverForm and '' != approverForm">
+        approver_form = #{approverForm,jdbcType=CHAR}
+      </if>
+    </set>
     where approver = #{approver,jdbcType=INTEGER}
   </update>
 </mapper>

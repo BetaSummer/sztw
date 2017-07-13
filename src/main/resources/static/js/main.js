@@ -123,6 +123,27 @@ $(function () {
 $(function () {
     $("#club-entry").click(function () {
        $(".approval-form").toggle(300);
+        var data={
+            "formId": $("#formId").html(),
+            "comment":"",
+            "applySelfMoney":$("#applySelfMoney").html(),
+            "applyReserveMoney":$("#applyReserveMoney").html()
+        };
+        $.ajax({
+            type: "GET",
+            url: "/approveForm/approve",
+            data: data,
+            dataType:"json",
+            success: function(r){
+                alert(r.message);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            },
+        });
+
     });
 });
 

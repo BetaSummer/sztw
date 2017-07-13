@@ -71,19 +71,31 @@ $(function () {
 $(function () {
     $("#f-list").click(function () {
         // $(".content-body").html("");
-        $("#f-flow").show();$("#manage-a-show").hide();$("#public-news-").hide();
+        $("#f-flow").show();$("#manage-a-show").hide();$("#public-news-").hide();$("#president-management").hide();$("#club-finance").hide()
     });
 });
 $(function () {
     $("#manage-a").click(function () {
         // $(".content-body").html("");
-        $("#manage-a-show").show();$("#f-flow").hide();$("#public-news-").hide();
+        $("#manage-a-show").show();$("#f-flow").hide();$("#public-news-").hide();$("#president-management").hide();$("#club-finance").hide()
+    });
+});
+$(function () {
+    $("#-president-management").click(function () {
+        // $(".content-body").html("");
+        $("#president-management").show();$("#f-flow").hide();$("#public-news-").hide();$("#manage-a-show").hide();$("#club-finance").hide()
     });
 });
 $(function () {
     $("#public-news").click(function () {
         // $(".content-body").html("");
-        $("#public-news-").fadeIn();$("#f-flow").hide();$("#manage-a-show").hide();
+        $("#public-news-").fadeIn();$("#f-flow").hide();$("#manage-a-show").hide();$("#president-management").hide();$("#club-finance").hide()
+    });
+});
+$(function () {
+    $("#-club-finance").click(function () {
+        // $(".content-body").html("");
+        $("#club-finance").fadeIn();$("#public-news-").hide();$("#f-flow").hide();$("#manage-a-show").hide();$("#president-management").hide();
     });
 });
 

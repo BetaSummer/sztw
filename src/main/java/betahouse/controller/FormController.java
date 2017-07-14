@@ -76,7 +76,7 @@ public class FormController extends BaseController {
                 applyReserveMoney,fileIdDTO, getCurrentUser(request));
         ClubActivityForm clubActivityFormDTO = clubActivityFormService.getFormById(idDTO);
         clubActivityStatusService.commitFormStatus(clubActivityFormDTO, getCurrentUser(request));
-        return "user/index";
+        return "redirect:/index";
     }
 
     @RequestMapping(value = "/listAllForm")

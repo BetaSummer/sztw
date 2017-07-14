@@ -13,6 +13,7 @@
 
 <body>
 <div>
+    <div id="formId" th:text="${clubActivityForm.id}"></div>
     <p style="margin:10pt 0pt; orphans:0; text-align:center; widows:0"><span style="font-family:宋体; font-size:15pt; font-weight:bold">杭州电子科技大学信息工程学院社团活动审批表</span></p>
     <table cellspacing="0" cellpadding="0" style="border-collapse:collapse;margin:0 auto; width:426.85pt">
         <tbody>
@@ -42,7 +43,7 @@
             </td>
             <td style="border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:middle; width:102.7pt">
                 <p style="margin:0pt; orphans:0; text-align:center; widows:0">
-                    <span style="font-family:Calibri; font-size:14pt" th:text="${clubActivityForm.club}"></span></p>
+                    <span id="clubName" style="font-family:Calibri; font-size:14pt" th:text="${clubActivityForm.club}"></span></p>
             </td>
             <td colspan="3" style="border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:middle; width:55.55pt">
                 <p style="margin:0pt; orphans:0; text-align:center; widows:0">
@@ -70,7 +71,7 @@
         <tr style="height:26.95pt">
             <td colspan="2" style="border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:middle; width:190.7pt">
                 <p style="margin:0pt; orphans:0; text-align:center; widows:0">
-                    <span style="font-family:Calibri; font-size:12pt" th:text="${clubActivityForm.activityName}"></span></p>
+                    <span id="activityName" style="font-family:Calibri; font-size:12pt" th:text="${clubActivityForm.activityName}"></span></p>
             </td>
             <td colspan="5" style="border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:middle; width:213.8pt">
                 <p style="margin:0pt; orphans:0; text-align:center; widows:0">
@@ -144,9 +145,9 @@
         <tr style="height:52.15pt">
             <td colspan="4" style="border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:top; width:222.2pt">
                 <p style="margin:0pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:12pt">自留经费：</span></p>
-                <p style="margin:0pt; orphans:0; text-align:justify; widows:0"><span style="font-family:Calibri; font-size:12pt" th:text="${clubActivityForm.applySelfMoney}"></span></p>
+                <p style="margin:0pt; orphans:0; text-align:justify; widows:0"><span id="applySelfMoney" style="font-family:Calibri; font-size:12pt" th:text="${clubActivityForm.applySelfMoney}"></span></p>
                 <p style="margin:0pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:12pt">社联预留经费：</span></p>
-                <p style="margin:0pt; orphans:0; text-align:justify; widows:0"><span style="font-family:Calibri; font-size:12pt" th:text="${clubActivityForm.applyReserveMoney}"></span></p>
+                <p style="margin:0pt; orphans:0; text-align:justify; widows:0"><span id="applyReserveMoney" style="font-family:Calibri; font-size:12pt" th:text="${clubActivityForm.applyReserveMoney}"></span></p>
             </td>
             <td colspan="3" style="border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:top; width:182.3pt">
                 <p style="margin:0pt; orphans:0; widows:0"><span style="font-family:宋体; font-size:12pt">社联财务负责人签字：<approver th:text="${approver[1][0]}"></approver></span></p>
@@ -209,7 +210,7 @@
         <div class="approval-entry" id="club-load">
             下载
         </div>
-        <a id="extrafile" href="/applyClubForm/getFile">
+        <a id="extrafile">
             <div class="approval-entry" id="club-loadfile">
                 附件
             </div>

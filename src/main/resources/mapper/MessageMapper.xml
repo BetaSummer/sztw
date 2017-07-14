@@ -7,6 +7,7 @@
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="comment" jdbcType="VARCHAR" property="comment" />
     <result column="to_id" jdbcType="CHAR" property="toId" />
+    <result column="file_id" jdbcType="INTEGER" property="fileId" />
     <result column="date" jdbcType="VARCHAR" property="date" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -15,9 +16,11 @@
   </delete>
   <insert id="insert" parameterType="betahouse.model.Message">
     insert into b_message (id, from_id, title, 
-      comment, to_id, date)
+      comment, to_id, file_id, 
+      date)
     values (#{id,jdbcType=INTEGER}, #{fromId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
-      #{comment,jdbcType=VARCHAR}, #{toId,jdbcType=CHAR}, #{date,jdbcType=VARCHAR})
+      #{comment,jdbcType=VARCHAR}, #{toId,jdbcType=CHAR}, #{fileId,jdbcType=INTEGER}, 
+      #{date,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.Message">
     update b_message
@@ -25,20 +28,21 @@
       title = #{title,jdbcType=VARCHAR},
       comment = #{comment,jdbcType=VARCHAR},
       to_id = #{toId,jdbcType=CHAR},
+      file_id = #{fileId,jdbcType=INTEGER},
       date = #{date,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, from_id, title, comment, to_id, date
+    select id, from_id, title, comment, to_id, file_id, date
     from b_message
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id, from_id, title, comment, to_id, date
+    select id, from_id, title, comment, to_id, file_id, date
     from b_message
   </select>
   <select id="selectByFromId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, from_id, title, comment, to_id, date
+    select id, from_id, title, comment, to_id, file_id, date
     from b_message
     where from_id = #{fromId,jdbcType=INTEGER}
   </select>

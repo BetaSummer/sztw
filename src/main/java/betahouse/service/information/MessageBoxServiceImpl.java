@@ -24,12 +24,22 @@ public class MessageBoxServiceImpl implements MessageBoxService{
 
     @Override
     public List<Message> listAllByUserId(int userId) {
-        String messageDTO =  messageBoxMapper.selectByUserId(userId).getMessageList();
-        List<Integer> listDTO = JSON.parseArray(messageDTO, Integer.class);
+        String messageDTO = null;
         List<Message> messageListDTO = new ArrayList<>();
-        for(int id: listDTO){
-            messageListDTO.add(messageMapper.selectByPrimaryKey(id));
+        try {
+            messageDTO = messageBoxMapper.selectByUserId(userId).getMessageList();
+            List<Integer> listDTO = JSON.parseArray(messageDTO, Integer.class);
+            for(int id: listDTO){
+                messageListDTO.add(messageMapper.selectByPrimaryKey(id));
+            }
+            return messageListDTO;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        Message messageDTO2 = new Message();
+        messageDTO2.setDate("");
+        messageDTO2.setTitle("");
+        messageListDTO.add(messageDTO2);
         return messageListDTO;
     }
 }

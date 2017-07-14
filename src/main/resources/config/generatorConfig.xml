@@ -155,6 +155,7 @@
         <!--<table tableName="b_message" domainObjectName="Message"/>-->
         <!--<table tableName="b_announcement" domainObjectName="Announcement"/>-->
         <!--<table tableName="b_message_box" domainObjectName="MessageBox"/>-->
+        <!--<table tableName="b_club_financial_flow" domainObjectName="ClubFinancialFlow"/>-->
 
         <!--<table tableName="people" domainObjectName="People"/>-->
         <!--<table tableName="b_%"/>-->

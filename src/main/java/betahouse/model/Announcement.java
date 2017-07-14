@@ -9,6 +9,8 @@ public class Announcement {
 
     private String comment;
 
+    private Integer fileId;
+
     private String date;
 
     public Integer getId() {
@@ -41,6 +43,14 @@ public class Announcement {
 
     public void setComment(String comment) {
         this.comment = comment == null ? null : comment.trim();
+    }
+
+    public Integer getFileId() {
+        return fileId;
+    }
+
+    public void setFileId(Integer fileId) {
+        this.fileId = fileId;
     }
 
     public String getDate() {

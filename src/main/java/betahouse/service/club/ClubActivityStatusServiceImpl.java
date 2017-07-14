@@ -101,23 +101,12 @@ public class ClubActivityStatusServiceImpl implements ClubActivityStatusService 
     }
 
     @Override
-    public int updateLvByFormId(int formId) {
-        int lvDTO = clubActivityStatusMapper.selectByFormId(formId).getApproveLv();
-        if(lvDTO>4){
-            return 1;
-        }
-        ClubActivityStatus clubActivityStatusDTO = new ClubActivityStatus();
-        clubActivityStatusDTO.setFormId(formId);
-        clubActivityStatusDTO.setApproveLv(lvDTO+1);
-        clubActivityStatusMapper.updateByFormId(clubActivityStatusDTO);
-        return 0;
-    }
-
-    @Override
-    public int updateStatusByFormId(int formId, int status) {
+    public int updateStatusByFormId(int formId, int status, int approveLv, String approveDate) {
         ClubActivityStatus clubActivityStatusDTO = new ClubActivityStatus();
         clubActivityStatusDTO.setFormId(formId);
         clubActivityStatusDTO.setStatus(status);
+        clubActivityStatusDTO.setApproveLv(approveLv);
+        clubActivityStatusDTO.setApproveDate(approveDate);
         return clubActivityStatusMapper.updateByFormId(clubActivityStatusDTO);
     }
 }

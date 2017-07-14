@@ -11,6 +11,8 @@ public class Message {
 
     private String toId;
 
+    private Integer fileId;
+
     private String date;
 
     public Integer getId() {
@@ -51,6 +53,14 @@ public class Message {
 
     public void setToId(String toId) {
         this.toId = toId == null ? null : toId.trim();
+    }
+
+    public Integer getFileId() {
+        return fileId;
+    }
+
+    public void setFileId(Integer fileId) {
+        this.fileId = fileId;
     }
 
     public String getDate() {

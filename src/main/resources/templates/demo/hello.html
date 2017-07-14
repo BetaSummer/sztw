@@ -8,10 +8,10 @@
 </head>
 <body>
 <div>
-    <sapn th:text="${word}"></sapn><br/>
-    person name: <sapn th:text="${person.name}"></sapn><br/>
-    person age: <sapn th:text="${person.age}"></sapn><br/>
-    <img src="/img/icon.jpg"/>
+<form action="/up" enctype="multipart/form-data">
+    <input name="file" type="file"/>
+    <input type="submit"/>
+</form>
 </div>
 </body>
 </html>

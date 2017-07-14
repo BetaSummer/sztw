@@ -43,7 +43,9 @@ public class ClubActivityFormServiceImpl implements ClubActivityFormService {
         clubActivityFormDTO.setApplySelfMoney(applySelfMoneyDTO);
         clubActivityFormDTO.setApplyReserveMoney(applyReserveMoneyDTO);
         clubActivityFormDTO.setClubId(clubMapper.selectByUserId(userInfo.getId()).getId());
-        clubActivityFormDTO.setFileId(fileId);
+        if(fileId!=0){
+            clubActivityFormDTO.setFileId(fileId);
+        }
         clubActivityFormDTO.setChiefId(userInfo.getSchoolId());
         clubActivityFormDTO.setChiefTel(userInfo.getTel());
         Date dateDTO = new Date();

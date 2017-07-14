@@ -43,7 +43,6 @@ public class UserController extends BaseController {
     @Autowired
     private ClubService clubService;
 
-        //return "redirect:/url";
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public String admin(HttpServletRequest request, HttpServletResponse response, Model model,
                         @RequestParam String username,

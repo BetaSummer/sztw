@@ -1,12 +1,12 @@
 server:
-  port:
+  port: 8089
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
-    url:
-    username:
-    password:
+    url: jdbc:mysql://localhost:3306/xgtw_digital?characterEncoding=utf-8
+    username: root
+    password: ZXCVBNM
   http:
     multipart:
       max-file-size: 10Mb

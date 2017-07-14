@@ -23,7 +23,9 @@
                 <li style="margin-left: -5%;" onclick="location=location">
                     首页
                 </li>
-                <li onclick="location='/user/userInfo'">
+            </a>
+            <a th:href="@{user/userInfo}">
+                <li>
                     信息管理
                 </li>
             </a>
@@ -94,60 +96,14 @@
                         <a id="news-g">公告</a>
                         <a id="news-t">通知</a>
                     </ul>
-
-
-
-
                     <div class="news" id="demo-t">
-                        <div id="demo1" class="suit">
-                            <li target="_blank">
-                                <div class="deta">
-                                    <dd class="day">"deta"</dd>
-                                </div>
-                                <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
-                                    ----------获取-------------------通知-----------------------</a>
-                            </li>
-                            <li target="_blank">
-                                <div class="deta">
-                                    <dd class="day">"deta"</dd>
-                                </div>
-                                <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
-                                    ----------获取-------------------通知-----------------------</a>
-                            </li>
-                            <li target="_blank">
-                                <div class="deta">
-                                    <dd class="day">"deta"</dd>
-                                </div>
-                                <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
-                                    ----------获取-------------------通知-----------------------</a>
-                            </li>
-                            <li target="_blank">
-                                <div class="deta">
-                                    <dd class="day">"deta"</dd>
-                                </div>
-                                <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
-                                    ----------获取-------------------通知-----------------------</a>
+                        <div class="suit">
+                            <li target="_blank" class="news-li" th:each="data:${announcement}">
+                                <p th:text="${data.date}"></p>
+                                <a th:href="@{*}" th:text="${data.title}"></a>
                             </li>
                         </div>
-                        <div id="demo2"></div>
                     </div>
-
-
-
-                    <div class="news" id="demo-g">
-                        <div id="demo1" class="suit">
-                            <li target="_blank">
-                                <div class="deta">
-                                    <dd class="day">"deta"</dd>
-                                </div>
-                                <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
-                                    ----------获取-------------------通知-----------------------</a>
-                            </li>
-                        </div>
-                        <div id="demo2"></div>
-                    </div>
-
-
                     <ul style="margin-top: 310px;font-size: 1vw">
                         <a href="*">More>></a></ul>
 

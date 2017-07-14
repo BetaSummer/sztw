@@ -25,7 +25,7 @@
                 </li>
             </a>
             <a th:href="@{user/userInfo}">
-                <li onclick="location='/user/userInfo'">
+                <li>
                     信息管理
                 </li>
             </a>
@@ -96,58 +96,14 @@
                         <a id="news-g">公告</a>
                         <a id="news-t">通知</a>
                     </ul>
-
-
-
-
                     <div class="news" id="demo-t">
                         <div class="suit">
-                            <li target="_blank" class="news-li">
-                                <p>"deta"</p>
-                                <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
-                                    ----------获取通知------------------------------------------</a>
-                            </li>
-                            <li target="_blank" class="news-li">
-                                <p>"deta"</p>
-                                <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
-                                    ----------获取通知------------------------------------------</a>
-                            </li>
-                            <li target="_blank" class="news-li">
-                                <p>"deta"</p>
-                                <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
-                                    ----------获取通知------------------------------------------</a>
-                            </li>
-                            <li target="_blank" class="news-li">
-                                <p>"deta"</p>
-                                <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
-                                    ----------获取通知------------------------------------------</a>
-                            </li>
-                            <li target="_blank" class="news-li">
-                                <p>"deta"</p>
-                                <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
-                                    ----------获取通知------------------------------------------</a>
-                            </li>
-                            <li target="_blank" class="news-li">
-                                <p>"deta"</p>
-                                <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
-                                    ----------获取通知------------------------------------------</a>
+                            <li target="_blank" class="news-li" th:each="data:${announcement}">
+                                <p th:text="${data.date}"></p>
+                                <a th:href="@{*}" th:text="${data.title}"></a>
                             </li>
                         </div>
                     </div>
-
-
-
-                    <div class="news" id="demo-g">
-                        <div class="suit">
-                            <li target="_blank" class="news-li">
-                                <p>"deta"</p>
-                                <a title="-----获取通知---------全部信息显示----------" th:href="@{*}" >
-                                    ----------获取通知------------------------------------------</a>
-                            </li>
-                        </div>
-                    </div>
-
-
                     <ul style="margin-top: 310px;font-size: 1vw">
                         <a href="*">More>></a></ul>
 

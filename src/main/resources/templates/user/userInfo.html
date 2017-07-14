@@ -145,8 +145,8 @@
                     <ul id="manage-a-show-download">下载</ul>
                 </div>
                 <table>
-                    <tr><th>头衔</th><th>社团</th><th>学号</th><th>XX</th><th>XX</th><th>管理</th></tr>
-                    <tr th:each="data:${data}"><td>xx</td><td th:text="${data.key}"></td><td th:text="${data.value.schoolId}"></td><td>xx</td><td>￥xx</td><td><a id="power">授权</a></td></tr>
+                    <tr><th><input type="checkbox" name="manage-a-show-all" id="manage-a-show-all" onclick="checkAll()"/>全选</th><th>姓名</th><th>学号/工号</th><th>管理</th></tr>
+                    <tr th:each="data:${data}"><td><input type="checkbox" value="*" name="m-a-s-all"/></td><td th:text="${data.key}"></td><td th:text="${data.value.schoolId}"></td><td><a id="power">授权</a></td></tr>
                 </table>
             </div>
             <div id='president-management' class='f-flow'>
@@ -161,14 +161,6 @@
                     <tr><td><input type="checkbox" value="*" name=""/></td><td>xx</td><td>xx</td><td>xx</td><td><a id="*">授权</a></td></tr>
                 </table>
             </div>
-                        <!--<div id='presonal-management' class='f-flow'>-->
-                            <!--<table>-->
-                                <!--<tr><th>批量操作</th><th>社团</th><th>姓名</th><th>学号</th><th>管理</th></tr>-->
-                                <!--<tr><td><input type="checkbox" value="*" name=""/></td><td>xx</td><td>xx</td><td>xx</td><td><a id="*">授权</a></td></tr>-->
-                                <!--<tr><td><input type="checkbox" value="*" name=""/></td><td>xx</td><td>xx</td><td>xx</td><td><a id="*">授权</a></td></tr>-->
-                            <!--</table>-->
-                        <!--</div>      个人管理-->
-
 
         </div>
     </div>
@@ -178,11 +170,11 @@
 </div>
 <div class="check-window" id="check-window">
     <ul>
-        <li><p>社团：</p></li>
-        <li><p>社长：</p></li>
-        <li><p>总支出：</p></li>
-        <li><p>总收入：</p></li>
-        <li><p>收支：</p></li>
+        <li>社团：<input type="text" disabled="disabled" value="获取" name="社团"/></li>
+        <li>社长：<input type="text" disabled="disabled" value="获取" name="社长"/></li>
+        <li>总支出：<input type="text" disabled="disabled" value="获取" name="社团"/></li>
+        <li>总收入：<input type="text" disabled="disabled" value="获取" name="社团"/></li>
+        <li>收支：<input type="text" disabled="disabled" value="获取" name="社团"/></li>
     </ul>
     <ul>
         <li>详情：
@@ -199,8 +191,8 @@
 <div class="check-window" id="power-window">
     <ul>
         <li><h3>当前权限</h3></li>
-        <li>学号（工号）：</li>
-        <li>姓名：</li>
+        <li>学号（工号）：<input type="text" disabled="disabled" value="获取" name="学工"/></li>
+        <li>姓名：<input type="text" disabled="disabled" value="获取" name="姓名"/></li>
         <li>权限：</li>
     </ul>
     <ul>
@@ -231,11 +223,11 @@
 <div class="check-window" id="president-management-window">
     <ul>
         <li><h3>当前信息</h3></li>
-        <li>社团：</li>
-        <li>学号：<input type="text" value="*" name="学号"/></li>
-        <li>姓名：<input type="text" value="*" name="姓名"/></li>
-        <li>联系方式：<input type="text" value="*" name="联系方式"/></li>
-        <li>邮箱：<input type="text" value="*" name="邮箱"/></li>
+        <li>社团：<input type="text" disabled="disabled" value="获取" name="社团"/></li>
+        <li>学号：<input type="text" disabled="disabled" value="获取" name="学号"/></li>
+        <li>姓名：<input type="text" disabled="disabled" value="获取" name="姓名"/></li>
+        <li>联系方式：<input type="text" disabled="disabled" value="获取" name="联系方式"/></li>
+        <li>邮箱：<input type="text" disabled="disabled" value="获取" name="邮箱"/></li>
     </ul>
     <ul>
         <li><h3>修改信息</h3></li>
@@ -252,8 +244,8 @@
 <div class="check-window" id="club-finance-window">
     <ul>
         <li><h3>当前信息</h3></li>
-        <li>预留资金：</li>
-        <li>自留资金：</li>
+        <li>预留资金：<input type="text" disabled="disabled" value="获取" name="预留金额"/></li>
+        <li>自留资金：<input type="text" disabled="disabled" value="获取" name="自留金额"/></li>
     </ul>
     <ul>
         <li><h3>修改金额</h3></li>
@@ -363,8 +355,6 @@
             $("#president-management tr td:nth-child(1)").toggle(); $("#president-management tr th:nth-child(1)").toggle();
         })
     });
-//    $("#flow-chose").bind("click",function (event) {
-//        $("#f-flow tr td:nth-child(6)").show();$("#f-flow tr th:nth-child(6)").show();
-//    });
+
 //]]>
 </script>

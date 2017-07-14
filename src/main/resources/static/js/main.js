@@ -5,6 +5,24 @@
 /* user */
 /****************************************/
 
+//VIEW CONTROL
+function  licenceControl(index) {
+    if(index==3){
+        $("#form-appli").show();
+    }
+    if(index==4){
+        $("#form-view").show();
+    }
+    if(index==5){
+        $("#form-manage").show();
+    }
+}
+$(function () {
+    $(".licence").each(function () {
+        licenceControl($(this).html());
+    });
+});
+
 $(function () {
     $("#form-manage").click(function () {
         $(".loading").show();
@@ -56,13 +74,13 @@ $(function () {
 });
 
 /* finance */
-$(function () {
-   $("#f-list").click(function () {
-       $(".content-body").load("/information/listAllFinancialFlow",function () {
-           $(".loading").hide();
-       }) ;
-   });
-});
+// $(function () {
+//    $("#f-list").click(function () {
+//        $(".content-body").load("/information/listAllFinancialFlow",function () {
+//            $(".loading").hide();
+//        }) ;
+//    });
+// });
 
 
 /* tabset  */
@@ -144,6 +162,8 @@ $(function () {
 $(function () {
     $("#club-entry").click(function () {
        $(".approval-form").toggle(300);
+    });
+    $("#agree-btn").click(function () {
         var data={
             "formId": $("#formId").html(),
             "comment":"",
@@ -157,6 +177,7 @@ $(function () {
             dataType:"json",
             success: function(r){
                 alert(r.message);
+                window.close();
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){
                 alert(XMLHttpRequest.status);
@@ -164,7 +185,6 @@ $(function () {
                 alert(textStatus);
             },
         });
-
     });
 });
 

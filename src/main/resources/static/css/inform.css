@@ -48,6 +48,7 @@
 .news::-webkit-scrollbar {
     display: none;}
 .news li{
+    border-bottom: solid 1px #ececec;
     list-style-type: none;
     width: 90%;
     overflow: hidden;

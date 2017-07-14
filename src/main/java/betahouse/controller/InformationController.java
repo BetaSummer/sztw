@@ -31,6 +31,7 @@ public class InformationController extends BaseController{
 
     @RequestMapping(value = "/listAllFinancialFlow")
     public String listAllFinancialFlow(HttpServletRequest request, HttpServletResponse response, Model model){
-        return null;
+        return "information/finance";
     }
 }
+

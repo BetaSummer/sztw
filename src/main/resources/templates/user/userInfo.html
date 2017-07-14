@@ -2,6 +2,8 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>信息管理</title>
     <link id="tabset-css" rel="stylesheet" href="/css/tabset.css"/>
     <link rel="stylesheet" href="/css/base.css"/>
@@ -40,7 +42,7 @@
 <content>
 
     <div class="sub-nav">
-        <div class="sub-ft sub-item">
+        <div class="sub-ft sub-item " id="sub-n1">
             用户管理
         </div>
         <div class="sub-child">
@@ -49,7 +51,7 @@
                 <li class="sub-item" id="*">个人管理</li>
             </ul>
         </div>
-        <div class="sub-ft sub-item">
+        <div class="sub-ft sub-item" id="sub-n2">
             财务管理
         </div>
         <div class="sub-child">
@@ -58,7 +60,7 @@
                 <li class="sub-item" id="-club-finance">社团财务</li>
             </ul>
         </div>
-        <div class="sub-ft sub-item">
+        <div class="sub-ft sub-item" id="sub-n3">
             信息管理
         </div>
         <div class="sub-child">
@@ -111,8 +113,8 @@
                     </ul>
                 </div>
             </div>
-
 <!--。。财务管理-财务流水。。。。。。。。。。。。。。。。。-->
+
             <div id='f-flow' class='f-flow'>
                 <div class="lay-right">
                     <ul id="flow-chose">批量操作</ul>
@@ -147,8 +149,8 @@
                     <ul id="manage-a-show-download">下载</ul>
                 </div>
                 <table>
-                    <tr><th>姓名</th><th>学号/工号</th><th>管理</th><th><input type="checkbox" name="manage-a-show-all" id="manage-a-show-all" onclick="checkAll()"/>全选</th></tr>
-                    <tr th:each="data:${data}"><td th:text="${data.key}"></td><td th:text="${data.value.schoolId}"></td><td><a id="power">授权</a></td><td><input type="checkbox" value="*" name="m-a-s-all"/></td></tr>
+                    <tr><th><input type="checkbox" name="manage-a-show-all" id="manage-a-show-all" onclick="checkAll()"/>全选</th><th>姓名</th><th>学号/工号</th><th>管理</th></tr>
+                    <tr th:each="data:${data}"><td><input type="checkbox" value="*" name="m-a-s-all"/></td><td th:text="${data.key}"></td><td th:text="${data.value.schoolId}"></td><td><a id="power">授权</a></td></tr>
                 </table>
             </div>
 

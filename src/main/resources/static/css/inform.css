@@ -31,16 +31,8 @@
     -webkit-box-shadow: 0 1px 1px #5c5a5d;
     -moz-box-shadow: 0 1px 1px #5c5a5d;
     box-shadow: 0 1px 1px #5c5a5d; }
-#inform{
-    left: 20%;
-    width: 50%;
-    height: 400px;
-    margin-top: -20px;
-    -webkit-box-shadow:none;
-    -moz-box-shadow:none;
-    box-shadow:none;
-    margin-top: 0px;}
-#inform-ul{
+
+.inform-ul{
     margin-top: -30px;
     border-top: none;
     font-size: 1vw;}
@@ -95,6 +87,15 @@
 
 
 @media screen and (min-width: 768px){
+    #inform{
+        left: 20%;
+        width: 50%;
+        height: 400px;
+        margin-top: -20px;
+        -webkit-box-shadow:none;
+        -moz-box-shadow:none;
+        box-shadow:none;
+        margin-top: 0px;}
     .inform{
         -webkit-box-shadow: 0 1px 3px #5c5a5d;
         -moz-box-shadow: 0 1px 3px #5c5a5d;
@@ -125,7 +126,7 @@
 }
 @media screen and (max-width: 767px){
     .news{
-        width: 97%;
+        width: 89.5%;
     }
     .inform{
         width: 95%;

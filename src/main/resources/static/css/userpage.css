@@ -17,11 +17,14 @@
   height: 30px;
   margin: 0 10px; }
 .login input[type='submit'], .login input[type='button'] {
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
   outline: none;
   margin-left: 10%;
   width: 32%;
   height: 30px;
-  border: solid #5c5a5d 1px;
+  border: solid #ffffff 1px;
   color: #5c5a5d; }
 .login input[type='submit']:hover, .login input[type='button']:hover {
   cursor: pointer;
@@ -102,18 +105,27 @@
 /*# sourceMappingURL=userpage.css.map */
 @media screen and (min-width: 1600px){
   .login{
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
     position: absolute;
     right: 8%;
   }
 }
 @media screen and (min-width: 1400px) and (max-width: 1600px) {
   .login{
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
     position: absolute;
     right: 5%;
   }
 }
 @media screen and (min-width: 768px) and (max-width: 1400px) {
   .login{
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
     position: absolute;
     right: 3%;
     width: 35%;

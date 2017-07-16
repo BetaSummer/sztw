@@ -25,10 +25,10 @@ content {
   background-color: #ececec; }
 .sub-content .content-nav {
   margin: 20px; }
-.sub-content .content-body {
+.content-body {
   background-color: #FFF;
   margin: 20px;
-  margin-right: 10%;
+  margin-right: 2%;
   min-height: 400px;
   padding: 20px; }
 .sub-content .content-body li {
@@ -265,7 +265,7 @@ a:hover{
   .sub-nav{
     height: 60px;
     margin:2% 1.5% 0 1.5%;
-    width:100%;
+    width:98.5%;
     font-size: 20%;
     float: none;
   }

@@ -192,6 +192,8 @@ $(function () {
 
 function heightListener() {
     var $height = $(window).height();
+    $(".sub-content").css("min-height",$height-90-53.2);
+    $(".content-body").css("min-height",$height-90-53.2-140);
     if($height>$(document.body).height()){
         $("footer").css("position","fixed");
         $("footer").css("top", $height-53.2);

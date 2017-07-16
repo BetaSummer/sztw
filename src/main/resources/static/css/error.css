@@ -1,0 +1,57 @@
+.error-warrper{
+    color:#aaaaaa;
+    height: 250px;
+    margin:10% auto;
+}
+.error-content{
+    text-align: center;
+    margin-left: 5%;
+    float: left;
+}
+.error-content-body{
+    margin: 0 auto;
+}
+.error-img{
+    float: left;
+    height: 150px;
+    width: 200px;
+    margin:50px auto;
+}
+.error-img img{
+    width: 100%;
+    height: 100%;
+}
+.error-warrper h4{
+    margin:5% 0;
+    color:#555555;
+    font-size: 24px;
+}
+.error-warrper p{
+    margin:2% 0;
+    color:#494949;
+    font-size: 18px;
+}
+.error-warrper li{
+    margin:2% 0;
+}
+@media(min-width: 1416px){
+    .error-warrper{
+        width: 35%;
+    }
+}
+@media(min-width: 768px) and (max-width: 1415px){
+    .error-warrper{
+        width: 50%;
+    }
+}
+@media(max-width: 767px){
+    error-warrper{
+        width: 90%;
+    }
+}
+@media (max-width: 768px) {
+    .error-content{
+        width: 90%;
+        margin:0 auto;
+    }
+}

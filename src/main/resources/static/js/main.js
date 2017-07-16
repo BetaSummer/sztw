@@ -55,6 +55,15 @@ $(function () {
    });
 });
 
+/* finance */
+$(function () {
+   $("#f-list").click(function () {
+       $(".content-body").load("/finance/listAllFinancialFlow",function () {
+           $(".loading").hide();
+       }) ;
+   });
+});
+
 
 /* tabset  */
 /*******************************************/

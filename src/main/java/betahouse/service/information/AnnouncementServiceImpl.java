@@ -33,6 +33,26 @@ public class AnnouncementServiceImpl implements AnnouncementService{
         Date dateDTO = new Date();
         SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy/MM/dd");
         announcementDTO.setDate(sdfDTO.format(dateDTO));
+        announcementDTO.setStatus(1);
         return announcementMapper.insert(announcementDTO);
+    }
+
+    @Override
+    public int saveAnnouncement(int id, int fromId, String title, String comment) {
+        Announcement announcementDTO = new Announcement();
+        if(id==0){
+            announcementDTO.setFromId(fromId);
+            announcementDTO.setTitle(title);
+            announcementDTO.setComment(comment);
+            Date dateDTO = new Date();
+            SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy/MM/dd");
+            announcementDTO.setDate(sdfDTO.format(dateDTO));
+            announcementDTO.setStatus(0);
+            return announcementMapper.insert(announcementDTO);
+        }
+        announcementDTO.setId(id);
+        announcementDTO.setTitle(title);
+        announcementDTO.setComment(comment);
+        return announcementMapper.updateByPrimaryKey(announcementDTO);
     }
 }

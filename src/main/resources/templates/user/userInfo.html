@@ -2,6 +2,8 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>信息管理</title>
     <link id="tabset-css" rel="stylesheet" href="/css/tabset.css"/>
     <link rel="stylesheet" href="/css/base.css"/>
@@ -40,17 +42,16 @@
 <content>
 
     <div class="sub-nav">
-        <div class="sub-ft sub-item">
+        <div class="sub-ft sub-item " id="sub-n1">
             用户管理
         </div>
         <div class="sub-child">
             <ul>
                 <li class="sub-item" id="manage-a">权限管理</li>
-                <li class="sub-item" id="-president-management">社长管理</li>
                 <li class="sub-item" id="*">个人管理</li>
             </ul>
         </div>
-        <div class="sub-ft sub-item">
+        <div class="sub-ft sub-item" id="sub-n2">
             财务管理
         </div>
         <div class="sub-child">
@@ -59,13 +60,13 @@
                 <li class="sub-item" id="-club-finance">社团财务</li>
             </ul>
         </div>
-        <div class="sub-ft sub-item">
+        <div class="sub-ft sub-item" id="sub-n3">
             信息管理
         </div>
         <div class="sub-child">
             <ul>
                 <li class="sub-item" id="public-news">写公告</li>
-                <li class="sub-item" id="person-inform">option2</li>
+                <li class="sub-item" id="-president-management">社团管理</li>
             </ul>
         </div>
     </div>
@@ -78,14 +79,15 @@
 
             <div id='public-news-' class='f-flow'>
 
-                <div class="f-flow-information" id="ffileft">
 
+<!-- 。。写通知界面。。。。。。。。。。。。。。。。。。。。。-->
+                <div class="f-flow-information" id="ffileft">
                     <ul><input type="button" id="news-publish" name="" value="--发布--"/>
                         <input type="button" id="news-hold" name="" value="存稿"/>
                         <input type="button" id="cancel" name="" value="取消"/></ul>
                     <ul id="type-ul"><strong>类型：</strong>
-                        <label><input type="radio" id="public" name="type"/>公告</label>
-                        <label><input type="radio" id="person-chose" name="type"/>通知</label>
+                        <label><input type="radio" id="public" name="type" value="公告"/>公告</label>
+                        <label><input type="radio" id="person-chose" name="type" value="通知"/>通知</label>
                         <li style="display: none;" id="p-c-list">通知人员：
                             <label><input id="*" type="checkbox" value=""/>选择1</label>
                             <label><input id="*" type="checkbox" value=""/>选择2</label>
@@ -94,7 +96,7 @@
                         </li>
                     </ul>
                     <ul id="theme-ul"><strong>主题：</strong><input id="news-theme" type="text" name="" placeholder="填写公告主题"/></ul>
-                    <ul id="main-body-ul"><button style="float: right;">添加附件</button><textarea id="" placeholder="书写公告内容"/></ul>
+                    <ul id="main-body-ul"><button style="float: right;">添加附件</button><textarea id="news-comment" placeholder="书写公告内容"/></ul>
                 </div>
                 <div class="f-flow-information" id="alter" style="display: none;">
                     <h2>编辑草稿</h2>
@@ -104,15 +106,14 @@
                     <h3>待办公告</h3><br/>
                     <ul>
                         <table>
-                            <tr><th>消息</th><th>消息</th><th>状态</th></tr>
-                            <tr><td></td><td>xxx</td><td><a id="to-alter">草稿</a></td></tr>
-                            <tr><td></td><td>xxx</td><td><a id="*">***</a></td></tr>
+                            <tr><th>消息</th><th>状态</th><th></th></tr>
+                            <tr><td>xxx</td><td><a id="to-alter">草稿</a></td><td></td></tr>
+                            <tr><td>xxx</td><td><a id="*">***</a></td><td></td></tr>
                         </table>
                     </ul>
                 </div>
-
             </div>
-
+<!--。。财务管理-财务流水。。。。。。。。。。。。。。。。。-->
 
             <div id='f-flow' class='f-flow'>
                 <div class="lay-right">
@@ -120,68 +121,67 @@
                     <ul id="flow-download">下载</ul>
                 </div>
                 <table>
-                    <tr><th><input type="checkbox" name="f-flow-all" id="f-flow-all" onclick="checkAll()"/>全选</th><th>社团</th><th>总支出</th><th>总收入</th><th>收支</th><th>明细</th></tr>
-                    <tr><td><input type="checkbox" value="1" name="checkname[]"/></td><td>xx</td><td>￥<a id="expend">500</a></td><td>￥<a id="income">100</a></td><td>￥<a></a></td><td>
+                    <tr id="table-chose"><th><input type="checkbox" name="f-flow-all" id="f-flow-all" onclick="checkAll()"/>全选</th><th><input type="button" value="下载"/>
+                    </th><th><input type="button" value="删除"/></th><th></th><th></th><th></th></tr>
+                    <tr><th>*</th><th>社团</th><th>总支出</th><th>总收入</th><th>收支</th><th>明细</th></tr>
+                    <tr><td><input type="checkbox" value="1" name="checkname[]"/></td><td>xx</td><td>￥<a id="expend">500</a></td><td>￥<a id="income">100</a></td>
+                        <td>￥<input type="text" id="ie" value="-5" disabled="disabled" style="background-color: #FFFFFF;border: none;width:15%;"/></td><td>
                         <a id="check">查看</a>|<a id="download">下载</a></td></tr>
-                    <tr><td><input type="checkbox" value="2" name="checkname[]"/></td><td>xx</td><td>￥<a id="*">100</a></td><td>￥<a id="*">500</a></td><td>￥<a></a></td><td>
-                        <a id="check2">查看</a>|<a id="download2">下载</a></td></tr>
                 </table>
             </div>
+
+ <!--。。。财务管理-社团财务。。。。。。。。。。。。。。。。。-->
             <div id='club-finance' class='f-flow'>
                 <div class="lay-right">
                     <ul id="club-finance-chose">批量操作</ul>
                     <ul id="club-finance-download">下载</ul>
                 </div>
                 <table>
-                    <tr><th><input type="checkbox" name="club-finance-all" id="club-finance-all" onclick="checkAll()"/>全选</th>
-                        <th>预留资金</th><th>自留资金</th><th>管理</th></tr>
-                    <tr><td><input type="checkbox" value="1" name="checkname[]"/></td><td>xx</td><td>xx</td><td><a id="club-finance-">**</a></td></tr>
-                    <tr><td><input type="checkbox" value="2" name="checkname[]"/></td><td>xx</td><td>xx</td><td><a id="*">**</a></td></tr>
+                    <tr><th>预留资金</th><th>自留资金</th><th>管理</th><th><input type="checkbox" name="club-finance-all" id="club-finance-all" onclick="checkAll()"/>全选</th></tr>
+                    <tr><td>xx</td><td>xx</td><td><a id="club-finance-">**</a></td><td><input type="checkbox" value="1" name="checkname[]"/></td></tr>
                 </table>
             </div>
+
+ <!--。。用户管理-权限管理。。。。。。。。。。。。。。。。。-->
             <div id='manage-a-show' class='f-flow'>
                 <div class="lay-right">
                     <ul id="manage-a-show-chose">批量操作</ul>
                     <ul id="manage-a-show-download">下载</ul>
                 </div>
                 <table>
-                    <tr><th>头衔</th><th>社团</th><th>学号</th><th>XX</th><th>XX</th><th>管理</th></tr>
-                    <tr th:each="data:${data}"><td>xx</td><td th:text="${data.key}"></td><td th:text="${data.value.schoolId}"></td><td>xx</td><td>￥xx</td><td><a id="power">授权</a></td></tr>
+                    <tr><th><input type="checkbox" name="manage-a-show-all" id="manage-a-show-all" onclick="checkAll()"/>全选</th><th>姓名</th><th>学号/工号</th><th>管理</th></tr>
+                    <tr th:each="data:${data}"><td><input type="checkbox" value="*" name="m-a-s-all"/></td><td th:text="${data.key}"></td><td th:text="${data.value.schoolId}"></td><td><a id="power">授权</a></td></tr>
                 </table>
             </div>
+
+ <!--。信息管理-社团管理。。。。。。。。。。。。。。。。。-->
             <div id='president-management' class='f-flow'>
                 <div class="lay-right">
                     <ul id="president-management-chose">批量操作</ul>
                     <ul id="president-management-download">下载</ul>
                 </div>
                 <table>
-                    <tr><th><input type="checkbox" name="manage-a-show-all" id="president-management-all" onclick="checkAll()"/>全选</th>
-                        <th>社团</th><th>姓名</th><th>学号</th><th>管理</th></tr>
-                    <tr th:each="data:${data}"><td><input type="checkbox" value="*" name=""/></td><td th:text="${data.key}"></td><td th:text="${data.value.realName}"></td><td th:text="${data.value.schoolId}"></td><td><a id="president-management-">授权</a></td></tr>
+                    <tr><th>社团</th><th>姓名</th><th>学号</th><th>管理</th><th><input type="checkbox" name="manage-a-show-all" id="president-management-all" onclick="checkAll()"/>全选</th></tr>
+                    <tr><td>xx</td><td>xx</td><td>xx</td><td><a id="president-management-">授权</a></td><td><input type="checkbox" value="*" name=""/></td></tr>
                 </table>
             </div>
-                        <!--<div id='presonal-management' class='f-flow'>-->
-                            <!--<table>-->
-                                <!--<tr><th>批量操作</th><th>社团</th><th>姓名</th><th>学号</th><th>管理</th></tr>-->
-                                <!--<tr><td><input type="checkbox" value="*" name=""/></td><td>xx</td><td>xx</td><td>xx</td><td><a id="*">授权</a></td></tr>-->
-                                <!--<tr><td><input type="checkbox" value="*" name=""/></td><td>xx</td><td>xx</td><td>xx</td><td><a id="*">授权</a></td></tr>-->
-                            <!--</table>-->
-                        <!--</div>      个人管理-->
-
 
         </div>
     </div>
 </content>
 
+<!--。。弹出框阴影借用。。。。。。。。。。。。。。。。。-->
 <div class="check-view" id="check-view">
 </div>
+
+<!--。。财务管理-财务流水-弹出框。。。。。。。。。。。。。。。。。-->
 <div class="check-window" id="check-window">
     <ul>
-        <li><p>社团：</p></li>
-        <li><p>社长：</p></li>
-        <li><p>总支出：</p></li>
-        <li><p>总收入：</p></li>
-        <li><p>收支：</p></li>
+        <li>社团：<input type="text" disabled="disabled" value="获取" name="社团"/></li>
+        <li>社长：<input type="text" disabled="disabled" value="获取" name="社长"/></li>
+        <li>总支出：<input type="text" disabled="disabled" value="获取" name="总支出"/></li>
+        <li>总收入：<input type="text" disabled="disabled" value="获取" name="总收入"/></li>
+        <li>收支：<input type="text" disabled="disabled" value="获取" name="收支"/></li>
     </ul>
     <ul>
         <li>详情：
@@ -195,11 +195,12 @@
     </li>
 </div>
 
+<!--。。用户管理-权限管理-弹出框。。。。。。。。。。。。。。。。。-->
 <div class="check-window" id="power-window">
     <ul>
         <li><h3>当前权限</h3></li>
-        <li>学号（工号）：</li>
-        <li>姓名：</li>
+        <li>学号（工号）：<input type="text" disabled="disabled" value="获取" name="学工"/></li>
+        <li>姓名：<input type="text" disabled="disabled" value="获取" name="姓名"/></li>
         <li>权限：</li>
     </ul>
     <ul>
@@ -227,14 +228,16 @@
         <input type="button" id="power-admin" value="确认授权"/>
     </li>
 </div>
+
+<!--。。信息管理-社团管理-弹出框。。。。。。。。。。。。。。。。。-->
 <div class="check-window" id="president-management-window">
     <ul>
         <li><h3>当前信息</h3></li>
-        <li>社团：</li>
-        <li>学号：<input type="text" value="*" name="学号"/></li>
-        <li>姓名：<input type="text" value="*" name="姓名"/></li>
-        <li>联系方式：<input type="text" value="*" name="联系方式"/></li>
-        <li>邮箱：<input type="text" value="*" name="邮箱"/></li>
+        <li>社团：<input type="text" disabled="disabled" value="获取" name="社团"/></li>
+        <li>学号：<input type="text" disabled="disabled" value="获取" name="学号"/></li>
+        <li>姓名：<input type="text" disabled="disabled" value="获取" name="姓名"/></li>
+        <li>联系方式：<input type="text" disabled="disabled" value="获取" name="联系方式"/></li>
+        <li>邮箱：<input type="text" disabled="disabled" value="获取" name="邮箱"/></li>
     </ul>
     <ul>
         <li><h3>修改信息</h3></li>
@@ -248,11 +251,13 @@
         <input type="button" id="president-admin" value="确认授权"/>
     </li>
 </div>
+
+<!--。。财务管理-社团财务-弹出框。。。。。。。。。。。。。。。。。-->
 <div class="check-window" id="club-finance-window">
     <ul>
         <li><h3>当前信息</h3></li>
-        <li>预留资金：</li>
-        <li>自留资金：</li>
+        <li>预留资金：<input type="text" disabled="disabled" value="获取" name="预留金额"/></li>
+        <li>自留资金：<input type="text" disabled="disabled" value="获取" name="自留金额"/></li>
     </ul>
     <ul>
         <li><h3>修改金额</h3></li>
@@ -347,23 +352,60 @@
     }
 
 
-    $("tr th:nth-child(1),td:nth-child(1)").hide();
-    $(document).ready(function(){
-        $("#flow-chose").click(function(){
-            $("#f-flow tr td:nth-child(1)").toggle();$("#f-flow tr th:nth-child(1)").toggle();
-        });
-        $("#club-finance-chose").click(function(){
-            $("#club-finance tr th:nth-child(1)").toggle();$("#club-finance tr td:nth-child(1)").toggle();
-        });
-        $("#manage-a-show-chose").click(function () {
-            $("#manage-a-show tr th:nth-child(1)").toggle();$("#manage-a-show tr td:nth-child(1)").toggle();
-        })
-        $("#president-management-chose").click(function () {
-            $("#president-management tr td:nth-child(1)").toggle(); $("#president-management tr th:nth-child(1)").toggle();
-        })
-    });
-//    $("#flow-chose").bind("click",function (event) {
-//        $("#f-flow tr td:nth-child(6)").show();$("#f-flow tr th:nth-child(6)").show();
+//    $("tr th:nth-last-child(1),td:nth-last-child(1)").hide();
+//    $(document).ready(function(){
+//        $("#flow-chose").click(function(){
+//            $("#f-flow tr td:nth-last-child(1)").toggle();$("#f-flow tr th:nth-last-child(1)").toggle();
+//        });
+//        $("#club-finance-chose").click(function(){
+//            $("#club-finance tr th:nth-last-child(1)").toggle();$("#club-finance tr td:nth-last-child(1)").toggle();
+//        });
+//        $("#manage-a-show-chose").click(function () {
+//            $("#manage-a-show tr th:nth-last-child(1)").toggle();$("#manage-a-show tr td:nth-last-child(1)").toggle();
+//        })
+//        $("#president-management-chose").click(function () {
+//            $("#president-management tr td:nth-last-child(1)").toggle(); $("#president-management tr th:nth-last-child(1)").toggle();
+//        })
 //    });
+
+    $(document).ready(function(){
+    var ie = document.getElementById('ie').value;
+    var a =  ie*1;
+    if(a > 0){
+        $("#ie").css("color","greenyellow");
+    }else{
+        $("#ie").css("color","red");
+    }
+    });
+
+    $(function () {
+        $("#news-publish").click(function () {
+            var check = $('input:radio[name="type"]:checked').val();
+            if("公告" == check){
+                var data = {
+                    "title":$("#news-theme").val(),
+                    "comment":$("#news-comment").html()
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "/information/publishAnnouncement",
+                    data: data,
+                    dataType:"json",
+                    success: function(r){
+                        alert(r.message);
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown){
+                        alert(XMLHttpRequest.status);
+                        alert(XMLHttpRequest.readyState);
+                        alert(textStatus);
+                    }
+                });
+            }else if("通知" == check){
+                var data = {
+
+                }
+            }
+        })
+    })
 //]]>
 </script>

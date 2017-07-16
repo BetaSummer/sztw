@@ -36,10 +36,6 @@ public class MessageBoxServiceImpl implements MessageBoxService{
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Message messageDTO2 = new Message();
-        messageDTO2.setDate("");
-        messageDTO2.setTitle("");
-        messageListDTO.add(messageDTO2);
         return messageListDTO;
     }
 }

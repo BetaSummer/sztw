@@ -13,6 +13,8 @@ public class Announcement {
 
     private String date;
 
+    private Integer status;
+
     public Integer getId() {
         return id;
     }
@@ -59,5 +61,13 @@ public class Announcement {
 
     public void setDate(String date) {
         this.date = date == null ? null : date.trim();
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

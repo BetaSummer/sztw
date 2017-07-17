@@ -1,0 +1,144 @@
+.f-flow{
+    display: none;
+    width: 100%;
+    min-height: 400px;
+    text-align: center;  }
+.f-flow table{
+    min-height: 35px;
+    width: 80%;
+    margin-left: 10%;
+}
+#f-flow table tr td:nth-child(3){color: red;}
+#f-flow table tr td:nth-child(4){color: greenyellow;}
+.f-flow table th{
+    text-align: center;
+    font-size: 20px;
+    margin-top: 20px;
+    padding: 5px;
+    height: 20px;
+    width: 120px;
+    border: 2px solid #e3e3e3;
+}
+.f-flow table td{
+    text-align: center;
+    padding: 5px;
+    height: 20px;
+    width: 120px;
+    border-top: 2px solid #e3e3e3;
+    border-bottom: 2px solid #e3e3e3;
+}
+.f-flow-information{
+    float: left;
+    min-height:400px;
+}
+#flow-chose th,#club-finance-chose th,#manage-a-show-chose th,#manage-personal-chose th,#president-management-chose th{border: none;font-size: 1vw; }
+#flow-chose th input,#club-finance-chose th input,#manage-a-show-chose th input,#manage-personal-chose th input,#president-management-chose th input{padding: 1% 5% 1% 5%;margin-bottom: 5%;width: 90%;}
+#ffiright{width: 25%;
+    border-left: 1px solid #cccccc;
+    min-height: 400px;  }
+#ffileft,#alter{width: 70%;margin:0 2% 2% 2%;}
+.f-flow ul{
+    min-height: 30px;
+    width: 95%;
+    margin: 1% 0 2% 0;
+    text-align: left;}
+#p-c-list{width: 0px;
+    height: 400px;
+    overflow-x: hidden;
+    overflow-y:auto;
+    float: left}
+#p-c-list::-webkit-scrollbar {
+    display: none;}
+#p-c-list li{list-style-type: none;
+    height: 10%;
+    overflow: hidden;}
+#p-c-list li label{margin: 1% 4% 1% 4%;}
+#theme-ul,#type-ul{border-bottom: 1px solid #404040;}
+.f-flow ul input[type="button"]{
+    width: 15%;
+    padding: 2px;}
+#news-publish{
+    background-color: #32CD32;
+}
+
+.f-flow ul input[type="text"]{
+    width: 90%;
+    height: 100%;
+    outline:medium;
+    border-style: none;
+}
+.f-flow ul textarea{
+    width: 100%;
+    min-height: 180px;
+    outline:medium;
+    border-style: none;  }
+.f-flow ul textarea::-webkit-scrollbar {
+    display: none;}
+#main-body-ul{
+    padding: 3px;
+    border:1px solid #000;
+}
+/*#serch{
+  width: 270px;
+  height: 30px;
+  margin-top: -60px;
+  float: right;
+}*/
+a:hover{
+    color: #FFAEB9;}
+.check-view{
+    width: 100%;
+    height: 100%;
+    display: none;
+    float: left;
+    position: absolute;
+    top: 0;
+    z-index: 9998;
+    opacity: 0.6;
+    background-color: #cccccc;}
+.check-window{
+    width: 60%;
+    height: 60%;
+    position: absolute;
+    z-index: 9999;
+    display: none;
+    float: top;
+    border: 2px solid #FFAEB9;
+    margin-left: 20%;
+    margin-top: 70px;
+    background-color: #FFF;}
+.check-window ul{
+    width: 47%;
+    height: 100%;
+    overflow:auto;
+    float: left;
+    margin-left: 2%;  }
+.check-window ul::-webkit-scrollbar {
+    display: none;}
+.check-window ul li{
+    width:90%;
+    height: 40px;
+    margin: 7%;
+    word-wrap:break-word;}
+.check-window ul li input,select{
+    width: auto;
+    margin-left: 5%;
+    /*white-space:nowrap;*/
+}
+#check-out,#power-out,#mul-power-out,#president-out,#mul-president-out,#club-finance-out,
+#mul-presonal-out,#presonal-out,#mul-club-finance-out,#club-finance-out{
+    position:absolute;
+    bottom:0;
+    text-align: right;
+    list-style-type: none;
+    width:100%;
+    height:30px}
+#check-out-click,#power-out-click,#mul-power-out-click,#mul-power-admin,
+#power-admin,#president-admin,#mul-president-admin,#president-out-click,
+#mul-president-out-click,#club-finance-out-click,
+#mul-club-finance-out-click,#club-finance-admin,#mul-presonal-out-click,
+#mul-presonal-admin,#presonal-out-click,#presonal-admin,#mul-club-finance-admin{
+    float: right;
+    padding: 0 5px 0 5px;
+    margin-bottom:5px;
+    margin-right: 10px;}

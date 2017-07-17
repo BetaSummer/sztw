@@ -82,7 +82,7 @@ public class ApproveController extends BaseController{
     @RequestMapping(value = "/approve")
     public String approve(HttpServletRequest request, HttpServletResponse response, Model model,
                           @RequestParam String formId, @RequestParam String comment, @RequestParam String applySelfMoney,
-                          @RequestParam String applyReserveMoney){
+                          @RequestParam String applyReserveMoney, @RequestParam int isApprove){
         FormManager formManager = formManagerService.getFormManagerByApprover(getCurrentUser(request).getId());
         List<Integer>listDTO = JSON.parseArray(formManager.getApproverForm(), Integer.class);
         if(listDTO.get(0)==-1){
@@ -95,8 +95,11 @@ public class ApproveController extends BaseController{
         }
         int applySelfMoneyDTO = Integer.parseInt(applySelfMoney);
         int applyReserveMoneyDTO = Integer.parseInt(applyReserveMoney);
-        clubActivityApproveService.saveApprove(getCurrentUser(request), 1, formIdDTO, comment,
+        int returnNumDTO = clubActivityApproveService.saveApprove(getCurrentUser(request), isApprove, formIdDTO, comment,
                 applySelfMoneyDTO, applyReserveMoneyDTO);
+        if(returnNumDTO==-1){
+            return ajaxReturn(response, null, CLUB_ACTIVITY_CLUB_NO_MONEY, 1);
+        }
         return ajaxReturn(response, null, CLUB_ACTIVITY_APPROVE_SUCCESS, 0);
     }
 }

@@ -52,8 +52,10 @@ public class ClubActivityApproveServiceImpl implements ClubActivityApproveServic
         if(isApprove==1){
             if(approveLvDTO==4){
                 Club clubDTO = clubMapper.selectByPrimaryKey(clubIdDTO);
+                if(clubService.updateMoneyById(clubIdDTO, applySelfMoney, applyReserveMoney)==-1){
+                    ;return -1;
+                }
                 clubActivityFormService.updateFormById(formId, clubDTO);
-                clubService.updateMoneyById(clubIdDTO, applySelfMoney, applyReserveMoney);
                 Date dateDTO = new Date();
                 SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                 clubActivityStatusService.updateStatusByFormId(formId, 1, 0, sdfDTO.format(dateDTO));
@@ -62,7 +64,7 @@ public class ClubActivityApproveServiceImpl implements ClubActivityApproveServic
             }
             clubActivityStatusService.updateStatusByFormId(formId, 0, approveLvDTO+1, null);
         }else if(isApprove==0){
-            clubActivityStatusService.updateStatusByFormId(formId, 2, 0, null);
+            clubActivityStatusService.updateStatusByFormId(formId, 2, approveLvDTO, null);
         }
         String approveFormDTO = formManagerService.getFormManagerByApprover(userInfo.getId()).getApproverForm();
         int lvDTO = JSON.parseArray(approveFormDTO, Integer.class).get(0);

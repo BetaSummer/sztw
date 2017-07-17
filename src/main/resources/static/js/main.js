@@ -178,9 +178,10 @@ $(function () {
     $("#agree-btn").click(function () {
         var data={
             "formId": $("#formId").html(),
-            "comment":"",
-            "applySelfMoney":$("#applySelfMoney").html(),
-            "applyReserveMoney":$("#applyReserveMoney").html()
+            "comment": $("#comment").val(),
+            "applySelfMoney": $("#applySelfMoney").html(),
+            "applyReserveMoney": $("#applyReserveMoney").html(),
+            "isApprove":1
         };
         $.ajax({
             type: "GET",
@@ -198,6 +199,30 @@ $(function () {
             },
         });
     });
+    $("#disgree-btn").click(function () {
+        var data={
+            "formId": $("#formId").html(),
+            "comment": $("#comment").val(),
+            "applySelfMoney": $("#applySelfMoney").html(),
+            "applyReserveMoney": $("#applyReserveMoney").html(),
+            "isApprove":0
+        };
+        $.ajax({
+            type: "GET",
+            url: "/approveForm/approve",
+            data: data,
+            dataType:"json",
+            success: function(r){
+                alert(r.message);
+                window.close();
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            },
+        });
+    })
 });
 
 /* footer */

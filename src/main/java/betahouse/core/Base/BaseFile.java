@@ -9,6 +9,7 @@ import java.io.*;
  * Created by Yxm on 2017/7/7.
  */
 public class BaseFile {
+    //指定存储文件夹
     private  static final String FOLDER = "File";
 
     public int upload(MultipartFile prefile, String folderName) {

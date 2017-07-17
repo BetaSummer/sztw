@@ -83,6 +83,12 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
 		</dependency>
+		<!-- ********************** poi Microsoft Office格式档案读和写的功能 ********************** -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.9</version>
+		</dependency>
 	</dependencies>
 
 	<build>

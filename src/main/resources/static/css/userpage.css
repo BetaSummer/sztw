@@ -1,4 +1,14 @@
+body{
+  background: url("../img/loginBG.png");
+}
+.inform{
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background: rgba(255,255,255,0.7);
+}
 .login {
+  background: rgba(255,255,255,0.7);
   -webkit-box-shadow: 0 1px 3px #5c5a5d;
   -moz-box-shadow: 0 1px 3px #5c5a5d;
   box-shadow: 0 1px 3px #5c5a5d;
@@ -10,7 +20,7 @@
   margin-bottom: 20px;
   margin-top: 20px; }
 .login label {
-  color: #5c5a5d;
+  color: #4b4a4c;
   text-align: center;
   display: inline-block;
   width: 20%;
@@ -25,11 +35,12 @@
   width: 32%;
   height: 30px;
   border: solid #ffffff 1px;
-  color: #5c5a5d; }
-.login input[type='submit']:hover, .login input[type='button']:hover {
-  cursor: pointer;
   color: #FFF;
   background-color: #5c5a5d; }
+.login input[type='submit']:hover, .login input[type='button']:hover {
+  background-color: #373131;
+  cursor: pointer;
+ }
 .login input[type='text'] {
   width: 68%;
   height: 30px;
@@ -133,7 +144,7 @@
 }
 @media screen and (max-width: 767px){
   .login{
-    background-color: #f6f6f6;
+    background: rgba(255,255,255,0.5);
     width: 100%;
     margin:0 auto;
     border:none;
@@ -145,14 +156,12 @@
     display: none;
     margin:0;
   }
-  h1{
+  .login h1{
     font-size: 22px;
     margin-top:0;
     width: 50%;
     display: block;
-  }
-  #login-form{
-    background-color: #FFFFFF;
+    padding-top: 10px;
   }
   #login-form div{
     border-bottom: solid 0.5px #f4f4f4;

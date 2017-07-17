@@ -14,16 +14,17 @@ $(function () {
                 $(this).next().toggle(500);
             });
             $(".sub-nav").find("li").click(function () {
-                $(".sub-nav").find("li").css('background-color','#faf5f5');
-                $(".sub-nav").find("li").css('color','#b3b3b3');
-                $(this).css('background-color','#30ccff');
-                $(this).css('color','#FFFFFF');
+                $(".sub-nav").find("li").css('background-color','#47a899');
+                $(".sub-nav").find("li").css('color','#ffffff');
+                $(this).css('background-color','#0FDEBD');
             }) ;
         });
     }
     else {
         $(function () {
             $(".sub-ft").click(function () {
+                $(".sub-ft").css("background-color","#f7f7f7");
+                $(this).css("background-color","#dbe6ec");
                 $(this).next().toggle(500);
             });
         });

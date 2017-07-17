@@ -1,0 +1,80 @@
+<!--。。用户管理-权限管理。。。。。。。。。。。。。。。。。-->
+<div id='manage-a-show' class='f-flow' xmlns:th="http://www.w3.org/1999/xhtml">
+    <table>
+        <tr id="manage-a-show-chose"><th></th><th></th><th><input id="mul-power" type="button" value="批量操作"/></th><th><input type="button" value="删除"/></th></tr>
+        <tr><th><input type="checkbox" name="manage-a-show-all" id="manage-a-show-all" onclick="checkAll()"/>全选</th><th>姓名</th><th>学号/工号</th><th>管理</th></tr>
+        <tr th:each="data:${userInfo}"><td><input type="checkbox" value="*" name="m-a-s-all"/></td><td th:text="${data.realName}"></td><td th:text="${data.schoolId}"></td><td><a id="power">授权</a></td></tr>
+    </table>
+</div>
+
+<!--。。用户管理-权限管理-弹出框。。。。。。。。。。。。。。。。。-->
+<div class="check-window" id="power-window">
+    <ul>
+        <li><h3>当前权限</h3></li>
+        <li>学号（工号）：<input type="text" disabled="disabled" value="获取" name="学工"/></li>
+        <li>姓名：<input type="text" disabled="disabled" value="获取" name="姓名"/></li>
+        <li>权限：</li>
+    </ul>
+    <ul>
+        <li><h3>修改权限</h3></li>
+        <li>权限添加：：
+            <select>
+                <option value="#">#</option>
+                <option value="#">##</option>
+                <option value="#">###</option>
+                <option value="#">####</option>
+            </select>
+        </li>
+        <li>权限限制：
+            <select>
+                <option value="#">####</option>
+                <option value="#">###</option>
+                <option value="#">##</option>
+                <option value="#">#</option>
+            </select>
+        </li>
+
+    </ul>
+    <li id="power-out">
+        <input type="button" id="power-out-click" value="退出"/>
+        <input type="button" id="power-admin" value="确认授权"/>
+    </li>
+</div>
+
+<div class="check-window" id="mul-power-window">
+    <ul>
+        <li><h3>选择人员</h3></li>
+        <li>学号（工号）：<input type="text" disabled="disabled" value="获取" name="学工"/><br/>
+            姓名：<input type="text" disabled="disabled" value="获取" name="姓名"/></li>
+    </ul>
+    <ul>
+        <li><h3>修改权限</h3></li>
+        <li>权限添加：：
+            <select>
+                <option value="#">#</option>
+                <option value="#">##</option>
+                <option value="#">###</option>
+                <option value="#">####</option>
+            </select>
+        </li>
+        <li>权限限制：
+            <select>
+                <option value="#">####</option>
+                <option value="#">###</option>
+                <option value="#">##</option>
+                <option value="#">#</option>
+            </select>
+        </li>
+
+    </ul>
+    <li id="mul-power-out">
+        <input type="button" id="mul-power-out-click" value="退出"/>
+        <input type="button" id="mul-power-admin" value="确认授权"/>
+    </li>
+</div>
+
+<script src="/js/jquery.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/tabset.js"></script>
+<script src="/js/laydate.js"></script>
+<script src="/js/userInfo.js"></script>

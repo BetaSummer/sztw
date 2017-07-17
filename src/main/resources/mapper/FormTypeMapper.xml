@@ -5,36 +5,42 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="form_type" jdbcType="INTEGER" property="formType" />
     <result column="form_name" jdbcType="VARCHAR" property="formName" />
+    <result column="max_lv" jdbcType="INTEGER" property="maxLv" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from b_form_type
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="betahouse.model.FormType">
-    insert into b_form_type (id, form_type, form_name
-      )
-    values (#{id,jdbcType=INTEGER}, #{formType,jdbcType=INTEGER}, #{formName,jdbcType=VARCHAR}
-      )
+    insert into b_form_type (id, form_type, form_name, 
+      max_lv)
+    values (#{id,jdbcType=INTEGER}, #{formType,jdbcType=INTEGER}, #{formName,jdbcType=VARCHAR}, 
+      #{maxLv,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.FormType">
     update b_form_type
-    <set>
-      <if test="null != formType and '' != formType">
-        form_type = #{formType,jdbcType=INTEGER},
-      </if>
-      <if test="null != formName and '' != formName">
-        form_name = #{formName,jdbcType=VARCHAR}
-      </if>
-    </set>
+    set form_type = #{formType,jdbcType=INTEGER},
+      form_name = #{formName,jdbcType=VARCHAR},
+      max_lv = #{maxLv,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, form_type, form_name
+    select id, form_type, form_name, max_lv
     from b_form_type
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id, form_type, form_name
+    select id, form_type, form_name, max_lv
     from b_form_type
+  </select>
+  <select id="selectByFormType" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, form_type, form_name, max_lv
+    from b_form_type
+    where form_type = #{formType,jdbcType=INTEGER}
+  </select>
+  <select id="selectByFormName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, form_type, form_name, max_lv
+    from b_form_type
+    where form_name = #{formName,jdbcType=VARCHAR}
   </select>
 </mapper>

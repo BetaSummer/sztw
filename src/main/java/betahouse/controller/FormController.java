@@ -5,6 +5,7 @@ import betahouse.core.Base.BaseFile;
 import betahouse.model.*;
 import betahouse.service.club.*;
 import betahouse.service.file.FileService;
+import betahouse.service.form.FormManagerService;
 import betahouse.service.user.UserInfoService;
 import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;

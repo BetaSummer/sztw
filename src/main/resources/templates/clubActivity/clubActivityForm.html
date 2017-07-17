@@ -132,13 +132,13 @@
         </tr>
         <tr style="height:61.75pt">
             <td colspan="4" style="border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:top; width:222.2pt">
-                <p style="margin:0pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:12pt">剩余自留经费：<money th:text="${money[0]}"></money></span></p>
+                <p style="margin:0pt; orphans:0; text-align:justify; widows:0"><span th:inline="text" style="font-family:宋体; font-size:12pt">剩余自留经费：[[${money[0]}]]</span></p>
                 <p style="margin:0pt; orphans:0; text-align:justify; widows:0"><span style="font-family:Calibri; font-size:12pt">&nbsp;</span></p>
-                <p style="margin:0pt; orphans:0; text-align:justify; widows:0"><span style="font-family:宋体; font-size:12pt">剩余社联预留经费：<money th:text="${money[1]}"></money></span></p>
+                <p style="margin:0pt; orphans:0; text-align:justify; widows:0"><span th:inline="text" style="font-family:宋体; font-size:12pt">剩余社联预留经费：[[${money[1]}]]</span></p>
             </td>
             <td colspan="3" style="border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:top; width:182.3pt">
                 <p style="margin:0pt; orphans:0; widows:0">
-                    <span style="font-family:宋体; font-size:12pt">社团财务负责人签字：<approver th:text="${approver[0][0]}"></approver></span>
+                    <span th:inline="text" style="font-family:宋体; font-size:12pt">社团财务负责人签字：[[${approver[0][0]}]]</span>
                 </p>
             </td>
         </tr>
@@ -150,7 +150,7 @@
                 <p style="margin:0pt; orphans:0; text-align:justify; widows:0"><span id="applyReserveMoney" style="font-family:Calibri; font-size:12pt" th:text="${clubActivityForm.applyReserveMoney}"></span></p>
             </td>
             <td colspan="3" style="border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:top; width:182.3pt">
-                <p style="margin:0pt; orphans:0; widows:0"><span style="font-family:宋体; font-size:12pt">社联财务负责人签字：<approver th:text="${approver[1][0]}"></approver></span></p>
+                <p style="margin:0pt; orphans:0; widows:0"><span th:inline="text" style="font-family:宋体; font-size:12pt">社联财务负责人签字：[[${approver[1][0]}]]</span></p>
             </td>
         </tr>
         <tr style="height:26.95pt">
@@ -176,19 +176,19 @@
         </tr>
         <tr style="height:26.95pt">
             <td colspan="7" style="border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:top; width:415.3pt">
-                <p style="margin:0pt 24pt 0pt 0pt; orphans:0; text-align:justify; text-indent:228pt; widows:0"><span style="font-family:宋体; font-size:12pt">场地审批经办人签字：<approver th:text="${approver[2][0]}"></approver></span></p>
+                <p style="margin:0pt 24pt 0pt 0pt; orphans:0; text-align:justify; text-indent:228pt; widows:0"><span th:inline="text" style="font-family:宋体; font-size:12pt">场地审批经办人签字：[[${approver[2][0]}]]</span></p>
             </td>
         </tr>
         <tr style="height:41.6pt">
             <td colspan="7" style="border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:top; width:415.3pt">
-                <p style="margin:0pt; orphans:0; widows:0"><span style="font-family:宋体; font-size:12pt">院社联审批意见：<approver th:text="${approver[2][1]}"></approver></span></p>
-                <p style="margin:0pt; orphans:0; text-align:justify; text-indent:276pt; widows:0"><span style="font-family:宋体; font-size:12pt">负责人签字：<approver th:text="${approver[2][0]}"></approver></span></p>
+                <p style="margin:0pt; orphans:0; widows:0"><span th:inline="text" style="font-family:宋体; font-size:12pt">院社联审批意见：[[${approver[2][1]}]]</span></p>
+                <p style="margin:0pt; orphans:0; text-align:justify; text-indent:276pt; widows:0"><span th:inline="text" style="font-family:宋体; font-size:12pt">负责人签字：[[${approver[2][0]}]]</span></p>
             </td>
         </tr>
         <tr style="height:41.6pt">
             <td colspan="7" style="border-bottom-color:#000000; border-bottom-style:solid; border-bottom-width:0.75pt; border-left-color:#000000; border-left-style:solid; border-left-width:0.75pt; border-right-color:#000000; border-right-style:solid; border-right-width:0.75pt; border-top-color:#000000; border-top-style:solid; border-top-width:0.75pt; padding-left:5.03pt; padding-right:5.03pt; vertical-align:top; width:415.3pt">
-                <p style="margin:0pt; orphans:0; widows:0"><span style="font-family:宋体; font-size:12pt">院团委审批意见：<approver th:text="${approver[3][1]}"></approver></span></p>
-                <p style="margin:0pt; orphans:0; widows:0"><span style="margin:0pt; orphans:0; text-align:justify; text-indent:276pt; widows:0"></span><span style="font-family:宋体; font-size:12pt">负责人签字：<approver th:text="${approver[3][0]}"></approver></span></p>
+                <p style="margin:0pt; orphans:0; widows:0"><span th:inline="text" style="font-family:宋体; font-size:12pt">院团委审批意见：[[${approver[3][1]}]]</span></p>
+                <p style="margin:0pt; orphans:0; widows:0"><span style="margin:0pt; orphans:0; text-align:justify; text-indent:276pt; widows:0"></span><span th:inline="text" style="font-family:宋体; font-size:12pt">负责人签字：[[${approver[3][0]}]]</span></p>
             </td>
         </tr>
         <tr style="height:0pt">

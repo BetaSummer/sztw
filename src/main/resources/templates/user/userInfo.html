@@ -139,7 +139,7 @@
                 <table>
                     <tr id="manage-a-show-chose"><th></th><th></th><th><input id="mul-power" type="button" value="批量操作"/></th><th><input type="button" value="删除"/></th></tr>
                     <tr><th><input type="checkbox" name="manage-a-show-all" id="manage-a-show-all" onclick="checkAll()"/>全选</th><th>姓名</th><th>学号/工号</th><th>管理</th></tr>
-                    <tr th:each="data:${data}"><td><input type="checkbox" value="*" name="m-a-s-all"/></td><td th:text="${data.key}"></td><td th:text="${data.value.schoolId}"></td><td><a id="power">授权</a></td></tr>
+                    <tr th:each="data:${userInfo}"><td><input type="checkbox" value="*" name="m-a-s-all"/></td><td th:text="${data.realName}"></td><td th:text="${data.schoolId}"></td><td><a id="power" class="power" th:name="${dataStat.index}">授权</a></td></tr>
                 </table>
             </div>
 <!--。。用户管理-个人管理。。。。。。。。。。。。。。。。。-->
@@ -147,7 +147,7 @@
                 <table>
                     <tr id="manage-personal-chose"><th></th><th></th><th></th><th><input id="mul-manage-personal-" type="button" value="批量操作"/></th><th><input type="button" value="删除"/></th></tr>
                     <tr><th><input type="checkbox" name="manage-a-show-all" id="*" onclick="checkAll()"/>全选</th><th>姓名</th><th>学号/工号</th><th>所属</th><th>管理</th></tr>
-                    <tr><td><input type="checkbox" value="*" name="m-a-s-all"/></td><td></td><td></td><td></td><td><a id="manage-personal-">授权</a></td></tr>
+                    <tr  th:each="data:${userInfo}"><td><input type="checkbox" value="*" name="m-a-s-all"/></td><td th:text="${data.realName}"></td><td th:text="${data.schoolId}"></td><td></td><td><a id="manage-personal-">授权</a></td></tr>
                 </table>
             </div>
 
@@ -156,7 +156,7 @@
                 <table>
                     <tr id="president-management-chose"><th></th><th></th><th></th><th><input id="mul-president-management-" type="button" value="批量操作"/></th><th><input type="button" value="删除"/></th></tr>
                     <tr><th><input type="checkbox" name="manage-a-show-all" id="president-management-all" onclick="checkAll()"/>全选</th><th>社团</th><th>社长</th><th>编号</th><th>管理</th></tr>
-                    <tr><td><input type="checkbox" value="*" name=""/></td><td>xx</td><td>xx</td><td>xx</td><td><a id="president-management-">授权</a></td></tr>
+                    <tr th:each="data:${club}"><td><input type="checkbox" value="*" name=""/></td><td th:text="${data.clubName}"></td><td th:text="${chief[dataStat.index].realName}"></td><td th:text="${chief[dataStat.index].schoolId}"></td><td><a id="president-management-">授权</a></td></tr>
                 </table>
             </div>
 
@@ -193,8 +193,8 @@
 <div class="check-window" id="power-window">
     <ul>
         <li><h3>当前权限</h3></li>
-        <li>学号（工号）：<input type="text" disabled="disabled" value="获取" name="学工"/></li>
-        <li>姓名：<input type="text" disabled="disabled" value="获取" name="姓名"/></li>
+        <li>学号（工号）：<input id="school-id" type="text" disabled="disabled" value="获取" name="学工"/></li>
+        <li>姓名：<input id="real-name" type="text" disabled="disabled" value="获取" name="姓名"/></li>
         <li>权限：</li>
     </ul>
     <ul>
@@ -392,10 +392,8 @@
 <script src="/js/tabset.js"></script>
 <script src="/js/laydate.js"></script>
 </body>
-</html>
 
-
-<script type="text/javascript">
+<script type="text/javascript" th:inline="javascript">
     //<![CDATA[
     $("#check").bind("click",function (event) {
         $("#check-view").show();$("#check-window").show();
@@ -404,7 +402,7 @@
         $("#check-view").hide();$("#check-window").hide();
     });
 
-    $("#power").bind("click",function (event) {
+    $(".power").bind("click",function (event) {
         $("#check-view").show();$("#power-window").show();
     });
     $("#power-out-click").bind("click",function (event) {
@@ -518,3 +516,4 @@
     });
 //]]>
 </script>
+</html>

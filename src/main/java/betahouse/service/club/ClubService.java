@@ -15,4 +15,6 @@ public interface ClubService {
 
     Club getClubByUserId(int id);
 
+    List<Club> listAll();
+
 }

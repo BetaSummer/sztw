@@ -6,6 +6,7 @@ import betahouse.model.Club;
 import betahouse.model.User;
 import betahouse.model.UserInfo;
 import betahouse.service.club.ClubService;
+import betahouse.service.form.FormTypeService;
 import betahouse.service.user.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,6 +44,9 @@ public class UserController extends BaseController {
 
     @Autowired
     private ClubService clubService;
+
+    @Autowired
+    private FormTypeService formTypeService;
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public String admin(HttpServletRequest request, HttpServletResponse response, Model model,
@@ -78,15 +83,29 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "/userInfo")
     public String userInfo(HttpServletRequest request, HttpServletResponse response, Model model){
-        List<UserInfo> listDTO = userInfoService.listAllUserInfo();
-        Map<String, UserInfo> mapDTO = new HashMap<String, UserInfo>();
-        for(UserInfo u: listDTO){
-            Club clubDTO = clubService.getClubByUserId(u.getId());
-            if(clubDTO!=null){
-                mapDTO.put(clubDTO.getClubName(), u);
-            }
+        List<UserInfo> userInfosListDTO = userInfoService.listAllUserInfo();
+        List<Club> clubsListDTO = clubService.listAll();
+        Club[] clubsDTO = new Club[clubsListDTO.size()];
+        UserInfo[] userInfosDTO = new UserInfo[clubsListDTO.size()];
+        for(int i=0;i<clubsListDTO.size();i++) {
+            UserInfo userInfoDTO = userInfoService.getUserInfoById(clubsListDTO.get(i).getUserId());
+            clubsDTO[i] = clubsListDTO.get(i);
+            userInfosDTO[i] = userInfoDTO;
         }
-        model.addAttribute("data", mapDTO);
+        model.addAttribute("userInfo", userInfosListDTO);
+        model.addAttribute("club", clubsDTO);
+        model.addAttribute("chief", userInfosDTO);
+        model.addAttribute("power", formTypeService.listAll());
         return "user/userInfo";
+    }
+
+    @RequestMapping(value = "/updatePower")
+    public String updatePower(HttpServletRequest request, HttpServletResponse response, Model model){
+        return "";
+    }
+
+    @RequestMapping(value = "/getUserInfoById")
+    public String getUserInfoById(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam int id){
+        return "";
     }
 }

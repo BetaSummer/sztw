@@ -1,4 +1,4 @@
-package betahouse.service.club;
+package betahouse.service.form;
 
 import betahouse.model.FormManager;
 

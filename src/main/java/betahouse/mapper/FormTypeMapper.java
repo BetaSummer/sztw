@@ -1,8 +1,10 @@
 package betahouse.mapper;
 
 import betahouse.model.FormType;
-import java.util.List;
+import org.springframework.stereotype.Component;
 
+import java.util.List;
+@Component
 public interface FormTypeMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -13,4 +15,8 @@ public interface FormTypeMapper {
     List<FormType> selectAll();
 
     int updateByPrimaryKey(FormType record);
+
+    FormType selectByFormType(Integer formType);
+
+    FormType selectByFormName(String formName);
 }

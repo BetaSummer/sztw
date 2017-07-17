@@ -1,0 +1,77 @@
+<!--  社团管理  -->
+
+
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<div class="manage-header">
+    <button>删除</button>
+    <button>批量操作</button>
+</div>
+<div class="manage-main manage-five">
+    <table>
+        <tr class="manage-title manage-five">
+            <td><label for="checkall">全选</label><input type="checkbox" id="checkall"/></td>
+            <td>社团</td>
+            <td>社长</td>
+            <td>编号</td>
+            <td>管理</td>
+        </tr>
+        <tr class="manage-body">
+            <td><input type="checkbox" name="checkname"/></td>
+            <td>外语社</td>
+            <td>因小明</td>
+            <td>123</td>
+            <td><span class="manage-btn">授权</span></td>
+        </tr>
+        <tr class="manage-body">
+            <td><input type="checkbox" name="checkname"/></td>
+            <td>外语社</td>
+            <td>因小明</td>
+            <td>123</td>
+            <td><span class="manage-btn">授权</span></td>
+        </tr>
+        <tr class="manage-body">
+            <td><input type="checkbox" name="checkname"/></td>
+            <td>外语社</td>
+            <td>因小明</td>
+            <td>123</td>
+            <td><span class="manage-btn">授权</span></td>
+        </tr>
+        <tr class="manage-body">
+            <td><input type="checkbox" name="checkname"/></td>
+            <td>外语社</td>
+            <td>因小明</td>
+            <td>123</td>
+            <td><span class="manage-btn">授权</span></td>
+        </tr>
+        <tr class="manage-body">
+            <td><input type="checkbox" name="checkname"/></td>
+            <td>外语社</td>
+            <td>因小明</td>
+            <td>123</td>
+            <td><span class="manage-btn">授权</span></td>
+        </tr>
+    </table>
+</div>
+<script>
+    //checkbox全选
+    $(function () {
+        $("#checkall").click(function(){
+                if($(this).is(':checked')){
+                    $("input[name='checkname']").prop('checked', true).parent().parent().addClass("on");
+                }else{
+                    $("input[name='checkname']").prop('checked', false).parent().parent().removeClass("on");
+                }
+            }
+        );
+        $("input[name='checkname']").click(function () {
+            if($(this).is(':checked')){
+                $(this).parent().parent().addClass("on");
+            }
+            else {
+                $(this).parent().parent().removeClass("on");
+            }
+        });
+    });
+
+</script>
+</html>

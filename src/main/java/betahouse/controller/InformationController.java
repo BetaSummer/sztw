@@ -29,9 +29,29 @@ public class InformationController extends BaseController{
     @Autowired
     private UserInfoService userInfoService;
 
-    @RequestMapping(value = "/listAllFinancialFlow")
-    public String listAllFinancialFlow(HttpServletRequest request, HttpServletResponse response, Model model){
-        return "information/finance";
+    @RequestMapping(value = "/userManage")
+    public String userManage(HttpServletRequest request, HttpServletResponse response, Model model){
+        return "manage/userManage";
+    }
+    @RequestMapping(value = "/powerManage")
+    public String powerManage(HttpServletRequest request, HttpServletResponse response, Model model){
+        return "manage/powerManage";
+    }
+    @RequestMapping(value = "/financeT")
+    public String financeT(HttpServletRequest request, HttpServletResponse response, Model model){
+        return "manage/financeT";
+    }
+    @RequestMapping(value = "/financeB")
+    public String financeB(HttpServletRequest request, HttpServletResponse response, Model model){
+        return "manage/financeB";
+    }
+    @RequestMapping(value = "/clubManage")
+    public String clubManage(HttpServletRequest request, HttpServletResponse response, Model model){
+        return "manage/clubManage";
+    }
+    @RequestMapping(value = "/doMessage")
+    public String doMessage(HttpServletRequest request, HttpServletResponse response, Model model){
+        return "manage/doMessage";
     }
 }
 

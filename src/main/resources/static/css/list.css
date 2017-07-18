@@ -1,0 +1,112 @@
+.manage-header{
+    width: 72%;
+    margin:10px auto;
+    height: 40px;
+}
+.manage-header button{
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    float: right;
+    margin:0 10px;
+    width: 120px;
+    height: 40px;
+    background-color: #67747c;
+    color:#ffffff;
+    border:none;
+    font-size: 16px;
+}
+.manage-header button:hover{
+    background-color: #3b444f;
+    cursor: pointer;
+}
+.manage-main{
+    clear: both;
+    width: 71%;
+    margin:15px auto;
+}
+.manage-main input[type='checkbox']{
+    margin-right: 30%;
+}
+tr td:nth-child(1) {
+    text-align: right;
+}
+.manage-main td{
+    width: 25%;
+    text-align: center;
+}
+
+.manage-title {
+    font-family: "黑体";
+}
+.manage-main table,tr{
+    width: 100%;
+}
+.manage-title td{
+    border: solid #ffffff 2px;
+    background-color: #f7f7f7;
+    height: 45px;
+    font-size: 20px;
+    color: #2c3643;
+}
+.manage-title label{
+    margin-right: 5px;
+}
+.manage-body{
+    height: 45px;
+    font-size: 18px;
+    border-bottom: solid #dcdcdc 1px;
+}
+.manage-five td{
+    width: 20%;
+}
+.manage-six td{
+    width: 16.66%;
+}
+.manage-main .on{
+    background-color: #eef4f7;
+}
+.manage-btn{
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    font-size: 16px;
+    line-height: 35px;
+    display: block;
+    width: 100px;
+    height: 35px;
+    margin:5px auto;
+    background-color: #8a98a0;
+    color: #ffffff;
+}
+.manage-btn:hover{
+    cursor: pointer;
+    background-color: #79858c;
+}
+
+.manage-form{
+    height: 50px;
+    border-bottom: solid #dcdcdc 1px;
+}
+.manage-form label{
+    line-height: 50px;
+    display: block;
+    font-size: 20px;
+    float: left;
+}
+.manage-form input[type='radio']{
+    margin:20px 2px 0 15px;
+    float: left;
+}
+.manage-form span{
+    line-height: 50px;
+    float:left;
+}
+.manage-form input[type='text']{
+    width: 80%;
+    height: 40px;
+    margin-top: 5px;
+    margin-left: 15px;
+    border:none;
+    font-size: 18px;
+}

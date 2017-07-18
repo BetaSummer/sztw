@@ -33,9 +33,34 @@ public class InformationController extends BaseController{
 
     @RequestMapping(value = "/publishAnnouncement")
     public String publishAnnouncement(HttpServletRequest request, HttpServletResponse response, Model model,
-                                      @RequestParam String title, @RequestParam String comment){
+                                      @RequestParam String title, 
+                                      @RequestParam String comment){
         announcementService.sendAnnouncement(getCurrentUser(request).getId(), title, comment);
         return ajaxReturn(response, null, PUBLISH_SUCCESS, 0);
+    }
+    @RequestMapping(value = "/userManage")
+    public String userManage(HttpServletRequest request, HttpServletResponse response, Model model){
+        return "manage/userManage";
+    }
+    @RequestMapping(value = "/powerManage")
+    public String powerManage(HttpServletRequest request, HttpServletResponse response, Model model){
+        return "manage/powerManage";
+    }
+    @RequestMapping(value = "/financeT")
+    public String financeT(HttpServletRequest request, HttpServletResponse response, Model model){
+        return "manage/financeT";
+    }
+    @RequestMapping(value = "/financeB")
+    public String financeB(HttpServletRequest request, HttpServletResponse response, Model model){
+        return "manage/financeB";
+    }
+    @RequestMapping(value = "/clubManage")
+    public String clubManage(HttpServletRequest request, HttpServletResponse response, Model model){
+        return "manage/clubManage";
+    }
+    @RequestMapping(value = "/doMessage")
+    public String doMessage(HttpServletRequest request, HttpServletResponse response, Model model){
+        return "manage/doMessage";
     }
 }
 

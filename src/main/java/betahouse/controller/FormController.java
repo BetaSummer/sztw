@@ -2,16 +2,13 @@ package betahouse.controller;
 
 import betahouse.controller.Base.BaseController;
 import betahouse.core.Base.BaseFile;
-import betahouse.model.Club;
-import betahouse.model.ClubActivityApprove;
-import betahouse.model.ClubActivityForm;
-import betahouse.model.FormManager;
+import betahouse.model.*;
 import betahouse.service.club.*;
 import betahouse.service.file.FileService;
+import betahouse.service.form.FormManagerService;
 import betahouse.service.user.UserInfoService;
 import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -68,9 +65,12 @@ public class FormController extends BaseController {
                                      @RequestParam String activityTime, @RequestParam String isApplyFine,
                                      @RequestParam String activityInfo, @RequestParam  String applySelfMoney,
                                      @RequestParam String applyReserveMoney, @RequestParam("applyFile") MultipartFile file){
-        BaseFile baseFile = new BaseFile();
-        baseFile.upload(file,clubName,activityName,true);
-        int fileIdDTO = fileService.insert(file.getOriginalFilename(), activityName, clubName);
+        int fileIdDTO = 0;
+        if(null!=file&&!"".equals(file.getOriginalFilename())){
+            BaseFile baseFile = new BaseFile();
+            baseFile.upload(file,clubName,activityName,true);
+            fileIdDTO = fileService.insert(file.getOriginalFilename(), activityName, clubName);
+        }
         int idDTO = clubActivityFormService.commitForm(clubName, activityName,
                 activityPlace, activityTime, activityPeople, isApplyFine, activityInfo, applySelfMoney,
                 applyReserveMoney,fileIdDTO, getCurrentUser(request));
@@ -100,23 +100,34 @@ public class FormController extends BaseController {
 
     @RequestMapping(value = "/getFormById")
     public String getFormById(HttpServletRequest request, HttpServletResponse response, Model model,
-                              @RequestParam int id){
+                              @RequestParam int id) {
         ClubActivityForm clubActivityFormDTO = clubActivityFormService.getFormById(id);
         List<ClubActivityApprove> listDTO = clubActivityApproveService.listApproveByFormId(id);
         String[][] approverDTO = new String[4][2];
         approverDTO[0] = new String[]{userInfoService.getUserInfoById(clubService.getClubById(clubActivityFormDTO.getClubId()).getUserId()).getRealName(), ""};
-        for(int i = 1; i<approverDTO.length; i++){
+        for (int i = 1; i < approverDTO.length; i++) {
             approverDTO[i] = new String[]{CLUB_ACTIVITY_NOT_APPROVE[0], CLUB_ACTIVITY_NOT_APPROVE[1]};
         }
-        for(int i = 0; i<listDTO.size(); i++){
+        for (int i = 0; i < listDTO.size(); i++) {
             String realNameDTO = userInfoService.getUserInfoById(listDTO.get(i).getApproveUserId()).getRealName();
-            approverDTO[i+1] = new String[]{realNameDTO, listDTO.get(i).getComment()};
+            approverDTO[i + 1] = new String[]{realNameDTO, listDTO.get(i).getComment()};
         }
         Club clubDTO = clubService.getClubById(clubActivityFormDTO.getClubId());
         int[] moneyDTO = new int[]{clubDTO.getSelfMoney(), clubDTO.getReserveMoney()};
-        model.addAttribute("clubActivityForm",clubActivityFormDTO);
+        model.addAttribute("clubActivityForm", clubActivityFormDTO);
         model.addAttribute("approver", approverDTO);
         model.addAttribute("money", moneyDTO);
         return "clubActivity/clubActivityForm";
+    }
+
+    @RequestMapping(value = "/getFile")
+    public void getFile(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam String formId){
+        ClubActivityForm clubActivityFormDTO = clubActivityFormService.getFormById(Integer.parseInt(formId));
+        File fileDTO = fileService.getFileById(clubActivityFormDTO.getFileId());
+        BaseFile baseFile = new BaseFile();
+        int statusDTO = baseFile.download(response, fileDTO.getFolder(), fileDTO.getAfterName());
+        if(statusDTO==1){
+            this.error(request, response, model, statusDTO);
+        }
     }
 }

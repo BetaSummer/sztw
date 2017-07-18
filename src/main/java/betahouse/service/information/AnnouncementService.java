@@ -13,4 +13,8 @@ public interface AnnouncementService {
 
     int sendAnnouncement(int fromId, String title, String comment);
 
+    int saveAnnouncement(int id, int fromId, String title, String comment);
+
+    List<Announcement> listUnpublishedAnnouncement();
+
 }

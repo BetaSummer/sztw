@@ -74,12 +74,11 @@ $(function () {
 });
 
 /* manage */
-
 $(function () {
    $("#userManage").click(function () {
        $(".content-body").html("");
        $(".loading").show();
-       $(".content-body").load("/information/userManage",function () {
+       $(".content-body").load("/manage/userManage",function () {
            $(".loading").hide();
        }) ;
    });
@@ -88,7 +87,7 @@ $(function () {
     $("#powerManage").click(function () {
         $(".content-body").html("");
         $(".loading").show();
-        $(".content-body").load("/information/powerManage",function () {
+        $(".content-body").load("/manage/powerManage",function () {
             $(".loading").hide();
         }) ;
     });
@@ -97,7 +96,7 @@ $(function () {
     $("#financeT").click(function () {
         $(".content-body").html("");
         $(".loading").show();
-        $(".content-body").load("/information/financeT",function () {
+        $(".content-body").load("/finance/financeT",function () {
             $(".loading").hide();
         }) ;
     });
@@ -106,17 +105,16 @@ $(function () {
     $("#financeB").click(function () {
         $(".content-body").html("");
         $(".loading").show();
-        $(".content-body").load("/information/financeB",function () {
+        $(".content-body").load("/finance/financeB",function () {
             $(".loading").hide();
         }) ;
     });
 });
-
 $(function () {
     $("#clubManage").click(function () {
         $(".content-body").html("");
         $(".loading").show();
-        $(".content-body").load("/information/clubManage",function () {
+        $(".content-body").load("/manage/clubManage",function () {
             $(".loading").hide();
         }) ;
     });
@@ -130,58 +128,6 @@ $(function () {
         }) ;
     });
 });
-
-
-/* tabset  */
-/*******************************************/
-
-$(function () {
-   $("#form-view").click(function () {
-       $(".content-body").html("");
-       $(".loading").show();
-       $(".content-body").load("/applyClubForm/listAllForm",function () {
-           $(".loading").hide();
-       }) ;
-   });
-});
-
-
-// $(function () {
-//     $("#f-list").click(function () {
-//         // $(".content-body").html("");
-//         $("#f-flow").fadeIn();$("#manage-a-show").hide();$("#public-news-").hide();$("#president-management").hide();$("#club-finance").hide();$("#manage-personal").hide();
-//     });
-// });
-// $(function () {
-//     $("#manage-a").click(function () {
-//         // $(".content-body").html("");
-//         $("#manage-a-show").fadeIn();$("#f-flow").hide();$("#public-news-").hide();$("#president-management").hide();$("#club-finance").hide();$("#manage-personal").hide();
-//     });
-// });
-// $(function () {
-//     $("#-president-management").click(function () {
-//         // $(".content-body").html("");
-//         $("#president-management").fadeIn();$("#f-flow").hide();$("#public-news-").hide();$("#manage-a-show").hide();$("#club-finance").hide();$("#manage-personal").hide();
-//     });
-// });
-// $(function () {
-//     $("#public-news").click(function () {
-//         // $(".content-body").html("");
-//         $("#public-news-").fadeIn();$("#f-flow").hide();$("#manage-a-show").hide();$("#president-management").hide();$("#club-finance").hide();$("#manage-personal").hide();
-//     });
-// });
-// $(function () {
-//     $("#-club-finance").click(function () {
-//         // $(".content-body").html("");
-//         $("#club-finance").fadeIn();$("#public-news-").hide();$("#f-flow").hide();$("#manage-a-show").hide();$("#president-management").hide();$("#manage-personal").hide();
-//     });
-// });
-// $(function () {
-//     $("#-manage-personal").click(function () {
-//         // $(".content-body").html("");
-//         $("#manage-personal").fadeIn();$("#public-news-").hide();$("#f-flow").hide();$("#manage-a-show").hide();$("#president-management").hide();$("#club-finance").hide();
-//     });
-// });
 
 /* club */
 /********************************/
@@ -203,6 +149,9 @@ $(function () {
        $(".approval-right").show();
        location.replace(location);
    });
+   $("#extrafile").click(function () {
+       window.location.href="/applyClubForm/getFile?formId="+$("#formId").html();
+   });
 });
 /* application */
 $(function () {
@@ -223,9 +172,34 @@ $(function () {
     $("#agree-btn").click(function () {
         var data={
             "formId": $("#formId").html(),
-            "comment":"",
-            "applySelfMoney":$("#applySelfMoney").html(),
-            "applyReserveMoney":$("#applyReserveMoney").html()
+            "comment": $("#comment").val(),
+            "applySelfMoney": $("#applySelfMoney").html(),
+            "applyReserveMoney": $("#applyReserveMoney").html(),
+            "isApprove":1
+        };
+        $.ajax({
+            type: "GET",
+            url: "/approveForm/approve",
+            data: data,
+            dataType:"json",
+            success: function(r){
+                alert(r.message);
+                window.close();
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            },
+        });
+    });
+    $("#disgree-btn").click(function () {
+        var data={
+            "formId": $("#formId").html(),
+            "comment": $("#comment").val(),
+            "applySelfMoney": $("#applySelfMoney").html(),
+            "applyReserveMoney": $("#applyReserveMoney").html(),
+            "isApprove":0
         };
         $.ajax({
             type: "GET",

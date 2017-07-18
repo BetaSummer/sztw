@@ -17,4 +17,6 @@ public interface PowerMapper {
     int updateByPrimaryKey(Power record);
 
     Power selectByUserId(int userId);
+
+    int updateByUserId(Power record);
 }

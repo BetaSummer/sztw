@@ -34,7 +34,7 @@
       <if test="null != formUserId and '' != formUserId">
         form_user_id = #{formUserId,jdbcType=INTEGER},
       </if>
-      <if test="null != status and '' != status or 0 == status">
+      <if test="null != status and '' != status">
         status = #{status,jdbcType=INTEGER},
       </if>
       <if test="null != approveDate and '' != approveDate">

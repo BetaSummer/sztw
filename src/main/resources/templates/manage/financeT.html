@@ -18,13 +18,13 @@
             <td>收支</td>
             <td>明细</td>
         </tr>
-        <tr class="manage-body">
+        <tr class="manage-body" th:each="data:${clubFinancial}">
             <td><input type="checkbox" name="checkname"/></td>
-            <td>外语社</td>
-            <td>￥500</td>
-            <td>￥900</td>
-            <td>收支</td>
-            <td><span class="manage-btn manage-view">查看</span><span class="manage-btn manage-download">下载</span></td>
+            <td th:text="${data.key}"></td>
+            <td th:text="${data.value[1]}"></td>
+            <td th:text="${data.value[2]}"></td>
+            <td th:text="${data.value[3]}"></td>
+            <td><span class="manage-btn manage-view">查看</span><span th:id="${data.value[0]}" class="manage-btn manage-download">下载</span></td>
         </tr>
     </table>
 </div>
@@ -46,6 +46,25 @@
             else {
                 $(this).parent().parent().removeClass("on");
             }
+        });
+        $(".manage-download").click(function () {
+            var data = {
+                "clubId": $(this).attr("id")
+            };
+            $.ajax({
+                type: "GET",
+                url: "/finance/download",
+                data: data,
+                dataType:"json",
+                success: function(r){
+
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown){
+                    alert(XMLHttpRequest.status);
+                    alert(XMLHttpRequest.readyState);
+                    alert(textStatus);
+                },
+            });
         });
     });
 

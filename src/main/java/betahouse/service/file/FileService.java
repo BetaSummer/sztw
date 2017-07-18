@@ -12,4 +12,6 @@ public interface FileService{
 
     int updateByPrimaryKey(File file);
 
+    File getFileById(int id);
+
 }

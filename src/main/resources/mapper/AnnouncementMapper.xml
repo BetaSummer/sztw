@@ -56,4 +56,9 @@
     from b_announcement
     order by id desc
   </select>
+  <select id="selectByStatus" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, from_id, title, comment, file_id, date, status
+    from b_announcement
+    where status = #{status,jdbcType=INTEGER}
+  </select>
 </mapper>

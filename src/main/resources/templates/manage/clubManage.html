@@ -12,42 +12,14 @@
             <td><label for="checkall">全选</label><input type="checkbox" id="checkall"/></td>
             <td>社团</td>
             <td>社长</td>
-            <td>编号</td>
+            <td>社长学号</td>
             <td>管理</td>
         </tr>
-        <tr class="manage-body">
+        <tr class="manage-body" th:each="data:${club}">
             <td><input type="checkbox" name="checkname"/></td>
-            <td>外语社</td>
-            <td>因小明</td>
-            <td>123</td>
-            <td><span class="manage-btn">授权</span></td>
-        </tr>
-        <tr class="manage-body">
-            <td><input type="checkbox" name="checkname"/></td>
-            <td>外语社</td>
-            <td>因小明</td>
-            <td>123</td>
-            <td><span class="manage-btn">授权</span></td>
-        </tr>
-        <tr class="manage-body">
-            <td><input type="checkbox" name="checkname"/></td>
-            <td>外语社</td>
-            <td>因小明</td>
-            <td>123</td>
-            <td><span class="manage-btn">授权</span></td>
-        </tr>
-        <tr class="manage-body">
-            <td><input type="checkbox" name="checkname"/></td>
-            <td>外语社</td>
-            <td>因小明</td>
-            <td>123</td>
-            <td><span class="manage-btn">授权</span></td>
-        </tr>
-        <tr class="manage-body">
-            <td><input type="checkbox" name="checkname"/></td>
-            <td>外语社</td>
-            <td>因小明</td>
-            <td>123</td>
+            <td th:text="${data.key}"></td>
+            <td th:text="${data.value.realName}"></td>
+            <td th:text="${data.value.schoolId}"></td>
             <td><span class="manage-btn">授权</span></td>
         </tr>
     </table>

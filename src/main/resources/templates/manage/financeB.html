@@ -17,39 +17,11 @@
             <td>自留资金</td>
             <td>管理</td>
         </tr>
-        <tr class="manage-body">
+        <tr class="manage-body" th:each="data:${club}">
             <td><input type="checkbox" name="checkname"/></td>
-            <td>外语社</td>
-            <td>￥500</td>
-            <td>￥900</td>
-            <td><span class="manage-btn manage-view">管理</span></td>
-        </tr>
-        <tr class="manage-body">
-            <td><input type="checkbox" name="checkname"/></td>
-            <td>外语社</td>
-            <td>￥500</td>
-            <td>￥900</td>
-            <td><span class="manage-btn manage-view">管理</span></td>
-        </tr>
-        <tr class="manage-body">
-            <td><input type="checkbox" name="checkname"/></td>
-            <td>外语社</td>
-            <td>￥500</td>
-            <td>￥900</td>
-            <td><span class="manage-btn manage-view">管理</span></td>
-        </tr>
-        <tr class="manage-body">
-            <td><input type="checkbox" name="checkname"/></td>
-            <td>外语社</td>
-            <td>￥500</td>
-            <td>￥900</td>
-            <td><span class="manage-btn manage-view">管理</span></td>
-        </tr>
-        <tr class="manage-body">
-            <td><input type="checkbox" name="checkname"/></td>
-            <td>外语社</td>
-            <td>￥500</td>
-            <td>￥900</td>
+            <td th:text="${data.clubName}"></td>
+            <td th:text="${data.reserveMoney}"></td>
+            <td th:text="${data.selfMoney}"></td>
             <td><span class="manage-btn manage-view">管理</span></td>
         </tr>
     </table>

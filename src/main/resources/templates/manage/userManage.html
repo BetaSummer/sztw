@@ -17,45 +17,10 @@
                 <td>所属</td>
                 <td>管理</td>
             </tr>
-            <tr class="manage-body">
+            <tr class="manage-body" th:each="data:${userInfo}">
                 <td><input type="checkbox" name="checkname"/></td>
-                <td>邹旭科</td>
-                <td>15905639</td>
-                <td>betahouse</td>
-                <td><span class="manage-btn">管理</span></td>
-            </tr>
-            <tr class="manage-body">
-                <td><input type="checkbox" name="checkname"/></td>
-                <td>邹旭科</td>
-                <td>15905639</td>
-                <td>betahouse</td>
-                <td><span class="manage-btn">管理</span></td>
-            </tr>
-            <tr class="manage-body">
-                <td><input type="checkbox" name="checkname"/></td>
-                <td>邹旭科</td>
-                <td>15905639</td>
-                <td>betahouse</td>
-                <td><span class="manage-btn">管理</span></td>
-            </tr>
-            <tr class="manage-body">
-                <td><input type="checkbox" name="checkname"/></td>
-                <td>邹旭科</td>
-                <td>15905639</td>
-                <td>betahouse</td>
-                <td><span class="manage-btn">管理</span></td>
-            </tr>
-            <tr class="manage-body">
-                <td><input type="checkbox" name="checkname"/></td>
-                <td>邹旭科</td>
-                <td>15905639</td>
-                <td>betahouse</td>
-                <td><span class="manage-btn">管理</span></td>
-            </tr>
-            <tr class="manage-body">
-                <td><input type="checkbox" name="checkname"/></td>
-                <td>邹旭科</td>
-                <td>15905639</td>
+                <td th:text="${data.realName}"></td>
+                <td th:text="${data.schoolId}"></td>
                 <td>betahouse</td>
                 <td><span class="manage-btn">管理</span></td>
             </tr>

@@ -78,7 +78,7 @@ $(function () {
    $("#userManage").click(function () {
        $(".content-body").html("");
        $(".loading").show();
-       $(".content-body").load("/information/userManage",function () {
+       $(".content-body").load("/manage/userManage",function () {
            $(".loading").hide();
        }) ;
    });
@@ -87,7 +87,7 @@ $(function () {
     $("#powerManage").click(function () {
         $(".content-body").html("");
         $(".loading").show();
-        $(".content-body").load("/information/powerManage",function () {
+        $(".content-body").load("/manage/powerManage",function () {
             $(".loading").hide();
         }) ;
     });
@@ -96,7 +96,7 @@ $(function () {
     $("#financeT").click(function () {
         $(".content-body").html("");
         $(".loading").show();
-        $(".content-body").load("/information/financeT",function () {
+        $(".content-body").load("/finance/financeT",function () {
             $(".loading").hide();
         }) ;
     });
@@ -105,7 +105,7 @@ $(function () {
     $("#financeB").click(function () {
         $(".content-body").html("");
         $(".loading").show();
-        $(".content-body").load("/information/financeB",function () {
+        $(".content-body").load("/finance/financeB",function () {
             $(".loading").hide();
         }) ;
     });
@@ -114,7 +114,7 @@ $(function () {
     $("#clubManage").click(function () {
         $(".content-body").html("");
         $(".loading").show();
-        $(".content-body").load("/information/clubManage",function () {
+        $(".content-body").load("/manage/clubManage",function () {
             $(".loading").hide();
         }) ;
     });

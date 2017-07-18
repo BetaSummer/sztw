@@ -2,14 +2,13 @@
 <!--  社团财务  -->
 
 
-
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <div class="manage-header">
     <button>删除</button>
-    <button>批量操作</button>
+    <button id="manageAll">批量操作</button>
 </div>
 <div class="manage-main manage-five">
-    <table>
+    <table id="fin-table">
         <tr class="manage-title manage-six">
             <td><label for="checkall">全选</label><input type="checkbox" id="checkall"/></td>
             <td>社团</td>
@@ -19,61 +18,61 @@
         </tr>
         <tr class="manage-body">
             <td><input type="checkbox" name="checkname"/></td>
-            <td>外语社</td>
+            <td>外语社1</td>
             <td>￥500</td>
             <td>￥900</td>
             <td><span class="manage-btn">管理</span></td>
         </tr>
         <tr class="manage-body">
             <td><input type="checkbox" name="checkname"/></td>
-            <td>外语社</td>
+            <td>外语社2</td>
             <td>￥500</td>
             <td>￥900</td>
             <td><span class="manage-btn">管理</span></td>
         </tr>
         <tr class="manage-body">
             <td><input type="checkbox" name="checkname"/></td>
-            <td>外语社</td>
+            <td>外语社3</td>
             <td>￥500</td>
             <td>￥900</td>
             <td><span class="manage-btn">管理</span></td>
         </tr>
         <tr class="manage-body">
             <td><input type="checkbox" name="checkname"/></td>
-            <td>外语社</td>
+            <td>外语社4</td>
             <td>￥500</td>
             <td>￥900</td>
             <td><span class="manage-btn">管理</span></td>
         </tr>
         <tr class="manage-body">
             <td><input type="checkbox" name="checkname"/></td>
-            <td>外语社</td>
+            <td>外语社5</td>
             <td>￥500</td>
             <td>￥900</td>
             <td><span class="manage-btn">管理</span></td>
         </tr>
     </table>
 </div>
-<script>
-    //checkbox全选
-    $(function () {
-        $("#checkall").click(function(){
-                if($(this).is(':checked')){
-                    $("input[name='checkname']").prop('checked', true).parent().parent().addClass("on");
-                }else{
-                    $("input[name='checkname']").prop('checked', false).parent().parent().removeClass("on");
-                }
-            }
-        );
-        $("input[name='checkname']").click(function () {
-            if($(this).is(':checked')){
-                $(this).parent().parent().addClass("on");
-            }
-            else {
-                $(this).parent().parent().removeClass("on");
-            }
-        });
-    });
-
-</script>
+<div class="manage-alert">
+    <div class="club-manage manage-in">
+        <div class="manage-out"></div>
+        <table id="fin-alert-table">
+            <tr class="manage-alert-title manage-six">
+                <td>社团</td>
+                <td>预留资金</td>
+                <td>自留资金</td>
+                <td>增减</td>
+                <td>资金种类</td>
+                <td>数额</td>
+            </tr>
+            <tr class="manage-alert-in">
+                <td colspan="5">
+                    <input type="text" placeholder="请输入修改资金事由"/>
+                </td>
+                <td><span class="manage-alert-btn" id="finance-btn">提交</span></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script src="/js/manage.js"></script>
 </html>

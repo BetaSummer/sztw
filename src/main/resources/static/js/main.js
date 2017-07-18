@@ -111,6 +111,7 @@ $(function () {
         }) ;
     });
 });
+
 $(function () {
     $("#clubManage").click(function () {
         $(".content-body").html("");

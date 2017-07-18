@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>通知详文</title>
+    <link rel="stylesheet" href="/css/base.css"/>
+    <link rel="stylesheet" href="/css/common.css"/>
+    <link rel="stylesheet" href="/css/userpage.css"/>
+    <link rel="stylesheet" href="/css/inform.css"/>
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body style="background-image: none;">
+<nav>
+    <ul class="nav-right">
+        <a>
+            <li onclick="window.location.href='/user/register'">
+                注册
+            </li>
+        </a>
+        <li>
+            登录
+        </li>
+    </ul>
+</nav>
+
+
+<div class="article">
+    <h1>关于XXXXX的通知</h1>
+    <p>来源：xxx   发布时间：xxx</p><hr/>
+    <div class="main">
+        获取通知类容
+    </div>
+    <div class="foot"><a>打印</a><a>返回</a><a>关闭</a></div>
+</div>
+
+
+
+<footer>
+    <div class="copyright">
+        <span>Copyright © <a href="http://expo.bootcss.com"></a></span> |
+        <span><a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备11008151号</a></span> | hdxg 版权所有
+    </div>
+</footer>
+
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+</body>
+</html>
+
+
+<script>
+    //<![CDATA[
+    $('.news-li:odd').css('background','rgba(255,255,255,0)');
+    $('.news-li:even').css('background','rgba(255,255,255,0.3)');
+    //]]>
+</script>

@@ -1,4 +1,4 @@
-package betahouse.service.club;
+package betahouse.service.form;
 
 import betahouse.model.FormManager;
 
@@ -11,6 +11,6 @@ public interface FormManagerService {
 
     int insertFormManager();
 
-    int updateFormManager(int approver);
+    int updateFormManagerByApprover(int approver, int formType, int lv);
 
 }

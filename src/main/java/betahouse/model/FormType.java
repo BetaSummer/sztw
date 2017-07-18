@@ -7,6 +7,8 @@ public class FormType {
 
     private String formName;
 
+    private Integer maxLv;
+
     public Integer getId() {
         return id;
     }
@@ -29,5 +31,13 @@ public class FormType {
 
     public void setFormName(String formName) {
         this.formName = formName == null ? null : formName.trim();
+    }
+
+    public Integer getMaxLv() {
+        return maxLv;
+    }
+
+    public void setMaxLv(Integer maxLv) {
+        this.maxLv = maxLv;
     }
 }

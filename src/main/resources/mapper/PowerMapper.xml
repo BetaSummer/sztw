@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="betahouse.model.Power">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="power" jdbcType="CHAR" property="power" />
+    <result column="power" jdbcType="VARCHAR" property="power" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from b_power
@@ -13,13 +13,13 @@
   <insert id="insert" parameterType="betahouse.model.Power">
     insert into b_power (id, user_id, power
       )
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{power,jdbcType=CHAR}
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{power,jdbcType=VARCHAR}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.Power">
     update b_power
     set user_id = #{userId,jdbcType=INTEGER},
-      power = #{power,jdbcType=CHAR}
+      power = #{power,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -34,6 +34,11 @@
   <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select id, user_id, power
     from b_power
-    where user_id = #{user_id,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
   </select>
+  <update id="updateByUserId" parameterType="betahouse.model.Power">
+    update b_power
+    set power = #{power,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
 </mapper>

@@ -82,13 +82,10 @@
             <div class='clearfix'></div>
         </div>
         <div class="sub-content">
-            <div class="content-nav">
-                欢迎你，
+            <div class="content-nav" th:inline="text">
+                欢迎你，[[${user.realName}]]
             </div>
             <div class="content-body">
-
-
-
                 <div class="inform" id="inform">
                     <h1>通知公告</h1>
                     <hr/>
@@ -105,13 +102,12 @@
                         </div>
                     </div>
                     <ul style="margin-top: 310px;font-size: 1vw">
-                        <a href="*">More>></a></ul>
-
+                        <a href="*">More>></a>
+                    </ul>
                 </div>
             </div>
         </div>
     </content>
-
     <footer>
         <div class="copyright">
             <span>Copyright © <a href="http://expo.bootcss.com"></a></span> |

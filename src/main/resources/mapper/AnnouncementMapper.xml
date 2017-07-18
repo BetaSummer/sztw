@@ -6,7 +6,9 @@
     <result column="from_id" jdbcType="INTEGER" property="fromId" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="comment" jdbcType="VARCHAR" property="comment" />
+    <result column="file_id" jdbcType="INTEGER" property="fileId" />
     <result column="date" jdbcType="VARCHAR" property="date" />
+    <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from b_announcement
@@ -14,25 +16,44 @@
   </delete>
   <insert id="insert" parameterType="betahouse.model.Announcement">
     insert into b_announcement (id, from_id, title, 
-      comment, date)
+      comment, file_id, date, 
+      status)
     values (#{id,jdbcType=INTEGER}, #{fromId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
-      #{comment,jdbcType=VARCHAR}, #{date,jdbcType=VARCHAR})
+      #{comment,jdbcType=VARCHAR}, #{fileId,jdbcType=INTEGER}, #{date,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.Announcement">
     update b_announcement
-    set from_id = #{fromId,jdbcType=INTEGER},
-      title = #{title,jdbcType=VARCHAR},
-      comment = #{comment,jdbcType=VARCHAR},
-      date = #{date,jdbcType=VARCHAR}
+    <set>
+      <if test="null != fromId and '' != fromId">
+        from_id = #{fromId,jdbcType=INTEGER},
+      </if>
+      <if test="null != title and '' != title">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="null != comment and '' != comment">
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="null != fileId and '' != fileId">
+        file_id = #{fileId,jdbcType=INTEGER},
+      </if>
+      <if test="null != date and '' != date">
+        date = #{date,jdbcType=VARCHAR},
+      </if>
+      <if test="null != status and '' != status">
+        club_name = #{clubName,jdbcType=VARCHAR},
+      </if>
+    </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, from_id, title, comment, date
+    select id, from_id, title, comment, file_id, date, status
     from b_announcement
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id, from_id, title, comment, date
+    select id, from_id, title, comment, file_id, date, status
     from b_announcement
+    order by id desc
   </select>
 </mapper>

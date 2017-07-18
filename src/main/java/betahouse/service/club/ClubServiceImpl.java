@@ -22,12 +22,22 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
+    public List<Club> listAll() {
+        return clubMapper.selectAll();
+    }
+
+    @Override
     public int updateMoneyById(int id, int applySelfMoney, int applyReserveMoney) {
         Club clubDTO = clubMapper.selectByPrimaryKey(id);
+        int selfMoneyDTO = clubDTO.getSelfMoney()-applySelfMoney;
+        int reserveMoneyDTO = clubDTO.getReserveMoney()-applyReserveMoney;
+        if(selfMoneyDTO<0||reserveMoneyDTO<0){
+            return -1;
+        }
         Club clubDTO2 = new Club();
         clubDTO2.setId(id);
-        clubDTO2.setSelfMoney(clubDTO.getSelfMoney()-applySelfMoney);
-        clubDTO2.setReserveMoney(clubDTO.getReserveMoney()-applyReserveMoney);
+        clubDTO2.setSelfMoney(selfMoneyDTO);
+        clubDTO2.setReserveMoney(reserveMoneyDTO);
         return clubMapper.updateByPrimaryKey(clubDTO2);
     }
 

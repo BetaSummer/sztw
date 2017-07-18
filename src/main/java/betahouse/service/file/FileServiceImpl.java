@@ -23,10 +23,10 @@ public class FileServiceImpl implements FileService{
 
     @Override
     public int insert(String preName, String afterName, String folder) {
-        preName = preName.substring(0,preName.lastIndexOf("."));
+       String suffix =  preName.substring(preName.lastIndexOf("."));
         File fileDTO = new File();
         fileDTO.setPreName(preName);
-        fileDTO.setAfterName(afterName);
+        fileDTO.setAfterName(afterName+suffix);
         fileDTO.setFolder(folder);
         fileMapper.insert(fileDTO);
         return fileDTO.getId();
@@ -35,5 +35,10 @@ public class FileServiceImpl implements FileService{
     @Override
     public int updateByPrimaryKey(File file) {
         return 0;
+    }
+
+    @Override
+    public File getFileById(int id) {
+        return fileMapper.selectByPrimaryKey(id);
     }
 }

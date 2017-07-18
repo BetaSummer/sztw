@@ -62,5 +62,7 @@ public class FinanceController extends BaseController{
         if(statusDTO==1){
             this.error(request, response, model, statusDTO);
         }
+        baseFile.delete(FOLDER_OFFICE_EXCEL+clubDTO.getClubName(),
+                clubDTO.getClubName()+FOLDER_OFFICE_EXCEL_SUFFIX);
     }
 }

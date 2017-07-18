@@ -6,7 +6,10 @@ import betahouse.model.Club;
 import betahouse.model.User;
 import betahouse.model.UserInfo;
 import betahouse.service.club.ClubService;
+import betahouse.service.form.FormManagerService;
 import betahouse.service.form.FormTypeService;
+import betahouse.service.power.PowerService;
+import betahouse.service.power.PowerTypeService;
 import betahouse.service.user.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,13 +21,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import static betahouse.core.constant.UserConstant.SESSION_CURRENT_USER;
-import static betahouse.core.constant.UserConstant.SESSION_USER_POWER;
+import static betahouse.core.constant.UserConstant.*;
 
 /**
  * Created by x1654 on 2017/7/3.
@@ -48,6 +47,12 @@ public class UserController extends BaseController {
     @Autowired
     private FormTypeService formTypeService;
 
+    @Autowired
+    private PowerTypeService powerTypeService;
+
+    @Autowired
+    private FormManagerService formManagerService;
+
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public String admin(HttpServletRequest request, HttpServletResponse response, Model model,
                         @RequestParam String username,
@@ -57,9 +62,9 @@ public class UserController extends BaseController {
             UserInfo userInfo = userInfoService.getUserInfoById(user.getId());
             request.getSession().setAttribute(SESSION_CURRENT_USER, userInfo);
             request.getSession().setAttribute(SESSION_USER_POWER, powerService.getPowerByUserId(userInfo.getId()));
-            return ajaxReturn(response,null,"登陆成功",0);
+            return ajaxReturn(response,null,"",0);
         }
-        return ajaxReturn(response,null,"用户不存在或用户名密码错误",1);
+        return ajaxReturn(response,null,USER_LOGIN_FAILED,1);
     }
     @RequestMapping(value = "/logout")
     public String admin(HttpServletRequest request, HttpServletResponse response, Model model){
@@ -99,13 +104,23 @@ public class UserController extends BaseController {
         return "user/userInfo";
     }
 
+    @RequestMapping(value = "/listAllPower")
+    public String listAllPower(HttpServletRequest request, HttpServletResponse response, Model model){
+        return ajaxReturn(response, powerTypeService.listAll(), "", 0);
+    }
+
     @RequestMapping(value = "/updatePower")
-    public String updatePower(HttpServletRequest request, HttpServletResponse response, Model model){
-        return "";
+    public String updatePower(HttpServletRequest request, HttpServletResponse response, Model model,
+                              @RequestParam int userId, @RequestParam int powerId, @RequestParam int lv){
+        powerService.updatePowerByUserId(userId, powerId);
+        if(0!=lv){
+            formManagerService.updateFormManagerByApprover(userId, powerId, lv);
+        }
+        return ajaxReturn(response, null, USER_UPDATE_POWER_SUCCESS, 0);
     }
 
     @RequestMapping(value = "/getUserInfoById")
     public String getUserInfoById(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam int id){
-        return "";
+        return ajaxReturn(response, userInfoService.getUserInfoById(id), "", 0);
     }
 }

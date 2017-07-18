@@ -2,6 +2,8 @@ package betahouse.controller;
 
 import betahouse.controller.Base.BaseController;
 import betahouse.core.Base.BaseFile;
+import betahouse.core.office.HSSF;
+import betahouse.model.User;
 import betahouse.service.form.FormManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Yxm on 2017/7/3.
@@ -40,4 +44,30 @@ public class DemoController extends BaseController {
         if(t==1)this.hi(request,response,model,t);
         //return "/demo/hello";
     }
+    @RequestMapping("/demo")
+    public void demo(HttpServletRequest request, HttpServletResponse response, Model model){
+        HSSF hssf = new HSSF("demo","test");
+        hssf.create("zxk dsb"," 名单");
+
+
+        List<User> list = new ArrayList<>();
+
+        User user = new User();
+        user.setId(1);
+        user.setUsername("aaa");
+        user.setPassword("123");
+        list.add(user);
+
+        User user2 = new User();
+        user2.setId(1);
+        user2.setUsername("aaa");
+        user2.setPassword("123");
+        list.add(user2);
+
+        String name[] = {"id","用户名","密码"};
+        hssf.insert(0,0,0,null,list);
+       // hssf.set(0,0,0,"tm");
+
+    }
+
 }

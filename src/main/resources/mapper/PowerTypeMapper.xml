@@ -5,30 +5,32 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="power_id" jdbcType="INTEGER" property="powerId" />
     <result column="power_name" jdbcType="VARCHAR" property="powerName" />
+    <result column="form_type" jdbcType="INTEGER" property="formType" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from b_power_type
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="betahouse.model.PowerType">
-    insert into b_power_type (id, power_id, power_name
-      )
-    values (#{id,jdbcType=INTEGER}, #{powerId,jdbcType=INTEGER}, #{powerName,jdbcType=VARCHAR}
-      )
+    insert into b_power_type (id, power_id, power_name, 
+      form_type)
+    values (#{id,jdbcType=INTEGER}, #{powerId,jdbcType=INTEGER}, #{powerName,jdbcType=VARCHAR}, 
+      #{formType,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.PowerType">
     update b_power_type
     set power_id = #{powerId,jdbcType=INTEGER},
-      power_name = #{powerName,jdbcType=VARCHAR}
+      power_name = #{powerName,jdbcType=VARCHAR},
+      form_type = #{formType,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, power_id, power_name
+    select id, power_id, power_name, form_type
     from b_power_type
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id, power_id, power_name
+    select id, power_id, power_name, form_type
     from b_power_type
   </select>
 </mapper>

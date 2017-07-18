@@ -1,4 +1,4 @@
-package betahouse.service.user;
+package betahouse.service.power;
 
 import betahouse.model.Power;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,5 +11,7 @@ import java.util.List;
 public interface PowerService {
 
     List<Integer> getPowerByUserId(int userId);
+
+    int updatePowerByUserId(int userId, int power);
 
 }

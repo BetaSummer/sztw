@@ -30,13 +30,12 @@ public class FormManagerServiceImpl implements FormManagerService{
     }
 
     @Override
-    public int updateFormManager(int approver) {
-        FormManager formManager = new FormManager();
-        List<Integer> list = new ArrayList<>();
-        list.add(1);
-        String s = JSON.toJSONString(list);
-        formManager.setApproverForm(s);
-        formManager.setApprover(approver);
-        return formManagerMapper.updateByApprover(formManager);
+    public int updateFormManagerByApprover(int approver, int formType, int lv) {
+        FormManager formManagerDTO = formManagerMapper.selectByApprover(approver);
+        List<Integer> listDTO = JSON.parseArray(formManagerDTO.getApproverForm(), Integer.class);
+        listDTO.add(formType-1, lv);
+        String strDTO = JSON.toJSONString(listDTO);
+        formManagerDTO.setApproverForm(strDTO);
+        return formManagerMapper.updateByApprover(formManagerDTO);
     }
 }

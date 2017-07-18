@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="betahouse.model.FormManager">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="approver" jdbcType="INTEGER" property="approver" />
-    <result column="approver_form" jdbcType="CHAR" property="approverForm" />
+    <result column="approver_form" jdbcType="VARCHAR" property="approverForm" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from b_form_manager
@@ -13,7 +13,7 @@
   <insert id="insert" parameterType="betahouse.model.FormManager">
     insert into b_form_manager (id, approver, approver_form
       )
-    values (#{id,jdbcType=INTEGER}, #{approver,jdbcType=INTEGER}, #{approverForm,jdbcType=CHAR}
+    values (#{id,jdbcType=INTEGER}, #{approver,jdbcType=INTEGER}, #{approverForm,jdbcType=VARCHAR}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.FormManager">
@@ -23,7 +23,7 @@
         approver = #{approver,jdbcType=INTEGER},
       </if>
       <if test="null != approverForm and '' != approverForm">
-        approver_form = #{approverForm,jdbcType=CHAR}
+        approver_form = #{approverForm,jdbcType=VARCHAR}
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -46,7 +46,7 @@
     update b_form_manager
     <set>
       <if test="null != approverForm and '' != approverForm">
-        approver_form = #{approverForm,jdbcType=CHAR}
+        approver_form = #{approverForm,jdbcType=VARCHAR}
       </if>
     </set>
     where approver = #{approver,jdbcType=INTEGER}

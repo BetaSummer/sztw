@@ -11,6 +11,6 @@ public interface FormManagerService {
 
     int insertFormManager();
 
-    int updateFormManager(int approver);
+    int updateFormManagerByApprover(int approver, int formType, int lv);
 
 }

@@ -22,7 +22,7 @@ import java.util.List;
 /* HSSF － 提供读写Microsoft Excel XLS格式档案的功能。 */
 public class HSSF {
     //指定存储文件夹
-    private static final String FOLDER = "office" + File.separator + "excel";
+    private static final String FOLDER = "File"+File.separator+"Office" + File.separator + "Excel";
 
     private HSSFWorkbook wb = null;
     private String folderName = null;

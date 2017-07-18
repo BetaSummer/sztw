@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,6 +68,9 @@ public class DemoController extends BaseController {
         String name[] = {"id","用户名","密码"};
         hssf.insert(0,0,0,null,list);
        // hssf.set(0,0,0,"tm");
+
+        BaseFile baseFile = new BaseFile();
+        baseFile.download(response,"Office"+ File.separator+"Excel"+File.separator+"demo", "test.xls");
 
     }
 

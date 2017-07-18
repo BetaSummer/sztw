@@ -5,6 +5,7 @@ import betahouse.core.office.HSSF;
 import betahouse.mapper.ClubMapper;
 import betahouse.model.Club;
 import betahouse.model.ClubFinancialFlow;
+import betahouse.model.VO.ClubFinance;
 import betahouse.service.club.ClubService;
 import betahouse.service.financial.ClubFinancialFlowService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,8 +49,8 @@ public class FinanceController extends BaseController{
     public String download(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam String clubId){
         int clubIdDTO = Integer.parseInt(clubId);
         Club clubDTO = clubService.getClubById(clubIdDTO);
-        List<String[]> listDTO = clubFinancialFlowService.listClubFinancialFlowByClubId(clubIdDTO);
-        HSSF hssf = new HSSF(clubDTO.getClubName(),"finanace");
+        List<ClubFinance> listDTO = clubFinancialFlowService.listClubFinancialFlowByClubId(clubIdDTO);
+        HSSF hssf = new HSSF(clubDTO.getClubName(),clubDTO.getClubName());
         hssf.create(clubDTO.getClubName());
         hssf.insert(0, 0, 0, CLUB_FINANCE_FIELD_NAME, listDTO);
         return ajaxReturn(response, null, "", 0);

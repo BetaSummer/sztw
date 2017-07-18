@@ -16,7 +16,7 @@ public interface ClubActivityApproveService {
 
     List<ClubActivityApprove> listApproveByLv(int lv);
 
-    List<ClubActivityApprove> listApproveByLvAndFormId(int lv, int formId);
+    ClubActivityApprove getApproveByLvAndFormId(int lv, int formId);
 
     List<ClubActivityApprove> listApproveByFormId(int formId);
 

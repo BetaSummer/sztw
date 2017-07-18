@@ -55,4 +55,9 @@ public class AnnouncementServiceImpl implements AnnouncementService{
         announcementDTO.setComment(comment);
         return announcementMapper.updateByPrimaryKey(announcementDTO);
     }
+
+    @Override
+    public List<Announcement> listUnpublishedAnnouncement() {
+        return announcementMapper.selectByStatus(0);
+    }
 }

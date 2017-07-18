@@ -26,11 +26,16 @@ import static betahouse.core.constant.InformationConstant.SAVE_SUCCESS;
  * Created by x1654 on 2017/7/7.
  */
 @Controller
-@RequestMapping(value = "/information", method = RequestMethod.POST)
+@RequestMapping(value = "/information")
 public class InformationController extends BaseController{
 
     @Autowired
     private AnnouncementService announcementService;
+
+    @RequestMapping(value = "/doMessage")
+    public String doMessage(HttpServletRequest request, HttpServletResponse response, Model model){
+        return "manage/doMessage";
+    }
 
     @RequestMapping(value = "/publishAnnouncement", method = RequestMethod.POST)
     public String publishAnnouncement(HttpServletRequest request, HttpServletResponse response, Model model,
@@ -51,29 +56,5 @@ public class InformationController extends BaseController{
         return ajaxReturn(response, announcementService.listUnpublishedAnnouncement(), "", 0);
     }
 
-    @RequestMapping(value = "/userManage")
-    public String userManage(HttpServletRequest request, HttpServletResponse response, Model model){
-        return "manage/userManage";
-    }
-    @RequestMapping(value = "/powerManage")
-    public String powerManage(HttpServletRequest request, HttpServletResponse response, Model model){
-        return "manage/powerManage";
-    }
-    @RequestMapping(value = "/financeT")
-    public String financeT(HttpServletRequest request, HttpServletResponse response, Model model){
-        return "manage/financeT";
-    }
-    @RequestMapping(value = "/financeB")
-    public String financeB(HttpServletRequest request, HttpServletResponse response, Model model){
-        return "manage/financeB";
-    }
-    @RequestMapping(value = "/clubManage")
-    public String clubManage(HttpServletRequest request, HttpServletResponse response, Model model){
-        return "manage/clubManage";
-    }
-    @RequestMapping(value = "/doMessage")
-    public String doMessage(HttpServletRequest request, HttpServletResponse response, Model model){
-        return "manage/doMessage";
-    }
 }
 

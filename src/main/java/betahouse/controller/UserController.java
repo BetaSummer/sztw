@@ -88,19 +88,20 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "/userInfo")
     public String userInfo(HttpServletRequest request, HttpServletResponse response, Model model){
-        List<UserInfo> userInfosListDTO = userInfoService.listAllUserInfo();
-        List<Club> clubsListDTO = clubService.listAll();
-        Club[] clubsDTO = new Club[clubsListDTO.size()];
-        UserInfo[] userInfosDTO = new UserInfo[clubsListDTO.size()];
-        for(int i=0;i<clubsListDTO.size();i++) {
-            UserInfo userInfoDTO = userInfoService.getUserInfoById(clubsListDTO.get(i).getUserId());
-            clubsDTO[i] = clubsListDTO.get(i);
-            userInfosDTO[i] = userInfoDTO;
-        }
-        model.addAttribute("userInfo", userInfosListDTO);
-        model.addAttribute("club", clubsDTO);
-        model.addAttribute("chief", userInfosDTO);
-        model.addAttribute("power", formTypeService.listAll());
+//        List<UserInfo> userInfosListDTO = userInfoService.listAllUserInfo();
+//        List<Club> clubsListDTO = clubService.listAll();
+//        Club[] clubsDTO = new Club[clubsListDTO.size()];
+//        UserInfo[] userInfosDTO = new UserInfo[clubsListDTO.size()];
+//        for(int i=0;i<clubsListDTO.size();i++) {
+//            UserInfo userInfoDTO = userInfoService.getUserInfoById(clubsListDTO.get(i).getUserId());
+//            clubsDTO[i] = clubsListDTO.get(i);
+//            userInfosDTO[i] = userInfoDTO;
+//        }
+//        model.addAttribute("userInfo", userInfosListDTO);
+//        model.addAttribute("club", clubsDTO);
+//        model.addAttribute("chief", userInfosDTO);
+//        model.addAttribute("power", formTypeService.listAll());
+        model.addAttribute("user", getCurrentUser(request));
         return "user/userInfo";
     }
 

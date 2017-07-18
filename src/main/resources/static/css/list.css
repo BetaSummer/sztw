@@ -109,4 +109,16 @@ tr td:nth-child(1) {
     margin-left: 15px;
     border:none;
     font-size: 18px;
+    text-indent: 5px;
+}
+.manage-view,.manage-download{
+    float: left;
+    width: 40%;
+    height: 35px;
+    line-height: 35px;
+    font-size: 90%;
+}
+.manage-view{
+    margin-right: 5%;
+    margin-left: 5%;
 }

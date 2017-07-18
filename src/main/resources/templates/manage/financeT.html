@@ -48,23 +48,7 @@
             }
         });
         $(".manage-download").click(function () {
-            var data = {
-                "clubId": $(this).attr("id")
-            };
-            $.ajax({
-                type: "GET",
-                url: "/finance/download",
-                data: data,
-                dataType:"json",
-                success: function(r){
-
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown){
-                    alert(XMLHttpRequest.status);
-                    alert(XMLHttpRequest.readyState);
-                    alert(textStatus);
-                },
-            });
+            window.location.href = "/finance/download?clubId="+$(this).attr("id");
         });
     });
 

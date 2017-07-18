@@ -1,6 +1,7 @@
 package betahouse.controller;
 
 import betahouse.controller.Base.BaseController;
+import betahouse.core.Base.BaseFile;
 import betahouse.core.office.HSSF;
 import betahouse.mapper.ClubMapper;
 import betahouse.model.Club;
@@ -20,6 +21,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 import static betahouse.core.constant.FinanceConstant.CLUB_FINANCE_FIELD_NAME;
+import static betahouse.core.constant.FolderNameConstant.FOLDER_OFFICE_EXCEL;
+import static betahouse.core.constant.FolderNameConstant.FOLDER_OFFICE_EXCEL_SUFFIX;
 
 /**
  * Created by x1654 on 2017/7/14.
@@ -46,13 +49,18 @@ public class FinanceController extends BaseController{
     }
 
     @RequestMapping(value = "/download")
-    public String download(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam String clubId){
+    public void download(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam String clubId){
         int clubIdDTO = Integer.parseInt(clubId);
         Club clubDTO = clubService.getClubById(clubIdDTO);
         List<ClubFinance> listDTO = clubFinancialFlowService.listClubFinancialFlowByClubId(clubIdDTO);
         HSSF hssf = new HSSF(clubDTO.getClubName(),clubDTO.getClubName());
         hssf.create(clubDTO.getClubName());
         hssf.insert(0, 0, 0, CLUB_FINANCE_FIELD_NAME, listDTO);
-        return ajaxReturn(response, null, "", 0);
+        BaseFile baseFile = new BaseFile();
+        int statusDTO = baseFile.download(response, FOLDER_OFFICE_EXCEL+clubDTO.getClubName(),
+                clubDTO.getClubName()+FOLDER_OFFICE_EXCEL_SUFFIX);
+        if(statusDTO==1){
+            this.error(request, response, model, statusDTO);
+        }
     }
 }

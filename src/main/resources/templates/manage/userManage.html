@@ -6,10 +6,10 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="manage-header">
         <button>删除</button>
-        <button>批量操作</button>
+        <button id="manageAll2">批量操作</button>
     </div>
     <div class="manage-main manage-five">
-        <table>
+        <table id="fin-table">
             <tr class="manage-title">
                 <td><label for="checkall">全选</label><input type="checkbox" id="checkall"/></td>
                 <td>姓名</td>
@@ -19,33 +19,32 @@
             </tr>
             <tr class="manage-body" th:each="data:${userInfo}">
                 <td><input type="checkbox" name="checkname"/></td>
+                <td th:text="${data.eMail}" style="display: none;"></td>
+                <td th:text="${data.id}" style="display: none;"></td>
+                <td th:text="${data.tel}" style="display: none;"></td>
                 <td th:text="${data.realName}"></td>
                 <td th:text="${data.schoolId}"></td>
                 <td>betahouse</td>
-                <td><span class="manage-btn">管理</span></td>
+                <td><span class="manage-btn manage-btn2" >管理</span></td>
             </tr>
         </table>
     </div>
-    <script>
-        //checkbox全选
-        $(function () {
-            $("#checkall").click(function(){
-                    if($(this).is(':checked')){
-                        $("input[name='checkname']").prop('checked', true).parent().parent().addClass("on");
-                    }else{
-                        $("input[name='checkname']").prop('checked', false).parent().parent().removeClass("on");
-                    }
-                }
-            );
-            $("input[name='checkname']").click(function () {
-                if($(this).is(':checked')){
-                    $(this).parent().parent().addClass("on");
-                }
-                else {
-                    $(this).parent().parent().removeClass("on");
-                }
-            });
-        });
-
-    </script>
+    <div class="manage-alert">
+        <div class="club-manage manage-in">
+            <div class="manage-out"></div>
+            <table id="fin-alert-table">
+                <tr class="manage-alert-title manage-five">
+                    <td>学号/工号</td>
+                    <td>姓名</td>
+                    <td>密码</td>
+                    <td>联系方式</td>
+                    <td>邮箱</td>
+                </tr>
+                <tr class="manage-alert-in">
+                    <td colspan="5"><span class="manage-alert-btn" id="finance-btn">确认修改</span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script src="/js/manage.js"></script>
 </html>

@@ -17,7 +17,7 @@
             <td>管理</td>
         </tr>
         <tr class="manage-body" th:each="data:${club}">
-            <td><input type="checkbox" name="checkname"/></td>
+            <td th:id="${data.id}"><input type="checkbox" name="checkname"/></td>
             <td th:text="${data.clubName}"></td>
             <td th:text="${data.reserveMoney}"></td>
             <td th:text="${data.selfMoney}"></td>
@@ -39,7 +39,7 @@
             </tr>
             <tr class="manage-alert-in">
                 <td colspan="5">
-                    <input type="text" placeholder="请输入修改资金事由"/>
+                    <input id="comment" type="text" placeholder="请输入修改资金事由"/>
                 </td>
                 <td><span class="manage-alert-btn" id="finance-btn">提交</span></td>
             </tr>

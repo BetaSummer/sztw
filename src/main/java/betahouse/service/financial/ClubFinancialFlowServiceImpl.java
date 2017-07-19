@@ -44,8 +44,7 @@ public class ClubFinancialFlowServiceImpl implements ClubFinancialFlowService{
             ClubFinance clubFinanceDTO = new ClubFinance();
             clubFinanceDTO.setId(i+1);
             clubFinanceDTO.setComment(listDTO2.get(i).getComment());
-            int userIdDTO = clubActivityApproveMapper.selectByLvAndFormId(2, listDTO2.get(i).getActivityId()).getApproveUserId();
-            clubFinanceDTO.setUserName(userInfoMapper.selectByPrimaryKey(userIdDTO).getRealName());
+            clubFinanceDTO.setUserName(userInfoMapper.selectByPrimaryKey(listDTO2.get(i).getHandler()).getRealName());
             clubFinanceDTO.setIncome(listDTO2.get(i).getIncome());
             clubFinanceDTO.setCost(listDTO2.get(i).getCost());
             clubFinanceDTO.setPayments(listDTO2.get(i).getIncome()-listDTO2.get(i).getCost());
@@ -90,6 +89,27 @@ public class ClubFinancialFlowServiceImpl implements ClubFinancialFlowService{
         SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         clubFinancialFlowDTO.setDate(sdfDTO.format(dateDTO));
         clubFinancialFlowDTO.setComment(cmment);
+        int userIdDTO = clubActivityApproveMapper.selectByLvAndFormId(2, formId).getApproveUserId();
+        clubFinancialFlowDTO.setHandler(userInfoMapper.selectByPrimaryKey(userIdDTO).getId());
+        return clubFinancialFlowMapper.insert(clubFinancialFlowDTO);
+    }
+
+    @Override
+    public int insert(int clubId, String comment, int handler, int change, int money) {
+        ClubFinancialFlow clubFinancialFlowDTO = new ClubFinancialFlow();
+        clubFinancialFlowDTO.setClubId(clubId);
+        clubFinancialFlowDTO.setComment(comment);
+        clubFinancialFlowDTO.setHandler(handler);
+        if(-1==change){
+            clubFinancialFlowDTO.setCost(money);
+            clubFinancialFlowDTO.setIncome(0);
+        }else if(1==change){
+            clubFinancialFlowDTO.setIncome(money);
+            clubFinancialFlowDTO.setCost(0);
+        }
+        Date dateDTO = new Date();
+        SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        clubFinancialFlowDTO.setDate(sdfDTO.format(dateDTO));
         return clubFinancialFlowMapper.insert(clubFinancialFlowDTO);
     }
 }

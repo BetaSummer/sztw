@@ -17,10 +17,11 @@
             <td>管理</td>
         </tr>
         <tr class="manage-body" th:each="data:${club}">
-            <td th:id="${data.id}"><input type="checkbox" name="checkname"/></td>
+            <td><input type="checkbox" name="checkname"/></td>
             <td th:text="${data.clubName}"></td>
             <td th:text="${data.reserveMoney}"></td>
             <td th:text="${data.selfMoney}"></td>
+            <td th:text="${data.id}" style="display: none;"></td>
             <td><span class="manage-btn">管理</span></td>
         </tr>
     </table>

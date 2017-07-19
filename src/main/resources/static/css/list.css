@@ -28,7 +28,7 @@
 .manage-main input[type='checkbox']{
     margin-right: 30%;
 }
-tr td:nth-child(1) {
+.manage-main tr td:nth-child(1) {
     text-align: right;
 }
 .manage-main td{
@@ -109,4 +109,98 @@ tr td:nth-child(1) {
     margin-left: 15px;
     border:none;
     font-size: 18px;
+    text-indent: 5px;
+}
+.manage-view,.manage-download{
+    float: left;
+    width: 40%;
+    height: 35px;
+    line-height: 35px;
+    font-size: 90%;
+}
+.manage-view{
+    margin-right: 5%;
+    margin-left: 5%;
+}
+.manage-alert{
+    max-height: 800px;
+    overflow: auto;
+    display: none;
+    -webkit-box-shadow: 0 1px 3px #a59c7c;
+    -moz-box-shadow: 0 1px 3px #a59c7c;
+    box-shadow: 0 1px 3px #a59c7c;
+    width: 60%;
+    background-color: #f7f5ed;
+    position: absolute;
+    top:15%;
+    left: 20%;
+}
+.manage-in{
+    width: 90%;
+    margin:2% 5%;
+}
+.manage-in table{
+    width: 100%;
+}
+.manage-in td{
+    text-align: center;
+}
+.manage-alert-title{
+    font-family: "黑体";
+}
+.manage-alert-title td{
+    border: solid #ffffff 1px;
+    background-color: #d7d1b8;
+    height: 25px;
+    font-size: 16px;
+    color: #2c3643;
+}
+.manage-alert-in{
+    font-family: "黑体";
+    height: 30px;
+    line-height: 30px;
+    border-bottom: solid #eae6d6 1px;
+    font-size: 16px;
+}
+.manage-alert select{
+    width: 95%;
+    height: 25px;
+    border:none;
+    background-color:#eae6d6 ;
+    outline: solid #b6ad85 1px;
+}
+.manage-alert option{
+    background-color: #f7f5ed;
+}
+.manage-alert-in input[type='text']{
+    border:none;
+    background-color:#eae6d6 ;
+    width: 95%;
+    height: 25px;
+    text-indent: 5px;
+    outline: solid #b6ad85 1px;
+}
+.manage-alert-btn{
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    font-size: 16px;
+    line-height: 25px;
+    display: block;
+    width: 90%;
+    margin:0 auto;
+    height: 25px;
+    background-color: #a28e3d;
+    color: #ffffff;
+}
+.manage-out{
+    width: 18px;
+    height: 18px;
+    float: right;
+    margin-bottom: 15px;
+    background: url("../img/X.png");
+}
+.manage-out:hover{
+    cursor: pointer;
+    background: url("../img/X(on).png");
 }

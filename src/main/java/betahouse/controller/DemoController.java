@@ -74,4 +74,9 @@ public class DemoController extends BaseController {
 
     }
 
+    @RequestMapping(value = "/wangEditor")
+    public String wangEditor(HttpServletRequest request, HttpServletResponse response, Model model){
+        return "demo/wangEditor";
+    }
+
 }

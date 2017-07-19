@@ -11,9 +11,9 @@ public interface AnnouncementService {
 
     List<Announcement> listAll();
 
-    int sendAnnouncement(int fromId, String title, String comment);
+    int sendAnnouncement(int fromId, String title, String comment, int fileId);
 
-    int saveAnnouncement(int id, int fromId, String title, String comment);
+    int saveAnnouncement(int id, int fromId, String title, String comment, int fileId);
 
     List<Announcement> listUnpublishedAnnouncement();
 

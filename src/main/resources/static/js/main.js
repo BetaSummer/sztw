@@ -129,58 +129,6 @@ $(function () {
     });
 });
 
-
-/* tabset  */
-/*******************************************/
-
-$(function () {
-   $("#form-view").click(function () {
-       $(".content-body").html("");
-       $(".loading").show();
-       $(".content-body").load("/applyClubForm/listAllForm",function () {
-           $(".loading").hide();
-       }) ;
-   });
-});
-
-
-// $(function () {
-//     $("#f-list").click(function () {
-//         // $(".content-body").html("");
-//         $("#f-flow").fadeIn();$("#manage-a-show").hide();$("#public-news-").hide();$("#president-management").hide();$("#club-finance").hide();$("#manage-personal").hide();
-//     });
-// });
-// $(function () {
-//     $("#manage-a").click(function () {
-//         // $(".content-body").html("");
-//         $("#manage-a-show").fadeIn();$("#f-flow").hide();$("#public-news-").hide();$("#president-management").hide();$("#club-finance").hide();$("#manage-personal").hide();
-//     });
-// });
-// $(function () {
-//     $("#-president-management").click(function () {
-//         // $(".content-body").html("");
-//         $("#president-management").fadeIn();$("#f-flow").hide();$("#public-news-").hide();$("#manage-a-show").hide();$("#club-finance").hide();$("#manage-personal").hide();
-//     });
-// });
-// $(function () {
-//     $("#public-news").click(function () {
-//         // $(".content-body").html("");
-//         $("#public-news-").fadeIn();$("#f-flow").hide();$("#manage-a-show").hide();$("#president-management").hide();$("#club-finance").hide();$("#manage-personal").hide();
-//     });
-// });
-// $(function () {
-//     $("#-club-finance").click(function () {
-//         // $(".content-body").html("");
-//         $("#club-finance").fadeIn();$("#public-news-").hide();$("#f-flow").hide();$("#manage-a-show").hide();$("#president-management").hide();$("#manage-personal").hide();
-//     });
-// });
-// $(function () {
-//     $("#-manage-personal").click(function () {
-//         // $(".content-body").html("");
-//         $("#manage-personal").fadeIn();$("#public-news-").hide();$("#f-flow").hide();$("#manage-a-show").hide();$("#president-management").hide();$("#club-finance").hide();
-//     });
-// });
-
 /* club */
 /********************************/
 function download() {
@@ -268,7 +216,7 @@ $(function () {
                 alert(textStatus);
             },
         });
-    })
+    });
 });
 
 /* footer */

@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import static betahouse.core.constant.CommonConstant.noPower;
+import static betahouse.core.constant.FolderNameConstant.FOLDER_CLUB;
 import static betahouse.core.constant.FormConstant.CLUB_ACTIVITY_NOT_APPROVE;
 
 /**
@@ -68,7 +69,7 @@ public class FormController extends BaseController {
         int fileIdDTO = 0;
         if(null!=file&&!"".equals(file.getOriginalFilename())){
             BaseFile baseFile = new BaseFile();
-            baseFile.upload(file,clubName,activityName,true);
+            baseFile.upload(file, FOLDER_CLUB+clubName, activityName, true);
             fileIdDTO = fileService.insert(file.getOriginalFilename(), activityName, clubName);
         }
         int idDTO = clubActivityFormService.commitForm(clubName, activityName,
@@ -125,7 +126,7 @@ public class FormController extends BaseController {
         ClubActivityForm clubActivityFormDTO = clubActivityFormService.getFormById(Integer.parseInt(formId));
         File fileDTO = fileService.getFileById(clubActivityFormDTO.getFileId());
         BaseFile baseFile = new BaseFile();
-        int statusDTO = baseFile.download(response, fileDTO.getFolder(), fileDTO.getAfterName());
+        int statusDTO = baseFile.download(response, FOLDER_CLUB+fileDTO.getFolder(), fileDTO.getAfterName());
         if(statusDTO==1){
             this.error(request, response, model, statusDTO);
         }

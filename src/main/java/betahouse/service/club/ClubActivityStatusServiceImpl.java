@@ -65,7 +65,7 @@ public class ClubActivityStatusServiceImpl implements ClubActivityStatusService 
             int idDTO = clubActivityFormDTO.getId();
             String activityNameDTO = clubActivityFormDTO.getActivityName();
             String[] arrDTO = new String[]{activityNameDTO, CLUB_ACTIVITY_STATUS_1[c.getStatus()],
-                    CLUB_ACTIVITY_STATUS_2[c.getApproveLv()-1]};
+                    c.getApproveLv()!=99?CLUB_ACTIVITY_STATUS_2[c.getApproveLv()-1]:CLUB_ACTIVITY_NOT_PASS};
             mapDTO.put(idDTO, arrDTO);
         }
         return mapDTO;
@@ -80,11 +80,12 @@ public class ClubActivityStatusServiceImpl implements ClubActivityStatusService 
             int idDTO = clubActivityFormDTO.getId();
             String activityNameDTO = clubActivityFormDTO.getActivityName();
             String[] arrDTO = new String[]{activityNameDTO, CLUB_ACTIVITY_STATUS_1[c.getStatus()],
-                    CLUB_ACTIVITY_STATUS_2[c.getApproveLv()-1]};
+                    c.getApproveLv()!=99?CLUB_ACTIVITY_STATUS_2[c.getApproveLv()-1]:CLUB_ACTIVITY_NOT_PASS};
             mapDTO.put(idDTO, arrDTO);
         }
         return mapDTO;
     }
+
     @Override
     public Map listStatusOverTypeAndLv(int type, int lv) {
         List<ClubActivityStatus> listDTO = clubActivityStatusMapper.selectOverTypeAndLv(type, lv);
@@ -94,7 +95,7 @@ public class ClubActivityStatusServiceImpl implements ClubActivityStatusService 
             int idDTO = clubActivityFormDTO.getId();
             String activityNameDTO = clubActivityFormDTO.getActivityName();
             String[] arrDTO = new String[]{activityNameDTO, CLUB_ACTIVITY_STATUS_1[c.getStatus()],
-                    CLUB_ACTIVITY_STATUS_2[c.getApproveLv()-1]};
+                    c.getApproveLv()!=99?CLUB_ACTIVITY_STATUS_2[c.getApproveLv()-1]:CLUB_ACTIVITY_NOT_PASS};
             mapDTO.put(idDTO, arrDTO);
         }
         return mapDTO;

@@ -19,7 +19,7 @@ public interface ClubActivityApproveMapper {
 
     List<ClubActivityApprove> selectByLv(Integer lv);
 
-    List<ClubActivityApprove> selectByLvAndFormId(@Param("lv") Integer lv, @Param("formId") Integer formId);
+    ClubActivityApprove selectByLvAndFormId(@Param("lv") Integer lv, @Param("formId") Integer formId);
 
     List<ClubActivityApprove> selectByFormId(Integer formId);
 }

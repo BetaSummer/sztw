@@ -204,3 +204,8 @@
     cursor: pointer;
     background: url("../img/X(on).png");
 }
+
+.manage-alert-btn:hover{
+    background-color: #77651c;
+    cursor: pointer;
+}

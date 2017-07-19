@@ -88,28 +88,63 @@ $(function () {
         var dataLength = $(".manage-alert-in").length;
         var dataTrArr = $(".manage-alert-in");
         var data = new Array(dataLength-1);
+        var dataString ="[";
         var comment = $("#comment").val();
         for(var i = 0;i<dataLength-1;i++){
             var id = dataTrArr[i].children[6].innerHTML;
             var change = dataTrArr[i].children[3].firstElementChild.value;
             var selfReserve = dataTrArr[i].children[4].firstElementChild.value;
             var money = dataTrArr[i].children[5].firstElementChild.value;
-            data[i]={
-                "id":id,
-                "change":change,
-                "selfReserve":selfReserve,
-                "money":money
-            }
+            dataString += "{'id':"+id+",'change':"+change+",'selfReserve':"+selfReserve+",'money':"+money+"},";
         }
-        dataAll = {
-            "data":data,
+        dataString =dataString.substring(0,dataString.length-1);
+        dataString += "]";
+        var dataAll = {
+            "data":dataString,
             "comment":comment
-        }
+        };
         console.log(data);
         $.ajax({
             type: "GET",
             url: "/finance/changClubFinance",
             data: dataAll,
+            dataType:"json",
+            success: function(r){
+                alert(r.message);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            }
+        });
+    });
+});
+
+$(function () {
+    $("#user-btn").click(function () {
+        var dataLength = $(".manage-alert-in").length;
+        var dataTrArr = $(".manage-alert-in");
+        var data = new Array(dataLength-1);
+        var dataString ="[";
+        for(var i = 0;i<dataLength-1;i++){
+            var id = dataTrArr[i].children[0].innerHTML;
+            var password = dataTrArr[i].children[3].firstElementChild.value;
+            password = password===""?"-1":password;
+            var tel = dataTrArr[i].children[4].firstElementChild.value;
+            var eMail = dataTrArr[i].children[5].firstElementChild.value;
+            dataString += "{'id':"+id+",'password':"+password+",'tel':"+tel+",'eMail':"+eMail+"},";
+        }
+        dataString =dataString.substring(0,dataString.length-1);
+        dataString += "]";
+        console.log(data);
+        var data = {
+            "data": dataString
+        }
+        $.ajax({
+            type: "GET",
+            url: "/manage/updateUserInfo",
+            data: data,
             dataType:"json",
             success: function(r){
                 alert(r.message);

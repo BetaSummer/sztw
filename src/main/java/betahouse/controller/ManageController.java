@@ -1,15 +1,20 @@
 package betahouse.controller;
 
 import betahouse.controller.Base.BaseController;
+import betahouse.model.VO.UserInformation;
 import betahouse.service.club.ClubService;
 import betahouse.service.user.UserInfoService;
+import betahouse.service.user.UserService;
+import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * Created by x1654 on 2017/7/18.
@@ -20,8 +25,12 @@ public class ManageController extends BaseController{
 
     @Autowired
     private UserInfoService userInfoService;
+
     @Autowired
     private ClubService clubService;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/userManage")
     public String userManage(HttpServletRequest request, HttpServletResponse response, Model model){
@@ -38,5 +47,21 @@ public class ManageController extends BaseController{
     public String clubManage(HttpServletRequest request, HttpServletResponse response, Model model){
         model.addAttribute("club", clubService.listClubAndChief());
         return "manage/clubManage";
+    }
+
+    @RequestMapping(value = "/updateUserInfo")
+    public String updateUserInfo(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam String data){
+        List<UserInformation> listDTO = JSON.parseArray(data, UserInformation.class);
+        for(UserInformation u: listDTO){
+            int idDTO = u.getId();
+            String passwordDTO = u.getPassword();
+            String tel = u.getTel();
+            String eMail = u.geteMail();
+            userInfoService.updateUserInfoById(idDTO, "", "", eMail, tel);
+            if(!"-1".equals(passwordDTO)){
+                userService.updateUserById(idDTO, "", passwordDTO);
+            }
+        }
+        return ajaxReturn(response,null, "修改成功", 0);
     }
 }

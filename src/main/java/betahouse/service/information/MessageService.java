@@ -9,6 +9,8 @@ public interface MessageService {
 
     Message getMessageById(int id);
 
-    int sendMessage(int userId, String title, String comment, String toId);
+    int sendMessage(int userId, String title, String comment, String toId, int fileId);
+
+    int saveMessage(int id, int userId, String title, String comment, String toId, int fileId);
 
 }

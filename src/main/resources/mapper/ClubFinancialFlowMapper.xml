@@ -5,6 +5,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="club_id" jdbcType="INTEGER" property="clubId" />
     <result column="activity_id" jdbcType="INTEGER" property="activityId" />
+    <result column="handler" jdbcType="INTEGER" property="handler" />
     <result column="comment" jdbcType="VARCHAR" property="comment" />
     <result column="income" jdbcType="INTEGER" property="income" />
     <result column="cost" jdbcType="INTEGER" property="cost" />
@@ -16,16 +17,17 @@
   </delete>
   <insert id="insert" parameterType="betahouse.model.ClubFinancialFlow">
     insert into b_club_financial_flow (id, club_id, activity_id, 
-      comment, income, cost, 
-      date)
+      handler, comment, income, 
+      cost, date)
     values (#{id,jdbcType=INTEGER}, #{clubId,jdbcType=INTEGER}, #{activityId,jdbcType=INTEGER}, 
-      #{comment,jdbcType=VARCHAR}, #{income,jdbcType=INTEGER}, #{cost,jdbcType=INTEGER}, 
-      #{date,jdbcType=VARCHAR})
+      #{handler,jdbcType=INTEGER}, #{comment,jdbcType=VARCHAR}, #{income,jdbcType=INTEGER}, 
+      #{cost,jdbcType=INTEGER}, #{date,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.ClubFinancialFlow">
     update b_club_financial_flow
     set club_id = #{clubId,jdbcType=INTEGER},
       activity_id = #{activityId,jdbcType=INTEGER},
+      handler = #{handler,jdbcType=INTEGER},
       comment = #{comment,jdbcType=VARCHAR},
       income = #{income,jdbcType=INTEGER},
       cost = #{cost,jdbcType=INTEGER},
@@ -33,22 +35,22 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, club_id, activity_id, comment, income, cost, date
+    select id, club_id, activity_id, handler, comment, income, cost, date
     from b_club_financial_flow
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id, club_id, activity_id, comment, income, cost, date
+    select id, club_id, activity_id, handler, comment, income, cost, date
     from b_club_financial_flow
   </select>
   <select id="selectByClubId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, club_id, activity_id, comment, income, cost, date
+    select id, club_id, activity_id, handler, comment, income, cost, date
     from b_club_financial_flow
     where club_id = #{clubId,jdbcType=INTEGER}
   </select>
   <select id="selectByFormId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, club_id, activity_id, comment, income, cost, date
+    select id, club_id, activity_id, handler, comment, income, cost, date
     from b_club_financial_flow
-    where form_id = #{formId,jdbcType=INTEGER}
+    where activity_id = #{activityId,jdbcType=INTEGER}
   </select>
 </mapper>

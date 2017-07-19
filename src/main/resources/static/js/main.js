@@ -33,6 +33,16 @@ $(function () {
         });
     });
 });
+
+$(function () {
+    $("#form-view").click(function () {
+        $(".content-body").html("");
+        $(".loading").show();
+        $(".content-body").load("/applyClubForm/listAllForm",function () {
+            $(".loading").hide();
+        }) ;
+    });
+});
 /* login */
 $(function () {
    $("#login-btn").click(function () {

@@ -45,6 +45,30 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
+    public int updateMoneyById(int id, int change, int selfReserve, int money) {
+        Club clubDTO = clubMapper.selectByPrimaryKey(id);
+        if(-1==change){
+            money = -money;
+        }
+        if(1==selfReserve){
+            int reserveMoneyDTO = clubDTO.getReserveMoney()+money;
+            if(reserveMoneyDTO<0){
+                return -1;
+            }
+            clubDTO.setReserveMoney(reserveMoneyDTO);
+            return clubMapper.updateByPrimaryKey(clubDTO);
+        }else if(2==selfReserve){
+            int selfMoneyDTO = clubDTO.getSelfMoney()+money;
+            if(selfMoneyDTO<0){
+                return -1;
+            }
+            clubDTO.setSelfMoney(selfMoneyDTO);
+            return clubMapper.updateByPrimaryKey(clubDTO);
+        }
+        return -1;
+    }
+
+    @Override
     public int updateMoneyById(int id, int applySelfMoney, int applyReserveMoney) {
         Club clubDTO = clubMapper.selectByPrimaryKey(id);
         int selfMoneyDTO = clubDTO.getSelfMoney()-applySelfMoney;

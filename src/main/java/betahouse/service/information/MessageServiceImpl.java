@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 
 /**
@@ -25,7 +24,7 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public int sendMessage(int userId, String title, String comment, String toId) {
+    public int sendMessage(int userId, String title, String comment, String toId, int fileId) {
         Message messageDTO = new Message();
         messageDTO.setFromId(userId);
         messageDTO.setTitle(title);
@@ -34,6 +33,27 @@ public class MessageServiceImpl implements MessageService {
         Date dateDTO = new Date();
         SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy/MM/dd");
         messageDTO.setDate(sdfDTO.format(dateDTO));
+        messageDTO.setStatus(1);
+        messageDTO.setFileId(fileId);
         return messageMapper.insert(messageDTO);
+    }
+
+    @Override
+    public int saveMessage(int id, int userId, String title, String comment, String toId, int fileId) {
+        Message messageDTO = new Message();
+        messageDTO.setFromId(userId);
+        messageDTO.setTitle(title);
+        messageDTO.setComment(comment);
+        messageDTO.setToId(toId);
+        Date dateDTO = new Date();
+        SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy/MM/dd");
+        messageDTO.setDate(sdfDTO.format(dateDTO));
+        messageDTO.setStatus(0);
+        messageDTO.setFileId(fileId);
+        if(id==0){
+            return messageMapper.insert(messageDTO);
+        }
+        messageDTO.setId(id);
+        return messageMapper.updateByPrimaryKey(messageDTO);
     }
 }

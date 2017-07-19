@@ -81,3 +81,31 @@ $(function () {
        $(".manage-alert").hide(200);
     });
 });
+
+//finance
+$(function () {
+    $("#finance-btn").click(function () {
+        var id = $(".manage-alert-in td:nth-child(1)").attr("id");
+        var data = {
+            "id": id,
+            "change": $("#change").find("option:selected").val(),
+            "selfReserve": $("#selfReserve").find("option:selected").val(),
+            "money": $("#moneyChange").val(),
+            "comment": $("#comment").val()
+        };
+        $.ajax({
+            type: "GET",
+            url: "/finance/changClubFinance",
+            data: data,
+            dataType:"json",
+            success: function(r){
+                alert(r.message);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            }
+        });
+    });
+});

@@ -7,6 +7,8 @@ public class ClubFinancialFlow {
 
     private Integer activityId;
 
+    private Integer handler;
+
     private String comment;
 
     private Integer income;
@@ -37,6 +39,14 @@ public class ClubFinancialFlow {
 
     public void setActivityId(Integer activityId) {
         this.activityId = activityId;
+    }
+
+    public Integer getHandler() {
+        return handler;
+    }
+
+    public void setHandler(Integer handler) {
+        this.handler = handler;
     }
 
     public String getComment() {

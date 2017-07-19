@@ -1,6 +1,7 @@
 package betahouse.service.financial;
 
 import betahouse.model.ClubFinancialFlow;
+import betahouse.model.VO.ClubFinance;
 
 import java.util.List;
 import java.util.Map;
@@ -12,7 +13,7 @@ public interface ClubFinancialFlowService {
 
     List<ClubFinancialFlow> listAll();
 
-    List<String[]> listClubFinancialFlowByClubId(int clubId);
+    List<ClubFinance> listClubFinancialFlowByClubId(int clubId);
 
     Map<String, int[]> listAllClubFinance();
 

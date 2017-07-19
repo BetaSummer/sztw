@@ -65,7 +65,7 @@ public class ClubActivityApproveServiceImpl implements ClubActivityApproveServic
             }
             clubActivityStatusService.updateStatusByFormId(formId, 0, approveLvDTO+1, null);
         }else if(isApprove==0){
-            clubActivityStatusService.updateStatusByFormId(formId, 2, approveLvDTO, null);
+            clubActivityStatusService.updateStatusByFormId(formId, 2, 99, null);
         }
         String approveFormDTO = formManagerService.getFormManagerByApprover(userInfo.getId()).getApproverForm();
         int lvDTO = JSON.parseArray(approveFormDTO, Integer.class).get(0);
@@ -84,7 +84,7 @@ public class ClubActivityApproveServiceImpl implements ClubActivityApproveServic
     }
 
     @Override
-    public List<ClubActivityApprove> listApproveByLvAndFormId(int lv, int formId) {
+    public ClubActivityApprove getApproveByLvAndFormId(int lv, int formId) {
         return clubActivityApproveMapper.selectByLvAndFormId(lv, formId);
     }
 

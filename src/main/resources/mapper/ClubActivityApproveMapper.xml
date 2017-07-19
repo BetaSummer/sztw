@@ -59,11 +59,11 @@
     select id, approve_user_id, is_approve, form_id, comment, lv
     from b_approve_club_activity
     where lv = #{lv,jdbcType=INTEGER}
-    and form_id = #{form_id,jdbcType=INTEGER}
+    and form_id = #{formId,jdbcType=INTEGER}
   </select>
   <select id="selectByFormId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select id, approve_user_id, is_approve, form_id, comment, lv
     from b_approve_club_activity
-    where form_id = #{form_id,jdbcType=INTEGER}
+    where form_id = #{formId,jdbcType=INTEGER}
   </select>
 </mapper>

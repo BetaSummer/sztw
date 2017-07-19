@@ -1,10 +1,9 @@
 package betahouse.service.financial;
 
-import betahouse.mapper.ClubActivityFormMapper;
-import betahouse.mapper.ClubFinancialFlowMapper;
-import betahouse.mapper.ClubMapper;
+import betahouse.mapper.*;
 import betahouse.model.Club;
 import betahouse.model.ClubFinancialFlow;
+import betahouse.model.VO.ClubFinance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,22 +25,32 @@ public class ClubFinancialFlowServiceImpl implements ClubFinancialFlowService{
     @Autowired
     private ClubActivityFormMapper clubActivityFormMapper;
 
+    @Autowired
+    private ClubActivityApproveMapper clubActivityApproveMapper;
+
+    @Autowired
+    private UserInfoMapper userInfoMapper;
+
     @Override
     public List<ClubFinancialFlow> listAll() {
         return clubFinancialFlowMapper.selectAll();
     }
 
     @Override
-    public List<String[]> listClubFinancialFlowByClubId(int clubId) {
-        List<String[]> listDTO = new ArrayList<>();
+    public List<ClubFinance> listClubFinancialFlowByClubId(int clubId) {
+        List<ClubFinance> listDTO = new ArrayList<>();
         List<ClubFinancialFlow> listDTO2 = clubFinancialFlowMapper.selectByClubId(clubId);
-        for(ClubFinancialFlow c: listDTO2){
-            String idDTO = String.valueOf(c.getId());
-            String clubNameDTO = clubMapper.selectByPrimaryKey(c.getClubId()).getClubName();
-            String activityNameDTO = clubActivityFormMapper.selectByPrimaryKey(c.getActivityId()).getActivityName();
-            String incomeDTO = String.valueOf(c.getIncome());
-            String costDTO = String.valueOf(c.getCost());
-            listDTO.add(new String[]{idDTO, clubNameDTO, activityNameDTO, c.getComment(), incomeDTO, costDTO, c.getDate()});
+        for(int i=0;i<listDTO2.size();i++){
+            ClubFinance clubFinanceDTO = new ClubFinance();
+            clubFinanceDTO.setId(i+1);
+            clubFinanceDTO.setComment(listDTO2.get(i).getComment());
+            int userIdDTO = clubActivityApproveMapper.selectByLvAndFormId(2, listDTO2.get(i).getActivityId()).getApproveUserId();
+            clubFinanceDTO.setUserName(userInfoMapper.selectByPrimaryKey(userIdDTO).getRealName());
+            clubFinanceDTO.setIncome(listDTO2.get(i).getIncome());
+            clubFinanceDTO.setCost(listDTO2.get(i).getCost());
+            clubFinanceDTO.setPayments(listDTO2.get(i).getIncome()-listDTO2.get(i).getCost());
+            clubFinanceDTO.setDate(listDTO2.get(i).getDate());
+            listDTO.add(clubFinanceDTO);
         }
         return listDTO;
     }

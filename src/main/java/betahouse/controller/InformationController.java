@@ -40,14 +40,14 @@ public class InformationController extends BaseController{
     @RequestMapping(value = "/publishAnnouncement", method = RequestMethod.POST)
     public String publishAnnouncement(HttpServletRequest request, HttpServletResponse response, Model model,
                                       @RequestParam String title, @RequestParam String comment){
-        announcementService.sendAnnouncement(getCurrentUser(request).getId(), title, comment);
+        announcementService.sendAnnouncement(getCurrentUser(request).getId(), title, comment, 0);
         return ajaxReturn(response, null, PUBLISH_SUCCESS, 0);
     }
 
     @RequestMapping(value = "/saveAnnouncement", method = RequestMethod.POST)
     public String saveAnnouncement(HttpServletRequest request, HttpServletResponse response, Model model,
                                    @RequestParam int id, @RequestParam String title, @RequestParam String comment){
-        announcementService.saveAnnouncement(id, getCurrentUser(request).getId(), title, comment);
+        announcementService.saveAnnouncement(id, getCurrentUser(request).getId(), title, comment, 0);
         return ajaxReturn(response, null, SAVE_SUCCESS, 0);
     }
 

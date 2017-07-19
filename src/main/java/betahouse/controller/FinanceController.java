@@ -3,9 +3,7 @@ package betahouse.controller;
 import betahouse.controller.Base.BaseController;
 import betahouse.core.Base.BaseFile;
 import betahouse.core.office.HSSF;
-import betahouse.mapper.ClubMapper;
 import betahouse.model.Club;
-import betahouse.model.ClubFinancialFlow;
 import betahouse.model.VO.ClubFinance;
 import betahouse.service.club.ClubService;
 import betahouse.service.financial.ClubFinancialFlowService;
@@ -20,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.util.List;
 
+import static betahouse.core.constant.FinanceConstant.CLUB_FINANCE_CHANGE_MESSAGE;
 import static betahouse.core.constant.FinanceConstant.CLUB_FINANCE_FIELD_NAME;
 import static betahouse.core.constant.FolderNameConstant.FOLDER_OFFICE_EXCEL;
 import static betahouse.core.constant.FolderNameConstant.FOLDER_OFFICE_EXCEL_SUFFIX;
@@ -64,5 +63,22 @@ public class FinanceController extends BaseController{
         }
         baseFile.delete(FOLDER_OFFICE_EXCEL+clubDTO.getClubName(),
                 clubDTO.getClubName()+FOLDER_OFFICE_EXCEL_SUFFIX);
+    }
+
+    @RequestMapping(value = "/changClubFinance")
+    public String changClubFinance(HttpServletRequest request, HttpServletResponse response, Model model,
+                                   @RequestParam String id, @RequestParam String change,@RequestParam String selfReserve,
+                                   @RequestParam String money, @RequestParam String comment){
+        int idDTO = Integer.parseInt(id);
+        int changeDTO = Integer.parseInt(change);
+        int selfReserveDTO = Integer.parseInt(selfReserve);
+        int moneyDTO = Integer.parseInt(money);
+        int status = clubService.updateMoneyById(idDTO, changeDTO, selfReserveDTO, moneyDTO);
+        if(-1==status){
+            return ajaxReturn(response, null, CLUB_FINANCE_CHANGE_MESSAGE[1], 1);
+        }
+        int handlerDTO = getCurrentUser(request).getId();
+        clubFinancialFlowService.insert(idDTO, comment, handlerDTO, changeDTO, moneyDTO);
+        return ajaxReturn(response, null, CLUB_FINANCE_CHANGE_MESSAGE[0], 0);
     }
 }

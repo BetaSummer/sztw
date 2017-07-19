@@ -25,7 +25,7 @@ public class AnnouncementServiceImpl implements AnnouncementService{
     }
 
     @Override
-    public int sendAnnouncement(int fromId, String title, String comment) {
+    public int sendAnnouncement(int fromId, String title, String comment, int fileId) {
         Announcement announcementDTO = new Announcement();
         announcementDTO.setFromId(fromId);
         announcementDTO.setTitle(title);
@@ -38,21 +38,19 @@ public class AnnouncementServiceImpl implements AnnouncementService{
     }
 
     @Override
-    public int saveAnnouncement(int id, int fromId, String title, String comment) {
+    public int saveAnnouncement(int id, int fromId, String title, String comment, int fileId) {
         Announcement announcementDTO = new Announcement();
+        announcementDTO.setFromId(fromId);
+        announcementDTO.setTitle(title);
+        announcementDTO.setComment(comment);
+        Date dateDTO = new Date();
+        SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy/MM/dd");
+        announcementDTO.setDate(sdfDTO.format(dateDTO));
+        announcementDTO.setStatus(0);
         if(id==0){
-            announcementDTO.setFromId(fromId);
-            announcementDTO.setTitle(title);
-            announcementDTO.setComment(comment);
-            Date dateDTO = new Date();
-            SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy/MM/dd");
-            announcementDTO.setDate(sdfDTO.format(dateDTO));
-            announcementDTO.setStatus(0);
             return announcementMapper.insert(announcementDTO);
         }
         announcementDTO.setId(id);
-        announcementDTO.setTitle(title);
-        announcementDTO.setComment(comment);
         return announcementMapper.updateByPrimaryKey(announcementDTO);
     }
 

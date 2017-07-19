@@ -21,4 +21,6 @@ public interface ClubFinancialFlowService {
 
     int insert(int clubId, int formId, int applySelfMoney, int applyReserveMoney,  int income, String comment);
 
+    int insert(int clubId, String comment, int handler, int change, int money);
+
 }

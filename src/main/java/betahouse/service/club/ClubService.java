@@ -21,4 +21,6 @@ public interface ClubService {
 
     Map<String, UserInfo> listClubAndChief();
 
+    int updateMoneyById(int id, int change, int selfReserve, int money);
+
 }

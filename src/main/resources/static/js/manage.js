@@ -7,7 +7,7 @@
 function writeInformation(index) {
     if(index!=0){
         var trTemp = $('#fin-table tr:eq(' + index + ')');
-        $(".manage-alert-title").after("<tr class='manage-alert-in delete-tr'><td>"+trTemp.children('td').eq(1).html()+"</td><td>"+trTemp.children('td').eq(2).html()+"</td>><td>"+trTemp.children('td').eq(3).html()+"</td><td> <select> <option value='1'>增加</option> <option value='-1'>减少</option> </select> </td> <td> <select> <option value='1'>预留</option> <option value='2'>自留</option> </select> </td> <td><input type='text' name='moneychange' placeholder='人民币（元）'/></td></tr>")
+        $(".manage-alert-title").after("<tr class='manage-alert-in delete-tr'><td id='"+trTemp.children('td').eq(0).attr("id")+"'>"+trTemp.children('td').eq(1).html()+"</td><td>"+trTemp.children('td').eq(2).html()+"</td>><td>"+trTemp.children('td').eq(3).html()+"</td><td> <select id='change'> <option value='1'>增加</option> <option value='-1'>减少</option> </select> </td> <td> <select id='selfReserve'> <option value='1'>预留</option> <option value='2'>自留</option> </select> </td> <td><input id='moneyChange' type='text' name='moneychange' placeholder='人民币（元）'/></td></tr>")
 
     }
 }
@@ -53,5 +53,33 @@ $(function () {
 $(function () {
     $(".manage-out").click(function () {
        $(".manage-alert").hide(200);
+    });
+});
+
+//finance
+$(function () {
+    $("#finance-btn").click(function () {
+        var id = $(".manage-alert-in td:nth-child(1)").attr("id");
+        var data = {
+            "id": id,
+            "change": $("#change").find("option:selected").val(),
+            "selfReserve": $("#selfReserve").find("option:selected").val(),
+            "money": $("#moneyChange").val(),
+            "comment": $("#comment").val()
+        };
+        $.ajax({
+            type: "GET",
+            url: "/finance/changClubFinance",
+            data: data,
+            dataType:"json",
+            success: function(r){
+                alert(r.message);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            }
+        });
     });
 });

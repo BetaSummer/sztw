@@ -208,6 +208,13 @@
     cursor: pointer;
     background: url("../img/X(on).png");
 }
+
+
+.manage-alert-btn:hover{
+    background-color: #77651c;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 768px){
     .manage-header,.manage-main,.manage-alert{
         width: 95%;
@@ -235,3 +242,5 @@
         width: 75px;
     }
 }
+
+

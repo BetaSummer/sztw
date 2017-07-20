@@ -88,19 +88,6 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "/userInfo")
     public String userInfo(HttpServletRequest request, HttpServletResponse response, Model model){
-//        List<UserInfo> userInfosListDTO = userInfoService.listAllUserInfo();
-//        List<Club> clubsListDTO = clubService.listAll();
-//        Club[] clubsDTO = new Club[clubsListDTO.size()];
-//        UserInfo[] userInfosDTO = new UserInfo[clubsListDTO.size()];
-//        for(int i=0;i<clubsListDTO.size();i++) {
-//            UserInfo userInfoDTO = userInfoService.getUserInfoById(clubsListDTO.get(i).getUserId());
-//            clubsDTO[i] = clubsListDTO.get(i);
-//            userInfosDTO[i] = userInfoDTO;
-//        }
-//        model.addAttribute("userInfo", userInfosListDTO);
-//        model.addAttribute("club", clubsDTO);
-//        model.addAttribute("chief", userInfosDTO);
-//        model.addAttribute("power", formTypeService.listAll());
         model.addAttribute("user", getCurrentUser(request));
         return "user/userInfo";
     }
@@ -120,7 +107,7 @@ public class UserController extends BaseController {
         return ajaxReturn(response, null, USER_UPDATE_POWER_SUCCESS, 0);
     }
 
-    @RequestMapping(value = "/getUserInfoById")
+    @RequestMapping(value = "/updateUserInfo")
     public String getUserInfoById(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam int id){
         return ajaxReturn(response, userInfoService.getUserInfoById(id), "", 0);
     }

@@ -5,6 +5,7 @@ import betahouse.core.Base.BaseFile;
 import betahouse.core.office.HSSF;
 import betahouse.model.User;
 import betahouse.service.form.FormManagerService;
+import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -77,6 +78,13 @@ public class DemoController extends BaseController {
     @RequestMapping(value = "/wangEditor")
     public String wangEditor(HttpServletRequest request, HttpServletResponse response, Model model){
         return "demo/wangEditor";
+    }
+
+    @RequestMapping(value = "/test")
+    public String test(HttpServletRequest request, HttpServletResponse response, Model model){
+        String s = "[{'id':1},{'id':1}]";
+        List list = JSON.parseArray(s);
+        return ajaxReturn(response, list);
     }
 
 }

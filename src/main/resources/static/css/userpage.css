@@ -59,31 +59,36 @@ body{
   -moz-box-shadow: 0 1px 1px #5c5a5d;
   box-shadow: 0 1px 1px #5c5a5d; }
 
-
+#bo-re{text-align: center;}
 .register{
   -webkit-box-shadow: 0 1px 3px #5c5a5d;
   -moz-box-shadow: 0 1px 3px #5c5a5d;
   box-shadow: 0 1px 3px #5c5a5d;
-  height: 440px;
-  width: 850px;
-  margin: 25px;
-  position: absolute;
-  left: 10%;
+  min-height: 400px;
+  width: 64%;
+  padding: 2%;
+  background: rgba(255,255,255,0.7);
+  border-radius: 5px;
+  margin: 50px auto;
 }
 .register label, .register input {
   margin-bottom: 20px;
-  margin-top: 20px; }
+  margin-top: 20px;
+  background: none;}
 .register label {
   color: #5c5a5d;
   text-align: center;
   display: inline-block;
-  width: 90px;
-  height: 30px;
-  margin: 0 10px; }
+  width: 10%;
+  font-size: 1.2vw;
+  height: 30px;  }
 .register input[type='submit'], .register input[type='button'] {
   outline: none;
-  width: 150px;
-  height: 30px;
+  width: 20%;
+  margin-left: auto !important;
+  height: 35px;
+  border-radius: 5px;
+  background: #67BFE4;
   border: solid #5c5a5d 1px;
   color: #5c5a5d; }
 .register input[type='submit']:hover, .register input[type='button']:hover {
@@ -91,23 +96,35 @@ body{
   color: #FFF;
   background-color: #5c5a5d; }
 .register input[type='text'] {
-  width: 300px;
+  width: 35%;
   height: 30px;
-  border: solid #5c5a5d 1px;
+  outline: none;
+  border-bottom: solid #5c5a5d 2px;
+  border-left: none;
+  border-top: none;
+  border-right: none;
   color: #5c5a5d; }
 .register input[type='password'] {
-  width: 300px;
+  width: 35%;
   height: 35px;
-  border: solid #5c5a5d 1px;
-  color: #5c5a5d; }
+  outline: none;
+  color: #5c5a5d;
+  border-bottom: solid #5c5a5d 2px;
+  border-left: none;
+  border-top: none;
+  border-right: none;}
 .register input[type='E-mail'] {
-  width: 300px;
+  width: 35%;
   height: 30px;
-  border: solid #5c5a5d 1px;
+  outline: none;
+  border-bottom: solid #5c5a5d 2px;
+  border-left: none;
+  border-top: none;
+  border-right: none;
   color: #5c5a5d; }
 .register h1 {
   color: #5c5a5d;
-  margin: 10px 0 10px 40px; }
+  margin: 0 0 20px 0; }
 .register hr {
   -webkit-box-shadow: 0 1px 1px #5c5a5d;
   -moz-box-shadow: 0 1px 1px #5c5a5d;
@@ -141,6 +158,9 @@ body{
     right: 3%;
     width: 35%;
   }
+}
+@media screen and (max-width: 780px){
+  .register input[type='text'],.register input[type='password'],.register input[type='E-mail']{width: 75%;margin: 2%}
 }
 @media screen and (max-width: 767px){
   .login{
@@ -182,4 +202,10 @@ body{
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
   }
+}
+@media screen and (max-width: 450px) and (max-width: 387px){
+  .register{width: 90%;
+    margin-top: 10px;  }
+  .register label{margin-left: 0}
+  .register h1{margin: 10px 0 10px 0px; }
 }

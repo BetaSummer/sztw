@@ -36,4 +36,15 @@ public class UserInfoServiceImpl implements UserInfoService{
     public List<UserInfo> listAllUserInfo() {
         return userInfoMapper.selectAll();
     }
+
+    @Override
+    public int updateUserInfoById(int id, String realName, String schoolId, String eMail, String tel) {
+        UserInfo userInfoDTO = new UserInfo();
+        userInfoDTO.setId(id);
+        userInfoDTO.setRealName(realName);
+        userInfoDTO.setSchoolId(schoolId);
+        userInfoDTO.seteMail(eMail);
+        userInfoDTO.setTel(tel);
+        return userInfoMapper.updateByPrimaryKey(userInfoDTO);
+    }
 }

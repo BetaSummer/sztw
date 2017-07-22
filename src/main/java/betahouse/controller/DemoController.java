@@ -82,8 +82,9 @@ public class DemoController extends BaseController {
 
     @RequestMapping(value = "/test")
     public String test(HttpServletRequest request, HttpServletResponse response, Model model){
-        String s = "[{'id':1},{'id':1}]";
-        List list = JSON.parseArray(s);
+        String s = "[{'id':1},{'id':1},{'id':1}]";
+        String t = "[{'id':6,'password':'1','tel':'1590000000','eMail':'11111@qq.com'},{'id':5,'password':'1','tel':'22222','eMail':'2222'},{'id':3,'password':'1','tel':'0','eMail':'600000'},{'id':2,'password':'1','tel':'22222','eMail':'22222'},{'id':1,'password':'1','tel':'33333','eMail':'11111'}]";
+        List list = JSON.parseArray(t);
         return ajaxReturn(response, list);
     }
 

@@ -3,6 +3,7 @@
 
 
 <html xmlns:th="http://www.w3.org/1999/xhtml">
+    <link rel="stylesheet" href="/css/wangEditor.min.css"/>
     <div class="manage-header">
         <button>重置</button>
         <button>发布</button>
@@ -16,6 +17,15 @@
         <div class="manage-form">
             <label>主题：</label>
             <input type="text" name="message-title" placeholder="请填写主题"/>
+            <div id="contentin" class="contentin"></div>
         </div>
     </div>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/wangEditor.min.js"></script>
+<script>
+    $(function () {
+        var editor = new wangEditor('#contentin');
+        editor.create();
+    });
+</script>
 </html>

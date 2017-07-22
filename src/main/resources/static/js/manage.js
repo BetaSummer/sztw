@@ -7,7 +7,9 @@
 function writeInformation(index) {
     if(index){
         var trTemp = $('#fin-table tr:eq(' + index + ')');
-        $(".manage-alert-title").after("<tr class='manage-alert-in delete-tr'><td>"+trTemp.children('td').eq(1).html()+"</td><td>"+trTemp.children('td').eq(2).html()+"</td><td>"+trTemp.children('td').eq(3).html()+"</td><td> <select> <option value='1'>增加</option> <option value='-1'>减少</option> </select> </td> <td> <select> <option value='1'>预留</option> <option value='2'>自留</option> </select> </td> <td><input type='text' name='moneychange' placeholder='人民币（元）'/></td><td style='display: none;'>"+trTemp.children('td').eq(4).html()+"</td></tr>");
+
+        $(".manage-alert-title").after("<tr class='manage-alert-in delete-tr'><td>"+trTemp.children('td').eq(1).html()+"</td><td>"+trTemp.children('td').eq(2).html()+"</td><td>"+trTemp.children('td').eq(3).html()+"</td><td> <select> <option value='1'>增加</option> <option value='-1'>减少</option> </select> </td> <td> <select> <option value='1'>预留</option> <option value='2'>自留</option> </select> </td> <td><input type='text' name='moneychange' placeholder='（元）'/></td><td style='display: none;'>"+trTemp.children('td').eq(4).html()+"</td></tr>");
+
     }
 }
 $(function () {
@@ -74,6 +76,9 @@ $(function () {
         }
     });
 });
+
+
+
 
 //out
 $(function () {

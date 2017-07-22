@@ -193,6 +193,10 @@
     background-color: #a28e3d;
     color: #ffffff;
 }
+.manage-alert-btn:hover{
+    background-color: #77651c;
+    cursor: pointer;
+}
 .manage-out{
     width: 18px;
     height: 18px;
@@ -205,7 +209,38 @@
     background: url("../img/X(on).png");
 }
 
+
 .manage-alert-btn:hover{
     background-color: #77651c;
     cursor: pointer;
 }
+
+@media screen and (max-width: 768px){
+    .manage-header,.manage-main,.manage-alert{
+        width: 95%;
+    }
+    .manage-main{
+        margin: 0;
+    }
+    .manage-alert{
+        position: absolute;
+        left: 2%;
+    }
+    td,input{
+        font-size: 10px;
+    }
+    select{
+        font-size: 7px;
+    }
+    .manage-header button{
+        width: 80px;
+        height: 25px;
+        line-height: 25px;
+        font-size: 10px;
+    }
+    .manage-btn{
+        width: 75px;
+    }
+}
+
+

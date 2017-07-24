@@ -1,7 +1,7 @@
 package betahouse.controller;
 
 import betahouse.controller.Base.BaseController;
-import betahouse.model.VO.UserInformation;
+import betahouse.model.VO.UserInformationVO;
 import betahouse.service.club.ClubService;
 import betahouse.service.user.UserInfoService;
 import betahouse.service.user.UserService;
@@ -51,8 +51,8 @@ public class ManageController extends BaseController{
 
     @RequestMapping(value = "/updateUserInfo")
     public String updateUserInfo(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam String data){
-        List<UserInformation> listDTO = JSON.parseArray(data, UserInformation.class);
-        for(UserInformation u: listDTO){
+        List<UserInformationVO> listDTO = JSON.parseArray(data, UserInformationVO.class);
+        for(UserInformationVO u: listDTO){
             int idDTO = u.getId();
             String passwordDTO = u.getPassword();
             String tel = u.getTel();

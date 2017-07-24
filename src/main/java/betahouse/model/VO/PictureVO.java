@@ -1,6 +1,6 @@
 package betahouse.model.VO;
 
-public class Picture {
+public class PictureVO {
 
     private int error;
 

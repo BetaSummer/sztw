@@ -33,6 +33,11 @@ public class FormManagerServiceImpl implements FormManagerService{
     public int updateFormManagerByApprover(int approver, int formType, int lv) {
         FormManager formManagerDTO = formManagerMapper.selectByApprover(approver);
         List<Integer> listDTO = JSON.parseArray(formManagerDTO.getApproverForm(), Integer.class);
+        if(listDTO.size()<formType){
+            for(int i=listDTO.size();i<formType-1;i++){
+                listDTO.add(i, -1);
+            }
+        }
         listDTO.add(formType-1, lv);
         String strDTO = JSON.toJSONString(listDTO);
         formManagerDTO.setApproverForm(strDTO);

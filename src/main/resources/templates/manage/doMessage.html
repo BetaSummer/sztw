@@ -4,9 +4,14 @@
 
 <html xmlns:th="http://www.w3.org/1999/xhtml">
     <link rel="stylesheet" href="/css/wangEditor.min.css"/>
+    <style type="text/css">
+        .contentin {
+            margin-top: 20px;
+        }
+    </style>
     <div class="manage-header">
         <button>重置</button>
-        <button>发布</button>
+        <button id="publish">发布</button>
     </div>
     <div class="manage-main">
         <div class="manage-form">
@@ -16,16 +21,51 @@
         </div>
         <div class="manage-form">
             <label>主题：</label>
-            <input type="text" name="message-title" placeholder="请填写主题"/>
+            <input id="title" type="text" name="message-title" placeholder="请填写主题"/>
             <div id="contentin" class="contentin"></div>
         </div>
     </div>
     <script src="/js/jquery.js"></script>
+    <!--<script src="js/xss.js"></script>-->
     <script src="/js/wangEditor.min.js"></script>
-<script>
-    $(function () {
-        var editor = new wangEditor('#contentin');
+    <script>
+        var E = window.wangEditor;
+        var editor = new E('#contentin');
+
+        // 配置服务器端地址
+        editor.customConfig.uploadImgServer = '/information/uploadFile';
+        editor.customConfig.uploadFileName = 'yourFileName';
         editor.create();
-    });
-</script>
+    </script>
+    <script>
+        $(function () {
+            $("#publish").click(function () {
+                var check = $("input[name='message-type']:checked").val();
+                var title = $("#title").val();
+                var html = editor.txt.html();
+                if('1'===check){
+                    var data = {
+                        "title": title,
+                        "comment": html
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "/information/publishAnnouncement",
+                        data: data,
+                        dataType: "json",
+                        success: function(r){
+                            alert(r.message);
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown){
+                            alert(XMLHttpRequest.status);
+                            alert(XMLHttpRequest.readyState);
+                            alert(textStatus);
+                        },
+                    })
+                }else if('2'===check){
+
+                }
+            });
+        })
+    </script>
 </html>

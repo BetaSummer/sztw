@@ -7,8 +7,27 @@
 <link rel="stylesheet" href="/css/wangEditor.min.css"/>
 <body>
     <div id="contentin" class="contentin"></div>
+    <input type="button" id="btn" value="alert"/>
 </body>
 <script src="/js/jquery.js"></script>
+<script src="https://raw.github.com/leizongmin/js-xss/master/dist/xss.js"></script>
 <script src="/js/wangEditor.min.js"></script>
-<script src="/js/myWangEditor.js"></script>
+<script>
+    var E = window.wangEditor;
+    var editor = new E('#contentin');
+
+    // 配置服务器端地址
+    editor.customConfig.uploadImgServer = '/information/uploadFile';
+    editor.customConfig.uploadFileName = 'yourFileName';
+    editor.create();
+</script>
+<script>
+    $(function () {
+        $("#btn").click(function () {
+            var html = editor.txt.html();
+            var filterHtml = filterXSS(html);  // 此处进行 xss 攻击过滤
+            alert(filterHtml);
+        });
+    })
+</script>
 </html>

@@ -17,4 +17,6 @@ public interface AnnouncementService {
 
     List<Announcement> listUnpublishedAnnouncement();
 
+    Announcement getAnnouncementById(int id);
+
 }

@@ -102,7 +102,7 @@
                         </div>
                     </div>
                     <ul style="margin-top: 310px;font-size: 1vw">
-                        <a href="*">More>></a>
+                        <a href="#">More>></a>
                     </ul>
                 </div>
             </div>
@@ -115,6 +115,7 @@
         </div>
     </footer>
 <script src="/js/jquery.js"></script>
+<script src="/js/jquery.cookie.js"></script>
 <script src="/js/main.js"></script>
 <script src="/js/tabset.js"></script>
 <script src="/js/laydate.js"></script>
@@ -123,10 +124,18 @@
 
 
 <script type="text/javascript">
-
-
-
-
+    $(function () {
+        var licenceList = new Array();
+        var i= 0;
+        $(".licence").each(function () {
+            licenceList[i]=$(this).html();
+            i++;
+        });
+        viewControl(licenceList);
+        var cookietime = new Date();
+        cookietime.setTime(cookietime.getTime() + 60 * 60 *1000);
+        $.cookie("licenceCookie",licenceList.join(","),{expirese:cookietime});
+    });
 
     //<![CDATA[
     $("#news-g").bind("click",function (event) {

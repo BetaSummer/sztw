@@ -7,6 +7,15 @@
 
 //VIEW CONTROL
 function  licenceControl(index) {
+    if(index==0){
+        $("#userManage").show();
+    }
+    if(index==1){
+        $("#powerManage").show();
+    }
+    if(index==2){
+        $("#doMessage").show();
+    }
     if(index==3){
         $("#form-appli").show();
     }
@@ -16,11 +25,26 @@ function  licenceControl(index) {
     if(index==5){
         $("#form-manage").show();
     }
+    if(index==6){
+        $("#clubmanage").show();
+    }
+    if(index==7){
+        $("#financeT").show();
+    }
+    if(index==8){
+        $("#financeB").show();
+    }
 }
+
+function viewControl(arr) {
+    for(var i = 0;i<arr.length;i++){
+        licenceControl(arr[i]);
+    }
+}
+
 $(function () {
-    $(".licence").each(function () {
-        licenceControl($(this).html());
-    });
+    var licenceCookie = $.cookie("licenceCookie").split(",");
+    viewControl(licenceCookie);
 });
 
 $(function () {

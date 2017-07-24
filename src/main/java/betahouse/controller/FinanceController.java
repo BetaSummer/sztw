@@ -3,10 +3,13 @@ package betahouse.controller;
 import betahouse.controller.Base.BaseController;
 import betahouse.core.Base.BaseFile;
 import betahouse.core.office.HSSF;
+import betahouse.mapper.ClubMapper;
 import betahouse.model.Club;
 import betahouse.model.VO.ClubFinance;
+import betahouse.model.VO.ClubMoney;
 import betahouse.service.club.ClubService;
 import betahouse.service.financial.ClubFinancialFlowService;
+import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -67,18 +70,22 @@ public class FinanceController extends BaseController{
 
     @RequestMapping(value = "/changClubFinance")
     public String changClubFinance(HttpServletRequest request, HttpServletResponse response, Model model,
-                                   @RequestParam String id, @RequestParam String change,@RequestParam String selfReserve,
-                                   @RequestParam String money, @RequestParam String comment){
-        int idDTO = Integer.parseInt(id);
-        int changeDTO = Integer.parseInt(change);
-        int selfReserveDTO = Integer.parseInt(selfReserve);
-        int moneyDTO = Integer.parseInt(money);
-        int status = clubService.updateMoneyById(idDTO, changeDTO, selfReserveDTO, moneyDTO);
-        if(-1==status){
-            return ajaxReturn(response, null, CLUB_FINANCE_CHANGE_MESSAGE[1], 1);
+                                   @RequestParam String data,
+                                   @RequestParam String comment){
+        List<ClubMoney> listDTO = JSON.parseArray(data, ClubMoney.class);
+        for(ClubMoney c: listDTO){
+            int idDTO = c.getId();
+            int changeDTO = c.getChange();
+            int selfReserveDTO = c.getSelfReserve();
+            int moneyDTO = c.getMoney();
+            int status = clubService.updateMoneyById(idDTO, changeDTO, selfReserveDTO, moneyDTO);
+            if(-1==status){
+                return ajaxReturn(response, null, CLUB_FINANCE_CHANGE_MESSAGE[1], 1);
+            }
+            int handlerDTO = getCurrentUser(request).getId();
+            clubFinancialFlowService.insert(idDTO, comment, handlerDTO, changeDTO, moneyDTO);
         }
-        int handlerDTO = getCurrentUser(request).getId();
-        clubFinancialFlowService.insert(idDTO, comment, handlerDTO, changeDTO, moneyDTO);
+
         return ajaxReturn(response, null, CLUB_FINANCE_CHANGE_MESSAGE[0], 0);
     }
 }

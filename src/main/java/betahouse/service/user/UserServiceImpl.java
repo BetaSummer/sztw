@@ -52,4 +52,13 @@ public class UserServiceImpl implements UserService{
         userDTO.setPassword(password);
         return userMapper.insert(userDTO);
     }
+
+    @Override
+    public int updateUserById(int id, String username, String password) {
+        User userDTO = new User();
+        userDTO.setId(id);
+        userDTO.setUsername(username);
+        userDTO.setPassword(password);
+        return userMapper.updateByPrimaryKey(userDTO);
+    }
 }

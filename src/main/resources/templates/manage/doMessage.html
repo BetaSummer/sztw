@@ -5,7 +5,7 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
     <link rel="stylesheet" href="/css/wangEditor.min.css"/>
     <style type="text/css">
-        .contentin {
+        .content{
             margin-top: 20px;
         }
     </style>
@@ -22,20 +22,22 @@
         <div class="manage-form">
             <label>主题：</label>
             <input id="title" type="text" name="message-title" placeholder="请填写主题"/>
-            <div id="contentin" class="contentin"></div>
+            <div class="content"><div id="contentIn" class="content-in"></div></div>
         </div>
     </div>
     <script src="/js/jquery.js"></script>
     <!--<script src="js/xss.js"></script>-->
     <script src="/js/wangEditor.min.js"></script>
+    <script src="/js/myWangEditor.js"></script>
     <script>
-        var E = window.wangEditor;
-        var editor = new E('#contentin');
-
-        // 配置服务器端地址
-        editor.customConfig.uploadImgServer = '/information/uploadFile';
-        editor.customConfig.uploadFileName = 'yourFileName';
-        editor.create();
+//        3.x版本
+//        var E = window.wangEditor;
+//        var editor = new E('#contentIn');
+//
+//        // 配置服务器端地址
+//        editor.customConfig.uploadImgServer = '/information/uploadFile';
+//        editor.customConfig.uploadFileName = 'yourFileName';
+//        editor.create();
     </script>
     <script>
         $(function () {
@@ -60,7 +62,7 @@
                             alert(XMLHttpRequest.status);
                             alert(XMLHttpRequest.readyState);
                             alert(textStatus);
-                        },
+                        }
                     })
                 }else if('2'===check){
 

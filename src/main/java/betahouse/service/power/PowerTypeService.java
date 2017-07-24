@@ -2,6 +2,7 @@ package betahouse.service.power;
 
 import betahouse.model.FormType;
 import betahouse.model.PowerType;
+import betahouse.model.VO.PowerVO;
 
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,6 @@ import java.util.Map;
  */
 public interface PowerTypeService {
 
-    Map<PowerType, Integer> listAll();
+    List<PowerVO> listAll();
 
 }

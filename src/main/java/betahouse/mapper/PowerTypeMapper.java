@@ -1,8 +1,10 @@
 package betahouse.mapper;
 
 import betahouse.model.PowerType;
-import java.util.List;
+import org.springframework.stereotype.Component;
 
+import java.util.List;
+@Component
 public interface PowerTypeMapper {
     int deleteByPrimaryKey(Integer id);
 

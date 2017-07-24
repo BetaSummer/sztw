@@ -131,3 +131,75 @@ $(function () {
 });
 
 
+$(function () {
+    $("#user-btn").click(function () {
+        var dataLength = $(".manage-alert-in").length;
+        var dataTrArr = $(".manage-alert-in");
+        var data = new Array(dataLength-1);
+        var dataString ="[";
+        for(var i = 0;i<dataLength-1;i++){
+            var id = dataTrArr[i].children[0].innerHTML;
+            var password = dataTrArr[i].children[3].firstElementChild.value;
+            password = password===""?"-1":password;
+            var tel = dataTrArr[i].children[4].firstElementChild.value;
+            var eMail = dataTrArr[i].children[5].firstElementChild.value;
+            dataString += "{'id':"+id+",'password':'"+password+"','tel':'"+tel+"','eMail':'"+eMail+"'},";
+        }
+        dataString =dataString.substring(0,dataString.length-1);
+        dataString += "]";
+        console.log(data);
+        var data = {
+            "data": dataString
+        }
+        $.ajax({
+            type: "GET",
+            url: "/manage/updateUserInfo",
+            data: data,
+            dataType:"json",
+            success: function(r){
+                alert(r.message);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            }
+        });
+    });
+});
+
+$(function () {
+    $("#manage-view").click(function () {
+
+    });
+
+    $(".manage-download").click(function () {
+        window.location.href = "/finance/download?clubId="+$(this).attr("id");
+    });
+
+    // $("#manageAll3").click(function(){
+    //     $(".delete-tr").remove();
+    //     $("input[type='checkbox']").each(function(){
+    //         if($(this).is(':checked')){
+    //             var index = $(this).parent().parent().index();
+    //             writeInformation2(index);
+    //         }
+    //     });
+    //     $(".manage-alert").show(200);
+    // });
+
+    $("#download-btn").click(function () {
+        var dataString = "[";
+        $("input[type='checkbox']").each(function(){
+            if($(this).is(':checked')){
+                var index = $(this).parent().parent().index();
+                var trTemp = $('#fin-table tr:eq(' + index + ')');
+                var id = trTemp.children("td").eq(5).children("span").eq(1).attr("id");
+                dataString+="{'id':"+id+"},";
+            }
+        });
+        dataString =dataString.substring(0,dataString.length-1);
+        dataString+="]";
+    });
+})
+

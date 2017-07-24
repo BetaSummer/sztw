@@ -3,10 +3,9 @@ package betahouse.controller;
 import betahouse.controller.Base.BaseController;
 import betahouse.core.Base.BaseFile;
 import betahouse.core.office.HSSF;
-import betahouse.mapper.ClubMapper;
 import betahouse.model.Club;
-import betahouse.model.VO.ClubFinance;
-import betahouse.model.VO.ClubMoney;
+import betahouse.model.VO.ClubFinanceVO;
+import betahouse.model.VO.ClubMoneyVO;
 import betahouse.service.club.ClubService;
 import betahouse.service.financial.ClubFinancialFlowService;
 import com.alibaba.fastjson.JSON;
@@ -54,7 +53,7 @@ public class FinanceController extends BaseController{
     public void download(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam String clubId){
         int clubIdDTO = Integer.parseInt(clubId);
         Club clubDTO = clubService.getClubById(clubIdDTO);
-        List<ClubFinance> listDTO = clubFinancialFlowService.listClubFinancialFlowByClubId(clubIdDTO);
+        List<ClubFinanceVO> listDTO = clubFinancialFlowService.listClubFinancialFlowByClubId(clubIdDTO);
         HSSF hssf = new HSSF(clubDTO.getClubName(),clubDTO.getClubName());
         hssf.create(clubDTO.getClubName());
         hssf.insert(0, 0, 0, CLUB_FINANCE_FIELD_NAME, listDTO);
@@ -72,8 +71,8 @@ public class FinanceController extends BaseController{
     public String changClubFinance(HttpServletRequest request, HttpServletResponse response, Model model,
                                    @RequestParam String data,
                                    @RequestParam String comment){
-        List<ClubMoney> listDTO = JSON.parseArray(data, ClubMoney.class);
-        for(ClubMoney c: listDTO){
+        List<ClubMoneyVO> listDTO = JSON.parseArray(data, ClubMoneyVO.class);
+        for(ClubMoneyVO c: listDTO){
             int idDTO = c.getId();
             int changeDTO = c.getChange();
             int selfReserveDTO = c.getSelfReserve();

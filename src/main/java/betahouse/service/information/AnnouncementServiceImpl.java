@@ -58,4 +58,9 @@ public class AnnouncementServiceImpl implements AnnouncementService{
     public List<Announcement> listUnpublishedAnnouncement() {
         return announcementMapper.selectByStatus(0);
     }
+
+    @Override
+    public Announcement getAnnouncementById(int id) {
+        return announcementMapper.selectByPrimaryKey(id);
+    }
 }

@@ -3,7 +3,7 @@ package betahouse.service.financial;
 import betahouse.mapper.*;
 import betahouse.model.Club;
 import betahouse.model.ClubFinancialFlow;
-import betahouse.model.VO.ClubFinance;
+import betahouse.model.VO.ClubFinanceVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,19 +37,19 @@ public class ClubFinancialFlowServiceImpl implements ClubFinancialFlowService{
     }
 
     @Override
-    public List<ClubFinance> listClubFinancialFlowByClubId(int clubId) {
-        List<ClubFinance> listDTO = new ArrayList<>();
+    public List<ClubFinanceVO> listClubFinancialFlowByClubId(int clubId) {
+        List<ClubFinanceVO> listDTO = new ArrayList<>();
         List<ClubFinancialFlow> listDTO2 = clubFinancialFlowMapper.selectByClubId(clubId);
         for(int i=0;i<listDTO2.size();i++){
-            ClubFinance clubFinanceDTO = new ClubFinance();
-            clubFinanceDTO.setId(i+1);
-            clubFinanceDTO.setComment(listDTO2.get(i).getComment());
-            clubFinanceDTO.setUserName(userInfoMapper.selectByPrimaryKey(listDTO2.get(i).getHandler()).getRealName());
-            clubFinanceDTO.setIncome(listDTO2.get(i).getIncome());
-            clubFinanceDTO.setCost(listDTO2.get(i).getCost());
-            clubFinanceDTO.setPayments(listDTO2.get(i).getIncome()-listDTO2.get(i).getCost());
-            clubFinanceDTO.setDate(listDTO2.get(i).getDate());
-            listDTO.add(clubFinanceDTO);
+            ClubFinanceVO clubFinanceVODTO = new ClubFinanceVO();
+            clubFinanceVODTO.setId(i+1);
+            clubFinanceVODTO.setComment(listDTO2.get(i).getComment());
+            clubFinanceVODTO.setUserName(userInfoMapper.selectByPrimaryKey(listDTO2.get(i).getHandler()).getRealName());
+            clubFinanceVODTO.setIncome(listDTO2.get(i).getIncome());
+            clubFinanceVODTO.setCost(listDTO2.get(i).getCost());
+            clubFinanceVODTO.setPayments(listDTO2.get(i).getIncome()-listDTO2.get(i).getCost());
+            clubFinanceVODTO.setDate(listDTO2.get(i).getDate());
+            listDTO.add(clubFinanceVODTO);
         }
         return listDTO;
     }

@@ -102,7 +102,7 @@
                         </div>
                     </div>
                     <ul style="margin-top: 310px;font-size: 1vw">
-                        <a href="*">More>></a>
+                        <a href="#">More>></a>
                     </ul>
                 </div>
             </div>
@@ -124,7 +124,23 @@
 
 <script type="text/javascript">
 
-
+    //VIEW CONTROL
+    function  licenceControl(index) {
+        if(index==3){
+            $("#form-appli").show();
+        }
+        if(index==4){
+            $("#form-view").show();
+        }
+        if(index==5){
+            $("#form-manage").show();
+        }
+    }
+    $(function () {
+        $(".licence").each(function () {
+            licenceControl($(this).html());
+        });
+    });
 
 
 

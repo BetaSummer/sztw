@@ -3,7 +3,7 @@ package betahouse.model.VO;
 /**
  * Created by x1654 on 2017/7/18.
  */
-public class ClubFinance {
+public class ClubFinanceVO {
 
     private Integer id;
 

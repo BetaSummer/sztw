@@ -1,7 +1,9 @@
 package betahouse.service.user;
 
+import betahouse.core.Base.SimpleMD5;
 import betahouse.mapper.UserMapper;
 import betahouse.model.User;
+import org.apache.tomcat.util.security.MD5Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +21,13 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User checkLogin(String username, String password) {
+        password = SimpleMD5.MD5(password);
         User userDTO = userMapper.selectByUsername(username);
         if(userDTO == null){
             return null;
         }
         String passwordDTO = userDTO.getPassword();
-        if(!password.equals(passwordDTO)){
+        if(!passwordDTO.equals(password)){
             return null;
         }
         return userDTO;
@@ -58,7 +61,7 @@ public class UserServiceImpl implements UserService{
         User userDTO = new User();
         userDTO.setId(id);
         userDTO.setUsername(username);
-        userDTO.setPassword(password);
+        userDTO.setPassword(SimpleMD5.MD5(password));
         return userMapper.updateByPrimaryKey(userDTO);
     }
 }

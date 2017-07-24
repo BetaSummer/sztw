@@ -30,11 +30,9 @@
 
 
 <div class="article">
-    <h1>关于XXXXX的通知</h1>
-    <p>来源：xxx   发布时间：xxx</p><hr/>
-    <div class="main">
-        获取通知类容
-    </div>
+    <h1 th:text="${announcement.title}"></h1>
+    <p th:inline="text">来源：[[${announcement.fromId}]]   发布时间：[[${announcement.date}]]</p><hr/>
+    <div class="main" th:text="${announcement.comment}"></div>
     <div class="foot"><a>打印</a><a>返回</a><a>关闭</a></div>
 </div>
 

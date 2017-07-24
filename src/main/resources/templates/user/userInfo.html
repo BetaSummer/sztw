@@ -18,7 +18,7 @@
     <![endif]-->
 </head>
 <body>
-<p th:each="licence:${licence}" style="display: none"><span th:text="${licence}" class="licence"></span></p>
+<p th:each="licence:${licence}" ><span th:text="${licence}" class="licence"></span></p>
 <nav>
     <ul class="nav-left">
         <a>
@@ -90,6 +90,7 @@
 </footer>
 <script src="/js/jquery.js"></script>
 <script src="/js/main.js"></script>
+<script src="/js/jquery.cookie.js"></script>
 <script src="/js/tabset.js"></script>
 <script src="/js/laydate.js"></script>
 <script src="/js/manage.js"></script>

@@ -115,6 +115,7 @@
         </div>
     </footer>
 <script src="/js/jquery.js"></script>
+<script src="/js/jquery.cookie.js"></script>
 <script src="/js/main.js"></script>
 <script src="/js/tabset.js"></script>
 <script src="/js/laydate.js"></script>
@@ -123,26 +124,18 @@
 
 
 <script type="text/javascript">
-
-    //VIEW CONTROL
-    function  licenceControl(index) {
-        if(index==3){
-            $("#form-appli").show();
-        }
-        if(index==4){
-            $("#form-view").show();
-        }
-        if(index==5){
-            $("#form-manage").show();
-        }
-    }
     $(function () {
+        var licenceList = new Array();
+        var i= 0;
         $(".licence").each(function () {
-            licenceControl($(this).html());
+            licenceList[i]=$(this).html();
+            i++;
         });
+        viewControl(licenceList);
+        var cookietime = new Date();
+        cookietime.setTime(cookietime.getTime() + 60 * 60 *1000);
+        $.cookie("licenceCookie",licenceList.join(","),{expirese:cookietime});
     });
-
-
 
     //<![CDATA[
     $("#news-g").bind("click",function (event) {

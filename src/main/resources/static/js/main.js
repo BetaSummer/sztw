@@ -35,10 +35,16 @@ function  licenceControl(index) {
         $("#financeB").show();
     }
 }
+
+function viewControl(arr) {
+    for(var i = 0;i<arr.length;i++){
+        licenceControl(arr[i]);
+    }
+}
+
 $(function () {
-    $(".licence").each(function () {
-        licenceControl($(this).html());
-    });
+    var licenceCookie = $.cookie("licenceCookie").split(",");
+    viewControl(licenceCookie);
 });
 
 $(function () {

@@ -17,104 +17,105 @@
 </head>
 <body>
 <p th:each="licence:${licence}" style="display: none"><span th:text="${licence}" class="licence"></span></p>
-    <nav>
-        <ul class="nav-left">
-            <a>
-                <li style="margin-left: -5%;" onclick="location=location">
-                    首页
-                </li>
-            </a>
-            <a th:href="@{user/userInfo}">
-                <li>
-                    信息管理
-                </li>
-            </a>
-            <a href="#">
-                <li class="on">
-                    申请管理
-                </li>
-            </a>
-            <a href="/user/logout">
-                <li>退出</li>
-            </a>
-        </ul>
-    </nav>
-    <content>
-        <div class="sub-nav">
-            <div class="sub-ft sub-item" id="sub-n1">
-                社团活动申请表
-            </div>
-            <div class="sub-child">
-                <ul>
-                    <li class="sub-item" id="form-appli">申请</li>
-                    <li class="sub-item" id="form-view">查看</li>
-                    <li class='sub-item' id='form-manage'>管理</li>
-                </ul>
-            </div>
-            <div class="sub-ft sub-item" id="sub-n2">
-                subnav 2
-            </div>
-            <div class="sub-child">
-                <ul>
-                    <li class="sub-item">option1</li>
-                    <li class="sub-item">option2</li>
-                </ul>
-            </div>
-            <div class="sub-ft sub-item" id="sub-n3">
-                subnav 3
-            </div>
-            <div class="sub-child">
-                <ul>
-                    <li class="sub-item">option1</li>
-                    <li class="sub-item">option2</li>
-                </ul>
-            </div>
+<nav>
+    <ul class="nav-left">
+        <a>
+            <li style="margin-left: -5%;" onclick="location=location">
+                首页
+            </li>
+        </a>
+        <a th:href="@{user/userInfo}">
+            <li>
+                信息管理
+            </li>
+        </a>
+        <a href="#">
+            <li class="on">
+                申请管理
+            </li>
+        </a>
+        <a href="/user/logout">
+            <li>退出</li>
+        </a>
+    </ul>
+</nav>
+<content>
+    <div class="sub-nav">
+        <div class="sub-ft sub-item" id="sub-n1">
+            社团活动申请表
         </div>
-        <div id='circular' class='loading'>
-            <div id='circular_1' class='circular'></div>
-            <div id='circular_2' class='circular'></div>
-            <div id='circular_3' class='circular'></div>
-            <div id='circular_4' class='circular'></div>
-            <div id='circular_5' class='circular'></div>
-            <div id='circular_6' class='circular'></div>
-            <div id='circular_7' class='circular'></div>
-            <div id='circular_8' class='circular'></div>
-            <div class='clearfix'></div>
+        <div class="sub-child">
+            <ul>
+                <li class="sub-item" id="form-appli">申请</li>
+                <li class="sub-item" id="form-view">查看</li>
+                <li class='sub-item' id='form-manage'>管理</li>
+            </ul>
         </div>
-        <div class="sub-content">
-            <div class="content-nav" th:inline="text">
-                欢迎你，[[${user.realName}]]
-            </div>
-            <div class="content-body">
-                <div class="inform" id="inform">
-                    <h1>通知公告</h1>
-                    <hr/>
-                    <ul id="inform-ul">
-                        <a id="news-g">公告</a>
-                        <a id="news-t">通知</a>
-                    </ul>
-                    <div class="news" id="demo-t">
-                        <div class="suit">
-                            <li target="_blank" class="news-li" th:each="data:${announcement}">
-                                <p th:text="${data.date}"></p>
-                                <a th:href="@{*}" th:text="${data.title}"></a>
-                            </li>
-                        </div>
+        <div class="sub-ft sub-item" id="sub-n2">
+            subnav 2
+        </div>
+        <div class="sub-child">
+            <ul>
+                <li class="sub-item">option1</li>
+                <li class="sub-item">option2</li>
+            </ul>
+        </div>
+        <div class="sub-ft sub-item" id="sub-n3">
+            subnav 3
+        </div>
+        <div class="sub-child">
+            <ul>
+                <li class="sub-item">option1</li>
+                <li class="sub-item">option2</li>
+            </ul>
+        </div>
+    </div>
+    <div id='circular' class='loading'>
+        <div id='circular_1' class='circular'></div>
+        <div id='circular_2' class='circular'></div>
+        <div id='circular_3' class='circular'></div>
+        <div id='circular_4' class='circular'></div>
+        <div id='circular_5' class='circular'></div>
+        <div id='circular_6' class='circular'></div>
+        <div id='circular_7' class='circular'></div>
+        <div id='circular_8' class='circular'></div>
+        <div class='clearfix'></div>
+    </div>
+    <div class="sub-content">
+        <div class="content-nav" th:inline="text">
+            欢迎你，[[${user.realName}]]
+        </div>
+        <div class="content-body">
+            <div class="inform" id="inform">
+                <h1>通知公告</h1>
+                <hr/>
+                <ul id="inform-ul">
+                    <a id="news-g">公告</a>
+                    <a id="news-t">通知</a>
+                </ul>
+                <div class="news" id="demo-t">
+                    <div class="suit">
+                        <li target="_blank" class="news-li" th:each="data:${announcement}">
+                            <p th:text="${data.date}"></p>
+                            <a th:href="@{*}" th:text="${data.title}"></a>
+                        </li>
                     </div>
-                    <ul style="margin-top: 310px;font-size: 1vw">
-                        <a href="*">More>></a>
-                    </ul>
                 </div>
+                <ul style="margin-top: 310px;font-size: 1vw">
+                    <a href="#">More>></a>
+                </ul>
             </div>
         </div>
-    </content>
-    <footer>
-        <div class="copyright">
-            <span>Copyright © <a href="http://expo.bootcss.com"></a></span> |
-            <span><a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备11008151号</a></span> | hdxg 版权所有
-        </div>
-    </footer>
+    </div>
+</content>
+<footer>
+    <div class="copyright">
+        <span>Copyright © <a href="http://expo.bootcss.com"></a></span> |
+        <span><a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备11008151号</a></span> | hdxg 版权所有
+    </div>
+</footer>
 <script src="/js/jquery.js"></script>
+<script src="/js/jquery.cookie.js"></script>
 <script src="/js/main.js"></script>
 <script src="/js/tabset.js"></script>
 <script src="/js/laydate.js"></script>
@@ -123,11 +124,18 @@
 
 
 <script type="text/javascript">
-
-
-
-
-
+    $(function () {
+        var licenceList = new Array();
+        var i= 0;
+        $(".licence").each(function () {
+            licenceList[i]=$(this).html();
+            i++;
+        });
+        viewControl(licenceList);
+        var cookietime = new Date();
+        cookietime.setTime(cookietime.getTime() + 60 * 60 *1000);
+        $.cookie("licenceCookie",licenceList.join(","),{expirese:cookietime});
+    });
     //<![CDATA[
     $("#news-g").bind("click",function (event) {
         $("#demo-t").hide();$("#demo-g").show();

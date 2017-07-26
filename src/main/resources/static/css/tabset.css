@@ -1,6 +1,6 @@
 content {
   color: #5c5a5d; }
-#form-appli , #form-manage ,#form-view {
+#form-appli , #form-manage ,#form-view ,#userManage , #powerManage , #financeT,#financeB,#doMessage,#clubManage{
   display: none;  }
 .sub-nav {
   width: 20%;

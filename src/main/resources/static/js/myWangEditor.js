@@ -186,7 +186,7 @@ editor.config.emotions = {
 };
 
 editor.config.uploadImgUrl = "/information/uploadFile";
-editor.$txt.css("max-height","200px");
+editor.config.uploadImgFileName = "picture";
 
 editor.create();
 

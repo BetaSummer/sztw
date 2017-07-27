@@ -83,14 +83,11 @@ public class InformationController extends BaseController{
     @RequestMapping(value = "/uploadFile")
     public String uploadFile(HttpServletRequest request, HttpServletResponse response, Model model,
                              RedirectAttributes redirectAttributes,
-                             @RequestParam("yourFileName") MultipartFile file){
+                             @RequestParam("picture") MultipartFile file){
         BaseFile baseFileDTO = new BaseFile();
         baseFileDTO.upload(file, RESOURCES+ File.separator+"Img");
-        PictureVO pictureVODTO = new PictureVO();
-        pictureVODTO.setError(0);
-        pictureVODTO.setUrl(new String[]{"http://localhost:8088/resources/"+file.getOriginalFilename()});
-        logger.error(file.getOriginalFilename());
-        return ajaxReturn(response, pictureVODTO, "", 0);
+        String str = "http://localhost:8080/resources/"+file.getOriginalFilename();
+        return ajaxReturn(response, str, "", 0);
     }
 }
 

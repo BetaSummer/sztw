@@ -35,7 +35,6 @@ function  licenceControl(index) {
         $("#financeB").show();
     }
 }
-
 function viewControl(arr) {
     for(var i = 0;i<arr.length;i++){
         licenceControl(arr[i]);
@@ -47,26 +46,6 @@ $(function () {
     viewControl(licenceCookie);
 });
 
-$(function () {
-    $("#form-manage").click(function () {
-        $(".loading").show();
-        $.get("/approveForm/listClubActivity",function () {
-            $(".content-body").load("/approveForm/listClubActivity",function () {
-                $(".loading").hide();
-            });
-        });
-    });
-});
-
-$(function () {
-    $("#form-view").click(function () {
-        $(".content-body").html("");
-        $(".loading").show();
-        $(".content-body").load("/applyClubForm/listAllForm",function () {
-            $(".loading").hide();
-        }) ;
-    });
-});
 /* login */
 $(function () {
    $("#login-btn").click(function () {
@@ -144,6 +123,7 @@ $(function () {
         }) ;
     });
 });
+
 $(function () {
     $("#clubManage").click(function () {
         $(".content-body").html("");
@@ -195,6 +175,65 @@ $(function () {
        if( window.screen.width<767){
            $(document.body).height(1050);
        }
+    });
+});
+
+$(function () {
+    $("#form-manage").click(function () {
+        $(".loading").show();
+        $.get("/approveForm/listClubActivity",function () {
+            $(".content-body").load("/approveForm/listClubActivity",function () {
+                $(".loading").hide();
+                if( window.screen.width<767){
+                    $(document.body).height(1050);
+                }
+            });
+        });
+    });
+});
+
+$(function () {
+    $("#form-view").click(function () {
+        $(".content-body").html("");
+        $(".loading").show();
+        $(".content-body").load("/applyClubForm/listAllForm",function () {
+            $(".loading").hide();
+            if( window.screen.width<767){
+                $(document.body).height(1050);
+            }
+        }) ;
+    });
+});
+//TODO new table interface
+$(function () {
+    $("#area-appli").click(function () {
+        $(".content-body").load("/applyClubForm/#");
+        if( window.screen.width<767){
+            $(document.body).height(1050);
+        }
+    });
+});
+
+$(function () {
+    $("#area-manage").click(function () {
+        $.get("/approveForm/listClubActivity",function () {
+            $(".content-body").load("/approveForm/#",function () {
+                if( window.screen.width<767){
+                    $(document.body).height(1050);
+                }
+            });
+        });
+    });
+});
+
+$(function () {
+    $("#area-view").click(function () {
+        $(".content-body").html("");
+        $(".content-body").load("/applyClubForm/#",function () {
+            if( window.screen.width<767){
+                $(document.body).height(1050);
+            }
+        }) ;
     });
 });
 

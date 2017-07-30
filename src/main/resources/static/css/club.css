@@ -39,8 +39,9 @@
     border: solid #CCCCCC 1px; }
   .approval-form button {
     width: 95px; }
-
-
+    .WordSection1{
+      margin:0 auto;
+    }
 
 /*# sourceMappingURL=club.css.map */
 
@@ -58,8 +59,14 @@
     float: left;
     margin-bottom: 30px; }
   .appli-form .form-inline .form-group label {
+    width: 80px;
+    display: block;
+    float: left;
+    height: 30px;
+    line-height: 30px;
     margin: 0 1%; }
   .appli-form .form-inline .form-group input[type='text'] {
+    line-height: 30px;
     width: 70%;
     height: 30px; }
   .appli-form .form-inline .form-money input[type='text'] {
@@ -84,6 +91,7 @@
     height: 30px;
     margin-left: 35%; }
 }
+
 @media screen and (max-width: 767px){
   .appli-form{
     width: 100%;
@@ -100,12 +108,7 @@
   .form-group input[type='text']{
     height:30px;
   }
-  .area{
-    height: 120px;
-  }
-  .area textarea{
-    height: 100px;
-  }
+
   .appli-form input[type='submit']{
     height:34px;
     width:250px;

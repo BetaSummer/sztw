@@ -26,6 +26,9 @@
       #{activityPlace,jdbcType=VARCHAR}, #{activityDate,jdbcType=VARCHAR}, #{list,jdbcType=VARCHAR}, 
       #{content,jdbcType=VARCHAR}, #{budget,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR}, 
       #{date,jdbcType=VARCHAR})
+    <selectKey resultType="Integer" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID() AS id
+    </selectKey>
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.FormPlaceActivity">
     update b_form_place_activity

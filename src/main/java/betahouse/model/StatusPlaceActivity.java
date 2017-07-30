@@ -3,7 +3,7 @@ package betahouse.model;
 public class StatusPlaceActivity {
     private Integer id;
 
-    private String formType;
+    private Integer formType;
 
     private Integer formId;
 
@@ -27,12 +27,12 @@ public class StatusPlaceActivity {
         this.id = id;
     }
 
-    public String getFormType() {
+    public Integer getFormType() {
         return formType;
     }
 
-    public void setFormType(String formType) {
-        this.formType = formType == null ? null : formType.trim();
+    public void setFormType(Integer formType) {
+        this.formType = formType;
     }
 
     public Integer getFormId() {

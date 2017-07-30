@@ -3,7 +3,7 @@
 <mapper namespace="betahouse.mapper.StatusPlaceActivityMapper">
   <resultMap id="BaseResultMap" type="betahouse.model.StatusPlaceActivity">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="form_type" jdbcType="VARCHAR" property="formType" />
+    <result column="form_type" jdbcType="INTEGER" property="formType" />
     <result column="form_id" jdbcType="INTEGER" property="formId" />
     <result column="form_user_id" jdbcType="INTEGER" property="formUserId" />
     <result column="status" jdbcType="INTEGER" property="status" />
@@ -21,14 +21,14 @@
       form_user_id, status, approve_date, 
       approve_lv, resources_status, public_status
       )
-    values (#{id,jdbcType=INTEGER}, #{formType,jdbcType=VARCHAR}, #{formId,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{formType,jdbcType=INTEGER}, #{formId,jdbcType=INTEGER},
       #{formUserId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{approveDate,jdbcType=VARCHAR}, 
       #{approveLv,jdbcType=INTEGER}, #{resourcesStatus,jdbcType=INTEGER}, #{publicStatus,jdbcType=INTEGER}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.StatusPlaceActivity">
     update b_status_place_activity
-    set form_type = #{formType,jdbcType=VARCHAR},
+    set form_type = #{formType,jdbcType=INTEGER},
       form_id = #{formId,jdbcType=INTEGER},
       form_user_id = #{formUserId,jdbcType=INTEGER},
       status = #{status,jdbcType=INTEGER},
@@ -51,7 +51,7 @@
   </select>
   <update id="updateStatusByFormId" parameterType="betahouse.model.StatusPlaceActivity">
     update b_status_place_activity
-    set form_type = #{formType,jdbcType=VARCHAR},
+    set form_type = #{formType,jdbcType=INTEGER},
     form_id = #{formId,jdbcType=INTEGER},
     form_user_id = #{formUserId,jdbcType=INTEGER},
     status = #{status,jdbcType=INTEGER},
@@ -66,5 +66,31 @@
     public_status
     from b_status_place_activity
     where form_id = #{formId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByLv" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, form_type, form_id, form_user_id, status, approve_date, approve_lv, resources_status,
+    public_status
+    from b_status_place_activity
+    where approve_lv = #{lv,jdbcType=INTEGER}
+  </select>
+  <select id="selectByLvAndResourcesStatus" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, form_type, form_id, form_user_id, status, approve_date, approve_lv, resources_status,
+    public_status
+    from b_status_place_activity
+    where approve_lv = #{lv,jdbcType=INTEGER}
+    and resources_status = #{resourcesStatus,jdbcType=INTEGER}
+  </select>
+  <select id="selectByLvAndPublicStatus" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, form_type, form_id, form_user_id, status, approve_date, approve_lv, resources_status,
+    public_status
+    from b_status_place_activity
+    where approve_lv = #{lv,jdbcType=INTEGER}
+    and public_status = #{publicStatus,jdbcType=INTEGER}
+  </select>
+  <select id="selectOverLv" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, form_type, form_id, form_user_id, status, approve_date, approve_lv, resources_status,
+    public_status
+    from b_status_place_activity
+    where approve_lv > #{lv,jdbcType=INTEGER}
   </select>
 </mapper>

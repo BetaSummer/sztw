@@ -59,6 +59,11 @@ public class FormController extends BaseController {
         return "clubActivity/clubForm";
     }
 
+    @RequestMapping(value = "/areaFormInformation")
+    public String areaFormInformation(HttpServletRequest request, HttpServletResponse response, Model model){
+        return "clubActivity/areaApprove";
+    }
+
     @RequestMapping(value = "/commitClubActivity", method = RequestMethod.POST)
     public String commitClubActivity(HttpServletRequest request, HttpServletResponse response, Model model,
                                      @RequestParam String clubName, @RequestParam String activityName,

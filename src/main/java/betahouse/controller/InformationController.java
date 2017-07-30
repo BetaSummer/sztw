@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 
-import static betahouse.core.constant.FolderNameConstant.FOLDER_CLUB;
+import static betahouse.core.constant.FolderNameConstant.RESOURCES;
 import static betahouse.core.constant.InformationConstant.PUBLISH_SUCCESS;
 import static betahouse.core.constant.InformationConstant.SAVE_SUCCESS;
 
@@ -80,14 +82,15 @@ public class InformationController extends BaseController{
 
     @RequestMapping(value = "/uploadFile")
     public String uploadFile(HttpServletRequest request, HttpServletResponse response, Model model,
+                             RedirectAttributes redirectAttributes,
                              @RequestParam("yourFileName") MultipartFile file){
         BaseFile baseFileDTO = new BaseFile();
-        baseFileDTO.upload(file, FOLDER_CLUB+"test", "test", true);
+        baseFileDTO.upload(file, RESOURCES+ File.separator+"Img");
         PictureVO pictureVODTO = new PictureVO();
         pictureVODTO.setError(0);
-        pictureVODTO.setUrl(new String[]{FOLDER_CLUB+"test"+"/test.jpg"});
+        pictureVODTO.setUrl(new String[]{"http://localhost:8088/resources/"+file.getOriginalFilename()});
+        logger.error(file.getOriginalFilename());
         return ajaxReturn(response, pictureVODTO, "", 0);
     }
-
 }
 

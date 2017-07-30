@@ -35,7 +35,6 @@ function  licenceControl(index) {
         $("#financeB").show();
     }
 }
-
 function viewControl(arr) {
     for(var i = 0;i<arr.length;i++){
         licenceControl(arr[i]);

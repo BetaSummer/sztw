@@ -46,13 +46,22 @@ public class ApprovePlaceActivityServiceImpl implements ApprovePlaceActivityServ
         if(0==isApprove){
             if(lvDTO==5){
                 resourcesStatusDTO = 3;
+            }else if(lvDTO==6){
+                publicStatusDTO = 3;
             }
             lvDTO = 99;
             statusDTO = 2;
         }else if(1==isApprove){
-            if(lvDTO==5&&0==statusPlaceActivityDTO.getPublicStatus()){
+            if(lvDTO==5){
+                if(0==statusPlaceActivityDTO.getPublicStatus()||2==statusPlaceActivityDTO.getPublicStatus()){
+                    statusDTO = 1;
+                }
                 resourcesStatusDTO = 2;
-                statusDTO = 1;
+            }else if(lvDTO==6){
+                if(0==statusPlaceActivityDTO.getResourcesStatus()||2==statusPlaceActivityDTO.getResourcesStatus()){
+                    statusDTO = 1;
+                }
+                publicStatusDTO = 2;
             }
             lvDTO++;
         }

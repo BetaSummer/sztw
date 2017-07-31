@@ -36,4 +36,9 @@
     from b_organization_member
     where organization_id = #{organizationId,jdbcType=INTEGER}
   </select>
+  <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, user_id, organization_id
+    from b_organization_member
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
 </mapper>

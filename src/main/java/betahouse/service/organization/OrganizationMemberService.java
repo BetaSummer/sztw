@@ -8,4 +8,6 @@ public interface OrganizationMemberService {
 
     List<OrganizationMember> listMember(int organizationId);
 
+    OrganizationMember getOrganizationByUserId(int userId);
+
 }

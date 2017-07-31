@@ -15,12 +15,10 @@ public class FormPublicUtilityServiceImpl implements FormPublicUtilityService {
     private FormPublicUtilityMapper formPublicUtilityMapper;
 
     @Override
-    public int insert(int formId, String defendComment, String electricComment, String water,
+    public int insert(int formId, String water,
                       String electric, String start, String end) {
         FormPublicUtility FormPublicUtilityDTO = new FormPublicUtility();
         FormPublicUtilityDTO.setFormId(formId);
-        FormPublicUtilityDTO.setDefendComment(defendComment);
-        FormPublicUtilityDTO.setElectricComment(electricComment);
         FormPublicUtilityDTO.setWater(water);
         FormPublicUtilityDTO.setElectric(electric);
         FormPublicUtilityDTO.setStart(start);

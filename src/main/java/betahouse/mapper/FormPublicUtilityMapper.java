@@ -15,4 +15,6 @@ public interface FormPublicUtilityMapper {
     List<FormPublicUtility> selectAll();
 
     int updateByPrimaryKey(FormPublicUtility record);
+
+    FormPublicUtility selectByFormId(int formId);
 }

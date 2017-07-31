@@ -17,4 +17,6 @@ public interface OrganizationMemberMapper {
     int updateByPrimaryKey(OrganizationMember record);
 
     List<OrganizationMember> selectByOrganizationId(Integer organizationId);
+
+    OrganizationMember selectByUserId(int userId);
 }

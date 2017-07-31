@@ -5,10 +5,6 @@ public class FormPublicUtility {
 
     private Integer formId;
 
-    private String defendComment;
-
-    private String electricComment;
-
     private String water;
 
     private String electric;
@@ -31,22 +27,6 @@ public class FormPublicUtility {
 
     public void setFormId(Integer formId) {
         this.formId = formId;
-    }
-
-    public String getDefendComment() {
-        return defendComment;
-    }
-
-    public void setDefendComment(String defendComment) {
-        this.defendComment = defendComment == null ? null : defendComment.trim();
-    }
-
-    public String getElectricComment() {
-        return electricComment;
-    }
-
-    public void setElectricComment(String electricComment) {
-        this.electricComment = electricComment == null ? null : electricComment.trim();
     }
 
     public String getWater() {

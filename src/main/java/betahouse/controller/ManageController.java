@@ -25,6 +25,7 @@ public class ManageController extends BaseController{
 
     @Autowired
     private UserInfoService userInfoService;
+
     @Autowired
     private ClubService clubService;
 

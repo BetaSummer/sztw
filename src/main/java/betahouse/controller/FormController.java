@@ -2,6 +2,8 @@ package betahouse.controller;
 
 import betahouse.controller.Base.BaseController;
 import betahouse.core.Base.BaseFile;
+import betahouse.mapper.OrganizationMapper;
+import betahouse.mapper.OrganizationMemberMapper;
 import betahouse.model.*;
 import betahouse.service.club.*;
 import betahouse.service.file.FileService;
@@ -52,16 +54,17 @@ public class FormController extends BaseController {
     @Autowired
     private ClubActivityApproveService clubActivityApproveService;
 
+    @Autowired
+    private OrganizationMemberMapper organizationMemberMapper;
+
+    @Autowired
+    private OrganizationMapper organizationMapper;
+
     @RequestMapping("/applyFormClubActivity")
     public String applyFormClubActivity(HttpServletRequest request, HttpServletResponse response, Model model){
         Club club = clubService.getClubByUserId(this.getCurrentUser(request).getId());
         model.addAttribute("club",club);
         return "clubActivity/clubForm";
-    }
-
-    @RequestMapping(value = "/areaFormInformation")
-    public String areaFormInformation(HttpServletRequest request, HttpServletResponse response, Model model){
-        return "clubActivity/areaApprove";
     }
 
     @RequestMapping(value = "/commitClubActivity", method = RequestMethod.POST)
@@ -135,5 +138,19 @@ public class FormController extends BaseController {
         if(statusDTO==1){
             this.error(request, response, model, statusDTO);
         }
+    }
+
+    @RequestMapping(value = "/areaApprove")
+    public String areaApprove(HttpServletRequest request, HttpServletResponse response, Model model){
+        return "clubActivity/areaApprove";
+    }
+
+    @RequestMapping(value = "/ariaForm")
+    public String ariaForm(HttpServletRequest request, HttpServletResponse response, Model model){
+        int idDTO = organizationMemberMapper.selectByUserId(getCurrentUser(request).getId()).getOrganizationId();
+        String organizationNameDTO = organizationMapper.selectByPrimaryKey(idDTO).getOrganizationName();
+        model.addAttribute("organizationName", organizationNameDTO);
+        model.addAttribute("user", getCurrentUser(request));
+        return "clubActivity/ariaForm";
     }
 }

@@ -208,7 +208,7 @@ $(function () {
 //TODO new table interface
 $(function () {
     $("#area-appli").click(function () {
-        $(".content-body").load("/applyClubForm/#");
+        $(".content-body").load("/applyClubForm/ariaForm");
         if( window.screen.width<767){
             $(document.body).height(1050);
         }
@@ -218,7 +218,7 @@ $(function () {
 $(function () {
     $("#area-manage").click(function () {
         $.get("/approveForm/listClubActivity",function () {
-            $(".content-body").load("/approveForm/#",function () {
+            $(".content-body").load("/approveForm/areaApprove",function () {
                 if( window.screen.width<767){
                     $(document.body).height(1050);
                 }
@@ -230,7 +230,7 @@ $(function () {
 $(function () {
     $("#area-view").click(function () {
         $(".content-body").html("");
-        $(".content-body").load("/applyClubForm/#",function () {
+        $(".content-body").load("/applyClubForm/areaApprove",function () {
             if( window.screen.width<767){
                 $(document.body).height(1050);
             }

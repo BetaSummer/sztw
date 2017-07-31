@@ -16,4 +16,9 @@ public class OrganizationMemberServiceImpl implements OrganizationMemberService{
     public List<OrganizationMember> listMember(int organizationId) {
         return organizationMemberMapper.selectByOrganizationId(organizationId);
     }
+
+    @Override
+    public OrganizationMember getOrganizationByUserId(int userId) {
+        return organizationMemberMapper.selectByUserId(userId);
+    }
 }

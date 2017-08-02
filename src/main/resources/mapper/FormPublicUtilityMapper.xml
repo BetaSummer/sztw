@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="betahouse.mapper.FormPublicUtilityMapper">
+  <resultMap id="BaseResultMap" type="betahouse.model.FormPublicUtility">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="form_id" jdbcType="INTEGER" property="formId" />
+    <result column="water" jdbcType="VARCHAR" property="water" />
+    <result column="electric" jdbcType="VARCHAR" property="electric" />
+    <result column="start" jdbcType="VARCHAR" property="start" />
+    <result column="end" jdbcType="VARCHAR" property="end" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from b_form_public_utility
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="betahouse.model.FormPublicUtility">
+    insert into b_form_public_utility (id, form_id, water, 
+      electric, start, end
+      )
+    values (#{id,jdbcType=INTEGER}, #{formId,jdbcType=INTEGER}, #{water,jdbcType=VARCHAR}, 
+      #{electric,jdbcType=VARCHAR}, #{start,jdbcType=VARCHAR}, #{end,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="betahouse.model.FormPublicUtility">
+    update b_form_public_utility
+    set form_id = #{formId,jdbcType=INTEGER},
+      water = #{water,jdbcType=VARCHAR},
+      electric = #{electric,jdbcType=VARCHAR},
+      start = #{start,jdbcType=VARCHAR},
+      end = #{end,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, form_id, water, electric, start, end
+    from b_form_public_utility
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, form_id, water, electric, start, end
+    from b_form_public_utility
+  </select>
+  <select id="selectByFormId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, form_id, water, electric, start, end
+    from b_form_public_utility
+    where form_id = #{formId,jdbcType=INTEGER}
+  </select>
+</mapper>

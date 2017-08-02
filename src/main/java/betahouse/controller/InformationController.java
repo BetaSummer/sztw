@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.IOException;
 
 import static betahouse.core.constant.FolderNameConstant.RESOURCES;
 import static betahouse.core.constant.InformationConstant.PUBLISH_SUCCESS;
@@ -81,16 +82,17 @@ public class InformationController extends BaseController{
     }
 
     @RequestMapping(value = "/uploadFile")
-    public String uploadFile(HttpServletRequest request, HttpServletResponse response, Model model,
+    public void uploadFile(HttpServletRequest request, HttpServletResponse response, Model model,
                              RedirectAttributes redirectAttributes,
-                             @RequestParam("yourFileName") MultipartFile file){
+                             @RequestParam("picture") MultipartFile file){
         BaseFile baseFileDTO = new BaseFile();
         baseFileDTO.upload(file, RESOURCES+ File.separator+"Img");
-        PictureVO pictureVODTO = new PictureVO();
-        pictureVODTO.setError(0);
-        pictureVODTO.setUrl(new String[]{"http://localhost:8088/resources/"+file.getOriginalFilename()});
-        logger.error(file.getOriginalFilename());
-        return ajaxReturn(response, pictureVODTO, "", 0);
+        String str = "http://localhost:8080/resources/"+file.getOriginalFilename();
+        try {
+            response.getWriter().write(str);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 

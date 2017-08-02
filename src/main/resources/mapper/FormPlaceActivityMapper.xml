@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="betahouse.mapper.FormPlaceActivityMapper">
+  <resultMap id="BaseResultMap" type="betahouse.model.FormPlaceActivity">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="activity_name" jdbcType="VARCHAR" property="activityName" />
+    <result column="activity_place" jdbcType="VARCHAR" property="activityPlace" />
+    <result column="activity_date" jdbcType="VARCHAR" property="activityDate" />
+    <result column="list" jdbcType="VARCHAR" property="list" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="budget" jdbcType="VARCHAR" property="budget" />
+    <result column="method" jdbcType="VARCHAR" property="method" />
+    <result column="date" jdbcType="VARCHAR" property="date" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from b_form_place_activity
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="betahouse.model.FormPlaceActivity">
+    insert into b_form_place_activity (id, user_id, activity_name, 
+      activity_place, activity_date, list, 
+      content, budget, method, 
+      date)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{activityName,jdbcType=VARCHAR}, 
+      #{activityPlace,jdbcType=VARCHAR}, #{activityDate,jdbcType=VARCHAR}, #{list,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{budget,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR}, 
+      #{date,jdbcType=VARCHAR})
+    <selectKey resultType="Integer" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID() AS id
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="betahouse.model.FormPlaceActivity">
+    update b_form_place_activity
+    set user_id = #{userId,jdbcType=INTEGER},
+      activity_name = #{activityName,jdbcType=VARCHAR},
+      activity_place = #{activityPlace,jdbcType=VARCHAR},
+      activity_date = #{activityDate,jdbcType=VARCHAR},
+      list = #{list,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      budget = #{budget,jdbcType=VARCHAR},
+      method = #{method,jdbcType=VARCHAR},
+      date = #{date,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, user_id, activity_name, activity_place, activity_date, list, content, 
+    budget, method, date
+    from b_form_place_activity
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, user_id, activity_name, activity_place, activity_date, list, content, 
+    budget, method, date
+    from b_form_place_activity
+  </select>
+</mapper>

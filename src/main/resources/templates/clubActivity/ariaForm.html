@@ -3,17 +3,17 @@
     <div class="form-inline">
         <div class="form-group">
             <label>承办组织</label>
-            <input disabled="disabled"  type="text" name="#" value="123"/>
+            <input disabled="disabled"  type="text" name="#" th:value="${organizationName}"/>
         </div>
         <div class="form-group">
             <label>责任人</label>
-            <input disabled="disabled"  type="text" name="#" value="123"/>
+            <input disabled="disabled"  type="text" name="#" th:value="${user.realName}"/>
         </div>
     </div>
     <div class="form-inline">
         <div class="form-group">
             <label>联系电话</label>
-            <input   type="text" name="#"/>
+            <input   type="text" name="#" th:value="${user.tel}"/>
         </div>
         <div class="form-group">
             <label>活动名称</label>

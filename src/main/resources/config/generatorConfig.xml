@@ -156,6 +156,13 @@
         <!--<table tableName="b_announcement" domainObjectName="Announcement"/>-->
         <!--<table tableName="b_message_box" domainObjectName="MessageBox"/>-->
         <!--<table tableName="b_club_financial_flow" domainObjectName="ClubFinancialFlow"/>-->
+        <!--<table tableName="b_approve_place_activity" domainObjectName="ApprovePlaceActivity"/>-->
+        <!--<table tableName="b_form_public_utility" domainObjectName="FormPublicUtility"/>-->
+        <!--<table tableName="b_form_place_activity" domainObjectName="FormPlaceActivity"/>-->
+        <!--<table tableName="b_organization" domainObjectName="Organization"/>-->
+        <!--<table tableName="b_organization_member" domainObjectName="OrganizationMember"/>-->
+        <!--<table tableName="b_status_place_activity" domainObjectName="StatusPlaceActivity"/>-->
+
 
         <!--<table tableName="people" domainObjectName="People"/>-->
         <!--<table tableName="b_%"/>-->

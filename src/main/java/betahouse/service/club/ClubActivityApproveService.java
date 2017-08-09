@@ -20,4 +20,6 @@ public interface ClubActivityApproveService {
 
     List<ClubActivityApprove> listApproveByFormId(int formId);
 
+    int deleteApproveByFormId(int formId);
+
 }

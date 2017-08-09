@@ -1,10 +1,17 @@
 package betahouse.service.club;
 
+import betahouse.core.Base.SimpleMD5;
 import betahouse.core.office.HSSF;
 import betahouse.mapper.ClubMapper;
 import betahouse.mapper.UserInfoMapper;
+import betahouse.mapper.UserMapper;
 import betahouse.model.Club;
+import betahouse.model.ClubActivityForm;
+import betahouse.model.User;
 import betahouse.model.UserInfo;
+import betahouse.service.financial.ClubFinancialFlowService;
+import betahouse.service.form.FormManagerService;
+import betahouse.service.power.PowerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,6 +31,27 @@ public class ClubServiceImpl implements ClubService {
 
     @Autowired
     private UserInfoMapper userInfoMapper;
+
+    @Autowired
+    private UserMapper userMapper;
+
+    @Autowired
+    private ClubFinancialFlowService clubFinancialFlowService;
+
+    @Autowired
+    private ClubActivityFormService clubActivityFormService;
+
+    @Autowired
+    private ClubActivityStatusService clubActivityStatusService;
+
+    @Autowired
+    private ClubActivityApproveService clubActivityApproveService;
+
+    @Autowired
+    private FormManagerService formManagerService;
+
+    @Autowired
+    private PowerService powerService;
 
     @Override
     public Club getClubByUserId(int userId) {
@@ -71,11 +99,97 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public int createClub(MultipartFile file) {
+    public int createClub(String folderName, String fileName) {
         HSSF hssf = new HSSF("demo", "demo");
         hssf.open();
-        String str = hssf.get(1, 1,1);
-        System.out.println(str);
+        int i=1;
+        int idDTO = 0;
+        while (!"".equals(hssf.get(0,i,1))){
+            String clubNameDTO = hssf.get(0, i,1);
+            String userRealNameDTO = hssf.get(0, i,2);
+            String userNameDTO = hssf.get(0,i,3);
+            String telDTO = hssf.get(0,i,4);
+            String eMailDTO = hssf.get(0,i,6);
+            String reserveMoneyDTO = hssf.get(0,i,7);
+            String reserveMoneyDTO2 = hssf.get(0,i,8);
+            String reserveMoneyDTO3 = hssf.get(0,i,9);
+            String reserveMoneyDTO4 = hssf.get(0,i,10);
+            String selfMoneyDTO = hssf.get(0,i,11);
+
+            if(!"".equals(userNameDTO)){
+                User userDTO = new User();
+                userDTO.setUsername(userNameDTO);
+                userDTO.setPassword(SimpleMD5.MD5(userNameDTO.substring(userNameDTO.length()-4)));
+                idDTO = userMapper.insert(userDTO);
+
+                UserInfo userInfoDTO = new UserInfo();
+                userInfoDTO.setId(idDTO);
+                userInfoDTO.seteMail(eMailDTO);
+                userInfoDTO.setSchoolId(userNameDTO);
+                userInfoDTO.setRealName(userRealNameDTO);
+                userInfoDTO.setTel(telDTO);
+                userInfoMapper.insert(userInfoDTO);
+            }
+
+            Club clubDTO = new Club();
+            clubDTO.setClubName(clubNameDTO);
+            clubDTO.setReserveMoney(Integer.parseInt(reserveMoneyDTO4));
+            clubDTO.setSelfMoney(Integer.parseInt(selfMoneyDTO));
+            clubDTO.setUserId(idDTO);
+            int idDTO2 = clubMapper.insert(clubDTO);
+
+            clubFinancialFlowService.insert(idDTO2, "2015年剩余预留金额", idDTO, 1, Integer.parseInt(reserveMoneyDTO));
+            clubFinancialFlowService.insert(idDTO2, "2016年上交预留金额", idDTO, 1, Integer.parseInt(reserveMoneyDTO2));
+            clubFinancialFlowService.insert(idDTO2, "2016学年预留经费使用", idDTO, -1, Integer.parseInt(reserveMoneyDTO3));
+
+            i++;
+        }
+        return 0;
+    }
+
+    @Override
+    public int deleteClub(int clubId) {
+        int userIdDTO = clubMapper.selectByPrimaryKey(clubId).getUserId();
+        formManagerService.updateFormManagerByApprover(userIdDTO, 1, -1);
+        powerService.deletePowerByUserId(userIdDTO, new int[]{3,4});
+
+        List<ClubActivityForm> listDTO = clubActivityFormService.listFormByClubId(clubId);
+        for(ClubActivityForm c: listDTO){
+            clubActivityStatusService.deleteStatusByFormId(c.getId());
+            clubActivityApproveService.deleteApproveByFormId(c.getId());
+        }
+        clubFinancialFlowService.deleteFinaceByClubId(clubId);
+        clubActivityFormService.deleteFormByClubId(clubId);
+        clubMapper.deleteByPrimaryKey(clubId);
+        return 0;
+    }
+
+    @Override
+    public int updateClub(int clubId, String clubName,int userId, String realName, String schoolId, String eMail, String tel) {
+        int oldUserId = clubMapper.selectByPrimaryKey(clubId).getUserId();
+        if(!"".equals(clubName)){
+            Club clubDTO = new Club();
+            clubDTO.setId(clubId);
+            clubDTO.setClubName(clubName);
+            if(oldUserId!=userId){
+                clubDTO.setUserId(userId);
+                powerService.deletePowerByUserId(oldUserId, new int[]{3,4});
+                formManagerService.updateFormManagerByApprover(oldUserId, 1, -1);
+                powerService.updatePowerByUserId(userId, 3);
+                powerService.updatePowerByUserId(userId, 4);
+                formManagerService.updateFormManagerByApprover(userId, 1, 1);
+            }
+            clubMapper.updateByPrimaryKey(clubDTO);
+        }
+        if(!"".equals(realName)||!"".equals(schoolId)||!"".equals(eMail)||!"".equals(tel)){
+            UserInfo userInfoDTO = new UserInfo();
+            userInfoDTO.setId(userId);
+            userInfoDTO.setRealName(realName);
+            userInfoDTO.setSchoolId(schoolId);
+            userInfoDTO.seteMail(eMail);
+            userInfoDTO.setTel(tel);
+            userInfoMapper.updateByPrimaryKey(userInfoDTO);
+        }
         return 0;
     }
 

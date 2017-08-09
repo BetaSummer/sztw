@@ -14,4 +14,6 @@ public interface PowerService {
 
     int updatePowerByUserId(int userId, int power);
 
+    int deletePowerByUserId(int userId, int[] power);
+
 }

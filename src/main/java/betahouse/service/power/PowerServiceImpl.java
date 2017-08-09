@@ -34,4 +34,19 @@ public class PowerServiceImpl implements PowerService{
         powerDTO.setPower(listDTO.toString());
         return powerMapper.updateByUserId(powerDTO);
     }
+
+    @Override
+    public int deletePowerByUserId(int userId, int[] power) {
+        Power powerDTO = powerMapper.selectByUserId(userId);
+        List<Integer> listDTO = JSON.parseArray(powerDTO.getPower(), Integer.class);
+        for(int p: power){
+            for(int i=0;i<listDTO.size();i++){
+                if(listDTO.get(i)==p){
+                    listDTO.remove(i);
+                }
+            }
+        }
+        powerDTO.setPower(listDTO.toString());
+        return powerMapper.updateByUserId(powerDTO);
+    }
 }

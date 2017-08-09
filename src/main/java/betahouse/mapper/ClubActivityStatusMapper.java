@@ -28,4 +28,6 @@ public interface ClubActivityStatusMapper {
     List<ClubActivityStatus> selectOverTypeAndLv(@Param("formType") Integer formType, @Param("lv") Integer lv);
 
     List<ClubActivityStatus> selectByFormUserId(Integer formUserId);
+
+    int deleteByFormId(int formId);
 }

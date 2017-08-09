@@ -10,7 +10,8 @@ public class ClubServiceImplTest {
     public void createClub() throws Exception {
         HSSF hssf = new HSSF("demo", "demo");
         hssf.open();
-        for(int i=1;i<2;i++){
+        int i=1;
+        while (!"".equals(hssf.get(0,i,1))){
             String clubNameDTO = hssf.get(0, i,1);
             String userRealNameDTO = hssf.get(0, i,2);
             String userNameDTO = hssf.get(0,i,3);
@@ -24,7 +25,8 @@ public class ClubServiceImplTest {
 
             String[] str = new String[]{clubNameDTO, userRealNameDTO, userNameDTO, telDTO, eMailDTO, reserveMoneyDTO, reserveMoneyDTO2,
                     reserveMoneyDTO3, reserveMoneyDTO4, selfMoneyDTO};
-            System.out.println(str[2]);
+            System.out.println(str[0]);
+            i++;
         }
     }
 }

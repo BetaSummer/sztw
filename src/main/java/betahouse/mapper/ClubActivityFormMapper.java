@@ -18,4 +18,8 @@ public interface ClubActivityFormMapper {
 
     List<ClubActivityForm> selectByClubName(String clubName);
 
+    int deleteByClubId(Integer clubId);
+
+    List<ClubActivityForm> selectByClubId(Integer clubId);
+
 }

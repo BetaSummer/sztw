@@ -28,4 +28,6 @@ public interface ClubActivityStatusService {
 
     int updateStatusByFormId(int formId, int status, int approveLv, String approveDate);
 
+    int deleteStatusByFormId(int formId);
+
 }

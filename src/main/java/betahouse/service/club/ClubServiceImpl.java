@@ -1,11 +1,13 @@
 package betahouse.service.club;
 
+import betahouse.core.office.HSSF;
 import betahouse.mapper.ClubMapper;
 import betahouse.mapper.UserInfoMapper;
 import betahouse.model.Club;
 import betahouse.model.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
 import java.util.List;
@@ -66,6 +68,15 @@ public class ClubServiceImpl implements ClubService {
             return clubMapper.updateByPrimaryKey(clubDTO);
         }
         return -1;
+    }
+
+    @Override
+    public int createClub(MultipartFile file) {
+        HSSF hssf = new HSSF("demo", "demo");
+        hssf.open();
+        String str = hssf.get(1, 1,1);
+        System.out.println(str);
+        return 0;
     }
 
     @Override

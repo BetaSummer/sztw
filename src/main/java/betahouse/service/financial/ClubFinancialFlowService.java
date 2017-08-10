@@ -23,4 +23,6 @@ public interface ClubFinancialFlowService {
 
     int insert(int clubId, String comment, int handler, int change, int money);
 
+    int deleteFinaceByClubId(int clubId);
+
 }

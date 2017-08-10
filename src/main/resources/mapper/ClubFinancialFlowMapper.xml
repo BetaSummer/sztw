@@ -53,4 +53,8 @@
     from b_club_financial_flow
     where activity_id = #{activityId,jdbcType=INTEGER}
   </select>
+  <delete id="deleteByClubId" parameterType="java.lang.Integer">
+    delete from b_club_financial_flow
+    where club_id = #{clubId,jdbcType=INTEGER}
+  </delete>
 </mapper>

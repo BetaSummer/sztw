@@ -110,4 +110,9 @@ public class ClubActivityStatusServiceImpl implements ClubActivityStatusService 
         clubActivityStatusDTO.setApproveDate(approveDate);
         return clubActivityStatusMapper.updateByFormId(clubActivityStatusDTO);
     }
+
+    @Override
+    public int deleteStatusByFormId(int formId) {
+        return clubActivityStatusMapper.deleteByFormId(formId);
+    }
 }

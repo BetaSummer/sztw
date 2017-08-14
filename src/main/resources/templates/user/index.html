@@ -41,17 +41,17 @@
     </nav>
     <content>
         <div class="sub-nav">
-            <div class="sub-ft sub-item" id="sub-n1">
+            <div class="sub-ft sub-item flag1" id="sub-n1">
                 社团活动申请表
             </div>
-            <div class="sub-child">
+            <div class="sub-child" >
                 <ul>
                     <li class="sub-item" id="form-appli">申请</li>
                     <li class="sub-item" id="form-view">查看</li>
                     <li class='sub-item' id='form-manage'>管理</li>
                 </ul>
             </div>
-            <div class="sub-ft sub-item" id="sub-n2">
+            <div class="sub-ft sub-item">
                 新表不知道叫啥
             </div>
             <div class="sub-child">
@@ -87,15 +87,12 @@
                     </ul>
                     <div class="news" id="demo-t">
                         <div class="suit">
-                            <li target="_blank" class="news-li" th:each="data:${announcement}">
-                                <p th:text="${data.date}"></p>
-                                <a th:href="@{*}" th:text="${data.title}"></a>
-                            </li>
+                                <li target="_blank" class="news-li" th:each="data:${announcement}">
+                                    <p th:text="${data.date}"></p>
+                                    <a th:href="'/information/getAnnouncementById?id='+${data.id}" th:text="${data.title}"></a>
+                                </li>
                         </div>
                     </div>
-                    <ul style="margin-top: 310px;font-size: 1vw">
-                        <a href="#">More>></a>
-                    </ul>
                 </div>
             </div>
         </div>

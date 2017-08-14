@@ -6,39 +6,66 @@
 /****************************************/
 
 //VIEW CONTROL
+var flag1 = false;
+var flag2 = false;
+var flag3 = false;
+var flag4 = false;
+var flag5 = false;
+
 function  licenceControl(index) {
     if(index==0){
         $("#userManage").show();
+        flag3=true;
     }
     if(index==1){
         $("#powerManage").show();
+        flag3=true;
     }
     if(index==2){
         $("#doMessage").show();
+        flag5=true;
     }
     if(index==3){
         $("#form-appli").show();
+        flag1=true;
     }
     if(index==4){
         $("#form-view").show();
+        flag1=true;
     }
     if(index==5){
         $("#form-manage").show();
+        flag1=true;
     }
     if(index==6){
         $("#clubmanage").show();
+        flag5=true;
     }
     if(index==7){
         $("#financeT").show();
+        flag4=true;
     }
     if(index==8){
         $("#financeB").show();
+        flag4=true;
     }
 }
 
 function viewControl(arr) {
     for(var i = 0;i<arr.length;i++){
         licenceControl(arr[i]);
+    }
+    if(!flag1){
+        $(".flag1").hide();
+    }
+    if(!flag3){
+        $(".flag3").hide();
+    }
+    if(!flag4){
+        $(".flag4").hide();
+    }
+    if(!flag5){
+        $(".flag5").hide();
     }
 }
 

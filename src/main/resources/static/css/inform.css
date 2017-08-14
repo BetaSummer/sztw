@@ -1,4 +1,4 @@
-body{overflow: auto;}
+
 body::-webkit-scrollbar{display: none;}
 .inform{
     height: 280px;
@@ -79,7 +79,7 @@ body::-webkit-scrollbar{display: none;}
 #demo-g,#demo-t{
     height: 290px; }
 .article{
-    margin:0 auto;
+    margin:20px auto;
     width: 60%;
     min-height: 600px;
     background-color: #FAFAFA;}
@@ -105,6 +105,7 @@ body::-webkit-scrollbar{display: none;}
 .foot a{padding: 20px;}
 
 @media screen and (min-width: 768px){
+    body{overflow: auto;}
     #inform{
         left: 20%;
         width: 50%;

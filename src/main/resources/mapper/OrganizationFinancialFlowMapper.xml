@@ -7,8 +7,8 @@
     <result column="form_id" jdbcType="INTEGER" property="formId" />
     <result column="handler" jdbcType="INTEGER" property="handler" />
     <result column="comment" jdbcType="VARCHAR" property="comment" />
-    <result column="income" jdbcType="INTEGER" property="income" />
-    <result column="cost" jdbcType="INTEGER" property="cost" />
+    <result column="income" jdbcType="REAL" property="income" />
+    <result column="cost" jdbcType="REAL" property="cost" />
     <result column="date" jdbcType="VARCHAR" property="date" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -20,8 +20,8 @@
       handler, comment, income, 
       cost, date)
     values (#{id,jdbcType=INTEGER}, #{organizationId,jdbcType=INTEGER}, #{formId,jdbcType=INTEGER}, 
-      #{handler,jdbcType=INTEGER}, #{comment,jdbcType=VARCHAR}, #{income,jdbcType=INTEGER}, 
-      #{cost,jdbcType=INTEGER}, #{date,jdbcType=VARCHAR})
+      #{handler,jdbcType=INTEGER}, #{comment,jdbcType=VARCHAR}, #{income,jdbcType=REAL}, 
+      #{cost,jdbcType=REAL}, #{date,jdbcType=VARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.OrganizationFinancialFlow">
     update b_organization_financial_flow
@@ -29,8 +29,8 @@
       form_id = #{formId,jdbcType=INTEGER},
       handler = #{handler,jdbcType=INTEGER},
       comment = #{comment,jdbcType=VARCHAR},
-      income = #{income,jdbcType=INTEGER},
-      cost = #{cost,jdbcType=INTEGER},
+      income = #{income,jdbcType=REAL},
+      cost = #{cost,jdbcType=REAL},
       date = #{date,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

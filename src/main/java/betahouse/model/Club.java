@@ -7,9 +7,9 @@ public class Club {
 
     private Integer userId;
 
-    private Integer selfMoney;
+    private Float selfMoney;
 
-    private Integer reserveMoney;
+    private Float reserveMoney;
 
     public Integer getId() {
         return id;
@@ -35,19 +35,19 @@ public class Club {
         this.userId = userId;
     }
 
-    public Integer getSelfMoney() {
+    public Float getSelfMoney() {
         return selfMoney;
     }
 
-    public void setSelfMoney(Integer selfMoney) {
+    public void setSelfMoney(Float selfMoney) {
         this.selfMoney = selfMoney;
     }
 
-    public Integer getReserveMoney() {
+    public Float getReserveMoney() {
         return reserveMoney;
     }
 
-    public void setReserveMoney(Integer reserveMoney) {
+    public void setReserveMoney(Float reserveMoney) {
         this.reserveMoney = reserveMoney;
     }
 }

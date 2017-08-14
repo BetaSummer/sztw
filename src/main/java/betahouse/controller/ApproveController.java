@@ -73,7 +73,7 @@ public class ApproveController extends BaseController{
             approverDTO[i+1] = new String[]{realNameDTO, listDTO.get(i).getComment()};
         }
         Club clubDTO = clubService.getClubById(clubActivityFormDTO.getClubId());
-        int[] moneyDTO = new int[]{clubDTO.getSelfMoney(), clubDTO.getReserveMoney()};
+        Float[] moneyDTO = new Float[]{clubDTO.getSelfMoney(), clubDTO.getReserveMoney()};
         model.addAttribute("clubActivityForm",clubActivityFormDTO);
         model.addAttribute("approver", approverDTO);
         model.addAttribute("money", moneyDTO);
@@ -94,8 +94,8 @@ public class ApproveController extends BaseController{
         if(listDTO.get(0)!=approveLvDTO){
             return ajaxReturn(response, null, CLUB_ACTIVITY_APPROVE_FAIL, 1);
         }
-        int applySelfMoneyDTO = Integer.parseInt(applySelfMoney);
-        int applyReserveMoneyDTO = Integer.parseInt(applyReserveMoney);
+        float applySelfMoneyDTO = Float.parseFloat(applySelfMoney);
+        float applyReserveMoneyDTO = Float.parseFloat(applyReserveMoney);
         int returnNumDTO = clubActivityApproveService.saveApprove(getCurrentUser(request), isApprove, formIdDTO, comment,
                 applySelfMoneyDTO, applyReserveMoneyDTO);
         if(returnNumDTO==-1){

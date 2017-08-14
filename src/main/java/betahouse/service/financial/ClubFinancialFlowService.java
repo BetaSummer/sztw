@@ -19,9 +19,9 @@ public interface ClubFinancialFlowService {
 
     ClubFinancialFlow getClubFinancialFlowByFormId(int formId);
 
-    int insert(int clubId, int formId, int applySelfMoney, int applyReserveMoney,  int income, String comment);
+    int insert(int clubId, int formId, float applySelfMoney, float applyReserveMoney, float income, String comment);
 
-    int insert(int clubId, String comment, int handler, int change, int money);
+    int insert(int clubId, String comment, int handler, int change, float money);
 
     int deleteFinaceByClubId(int clubId);
 

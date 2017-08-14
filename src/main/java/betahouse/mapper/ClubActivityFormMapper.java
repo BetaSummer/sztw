@@ -21,5 +21,4 @@ public interface ClubActivityFormMapper {
     int deleteByClubId(Integer clubId);
 
     List<ClubActivityForm> selectByClubId(Integer clubId);
-
 }

@@ -75,20 +75,20 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public int updateMoneyById(int id, int change, int selfReserve, int money) {
+    public int updateMoneyById(int id, int change, int selfReserve, float money) {
         Club clubDTO = clubMapper.selectByPrimaryKey(id);
         if(-1==change){
             money = -money;
         }
         if(1==selfReserve){
-            int reserveMoneyDTO = clubDTO.getReserveMoney()+money;
+            float reserveMoneyDTO = clubDTO.getReserveMoney()+money;
             if(reserveMoneyDTO<0){
                 return -1;
             }
             clubDTO.setReserveMoney(reserveMoneyDTO);
             return clubMapper.updateByPrimaryKey(clubDTO);
         }else if(2==selfReserve){
-            int selfMoneyDTO = clubDTO.getSelfMoney()+money;
+            float selfMoneyDTO = clubDTO.getSelfMoney()+money;
             if(selfMoneyDTO<0){
                 return -1;
             }
@@ -133,8 +133,8 @@ public class ClubServiceImpl implements ClubService {
 
             Club clubDTO = new Club();
             clubDTO.setClubName(clubNameDTO);
-            clubDTO.setReserveMoney(Integer.parseInt(reserveMoneyDTO4));
-            clubDTO.setSelfMoney(Integer.parseInt(selfMoneyDTO));
+            clubDTO.setReserveMoney(Float.parseFloat(reserveMoneyDTO4));
+            clubDTO.setSelfMoney(Float.parseFloat(selfMoneyDTO));
             clubDTO.setUserId(idDTO);
             int idDTO2 = clubMapper.insert(clubDTO);
 
@@ -194,10 +194,10 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public int updateMoneyById(int id, int applySelfMoney, int applyReserveMoney) {
+    public int updateMoneyById(int id, float applySelfMoney, float applyReserveMoney) {
         Club clubDTO = clubMapper.selectByPrimaryKey(id);
-        int selfMoneyDTO = clubDTO.getSelfMoney()-applySelfMoney;
-        int reserveMoneyDTO = clubDTO.getReserveMoney()-applyReserveMoney;
+        float selfMoneyDTO = clubDTO.getSelfMoney()-applySelfMoney;
+        float reserveMoneyDTO = clubDTO.getReserveMoney()-applyReserveMoney;
         if(selfMoneyDTO<0||reserveMoneyDTO<0){
             return -1;
         }

@@ -5,8 +5,8 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="club_name" jdbcType="VARCHAR" property="clubName" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="self_money" jdbcType="INTEGER" property="selfMoney" />
-    <result column="reserve_money" jdbcType="INTEGER" property="reserveMoney" />
+    <result column="self_money" jdbcType="REAL" property="selfMoney" />
+    <result column="reserve_money" jdbcType="REAL" property="reserveMoney" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from b_club
@@ -16,10 +16,7 @@
     insert into b_club (id, club_name, user_id, 
       self_money, reserve_money)
     values (#{id,jdbcType=INTEGER}, #{clubName,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
-      #{selfMoney,jdbcType=INTEGER}, #{reserveMoney,jdbcType=INTEGER})
-    <selectKey resultType="Integer" order="AFTER" keyProperty="id">
-      SELECT LAST_INSERT_ID() AS id
-    </selectKey>
+      #{selfMoney,jdbcType=REAL}, #{reserveMoney,jdbcType=REAL})
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.Club">
     update b_club
@@ -31,10 +28,10 @@
         user_id = #{userId,jdbcType=INTEGER},
       </if>
       <if test="null != selfMoney and '' != selfMoney or 0 == selfMoney">
-        self_money = #{selfMoney,jdbcType=INTEGER},
+        self_money = #{selfMoney,jdbcType=REAL},
       </if>
       <if test="null != reserveMoney and '' != reserveMoney or 0 == reserveMoney">
-        reserve_money = #{reserveMoney,jdbcType=INTEGER}
+        reserve_money = #{reserveMoney,jdbcType=REAL}
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}

@@ -122,7 +122,7 @@ public class FormController extends BaseController {
             approverDTO[i + 1] = new String[]{realNameDTO, listDTO.get(i).getComment()};
         }
         Club clubDTO = clubService.getClubById(clubActivityFormDTO.getClubId());
-        int[] moneyDTO = new int[]{clubDTO.getSelfMoney(), clubDTO.getReserveMoney()};
+        Float[] moneyDTO = new Float[]{clubDTO.getSelfMoney(), clubDTO.getReserveMoney()};
         model.addAttribute("clubActivityForm", clubActivityFormDTO);
         model.addAttribute("approver", approverDTO);
         model.addAttribute("money", moneyDTO);

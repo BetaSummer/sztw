@@ -11,11 +11,11 @@ public class ClubFinanceVO {
 
     private String userName;
 
-    private Integer income;
+    private Float income;
 
-    private Integer cost;
+    private Float cost;
 
-    private Integer payments;
+    private Float payments;
 
     private String date;
 
@@ -43,27 +43,27 @@ public class ClubFinanceVO {
         this.userName = userName;
     }
 
-    public Integer getIncome() {
+    public Float getIncome() {
         return income;
     }
 
-    public void setIncome(Integer income) {
+    public void setIncome(Float income) {
         this.income = income;
     }
 
-    public Integer getCost() {
+    public Float getCost() {
         return cost;
     }
 
-    public void setCost(Integer cost) {
+    public void setCost(Float cost) {
         this.cost = cost;
     }
 
-    public Integer getPayments() {
+    public Float getPayments() {
         return payments;
     }
 
-    public void setPayments(Integer payments) {
+    public void setPayments(Float payments) {
         this.payments = payments;
     }
 

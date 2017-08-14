@@ -2,7 +2,6 @@ package betahouse.controller;
 
 import betahouse.controller.Base.BaseController;
 import betahouse.core.Base.BaseFile;
-import betahouse.model.VO.PictureVO;
 import betahouse.service.information.AnnouncementService;
 import betahouse.service.information.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;

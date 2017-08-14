@@ -11,11 +11,11 @@ public class ClubFinanceVO {
 
     private String userName;
 
-    private int income;
+    private Integer income;
 
-    private int cost;
+    private Integer cost;
 
-    private int payments;
+    private Integer payments;
 
     private String date;
 
@@ -43,27 +43,27 @@ public class ClubFinanceVO {
         this.userName = userName;
     }
 
-    public int getIncome() {
+    public Integer getIncome() {
         return income;
     }
 
-    public void setIncome(int income) {
+    public void setIncome(Integer income) {
         this.income = income;
     }
 
-    public int getCost() {
+    public Integer getCost() {
         return cost;
     }
 
-    public void setCost(int cost) {
+    public void setCost(Integer cost) {
         this.cost = cost;
     }
 
-    public int getPayments() {
+    public Integer getPayments() {
         return payments;
     }
 
-    public void setPayments(int payments) {
+    public void setPayments(Integer payments) {
         this.payments = payments;
     }
 

@@ -98,4 +98,8 @@
     from b_status_club_activity
     where form_user_id = #{formUserId,jdbcType=INTEGER}
   </select>
+  <delete id="deleteByFormId" parameterType="java.lang.Integer">
+    delete from b_status_club_activity
+    where form_id = #{formId,jdbcType=INTEGER}
+  </delete>
 </mapper>

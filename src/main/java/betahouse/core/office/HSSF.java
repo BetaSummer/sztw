@@ -1,5 +1,6 @@
 package betahouse.core.office;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Cell;
@@ -218,7 +219,9 @@ public class HSSF {
         String str = "";
         try {
             if (wb == null) throw new Exception("未打开文件");
-            str = wb.getSheetAt(sheetIndex).getRow(x_index).getCell(y_index).getStringCellValue();
+            HSSFCell cell = wb.getSheetAt(sheetIndex).getRow(x_index).getCell(y_index);
+            cell.setCellType(Cell.CELL_TYPE_STRING);//处理读取xls时 单元格使用各类函数的数据读取问题
+            str = cell.getStringCellValue();
         } catch (Exception e) {
             logger.error(e.getMessage());
         }

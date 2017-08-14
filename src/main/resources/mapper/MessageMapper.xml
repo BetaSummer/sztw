@@ -6,7 +6,7 @@
     <result column="from_id" jdbcType="INTEGER" property="fromId" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="comment" jdbcType="VARCHAR" property="comment" />
-    <result column="to_id" jdbcType="CHAR" property="toId" />
+    <result column="to_id" jdbcType="VARCHAR" property="toId" />
     <result column="file_id" jdbcType="INTEGER" property="fileId" />
     <result column="date" jdbcType="VARCHAR" property="date" />
     <result column="status" jdbcType="INTEGER" property="status" />
@@ -20,7 +20,7 @@
       comment, to_id, file_id, 
       date, status)
     values (#{id,jdbcType=INTEGER}, #{fromId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
-      #{comment,jdbcType=VARCHAR}, #{toId,jdbcType=CHAR}, #{fileId,jdbcType=INTEGER}, 
+      #{comment,jdbcType=VARCHAR}, #{toId,jdbcType=VARCHAR}, #{fileId,jdbcType=INTEGER}, 
       #{date,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.Message">
@@ -36,7 +36,7 @@
         comment = #{comment,jdbcType=VARCHAR},
       </if>
       <if test="null != toId and '' != toId">
-        to_id = #{toId,jdbcType=CHAR},
+        to_id = #{toId,jdbcType=VARCHAR},
       </if>
       <if test="null != fileId and '' != fileId">
         file_id = #{fileId,jdbcType=INTEGER},

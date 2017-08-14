@@ -112,4 +112,9 @@ public class ClubFinancialFlowServiceImpl implements ClubFinancialFlowService{
         clubFinancialFlowDTO.setDate(sdfDTO.format(dateDTO));
         return clubFinancialFlowMapper.insert(clubFinancialFlowDTO);
     }
+
+    @Override
+    public int deleteFinaceByClubId(int clubId) {
+        return clubFinancialFlowMapper.deleteByClubId(clubId);
+    }
 }

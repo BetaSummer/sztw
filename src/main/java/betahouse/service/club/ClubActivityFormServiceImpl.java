@@ -83,4 +83,14 @@ public class ClubActivityFormServiceImpl implements ClubActivityFormService {
         clubActivityFormDTO.setReserveMoney(club.getReserveMoney());
         return clubActivityFormMapper.updateByPrimaryKey(clubActivityFormDTO);
     }
+
+    @Override
+    public int deleteFormByClubId(int clubId) {
+        return clubActivityFormMapper.deleteByClubId(clubId);
+    }
+
+    @Override
+    public List<ClubActivityForm> listFormByClubId(int clubId) {
+        return clubActivityFormMapper.selectByClubId(clubId);
+    }
 }

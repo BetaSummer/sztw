@@ -92,4 +92,9 @@ public class ClubActivityApproveServiceImpl implements ClubActivityApproveServic
     public List<ClubActivityApprove> listApproveByFormId(int formId) {
         return clubActivityApproveMapper.selectByFormId(formId);
     }
+
+    @Override
+    public int deleteApproveByFormId(int formId) {
+        return clubActivityApproveMapper.deleteByFormId(formId);
+    }
 }

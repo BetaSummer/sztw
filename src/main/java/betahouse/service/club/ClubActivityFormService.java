@@ -25,4 +25,8 @@ public interface ClubActivityFormService {
 
     int updateFormById(int id, Club club);
 
+    int deleteFormByClubId(int clubId);
+
+    List<ClubActivityForm> listFormByClubId(int clubId);
+
 }

@@ -22,4 +22,6 @@ public interface ClubActivityApproveMapper {
     ClubActivityApprove selectByLvAndFormId(@Param("lv") Integer lv, @Param("formId") Integer formId);
 
     List<ClubActivityApprove> selectByFormId(Integer formId);
+
+    int deleteByFormId(Integer formId);
 }

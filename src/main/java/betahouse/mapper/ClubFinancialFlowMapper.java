@@ -19,4 +19,6 @@ public interface ClubFinancialFlowMapper {
     List<ClubFinancialFlow> selectByClubId(int clubId);
 
     ClubFinancialFlow selectByFormId(int formId);
+
+    int deleteByClubId(Integer clubId);
 }

@@ -17,6 +17,9 @@
       self_money, reserve_money)
     values (#{id,jdbcType=INTEGER}, #{clubName,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
       #{selfMoney,jdbcType=INTEGER}, #{reserveMoney,jdbcType=INTEGER})
+    <selectKey resultType="Integer" order="AFTER" keyProperty="id">
+      SELECT LAST_INSERT_ID() AS id
+    </selectKey>
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.Club">
     update b_club

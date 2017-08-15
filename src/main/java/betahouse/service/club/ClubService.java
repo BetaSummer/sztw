@@ -29,5 +29,4 @@ public interface ClubService {
     int deleteClub(int clubId);
 
     int updateClub(int clubId, String clubName,int userId, String realName, String schoolId, String eMail, String tel);
-
 }

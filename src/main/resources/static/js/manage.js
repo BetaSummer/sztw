@@ -130,6 +130,7 @@ $(function () {
     $("#self-btn").click(function () {
         var id = $("#id").text();
         var password = $("#password").val();
+        password = password===""?"-1":password;
         var tel = $("#tel").val();
         var eMail = $("#eMail").val();
         var dataString ="[";

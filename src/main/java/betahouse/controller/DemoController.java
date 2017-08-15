@@ -47,32 +47,8 @@ public class DemoController extends BaseController {
         //return "/demo/hello";
     }
     @RequestMapping("/demo")
-    public void demo(HttpServletRequest request, HttpServletResponse response, Model model){
-        HSSF hssf = new HSSF("demo","test");
-        hssf.create("zxk dsb"," 名单");
-
-
-        List<User> list = new ArrayList<>();
-
-        User user = new User();
-        user.setId(1);
-        user.setUsername("aaa");
-        user.setPassword("123");
-        list.add(user);
-
-        User user2 = new User();
-        user2.setId(1);
-        user2.setUsername("aaa");
-        user2.setPassword("123");
-        list.add(user2);
-
-        String name[] = {"id","用户名","密码"};
-        hssf.insert(0,0,0,null,list);
-       // hssf.set(0,0,0,"tm");
-
-        BaseFile baseFile = new BaseFile();
-        baseFile.download(response,"Office"+ File.separator+"Excel"+File.separator+"demo", "test.xls");
-
+    public String demo(HttpServletRequest request, HttpServletResponse response, Model model){
+        return "demo/hello";
     }
 
     @RequestMapping(value = "/wangEditor")

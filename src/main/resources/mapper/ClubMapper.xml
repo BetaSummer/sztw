@@ -17,7 +17,7 @@
       self_money, reserve_money)
     values (#{id,jdbcType=INTEGER}, #{clubName,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
       #{selfMoney,jdbcType=REAL}, #{reserveMoney,jdbcType=REAL})
-    <selectKey resultType="Integer" order="AFTER" keyProperty="id">
+    <selectKey keyProperty="id" order="AFTER" resultType="Integer">
       SELECT LAST_INSERT_ID() AS id
     </selectKey>
   </insert>

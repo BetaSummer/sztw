@@ -45,9 +45,9 @@
     <h1>通知公告</h1>
     <hr/>
     <div class="news" id="demo">
-            <li target="_blank" class="news-li" th:each="data:${announcement}">
+            <li class="news-li" th:each="data:${announcement}">
                     <p th:text="${data.date}"></p>
-                <a th:href="'/information/getAnnouncementById?id='+${data.id}" th:text="${data.title}" target="_blank"></a>
+                <a  target="_blank" th:href="'/information/getAnnouncementById?id='+${data.id}" th:text="${data.title}"></a>
             </li>
     </div>
 </div>
@@ -55,20 +55,15 @@
 
 <footer>
     <div class="copyright">
-        <span>Copyright © <a href="http://expo.bootcss.com"></a></span> |
-        <span><a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备11008151号</a></span> | hdxg 版权所有
+        <span>Copyright © | betahouse技术支持 | betahouse版权所有 </span>
     </div>
 </footer>
 
 <script type="text/javascript" src="/js/jquery.js"></script>
 <script type="text/javascript" src="/js/main.js"></script>
+<script type="text/javascript" src="/js/inform.js"></script>
 </body>
 </html>
 
 
-<script>
-    //<![CDATA[
-    $('.news-li:odd').css('background','rgba(255,255,255,0)');
-    $('.news-li:even').css('background','rgba(255,255,255,0.3)');
-    //]]>
-</script>
+

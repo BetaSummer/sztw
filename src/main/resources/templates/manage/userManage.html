@@ -14,7 +14,7 @@
                 <td><label for="checkall">全选</label><input type="checkbox" id="checkall"/></td>
                 <td>姓名</td>
                 <td>学号/工号</td>
-                <td>所属</td>
+                <!--<td>所属</td>-->
                 <td>管理</td>
             </tr>
             <tr class="manage-body" th:each="data:${userInfo}">
@@ -24,7 +24,7 @@
                 <td th:text="${data.tel}" style="display: none;"></td>
                 <td th:text="${data.realName}"></td>
                 <td th:text="${data.schoolId}"></td>
-                <td>betahouse</td>
+                <!--<td>betahouse</td>-->
                 <td><span class="manage-btn manage-btn2" >管理</span></td>
             </tr>
         </table>

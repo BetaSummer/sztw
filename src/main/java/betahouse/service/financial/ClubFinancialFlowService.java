@@ -25,4 +25,6 @@ public interface ClubFinancialFlowService {
 
     int deleteFinaceByClubId(int clubId);
 
+    int deleteFinaceByClubId(int clubId);
+
 }

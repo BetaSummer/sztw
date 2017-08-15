@@ -30,4 +30,10 @@ public interface ClubService {
 
     int updateClub(int clubId, String clubName,int userId, String realName, String schoolId, String eMail, String tel);
 
+    int createClub(String folderName, String fileName);
+
+    int deleteClub(int clubId);
+
+    int updateClub(int clubId, String clubName,int userId, String realName, String schoolId, String eMail, String tel);
+
 }

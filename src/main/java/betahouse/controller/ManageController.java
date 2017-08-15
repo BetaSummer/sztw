@@ -64,4 +64,9 @@ public class ManageController extends BaseController{
         }
         return ajaxReturn(response,null, "修改成功", 0);
     }
+    @RequestMapping(value = "/selfManage")
+    public String selfManage(HttpServletRequest request, HttpServletResponse response, Model model){
+        model.addAttribute("selfInfo", getCurrentUser(request));
+        return "manage/selfManage";
+    }
 }

@@ -6,6 +6,11 @@
 /****************************************/
 
 //VIEW CONTROL
+var menuClubForm = false;//社团活动申请表
+var menuOrganizationForm = false;//学生组织活动申请表
+var menuClubFina = false;//社团财务管理
+var menuClubManage = false;//社团管理
+
 function  licenceControl(index) {
     if(index==0){
         $("#userManage").show();
@@ -15,30 +20,46 @@ function  licenceControl(index) {
     }
     if(index==2){
         $("#doMessage").show();
+        menuClubManage=true;
     }
     if(index==3){
         $("#form-appli").show();
+        menuClubForm=true;
     }
     if(index==4){
         $("#form-view").show();
+        menuClubForm=true;
     }
     if(index==5){
         $("#form-manage").show();
+        menuClubForm=true;
     }
     if(index==6){
-        $("#clubmanage").show();
+        $("#clubManage").show();
+        menuClubManage=true;
     }
     if(index==7){
         $("#financeT").show();
+        menuClubFina=true;
     }
     if(index==8){
         $("#financeB").show();
+        menuClubFina=true;
     }
 }
 
 function viewControl(arr) {
     for(var i = 0;i<arr.length;i++){
         licenceControl(arr[i]);
+    }
+    if(!menuClubForm){
+        $(".flag1").hide();
+    }
+    if(!menuClubFina){
+        $(".flag4").hide();
+    }
+    if(!menuClubManage){
+        $(".flag5").hide();
     }
 }
 
@@ -100,6 +121,13 @@ $(function () {
 });
 
 /* manage */
+$(function () {
+    $("#selfManage").click(function () {
+        $(".content-body").html("");
+        $(".loading").show();
+        $(".content-body").load("/manage/selfManage");
+    });
+});
 $(function () {
    $("#userManage").click(function () {
        $(".content-body").html("");

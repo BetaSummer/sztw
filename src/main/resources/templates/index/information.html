@@ -32,16 +32,14 @@
 <div class="article">
     <h1 th:text="${announcement.title}"></h1>
     <p th:inline="text">来源：[[${announcement.fromId}]]   发布时间：[[${announcement.date}]]</p><hr/>
-    <div class="main" th:utext="${announcement.comment}"></div>
-    <div class="foot"><a>打印</a><a>返回</a><a>关闭</a></div>
+    <div class="main" th:text="${announcement.comment}"></div>
 </div>
 
 
 
 <footer>
     <div class="copyright">
-        <span>Copyright © <a href="http://expo.bootcss.com"></a></span> |
-        <span><a href="http://www.miibeian.gov.cn/" target="_blank">京ICP备11008151号</a></span> | hdxg 版权所有
+        <span>Copyright © | betahouse技术支持 | betahouse版权所有 </span>
     </div>
 </footer>
 

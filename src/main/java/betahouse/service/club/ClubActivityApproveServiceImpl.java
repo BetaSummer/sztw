@@ -47,7 +47,7 @@ public class ClubActivityApproveServiceImpl implements ClubActivityApproveServic
 
 
     @Override
-    public int saveApprove(UserInfo userInfo, int isApprove, int formId, String comment, int applySelfMoney, int applyReserveMoney) {
+    public int saveApprove(UserInfo userInfo, int isApprove, int formId, String comment, float applySelfMoney, float applyReserveMoney) {
         int clubIdDTO = clubActivityFormService.getFormById(formId).getClubId();
         int approveLvDTO = clubActivityStatusService.getStatusByFormId(formId).getApproveLv();
         if(isApprove==1){

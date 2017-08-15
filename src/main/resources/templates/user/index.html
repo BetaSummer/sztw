@@ -89,7 +89,7 @@
                         <div class="suit">
                                 <li target="_blank" class="news-li" th:each="data:${announcement}">
                                     <p th:text="${data.date}"></p>
-                                    <a th:href="'/information/getAnnouncementById?id='+${data.id}" th:text="${data.title}"></a>
+                                    <a th:href="'/information/getAnnouncementById?id='+${data.id}" th:text="${data.title}" target="_blank"></a>
                                 </li>
                         </div>
                     </div>

@@ -29,8 +29,8 @@ public class ClubActivityFormServiceImpl implements ClubActivityFormService {
                           String activityTime, String activityPeople, String isApplyFine, String activityInfo,
                           String applySelfMoney, String applyReserveMoney, int fileId, UserInfo userInfo) {
         int isApplyFineDTO = Integer.parseInt(isApplyFine);
-        int applySelfMoneyDTO = Integer.parseInt(applySelfMoney);
-        int applyReserveMoneyDTO = Integer.parseInt(applyReserveMoney);
+        float applySelfMoneyDTO = Float.parseFloat(applySelfMoney);
+        float applyReserveMoneyDTO = Float.parseFloat(applyReserveMoney);
         ClubActivityForm clubActivityFormDTO = new ClubActivityForm();
         clubActivityFormDTO.setClub(club);
         clubActivityFormDTO.setChiefName(userInfo.getRealName());

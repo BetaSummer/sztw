@@ -10,6 +10,6 @@ public class FolderNameConstant {
     public static final String FOLDER_CLUB = "Club"+ File.separator;
     public static final String OFFICE = "Office";
     public static final String RESOURCES = "Resources";
-    public static final String FOLDER_OFFICE_EXCEL = OFFICE+File.separator+"excel"+File.separator;
+    public static final String FOLDER_OFFICE_EXCEL = OFFICE+File.separator+"Excel"+File.separator;
     public static final String FOLDER_OFFICE_EXCEL_SUFFIX = ".xls";
 }

@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public interface ClubService {
 
-    int updateMoneyById(int id, int applySelfMoney, int applyReserveMoney);
+    int updateMoneyById(int id, float applySelfMoney, float applyReserveMoney);
 
     Club getClubById(int id);
 
@@ -22,7 +22,7 @@ public interface ClubService {
 
     Map<String, UserInfo> listClubAndChief();
 
-    int updateMoneyById(int id, int change, int selfReserve, int money);
+    int updateMoneyById(int id, int change, int selfReserve, float money);
 
     int createClub(String folderName, String fileName);
 

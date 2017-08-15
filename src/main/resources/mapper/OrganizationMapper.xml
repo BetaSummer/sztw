@@ -5,34 +5,36 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="organization_name" jdbcType="VARCHAR" property="organizationName" />
     <result column="leader_id" jdbcType="INTEGER" property="leaderId" />
+    <result column="money" jdbcType="REAL" property="money" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from b_organization
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="betahouse.model.Organization">
-    insert into b_organization (id, organization_name, leader_id
-      )
-    values (#{id,jdbcType=INTEGER}, #{organizationName,jdbcType=VARCHAR}, #{leaderId,jdbcType=INTEGER}
-      )
+    insert into b_organization (id, organization_name, leader_id, 
+      money)
+    values (#{id,jdbcType=INTEGER}, #{organizationName,jdbcType=VARCHAR}, #{leaderId,jdbcType=INTEGER}, 
+      #{money,jdbcType=REAL})
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.Organization">
     update b_organization
     set organization_name = #{organizationName,jdbcType=VARCHAR},
-      leader_id = #{leaderId,jdbcType=INTEGER}
+      leader_id = #{leaderId,jdbcType=INTEGER},
+      money = #{money,jdbcType=REAL}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, organization_name, leader_id
+    select id, organization_name, leader_id, money
     from b_organization
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id, organization_name, leader_id
+    select id, organization_name, leader_id, money
     from b_organization
   </select>
   <select id="selectByleaderId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, organization_name, leader_id
+    select id, organization_name, leader_id, money
     from b_organization
     where leader_id = #{leaderId,jdbcType=INTEGER}
   </select>

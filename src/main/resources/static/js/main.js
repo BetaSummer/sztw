@@ -71,41 +71,53 @@ $(function () {
 /* login */
 $(function () {
    $("#login-btn").click(function () {
-       var username = $("#username").val();
-       var password = $("#password").val();
-       if(username!=""&&password!=""){
-           var data={
-               "username":username,
-               "password":password
-           };
-           $.ajax({
-               type: "POST",
-               url: "/user/login",
-               data: data,
-               dataType:"json",
-               success: function(r){
-                   if(r.status === 0){
-                       window.location.href = "/index";
-                       window.location.replace();
-                   }else if(r.status === 1){
-                       alert(r.message);
-                   }
-
-               },
-               error: function(XMLHttpRequest, textStatus, errorThrown){
-                   alert(XMLHttpRequest.status);
-                   alert(XMLHttpRequest.readyState);
-                   alert(textStatus);
-               },
-           });
-       }
-       else{
-           alert("用户名密码不能为空");
-       }
-   }) ;
-   $("#login-reset").click(function () {
-      $("#login-form")[0].reset();
+       login();
    });
+
+    $("#login-reset").click(function () {
+        $("#login-form")[0].reset();
+    });
+
+    document.onkeydown = function(e){
+        var ev = document.all ? window.event : e;
+        if(ev.keyCode==13) {
+            login();
+        }
+    };
+
+    function login() {
+        var username = $("#username").val();
+        var password = $("#password").val();
+        if(username!=""&&password!=""){
+            var data={
+                "username":username,
+                "password":password
+            };
+            $.ajax({
+                type: "POST",
+                url: "/user/login",
+                data: data,
+                dataType:"json",
+                success: function(r){
+                    if(r.status === 0){
+                        window.location.href = "/index";
+                        window.location.replace();
+                    }else if(r.status === 1){
+                        alert(r.message);
+                    }
+
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown){
+                    alert(XMLHttpRequest.status);
+                    alert(XMLHttpRequest.readyState);
+                    alert(textStatus);
+                },
+            });
+        }
+        else{
+            alert("用户名密码不能为空");
+        }
+    }
 });
 
 /* manage */

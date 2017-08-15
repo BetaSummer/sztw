@@ -77,7 +77,7 @@ public class ClubFinancialFlowServiceImpl implements ClubFinancialFlowService{
     }
 
     @Override
-    public int insert(int clubId, int formId, int applySelfMoney, int applyReserveMoney, int income, String cmment) {
+    public int insert(int clubId, int formId, float applySelfMoney, float applyReserveMoney, float income, String cmment) {
         ClubFinancialFlow clubFinancialFlowDTO = new ClubFinancialFlow();
         clubFinancialFlowDTO.setClubId(clubId);
         if(formId!=0){
@@ -95,17 +95,15 @@ public class ClubFinancialFlowServiceImpl implements ClubFinancialFlowService{
     }
 
     @Override
-    public int insert(int clubId, String comment, int handler, int change, int money) {
+    public int insert(int clubId, String comment, int handler, int change, float money) {
         ClubFinancialFlow clubFinancialFlowDTO = new ClubFinancialFlow();
         clubFinancialFlowDTO.setClubId(clubId);
         clubFinancialFlowDTO.setComment(comment);
         clubFinancialFlowDTO.setHandler(handler);
         if(-1==change){
             clubFinancialFlowDTO.setCost(money);
-            clubFinancialFlowDTO.setIncome(0);
         }else if(1==change){
             clubFinancialFlowDTO.setIncome(money);
-            clubFinancialFlowDTO.setCost(0);
         }
         Date dateDTO = new Date();
         SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");

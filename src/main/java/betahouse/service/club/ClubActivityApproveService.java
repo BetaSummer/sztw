@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public interface ClubActivityApproveService {
 
-    int saveApprove(UserInfo userInfo, int isApprove, int formId, String comment, int applySelfMoney, int applyReserveMoney);
+    int saveApprove(UserInfo userInfo, int isApprove, int formId, String comment, float applySelfMoney, float applyReserveMoney);
 
     List<ClubActivityApprove> listApproveByLv(int lv);
 

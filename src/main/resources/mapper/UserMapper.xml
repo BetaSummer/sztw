@@ -15,7 +15,7 @@
       )
     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}
       )
-    <selectKey resultType="Integer" order="AFTER" keyProperty="id">
+    <selectKey keyProperty="id" order="AFTER" resultType="Integer">
       SELECT LAST_INSERT_ID() AS id
     </selectKey>
   </insert>

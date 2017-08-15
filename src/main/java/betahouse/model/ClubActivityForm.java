@@ -25,13 +25,13 @@ public class ClubActivityForm {
 
     private String activityInfo;
 
-    private Integer applySelfMoney;
+    private Float applySelfMoney;
 
-    private Integer applyReserveMoney;
+    private Float applyReserveMoney;
 
-    private Integer selfMoney;
+    private Float selfMoney;
 
-    private Integer reserveMoney;
+    private Float reserveMoney;
 
     private Integer clubId;
 
@@ -133,35 +133,35 @@ public class ClubActivityForm {
         this.activityInfo = activityInfo == null ? null : activityInfo.trim();
     }
 
-    public Integer getApplySelfMoney() {
+    public Float getApplySelfMoney() {
         return applySelfMoney;
     }
 
-    public void setApplySelfMoney(Integer applySelfMoney) {
+    public void setApplySelfMoney(Float applySelfMoney) {
         this.applySelfMoney = applySelfMoney;
     }
 
-    public Integer getApplyReserveMoney() {
+    public Float getApplyReserveMoney() {
         return applyReserveMoney;
     }
 
-    public void setApplyReserveMoney(Integer applyReserveMoney) {
+    public void setApplyReserveMoney(Float applyReserveMoney) {
         this.applyReserveMoney = applyReserveMoney;
     }
 
-    public Integer getSelfMoney() {
+    public Float getSelfMoney() {
         return selfMoney;
     }
 
-    public void setSelfMoney(Integer selfMoney) {
+    public void setSelfMoney(Float selfMoney) {
         this.selfMoney = selfMoney;
     }
 
-    public Integer getReserveMoney() {
+    public Float getReserveMoney() {
         return reserveMoney;
     }
 
-    public void setReserveMoney(Integer reserveMoney) {
+    public void setReserveMoney(Float reserveMoney) {
         this.reserveMoney = reserveMoney;
     }
 

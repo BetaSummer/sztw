@@ -5,6 +5,7 @@ import betahouse.controller.Base.BaseController;
 import betahouse.model.Club;
 import betahouse.model.User;
 import betahouse.model.UserInfo;
+import betahouse.model.VO.UserListVO;
 import betahouse.service.club.ClubService;
 import betahouse.service.form.FormManagerService;
 import betahouse.service.form.FormTypeService;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static betahouse.core.constant.UserConstant.*;
@@ -110,5 +112,19 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/updateUserInfo")
     public String getUserInfoById(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam int id){
         return ajaxReturn(response, userInfoService.getUserInfoById(id), "", 0);
+    }
+
+    @RequestMapping(value = "/listAllUser")
+    public String listAllUser(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam int id){
+        List<User> userListDTO = userService.listAllUser();
+        List<UserListVO> userListVOList = new ArrayList<>();
+        for(User u: userListDTO){
+            UserInfo userInfoDTO = userInfoService.getUserInfoById(u.getId());
+            UserListVO userListVO = new UserListVO();
+            userListVO.setId(u.getId());
+            userListVO.setRealName(userInfoDTO.getRealName());
+            userListVOList.add(userListVO);
+        }
+        return ajaxReturn(response, userListVOList, "", 0);
     }
 }

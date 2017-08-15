@@ -11,9 +11,9 @@ public class OrganizationFinancialFlow {
 
     private String comment;
 
-    private Integer income;
+    private Float income;
 
-    private Integer cost;
+    private Float cost;
 
     private String date;
 
@@ -57,19 +57,19 @@ public class OrganizationFinancialFlow {
         this.comment = comment == null ? null : comment.trim();
     }
 
-    public Integer getIncome() {
+    public Float getIncome() {
         return income;
     }
 
-    public void setIncome(Integer income) {
+    public void setIncome(Float income) {
         this.income = income;
     }
 
-    public Integer getCost() {
+    public Float getCost() {
         return cost;
     }
 
-    public void setCost(Integer cost) {
+    public void setCost(Float cost) {
         this.cost = cost;
     }
 

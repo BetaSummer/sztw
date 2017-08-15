@@ -120,6 +120,7 @@ public class ClubServiceImpl implements ClubService {
                 userInfoMapper.insert(userInfoDTO);
 
                 powerService.insert(idDTO, "[3,4]");
+                formManagerService.insertFormManager(idDTO, "[1]");
             }
 
             Club clubDTO = new Club();

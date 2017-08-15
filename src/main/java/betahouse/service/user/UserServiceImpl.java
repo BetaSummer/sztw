@@ -52,8 +52,9 @@ public class UserServiceImpl implements UserService{
     public int register(String username, String password) {
         User userDTO = new User();
         userDTO.setUsername(username);
-        userDTO.setPassword(password);
-        return userMapper.insert(userDTO);
+        userDTO.setPassword(SimpleMD5.MD5(password));
+        userMapper.insert(userDTO);
+        return userDTO.getId();
     }
 
     @Override

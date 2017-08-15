@@ -9,7 +9,7 @@ public interface FormManagerService {
 
     FormManager getFormManagerByApprover(int approverId);
 
-    int insertFormManager();
+    int insertFormManager(int approver, String approverForm);
 
     int updateFormManagerByApprover(int approver, int formType, int lv);
 

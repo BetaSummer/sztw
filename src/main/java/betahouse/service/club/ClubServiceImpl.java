@@ -39,15 +39,6 @@ public class ClubServiceImpl implements ClubService {
     private ClubFinancialFlowService clubFinancialFlowService;
 
     @Autowired
-    private ClubActivityFormService clubActivityFormService;
-
-    @Autowired
-    private ClubActivityStatusService clubActivityStatusService;
-
-    @Autowired
-    private ClubActivityApproveService clubActivityApproveService;
-
-    @Autowired
     private FormManagerService formManagerService;
 
     @Autowired

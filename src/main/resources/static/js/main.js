@@ -6,48 +6,45 @@
 /****************************************/
 
 //VIEW CONTROL
-var flag1 = false;
-var flag2 = false;
-var flag3 = false;
-var flag4 = false;
-var flag5 = false;
+var menuClubForm = false;//社团活动申请表
+var menuOrganizationForm = false;//学生组织活动申请表
+var menuClubFina = false;//社团财务管理
+var menuClubManage = false;//社团管理
 
 function  licenceControl(index) {
     if(index==0){
         $("#userManage").show();
-        flag3=true;
     }
     if(index==1){
         $("#powerManage").show();
-        flag3=true;
     }
     if(index==2){
         $("#doMessage").show();
-        flag5=true;
+        menuClubManage=true;
     }
     if(index==3){
         $("#form-appli").show();
-        flag1=true;
+        menuClubForm=true;
     }
     if(index==4){
         $("#form-view").show();
-        flag1=true;
+        menuClubForm=true;
     }
     if(index==5){
         $("#form-manage").show();
-        flag1=true;
+        menuClubForm=true;
     }
     if(index==6){
-        $("#clubmanage").show();
-        flag5=true;
+        $("#clubManage").show();
+        menuClubManage=true;
     }
     if(index==7){
         $("#financeT").show();
-        flag4=true;
+        menuClubFina=true;
     }
     if(index==8){
         $("#financeB").show();
-        flag4=true;
+        menuClubFina=true;
     }
 }
 
@@ -55,16 +52,13 @@ function viewControl(arr) {
     for(var i = 0;i<arr.length;i++){
         licenceControl(arr[i]);
     }
-    if(!flag1){
+    if(!menuClubForm){
         $(".flag1").hide();
     }
-    if(!flag3){
-        $(".flag3").hide();
-    }
-    if(!flag4){
+    if(!menuClubFina){
         $(".flag4").hide();
     }
-    if(!flag5){
+    if(!menuClubManage){
         $(".flag5").hide();
     }
 }
@@ -115,6 +109,13 @@ $(function () {
 });
 
 /* manage */
+$(function () {
+    $("#selfManage").click(function () {
+        $(".content-body").html("");
+        $(".loading").show();
+        $(".content-body").load("/manage/selfManage");
+    });
+});
 $(function () {
    $("#userManage").click(function () {
        $(".content-body").html("");

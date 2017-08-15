@@ -127,6 +127,34 @@ $(function () {
 });
 
 $(function () {
+    $("#self-btn").click(function () {
+        var id = $("#id").text();
+        var password = $("#password").val();
+        var tel = $("#tel").val();
+        var eMail = $("#eMail").val();
+        var dataString ="[";
+        dataString += "{'id':"+id+",'password':'"+password+"','tel':'"+tel+"','eMail':'"+eMail+"'},";
+        dataString =dataString.substring(0,dataString.length-1);
+        dataString += "]";
+        console.log(dataString);
+        var data = {
+            "data": dataString
+        }
+        $.ajax({
+            type: "GET",
+            url: "/manage/updateUserInfo",
+            data: data,
+            dataType:"json",
+            success: function(r){
+                alert(r.message);
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            }
+        });
+    });
     $("#user-btn").click(function () {
         var dataLength = $(".manage-alert-in").length;
         var dataTrArr = $(".manage-alert-in");

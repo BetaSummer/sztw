@@ -1,0 +1,32 @@
+
+<!--  个人管理  -->
+
+
+
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="manage-main manage-five">
+        <table id="fin-table">
+            <tr class="manage-title">
+                <td>姓名</td>
+                <td>学号/工号</td>
+                <td>密码</td>
+                <td>联系方式</td>
+                <td>邮箱</td>
+                <!--<td>所属</td>-->
+            </tr>
+            <tr class="manage-body">
+                <td id = "id" th:text="${selfInfo.id}" style="display: none;"></td>
+                <td th:text="${selfInfo.realName}" style="text-align: center"></td>
+                <td th:text="${selfInfo.schoolId}"></td>
+                <td><input id="password" type="text" placeholder="修改密码"/></td>
+                <td><input id="tel" type="text" placeholder="修改联系方式" th:value="${selfInfo.tel}"/></td>
+                <td><input id="eMail" type="text" placeholder="修改邮箱" th:value="${selfInfo.eMail}"/></td>
+                <!--<td>betahouse</td>-->
+            </tr>
+            <tr class="manage-alert-in">
+                <td colspan="5"><span class="manage-alert-btn" id="self-btn" style="margin-left: 0px;margin-right: 0px;width: 100%;text-align: center">确认修改</span></td>
+            </tr>
+        </table>
+    </div>
+    <script src="/js/manage.js"></script>
+</html>

@@ -16,4 +16,6 @@ public interface PowerService {
 
     int deletePowerByUserId(int userId, int[] power);
 
+    int insert(int id, String power);
+
 }

@@ -22,6 +22,11 @@ public class PowerServiceImpl implements PowerService{
     @Override
     public List<Integer> getPowerByUserId(int userId) {
         Power powerDTO =powerMapper.selectByUserId(userId);
+        if(powerDTO==null){
+            List<Integer> listDTO = new ArrayList<>();
+            listDTO.add(-1);
+            return listDTO;
+        }
         return JSON.parseArray(powerDTO.getPower(), Integer.class);
     }
 
@@ -48,5 +53,13 @@ public class PowerServiceImpl implements PowerService{
         }
         powerDTO.setPower(listDTO.toString());
         return powerMapper.updateByUserId(powerDTO);
+    }
+
+    @Override
+    public int insert(int id, String power) {
+        Power powerDTO = new Power();
+        powerDTO.setUserId(id);
+        powerDTO.setPower(power);
+        return powerMapper.insert(powerDTO);
     }
 }

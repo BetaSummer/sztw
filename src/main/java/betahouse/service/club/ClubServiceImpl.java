@@ -5,10 +5,7 @@ import betahouse.core.office.HSSF;
 import betahouse.mapper.ClubMapper;
 import betahouse.mapper.UserInfoMapper;
 import betahouse.mapper.UserMapper;
-import betahouse.model.Club;
-import betahouse.model.ClubActivityForm;
-import betahouse.model.User;
-import betahouse.model.UserInfo;
+import betahouse.model.*;
 import betahouse.service.financial.ClubFinancialFlowService;
 import betahouse.service.form.FormManagerService;
 import betahouse.service.power.PowerService;
@@ -37,15 +34,6 @@ public class ClubServiceImpl implements ClubService {
 
     @Autowired
     private ClubFinancialFlowService clubFinancialFlowService;
-
-    @Autowired
-    private ClubActivityFormService clubActivityFormService;
-
-    @Autowired
-    private ClubActivityStatusService clubActivityStatusService;
-
-    @Autowired
-    private ClubActivityApproveService clubActivityApproveService;
 
     @Autowired
     private FormManagerService formManagerService;
@@ -130,6 +118,8 @@ public class ClubServiceImpl implements ClubService {
                 userInfoDTO.setRealName(userRealNameDTO);
                 userInfoDTO.setTel(telDTO);
                 userInfoMapper.insert(userInfoDTO);
+
+                powerService.insert(idDTO, "[3,4]");
             }
 
             Club clubDTO = new Club();

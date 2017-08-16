@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -14,26 +14,42 @@
     <![endif]-->
 </head>
 <body>
+<nav>
+    <ul class="nav-right">
+        <!--<a>-->
+        <!--<li onclick="window.location.href='/user/register'">-->
+        <!--注册-->
+        <!--</li>-->
+        <!--</a>-->
+        <li onclick="window.location.href='/index'">
+            登录
+        </li>
+    </ul>
+</nav>
     <div class="error-warrper">
         <div class="error-img">
             <img src="/img/error.jpg"/>
         </div>
         <div class="error-content">
             <div class="error-content-body">
+                <h2 th:text="${status}"/>
                 <h4>您要访问的页面不存在！</h4>
                 <p>原因可能是</p>
                 <ul>
-                    <li>sfasf</li>
-                    <li>sfasf</li>
-                    <li>sfasf</li>
+                    <li th:each="info:${errorInfo}"><span th:text="${info}"/></li>
                 </ul>
                 <h4>您可以这样做</h4>
                 <ul>
-                    <li><a>返回上一个页面</a></li>
-                    <li><a>回到首页</a></li>
+                    <li><a onclick="javascript:history.back(-1);">返回上一个页面</a></li>
+                    <li><a onclick="window.location.href='/index'">回到首页</a></li>
                 </ul>
             </div>
         </div>
     </div>
+<footer>
+    <div class="copyright">
+        <span>Copyright © | betahouse技术支持 | betahouse版权所有 </span>
+    </div>
+</footer>
 </body>
 </html>

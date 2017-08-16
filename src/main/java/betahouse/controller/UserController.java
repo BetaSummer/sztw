@@ -127,7 +127,7 @@ public class UserController extends BaseController {
         }
         return ajaxReturn(response, userListVOList, "", 0);
     }
-
+  
     @RequestMapping(value = "/addAccount")
     public String addAccount(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam String reg_username,
                              @RequestParam String reg_password, @RequestParam String reg_realname, @RequestParam String reg_school_id,

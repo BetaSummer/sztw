@@ -127,4 +127,13 @@ public class UserController extends BaseController {
         }
         return ajaxReturn(response, userListVOList, "", 0);
     }
+  
+    @RequestMapping(value = "/addAccount")
+    public String addAccount(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam String reg_username,
+                             @RequestParam String reg_password, @RequestParam String reg_realname, @RequestParam String reg_school_id,
+                             @RequestParam String reg_tel, @RequestParam String reg_email){
+        int idDTO = userService.register(reg_username, reg_password);
+        userInfoService.insert(idDTO, reg_realname, reg_school_id, reg_email, reg_tel);
+        return "index/register";
+    }
 }

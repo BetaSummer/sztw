@@ -61,4 +61,9 @@
     from b_announcement
     where status = #{status,jdbcType=INTEGER}
   </select>
+  <select id="selectByFromId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, from_id, title, comment, file_id, date, status
+    from b_announcement
+    where from_id = #{fromId,jdbcType=INTEGER}
+  </select>
 </mapper>

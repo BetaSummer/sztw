@@ -17,4 +17,6 @@ public interface AnnouncementMapper {
     int updateByPrimaryKey(Announcement record);
 
     List<Announcement> selectByStatus(int status);
+
+    List<Announcement> selectByFromId(int fromId);
 }

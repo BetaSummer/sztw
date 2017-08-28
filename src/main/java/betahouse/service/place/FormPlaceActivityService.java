@@ -1,5 +1,6 @@
 package betahouse.service.place;
 
+import betahouse.model.FormPlaceActivity;
 import betahouse.model.VO.PlaceActivityTableVO;
 
 public interface FormPlaceActivityService {
@@ -11,5 +12,7 @@ public interface FormPlaceActivityService {
                    String budget, String method, int resourcesStatus, String water, String electric, String start, String end);
 
     PlaceActivityTableVO getPlaceActivityTableVOById(int id);
+
+    FormPlaceActivity getFormById(int id);
 
 }

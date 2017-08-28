@@ -62,7 +62,9 @@ public class ManageController extends BaseController{
             String passwordDTO = u.getPassword();
             String tel = u.getTel();
             String eMail = u.geteMail();
-            userInfoService.updateUserInfoById(idDTO, "", "", eMail, tel);
+            if(!"".equals(tel)||!"".equals(eMail)){
+                userInfoService.updateUserInfoById(idDTO, "", "", eMail, tel);
+            }
             if(!"-1".equals(passwordDTO)){
                 userService.updateUserById(idDTO, "", passwordDTO);
             }

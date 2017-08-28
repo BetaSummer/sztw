@@ -31,10 +31,12 @@ public class PowerServiceImpl implements PowerService{
     }
 
     @Override
-    public int updatePowerByUserId(int userId, int power) {
+    public int addPowerByUserId(int userId, int[] power) {
         Power powerDTO = powerMapper.selectByUserId(userId);
         List<Integer> listDTO = JSON.parseArray(powerDTO.getPower(), Integer.class);
-        listDTO.add(power);
+        for (int p:power){
+            listDTO.add(p);
+        }
         listDTO = new ArrayList<Integer>(new HashSet<Integer>(listDTO));
         powerDTO.setPower(listDTO.toString());
         return powerMapper.updateByUserId(powerDTO);
@@ -61,5 +63,17 @@ public class PowerServiceImpl implements PowerService{
         powerDTO.setUserId(id);
         powerDTO.setPower(power);
         return powerMapper.insert(powerDTO);
+    }
+
+    @Override
+    public boolean checkPower(int userId, int powerId) {
+        Power powerDTO = powerMapper.selectByUserId(userId);
+        List<Integer> listDTO = JSON.parseArray(powerDTO.getPower(), Integer.class);
+        for (int power: listDTO) {
+            if(power==powerId){
+                return true;
+            }
+        }
+        return false;
     }
 }

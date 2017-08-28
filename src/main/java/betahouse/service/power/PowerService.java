@@ -12,10 +12,12 @@ public interface PowerService {
 
     List<Integer> getPowerByUserId(int userId);
 
-    int updatePowerByUserId(int userId, int power);
+    int addPowerByUserId(int userId, int[] power);
 
     int deletePowerByUserId(int userId, int[] power);
 
     int insert(int id, String power);
+
+    boolean  checkPower(int userId, int powerId);
 
 }

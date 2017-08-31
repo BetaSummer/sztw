@@ -9,7 +9,7 @@
     <result column="activity_date" jdbcType="VARCHAR" property="activityDate" />
     <result column="list" jdbcType="VARCHAR" property="list" />
     <result column="content" jdbcType="VARCHAR" property="content" />
-    <result column="budget" jdbcType="VARCHAR" property="budget" />
+    <result column="budget" jdbcType="REAL" property="budget" />
     <result column="method" jdbcType="VARCHAR" property="method" />
     <result column="date" jdbcType="VARCHAR" property="date" />
   </resultMap>
@@ -24,11 +24,8 @@
       date)
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{activityName,jdbcType=VARCHAR}, 
       #{activityPlace,jdbcType=VARCHAR}, #{activityDate,jdbcType=VARCHAR}, #{list,jdbcType=VARCHAR}, 
-      #{content,jdbcType=VARCHAR}, #{budget,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{budget,jdbcType=REAL}, #{method,jdbcType=VARCHAR}, 
       #{date,jdbcType=VARCHAR})
-    <selectKey resultType="Integer" order="AFTER" keyProperty="id">
-      SELECT LAST_INSERT_ID() AS id
-    </selectKey>
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.FormPlaceActivity">
     update b_form_place_activity
@@ -38,7 +35,7 @@
       activity_date = #{activityDate,jdbcType=VARCHAR},
       list = #{list,jdbcType=VARCHAR},
       content = #{content,jdbcType=VARCHAR},
-      budget = #{budget,jdbcType=VARCHAR},
+      budget = #{budget,jdbcType=REAL},
       method = #{method,jdbcType=VARCHAR},
       date = #{date,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}

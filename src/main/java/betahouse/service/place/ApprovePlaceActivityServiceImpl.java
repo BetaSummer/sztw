@@ -6,6 +6,7 @@ import betahouse.mapper.StatusPlaceActivityMapper;
 import betahouse.mapper.UserInfoMapper;
 import betahouse.model.ApprovePlaceActivity;
 import betahouse.model.StatusPlaceActivity;
+import betahouse.service.financial.OrganizationFinancialFlowService;
 import com.alibaba.fastjson.JSON;
 import jdk.nashorn.internal.runtime.JSONFunctions;
 import org.omg.CORBA.INTERNAL;
@@ -26,6 +27,9 @@ public class ApprovePlaceActivityServiceImpl implements ApprovePlaceActivityServ
 
     @Autowired
     private StatusPlaceActivityService statusPlaceActivityService;
+
+    @Autowired
+    private OrganizationFinancialFlowService organizationFinancialFlowService;
 
     @Override
     public int saveApprove(int approveUserId, int isApprove, int formId, String comment) {
@@ -64,6 +68,9 @@ public class ApprovePlaceActivityServiceImpl implements ApprovePlaceActivityServ
                 publicStatusDTO = 2;
             }
             lvDTO++;
+        }
+        if(statusDTO==1){
+            organizationFinancialFlowService.insert(formId, comment);
         }
         statusPlaceActivityService.updateStatusByFormId(formId, statusDTO, resourcesStatusDTO, publicStatusDTO, lvDTO, sdfDTO.format(dateDTO));
         return approvePlaceActivityMapper.insert(approvePlaceActivityDTO);

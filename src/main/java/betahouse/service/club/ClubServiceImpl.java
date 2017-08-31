@@ -9,6 +9,7 @@ import betahouse.model.*;
 import betahouse.service.financial.ClubFinancialFlowService;
 import betahouse.service.form.FormManagerService;
 import betahouse.service.power.PowerService;
+import betahouse.service.user.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -40,6 +41,9 @@ public class ClubServiceImpl implements ClubService {
 
     @Autowired
     private PowerService powerService;
+
+    @Autowired
+    private UserInfoService userInfoService;
 
     @Override
     public Club getClubByUserId(int userId) {
@@ -141,7 +145,7 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public int deleteClub(int clubId) {
+    public int deleteClubById(int clubId) {
         int userIdDTO = clubMapper.selectByPrimaryKey(clubId).getUserId();
         formManagerService.updateFormManagerByApprover(userIdDTO, 1, -1);
         powerService.deletePowerByUserId(userIdDTO, new int[]{3,4});
@@ -150,30 +154,23 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public int updateClub(int clubId, String clubName,int userId, String realName, String schoolId, String eMail, String tel) {
+    public int updateClubById(int clubId, String clubName,int userId, String realName, String schoolId, String eMail, String tel) {
         int oldUserId = clubMapper.selectByPrimaryKey(clubId).getUserId();
         if(!"".equals(clubName)){
             Club clubDTO = new Club();
             clubDTO.setId(clubId);
             clubDTO.setClubName(clubName);
-            if(oldUserId!=userId){
+            if(userId!=0&&oldUserId!=userId){
                 clubDTO.setUserId(userId);
                 powerService.deletePowerByUserId(oldUserId, new int[]{3,4});
                 formManagerService.updateFormManagerByApprover(oldUserId, 1, -1);
-                powerService.updatePowerByUserId(userId, 3);
-                powerService.updatePowerByUserId(userId, 4);
+                powerService.addPowerByUserId(userId, new int[]{3,4});
                 formManagerService.updateFormManagerByApprover(userId, 1, 1);
             }
             clubMapper.updateByPrimaryKey(clubDTO);
         }
         if(!"".equals(realName)||!"".equals(schoolId)||!"".equals(eMail)||!"".equals(tel)){
-            UserInfo userInfoDTO = new UserInfo();
-            userInfoDTO.setId(userId);
-            userInfoDTO.setRealName(realName);
-            userInfoDTO.setSchoolId(schoolId);
-            userInfoDTO.seteMail(eMail);
-            userInfoDTO.setTel(tel);
-            userInfoMapper.updateByPrimaryKey(userInfoDTO);
+            userInfoService.updateUserInfoById(userId, realName, schoolId, eMail, tel);
         }
         return 0;
     }

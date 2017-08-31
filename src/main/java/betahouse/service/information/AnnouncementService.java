@@ -19,4 +19,6 @@ public interface AnnouncementService {
 
     Announcement getAnnouncementById(int id);
 
+    List<Announcement> listAnnouncementByPower(int userId);
+
 }

@@ -4,6 +4,8 @@ import betahouse.mapper.FormManagerMapper;
 import betahouse.mapper.FormPlaceActivityMapper;
 import betahouse.mapper.StatusPlaceActivityMapper;
 import betahouse.model.StatusPlaceActivity;
+import betahouse.service.organization.OrganizationMemberService;
+import betahouse.service.organization.OrganizationService;
 import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,15 @@ public class StatusPlaceActivityServiceImpl implements StatusPlaceActivityServic
     @Autowired
     private FormPlaceActivityMapper formPlaceActivityMapper;
 
+    @Autowired
+    private ApprovePlaceActivityService approvePlaceActivityService;
+
+    @Autowired
+    private OrganizationService organizationService;
+
+    @Autowired
+    private OrganizationMemberService organizationMemberService;
+
     @Override
     public int insert(int formId, int formUserId, int resourcesStatus, int publicStatus) {
         StatusPlaceActivity statusPlaceActivityDTO = new StatusPlaceActivity();
@@ -37,7 +48,14 @@ public class StatusPlaceActivityServiceImpl implements StatusPlaceActivityServic
         statusPlaceActivityDTO.setStatus(0);
         statusPlaceActivityDTO.setApproveLv(2);
         statusPlaceActivityDTO.setFormType(2);
-        return statusPlaceActivityMapper.insert(statusPlaceActivityDTO);
+        statusPlaceActivityMapper.insert(statusPlaceActivityDTO);
+
+        int organizationIdDTO = organizationMemberService.getOrganizationByUserId(formUserId).getId();
+        int leaderIdDTO = organizationService.getOrganizationById(organizationIdDTO).getLeaderId();
+        if(formId==leaderIdDTO){
+            approvePlaceActivityService.saveApprove(leaderIdDTO, 1, formId, "同意");
+        }
+        return 0;
     }
 
     @Override

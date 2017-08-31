@@ -100,6 +100,8 @@ public class ClubFinancialFlowServiceImpl implements ClubFinancialFlowService{
         clubFinancialFlowDTO.setClubId(clubId);
         clubFinancialFlowDTO.setComment(comment);
         clubFinancialFlowDTO.setHandler(handler);
+        clubFinancialFlowDTO.setIncome(0f);
+        clubFinancialFlowDTO.setCost(0f);
         if(-1==change){
             clubFinancialFlowDTO.setCost(money);
         }else if(1==change){

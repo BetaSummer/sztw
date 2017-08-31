@@ -15,4 +15,6 @@ public interface OrganizationFinancialFlowMapper {
     List<OrganizationFinancialFlow> selectAll();
 
     int updateByPrimaryKey(OrganizationFinancialFlow record);
+
+    List<OrganizationFinancialFlow> selectByOrganization(Integer organizationId);
 }

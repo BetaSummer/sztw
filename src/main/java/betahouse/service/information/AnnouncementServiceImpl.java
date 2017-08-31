@@ -2,6 +2,7 @@ package betahouse.service.information;
 
 import betahouse.mapper.AnnouncementMapper;
 import betahouse.model.Announcement;
+import betahouse.service.power.PowerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,9 @@ public class AnnouncementServiceImpl implements AnnouncementService{
 
     @Autowired
     private AnnouncementMapper announcementMapper;
+
+    @Autowired
+    private PowerService powerService;
 
     @Override
     public List<Announcement> listAll() {
@@ -62,5 +66,16 @@ public class AnnouncementServiceImpl implements AnnouncementService{
     @Override
     public Announcement getAnnouncementById(int id) {
         return announcementMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public List<Announcement> listAnnouncementByPower(int userId) {
+        if(powerService.checkPower(userId, 15)){
+            listAll();
+        }
+        if(powerService.checkPower(userId, 2)){
+            return announcementMapper.selectByFromId(userId);
+        }
+        return null;
     }
 }

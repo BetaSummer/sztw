@@ -43,4 +43,9 @@
     select id, organization_id, form_id, handler, comment, income, cost, date
     from b_organization_financial_flow
   </select>
+  <select id="selectByOrganization" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, organization_id, form_id, handler, comment, income, cost, date
+    from b_organization_financial_flow
+    where organization_id = #{organizationId,jdbcType=INTEGER}
+  </select>
 </mapper>

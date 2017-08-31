@@ -26,7 +26,7 @@ public interface ClubService {
 
     int createClub(String folderName, String fileName);
 
-    int deleteClub(int clubId);
+    int deleteClubById(int clubId);
 
-    int updateClub(int clubId, String clubName,int userId, String realName, String schoolId, String eMail, String tel);
+    int updateClubById(int clubId, String clubName,int userId, String realName, String schoolId, String eMail, String tel);
 }

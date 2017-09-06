@@ -2,7 +2,6 @@ package betahouse.controller;
 
 
 import betahouse.controller.Base.BaseController;
-import betahouse.model.Club;
 import betahouse.model.User;
 import betahouse.model.UserInfo;
 import betahouse.model.VO.UserListVO;
@@ -11,7 +10,8 @@ import betahouse.service.form.FormManagerService;
 import betahouse.service.form.FormTypeService;
 import betahouse.service.power.PowerService;
 import betahouse.service.power.PowerTypeService;
-import betahouse.service.user.*;
+import betahouse.service.user.UserInfoService;
+import betahouse.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,13 +98,15 @@ public class UserController extends BaseController {
         return ajaxReturn(response, powerTypeService.listAll(), "", 0);
     }
 
+    //TODO 原名 addPower @RequestParam int userId, @RequestParam String powList, @RequestParam int lv
     @RequestMapping(value = "/updatePower")
     public String updatePower(HttpServletRequest request, HttpServletResponse response, Model model,
-                              @RequestParam int userId, @RequestParam int powerId, @RequestParam int lv){
-        powerService.updatePowerByUserId(userId, powerId);
-        if(0!=lv){
-            formManagerService.updateFormManagerByApprover(userId, powerId, lv);
-        }
+                              @RequestParam int userId, @RequestParam String powList){
+        powerService.updatePowerByUserId(userId, powList);
+        //TODO lv 属性不明意义
+//        if(0!=lv){
+//            formManagerService.updateFormManagerByApprover(userId, powerId, lv);
+//        }
         return ajaxReturn(response, null, USER_UPDATE_POWER_SUCCESS, 0);
     }
 

@@ -76,4 +76,11 @@ public class PowerServiceImpl implements PowerService{
         }
         return false;
     }
+
+    @Override
+    public int updatePowerByUserId(int userId, String powerList){
+        Power powerDTO = powerMapper.selectByUserId(userId);
+        powerDTO.setPower(powerList);
+        return powerMapper.updateByUserId(powerDTO);
+    }
 }

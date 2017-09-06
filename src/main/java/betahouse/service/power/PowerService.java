@@ -1,8 +1,5 @@
 package betahouse.service.power;
 
-import betahouse.model.Power;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.List;
 
 /**
@@ -20,4 +17,5 @@ public interface PowerService {
 
     boolean  checkPower(int userId, int powerId);
 
+    int updatePowerByUserId(int userId, String power);
 }

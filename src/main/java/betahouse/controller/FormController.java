@@ -2,10 +2,11 @@ package betahouse.controller;
 
 import betahouse.controller.Base.BaseController;
 import betahouse.core.Base.BaseFile;
-import betahouse.mapper.OrganizationMapper;
-import betahouse.mapper.OrganizationMemberMapper;
 import betahouse.model.*;
-import betahouse.service.club.*;
+import betahouse.service.club.ClubActivityApproveService;
+import betahouse.service.club.ClubActivityFormService;
+import betahouse.service.club.ClubActivityStatusService;
+import betahouse.service.club.ClubService;
 import betahouse.service.file.FileService;
 import betahouse.service.form.FormManagerService;
 import betahouse.service.user.UserInfoService;

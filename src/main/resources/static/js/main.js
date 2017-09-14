@@ -253,8 +253,9 @@ $(function () {
         if( window.screen.width<767){
             $(document.body).height(1050);
         }
-    });Approve
+    });
 });
+
 //表二审批list
 $(function () {
     $("#area-manage").click(function () {

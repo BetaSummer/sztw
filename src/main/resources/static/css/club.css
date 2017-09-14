@@ -11,7 +11,9 @@
   padding: 20px;
   background-color: #5c5a5d;
   color: #FFF; }
-
+.form2-input{
+  display: none;
+}
 #club-load {
   border-top: solid #FFF 1px; }
 

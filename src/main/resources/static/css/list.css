@@ -11,7 +11,7 @@
     margin:0 10px;
     width: 120px;
     height: 40px;
-    background-color: #67747c;
+    background-color: #8a98a0;
     color:#ffffff;
     border:none;
     font-size: 16px;
@@ -19,6 +19,9 @@
 .manage-header button:hover{
     background-color: #3b444f;
     cursor: pointer;
+}
+.manage-header .on{
+    background-color: #3b444f;
 }
 .manage-main{
     clear: both;

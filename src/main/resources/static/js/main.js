@@ -246,19 +246,20 @@ $(function () {
     });
 });
 //TODO new table interface
+//表二申请
 $(function () {
     $("#area-appli").click(function () {
-        $(".content-body").load("/applyClubForm/ariaForm");
+        $(".content-body").load("/applyOrganizationForm/apply");
         if( window.screen.width<767){
             $(document.body).height(1050);
         }
-    });
+    });Approve
 });
-
+//表二审批list
 $(function () {
     $("#area-manage").click(function () {
         $.get("/approveForm/listClubActivity",function () {
-            $(".content-body").load("/approveForm/areaApprove",function () {
+            $(".content-body").load("/approveOrganizationForm/approveList",function () {
                 if( window.screen.width<767){
                     $(document.body).height(1050);
                 }
@@ -266,18 +267,17 @@ $(function () {
         });
     });
 });
-
+//表二list
 $(function () {
     $("#area-view").click(function () {
         $(".content-body").html("");
-        $(".content-body").load("/applyClubForm/areaApprove",function () {
+        $(".content-body").load("/applyOrganizationForm/listAllForm",function () {
             if( window.screen.width<767){
                 $(document.body).height(1050);
             }
         }) ;
     });
 });
-
 /* approval */
 $(function () {
     $("#club-entry").click(function () {

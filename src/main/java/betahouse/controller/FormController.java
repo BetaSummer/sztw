@@ -2,10 +2,11 @@ package betahouse.controller;
 
 import betahouse.controller.Base.BaseController;
 import betahouse.core.Base.BaseFile;
-import betahouse.mapper.OrganizationMapper;
-import betahouse.mapper.OrganizationMemberMapper;
 import betahouse.model.*;
-import betahouse.service.club.*;
+import betahouse.service.club.ClubActivityApproveService;
+import betahouse.service.club.ClubActivityFormService;
+import betahouse.service.club.ClubActivityStatusService;
+import betahouse.service.club.ClubService;
 import betahouse.service.file.FileService;
 import betahouse.service.form.FormManagerService;
 import betahouse.service.user.UserInfoService;
@@ -54,12 +55,6 @@ public class FormController extends BaseController {
     @Autowired
     private ClubActivityApproveService clubActivityApproveService;
 
-    @Autowired
-    private OrganizationMemberMapper organizationMemberMapper;
-
-    @Autowired
-    private OrganizationMapper organizationMapper;
-
     @RequestMapping("/applyFormClubActivity")
     public String applyFormClubActivity(HttpServletRequest request, HttpServletResponse response, Model model){
         Club club = clubService.getClubByUserId(this.getCurrentUser(request).getId());
@@ -98,18 +93,20 @@ public class FormController extends BaseController {
         int idDTO = getCurrentUser(request).getId();
         FormManager formManagerDTO = formManagerService.getFormManagerByApprover(idDTO);
         List<Integer> listDTO = JSON.parseArray(formManagerDTO.getApproverForm(), Integer.class);
-        int lvDTO = listDTO.get(0);
-        if(lvDTO == -1){
-            return noPower;
-        }
-        if(lvDTO == 1){
-            Map mapDTO = clubActivityStatusService.listStatusByFormUserId(idDTO);
+        try {
+            int lvDTO = listDTO.get(0);
+            if(lvDTO == 1){
+                Map mapDTO = clubActivityStatusService.listStatusByFormUserId(idDTO);
+                model.addAttribute("data",mapDTO);
+                return "clubActivity/formList";
+            }
+            Map mapDTO = clubActivityStatusService.listStatusOverTypeAndLv(1, lvDTO);
             model.addAttribute("data",mapDTO);
             return "clubActivity/formList";
+        }catch (NullPointerException e){
+            logger.error(getCurrentUser(request).getRealName()+"权限缺失");
+            return noPower;
         }
-        Map mapDTO = clubActivityStatusService.listStatusOverTypeAndLv(1, lvDTO);
-        model.addAttribute("data",mapDTO);
-        return "clubActivity/formList";
     }
 
     @RequestMapping(value = "/getFormById")
@@ -143,19 +140,5 @@ public class FormController extends BaseController {
         if(statusDTO==1){
             this.error(request, response, model, statusDTO);
         }
-    }
-
-    @RequestMapping(value = "/areaApprove")
-    public String areaApprove(HttpServletRequest request, HttpServletResponse response, Model model){
-        return "clubActivity/areaApprove";
-    }
-
-    @RequestMapping(value = "/ariaForm")
-    public String ariaForm(HttpServletRequest request, HttpServletResponse response, Model model){
-        int idDTO = organizationMemberMapper.selectByUserId(getCurrentUser(request).getId()).getOrganizationId();
-        String organizationNameDTO = organizationMapper.selectByPrimaryKey(idDTO).getOrganizationName();
-        model.addAttribute("organizationName", organizationNameDTO);
-        model.addAttribute("user", getCurrentUser(request));
-        return "clubActivity/ariaForm";
     }
 }

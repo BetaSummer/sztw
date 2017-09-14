@@ -4,9 +4,15 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
+<<<<<<< HEAD
     url: jdbc:mysql://120.25.240.194:3306/xgtw_digital?characterEncoding=utf-8
     username: root
     password: tz19961008
+=======
+    url:
+    username:
+    password:
+>>>>>>> 8429e9668068da5956d8c3b35a8f4984500a3194
   http:
     multipart:
       max-file-size: 10Mb

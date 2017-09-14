@@ -76,7 +76,7 @@ public class StatusPlaceActivityServiceImpl implements StatusPlaceActivityServic
     }
 
     @Override
-    public Map ListStatusByUserId(int userId) {
+    public Map listStatusByUserId(int userId) {
         String approveFormDTO = formManagerMapper.selectByApprover(userId).getApproverForm();
         int lvSDTO = JSON.parseArray(approveFormDTO, Integer.class).get(1);
         List<StatusPlaceActivity> listDTO = null;
@@ -96,7 +96,7 @@ public class StatusPlaceActivityServiceImpl implements StatusPlaceActivityServic
     }
 
     @Override
-    public Map ListStatusOverUserId(int userId) {
+    public Map listStatusOverUserId(int userId) {
         String approveFormDTO = formManagerMapper.selectByApprover(userId).getApproverForm();
         int lvSDTO = JSON.parseArray(approveFormDTO, Integer.class).get(1);
         List<StatusPlaceActivity> listDTO = statusPlaceActivityMapper.selectOverLv(lvSDTO);

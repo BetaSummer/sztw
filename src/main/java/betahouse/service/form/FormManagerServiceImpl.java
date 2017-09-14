@@ -24,8 +24,10 @@ public class FormManagerServiceImpl implements FormManagerService{
     }
 
     @Override
-    public int insertFormManager() {
+    public int insertFormManager(int approver, String approverForm) {
         FormManager formManager = new FormManager();
+        formManager.setApprover(approver);
+        formManager.setApproverForm(approverForm);
         return formManagerMapper.insert(formManager);
     }
 

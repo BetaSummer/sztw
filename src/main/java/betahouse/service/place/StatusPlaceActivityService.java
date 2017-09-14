@@ -12,8 +12,8 @@ public interface StatusPlaceActivityService {
 
     StatusPlaceActivity getStatusByFormId(int formId);
 
-    Map ListStatusByUserId(int userId);
+    Map listStatusByUserId(int userId);
 
-    Map ListStatusOverUserId(int userId);
+    Map listStatusOverUserId(int userId);
 
 }

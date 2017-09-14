@@ -19,13 +19,13 @@ public interface ClubActivityFormService {
 
     ClubActivityForm getLastForm();
 
-    int deleteFormById(int id);
+    int deleteFormById(int userId, int id);
 
     List<ClubActivityForm> listFormByClubName(String clubName);
 
     int updateFormById(int id, Club club);
 
-    int deleteFormByClubId(int clubId);
+    int deleteFormByClubId(int userId, int clubId);
 
     List<ClubActivityForm> listFormByClubId(int clubId);
 

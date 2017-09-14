@@ -17,11 +17,18 @@
 <body style="background-image: none;">
 <nav>
     <ul class="nav-right">
-        <a>
-            <li onclick="window.location.href='/user/register'">
-                注册
-            </li>
-        </a>
+        <nav>
+            <ul class="nav-right">
+                <!--<a>-->
+                <!--<li onclick="window.location.href='/user/register'">-->
+                <!--注册-->
+                <!--</li>-->
+                <!--</a>-->
+                <li onclick="window.location.href='/index'">
+                    登录
+                </li>
+            </ul>
+        </nav>
         <li>
             登录
         </li>
@@ -32,7 +39,7 @@
 <div class="article">
     <h1 th:text="${announcement.title}"></h1>
     <p th:inline="text">来源：[[${announcement.fromId}]]   发布时间：[[${announcement.date}]]</p><hr/>
-    <div class="main" th:text="${announcement.comment}"></div>
+    <div class="main" th:utext="${announcement.comment}"></div>
 </div>
 
 

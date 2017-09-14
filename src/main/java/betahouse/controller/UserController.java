@@ -2,15 +2,16 @@ package betahouse.controller;
 
 
 import betahouse.controller.Base.BaseController;
-import betahouse.model.Club;
 import betahouse.model.User;
 import betahouse.model.UserInfo;
+import betahouse.model.VO.UserListVO;
 import betahouse.service.club.ClubService;
 import betahouse.service.form.FormManagerService;
 import betahouse.service.form.FormTypeService;
 import betahouse.service.power.PowerService;
 import betahouse.service.power.PowerTypeService;
-import betahouse.service.user.*;
+import betahouse.service.user.UserInfoService;
+import betahouse.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import static betahouse.core.constant.UserConstant.*;
@@ -97,18 +98,43 @@ public class UserController extends BaseController {
         return ajaxReturn(response, powerTypeService.listAll(), "", 0);
     }
 
+    //TODO 原名 addPower @RequestParam int userId, @RequestParam String powList, @RequestParam int lv
     @RequestMapping(value = "/updatePower")
     public String updatePower(HttpServletRequest request, HttpServletResponse response, Model model,
-                              @RequestParam int userId, @RequestParam int powerId, @RequestParam int lv){
-        powerService.updatePowerByUserId(userId, powerId);
-        if(0!=lv){
-            formManagerService.updateFormManagerByApprover(userId, powerId, lv);
-        }
+                              @RequestParam int userId, @RequestParam String powList){
+        powerService.updatePowerByUserId(userId, powList);
+        //TODO lv 属性不明意义
+//        if(0!=lv){
+//            formManagerService.updateFormManagerByApprover(userId, powerId, lv);
+//        }
         return ajaxReturn(response, null, USER_UPDATE_POWER_SUCCESS, 0);
     }
 
     @RequestMapping(value = "/updateUserInfo")
     public String getUserInfoById(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam int id){
         return ajaxReturn(response, userInfoService.getUserInfoById(id), "", 0);
+    }
+
+    @RequestMapping(value = "/listAllUser")
+    public String listAllUser(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam int id){
+        List<User> userListDTO = userService.listAllUser();
+        List<UserListVO> userListVOList = new ArrayList<>();
+        for(User u: userListDTO){
+            UserInfo userInfoDTO = userInfoService.getUserInfoById(u.getId());
+            UserListVO userListVO = new UserListVO();
+            userListVO.setId(u.getId());
+            userListVO.setRealName(userInfoDTO.getRealName());
+            userListVOList.add(userListVO);
+        }
+        return ajaxReturn(response, userListVOList, "", 0);
+    }
+  
+    @RequestMapping(value = "/addAccount")
+    public String addAccount(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam String reg_username,
+                             @RequestParam String reg_password, @RequestParam String reg_realname, @RequestParam String reg_school_id,
+                             @RequestParam String reg_tel, @RequestParam String reg_email){
+        int idDTO = userService.register(reg_username, reg_password);
+        userInfoService.insert(idDTO, reg_realname, reg_school_id, reg_email, reg_tel);
+        return "index/register";
     }
 }

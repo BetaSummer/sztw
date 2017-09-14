@@ -1,0 +1,46 @@
+<ul xmlns:th="http://www.w3.org/1999/xhtml">
+    <li th:each="data:${data}">
+        <a class="left clear" target="_blank" th:href="'/approveOrganizationForm/approve?id='+${data.key}" th:text="'【'+${data.value[1]}+'/'+${data.value[2]}+'】'+${data.value[0]}"></a>
+    </li>
+</ul>
+<script>
+    //<![CDATA[
+
+    $("#apply-btn").click(function () {
+        var club = $("#club").val();
+        var act_name = $("#activity_name").val();
+        var act_place = $("#activity_place").val();
+        var act_time = $("#activity_time").val();
+        var act_people = $("#activity_people").val();
+        var is_fine = $("#is_apply_fine").val();
+        var act_info = $("#activity_info").val();
+        var data={
+            "club":club,
+            "activityName":act_name,
+            "activityPlace":act_place,
+            "activityTime":act_time,
+            "activityPeople":act_people,
+            "isApplyFine":is_fine,
+            "activityInfo":act_info
+        };
+        console.log(data);
+        $.ajax({
+            type: "POST",
+            url: "/applyForm/commitClubActivity",
+            data: data,
+            dataType:"json",
+            success: function(data){
+                if(data.status==0){
+                    alert(data.info);
+                }
+                else {
+                    alert('wrong');
+                }
+            },
+            error: function(data){
+                alert('Error');
+            }
+        });
+    }) ;
+    //]]>
+</script>

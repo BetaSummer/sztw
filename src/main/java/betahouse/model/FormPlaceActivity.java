@@ -15,7 +15,7 @@ public class FormPlaceActivity {
 
     private String content;
 
-    private String budget;
+    private Float budget;
 
     private String method;
 
@@ -77,12 +77,12 @@ public class FormPlaceActivity {
         this.content = content == null ? null : content.trim();
     }
 
-    public String getBudget() {
+    public Float getBudget() {
         return budget;
     }
 
-    public void setBudget(String budget) {
-        this.budget = budget == null ? null : budget.trim();
+    public void setBudget(Float budget) {
+        this.budget = budget;
     }
 
     public String getMethod() {

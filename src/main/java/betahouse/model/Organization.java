@@ -7,6 +7,8 @@ public class Organization {
 
     private Integer leaderId;
 
+    private Float money;
+
     public Integer getId() {
         return id;
     }
@@ -29,5 +31,13 @@ public class Organization {
 
     public void setLeaderId(Integer leaderId) {
         this.leaderId = leaderId;
+    }
+
+    public Float getMoney() {
+        return money;
+    }
+
+    public void setMoney(Float money) {
+        this.money = money;
     }
 }

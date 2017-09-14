@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 public class ClubServiceImplTest {
     @Test
     public void createClub() throws Exception {
-        HSSF hssf = new HSSF("demo", "demo");
+        HSSF hssf = new HSSF("demo", "导入数据");
         hssf.open();
         int i=1;
         while (!"".equals(hssf.get(0,i,1))){

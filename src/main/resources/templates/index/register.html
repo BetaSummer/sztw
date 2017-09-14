@@ -29,17 +29,16 @@
 <div class="register">
     <h1>用户注册</h1>
     <hr/>
-    <form action="/index/register" method="post">
-        <label>UserName</label><input id="reg_username" type="text"/>
-        <label>Password</label><input id="reg_password" type="password"/>
-        <label>RealName</label><input id="reg_realname" type="text"/>
-        <label>SchoolId</label><input id="reg_school_id" type="text"/>
-        <label>Club</label><input id="reg_club" type="text"/>
-        <label>E-Mail</label><input id="reg_tel" type="E-Mail"/>
-
+    <form action="/user/addAccount" method="post">
+        <label>UserName</label><input name="reg_username" type="text"/>
+        <label>Password</label><input name="reg_password" type="password"/>
+        <label>RealName</label><input name="reg_realname" type="text"/>
+        <label>SchoolId</label><input name="reg_school_id" type="text"/>
+        <label>Tel</label><input name="reg_tel" type="text"/>
+        <label>E-Mail</label><input name="reg_email" type="text"/>
+        <input type="submit"  id="register-btn" value="注册" style="margin-left: 110px;"/>
+        <input type="button" id="register-reset" value="重置"/>
     </form>
-    <input type="button"  id="register-btn" value="注册" style="margin-left: 110px;"/>
-    <input type="button" id="register-reset" value="重置"/>
 </div>
 <script type="text/javascript" src="/js/jquery.js"></script>
 <script type="text/javascript" src="/js/main.js"></script>

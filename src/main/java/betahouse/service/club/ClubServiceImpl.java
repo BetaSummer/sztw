@@ -5,13 +5,11 @@ import betahouse.core.office.HSSF;
 import betahouse.mapper.ClubMapper;
 import betahouse.mapper.UserInfoMapper;
 import betahouse.mapper.UserMapper;
-import betahouse.model.Club;
-import betahouse.model.ClubActivityForm;
-import betahouse.model.User;
-import betahouse.model.UserInfo;
+import betahouse.model.*;
 import betahouse.service.financial.ClubFinancialFlowService;
 import betahouse.service.form.FormManagerService;
 import betahouse.service.power.PowerService;
+import betahouse.service.user.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -39,19 +37,13 @@ public class ClubServiceImpl implements ClubService {
     private ClubFinancialFlowService clubFinancialFlowService;
 
     @Autowired
-    private ClubActivityFormService clubActivityFormService;
-
-    @Autowired
-    private ClubActivityStatusService clubActivityStatusService;
-
-    @Autowired
-    private ClubActivityApproveService clubActivityApproveService;
-
-    @Autowired
     private FormManagerService formManagerService;
 
     @Autowired
     private PowerService powerService;
+
+    @Autowired
+    private UserInfoService userInfoService;
 
     @Override
     public Club getClubByUserId(int userId) {
@@ -75,20 +67,20 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public int updateMoneyById(int id, int change, int selfReserve, int money) {
+    public int updateMoneyById(int id, int change, int selfReserve, float money) {
         Club clubDTO = clubMapper.selectByPrimaryKey(id);
         if(-1==change){
             money = -money;
         }
         if(1==selfReserve){
-            int reserveMoneyDTO = clubDTO.getReserveMoney()+money;
+            float reserveMoneyDTO = clubDTO.getReserveMoney()+money;
             if(reserveMoneyDTO<0){
                 return -1;
             }
             clubDTO.setReserveMoney(reserveMoneyDTO);
             return clubMapper.updateByPrimaryKey(clubDTO);
         }else if(2==selfReserve){
-            int selfMoneyDTO = clubDTO.getSelfMoney()+money;
+            float selfMoneyDTO = clubDTO.getSelfMoney()+money;
             if(selfMoneyDTO<0){
                 return -1;
             }
@@ -100,7 +92,7 @@ public class ClubServiceImpl implements ClubService {
 
     @Override
     public int createClub(String folderName, String fileName) {
-        HSSF hssf = new HSSF("demo", "demo");
+        HSSF hssf = new HSSF(folderName, fileName);
         hssf.open();
         int i=1;
         int idDTO = 0;
@@ -120,7 +112,8 @@ public class ClubServiceImpl implements ClubService {
                 User userDTO = new User();
                 userDTO.setUsername(userNameDTO);
                 userDTO.setPassword(SimpleMD5.MD5(userNameDTO.substring(userNameDTO.length()-4)));
-                idDTO = userMapper.insert(userDTO);
+                userMapper.insert(userDTO);
+                idDTO = userDTO.getId();
 
                 UserInfo userInfoDTO = new UserInfo();
                 userInfoDTO.setId(idDTO);
@@ -129,18 +122,22 @@ public class ClubServiceImpl implements ClubService {
                 userInfoDTO.setRealName(userRealNameDTO);
                 userInfoDTO.setTel(telDTO);
                 userInfoMapper.insert(userInfoDTO);
+
+                powerService.insert(idDTO, "[3,4]");
+                formManagerService.insertFormManager(idDTO, "[1]");
             }
 
             Club clubDTO = new Club();
             clubDTO.setClubName(clubNameDTO);
-            clubDTO.setReserveMoney(Integer.parseInt(reserveMoneyDTO4));
-            clubDTO.setSelfMoney(Integer.parseInt(selfMoneyDTO));
+            clubDTO.setReserveMoney(Float.parseFloat(reserveMoneyDTO4));
+            clubDTO.setSelfMoney(Float.parseFloat(selfMoneyDTO));
             clubDTO.setUserId(idDTO);
-            int idDTO2 = clubMapper.insert(clubDTO);
+            clubMapper.insert(clubDTO);
+            int idDTO2 = clubDTO.getId();
 
-            clubFinancialFlowService.insert(idDTO2, "2015年剩余预留金额", idDTO, 1, Integer.parseInt(reserveMoneyDTO));
-            clubFinancialFlowService.insert(idDTO2, "2016年上交预留金额", idDTO, 1, Integer.parseInt(reserveMoneyDTO2));
-            clubFinancialFlowService.insert(idDTO2, "2016学年预留经费使用", idDTO, -1, Integer.parseInt(reserveMoneyDTO3));
+            clubFinancialFlowService.insert(idDTO2, "2015年剩余预留金额", idDTO, 1, Float.parseFloat(reserveMoneyDTO));
+            clubFinancialFlowService.insert(idDTO2, "2016年上交预留金额", idDTO, 1, Float.parseFloat(reserveMoneyDTO2));
+            clubFinancialFlowService.insert(idDTO2, "2016学年预留经费使用", idDTO, -1, Float.parseFloat(reserveMoneyDTO3));
 
             i++;
         }
@@ -148,56 +145,41 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public int deleteClub(int clubId) {
+    public int deleteClubById(int clubId) {
         int userIdDTO = clubMapper.selectByPrimaryKey(clubId).getUserId();
         formManagerService.updateFormManagerByApprover(userIdDTO, 1, -1);
         powerService.deletePowerByUserId(userIdDTO, new int[]{3,4});
-
-        List<ClubActivityForm> listDTO = clubActivityFormService.listFormByClubId(clubId);
-        for(ClubActivityForm c: listDTO){
-            clubActivityStatusService.deleteStatusByFormId(c.getId());
-            clubActivityApproveService.deleteApproveByFormId(c.getId());
-        }
-        clubFinancialFlowService.deleteFinaceByClubId(clubId);
-        clubActivityFormService.deleteFormByClubId(clubId);
         clubMapper.deleteByPrimaryKey(clubId);
         return 0;
     }
 
     @Override
-    public int updateClub(int clubId, String clubName,int userId, String realName, String schoolId, String eMail, String tel) {
+    public int updateClubById(int clubId, String clubName,int userId, String realName, String schoolId, String eMail, String tel) {
         int oldUserId = clubMapper.selectByPrimaryKey(clubId).getUserId();
         if(!"".equals(clubName)){
             Club clubDTO = new Club();
             clubDTO.setId(clubId);
             clubDTO.setClubName(clubName);
-            if(oldUserId!=userId){
+            if(userId!=0&&oldUserId!=userId){
                 clubDTO.setUserId(userId);
                 powerService.deletePowerByUserId(oldUserId, new int[]{3,4});
                 formManagerService.updateFormManagerByApprover(oldUserId, 1, -1);
-                powerService.updatePowerByUserId(userId, 3);
-                powerService.updatePowerByUserId(userId, 4);
+                powerService.addPowerByUserId(userId, new int[]{3,4});
                 formManagerService.updateFormManagerByApprover(userId, 1, 1);
             }
             clubMapper.updateByPrimaryKey(clubDTO);
         }
         if(!"".equals(realName)||!"".equals(schoolId)||!"".equals(eMail)||!"".equals(tel)){
-            UserInfo userInfoDTO = new UserInfo();
-            userInfoDTO.setId(userId);
-            userInfoDTO.setRealName(realName);
-            userInfoDTO.setSchoolId(schoolId);
-            userInfoDTO.seteMail(eMail);
-            userInfoDTO.setTel(tel);
-            userInfoMapper.updateByPrimaryKey(userInfoDTO);
+            userInfoService.updateUserInfoById(userId, realName, schoolId, eMail, tel);
         }
         return 0;
     }
 
     @Override
-    public int updateMoneyById(int id, int applySelfMoney, int applyReserveMoney) {
+    public int updateMoneyById(int id, float applySelfMoney, float applyReserveMoney) {
         Club clubDTO = clubMapper.selectByPrimaryKey(id);
-        int selfMoneyDTO = clubDTO.getSelfMoney()-applySelfMoney;
-        int reserveMoneyDTO = clubDTO.getReserveMoney()-applyReserveMoney;
+        float selfMoneyDTO = clubDTO.getSelfMoney()-applySelfMoney;
+        float reserveMoneyDTO = clubDTO.getReserveMoney()-applyReserveMoney;
         if(selfMoneyDTO<0||reserveMoneyDTO<0){
             return -1;
         }

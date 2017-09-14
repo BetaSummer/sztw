@@ -47,7 +47,7 @@ public class FormPlaceActivityServiceImpl implements FormPlaceActivityService{
         formPlaceActivityDTO.setActivityDate(activityDate);
         formPlaceActivityDTO.setList(list);
         formPlaceActivityDTO.setContent(content);
-        formPlaceActivityDTO.setBudget(budget);
+        formPlaceActivityDTO.setBudget(Float.parseFloat(budget));
         formPlaceActivityDTO.setMethod(method);
         Date dateDTO = new Date();
         SimpleDateFormat sdfDTO  = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -69,7 +69,7 @@ public class FormPlaceActivityServiceImpl implements FormPlaceActivityService{
         formPlaceActivityDTO.setActivityDate(activityDate);
         formPlaceActivityDTO.setList(list);
         formPlaceActivityDTO.setContent(content);
-        formPlaceActivityDTO.setBudget(budget);
+        formPlaceActivityDTO.setBudget(Float.parseFloat(budget));
         formPlaceActivityDTO.setMethod(method);
         Date dateDTO = new Date();
         SimpleDateFormat sdfDTO  = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -98,7 +98,7 @@ public class FormPlaceActivityServiceImpl implements FormPlaceActivityService{
         placeActivityTableVO.setActivityDate(formPlaceActivityDTO.getActivityDate());
         placeActivityTableVO.setList(formPlaceActivityDTO.getList());
         placeActivityTableVO.setContent(formPlaceActivityDTO.getContent());
-        placeActivityTableVO.setBudget(formPlaceActivityDTO.getBudget());
+        placeActivityTableVO.setBudget(formPlaceActivityDTO.getBudget().toString());
         placeActivityTableVO.setMethod(formPlaceActivityDTO.getMethod());
         for(ApprovePlaceActivity a: listDTO){
             String approverName = userInfoMapper.selectByPrimaryKey(a.getApproveUserId()).getRealName();
@@ -136,5 +136,10 @@ public class FormPlaceActivityServiceImpl implements FormPlaceActivityService{
         placeActivityTableVO.setStart(formPublicUtilityDTO.getStart());
         placeActivityTableVO.setEnd(formPublicUtilityDTO.getEnd());
         return placeActivityTableVO;
+    }
+
+    @Override
+    public FormPlaceActivity getFormById(int id) {
+        return formPlaceActivityMapper.selectByPrimaryKey(id);
     }
 }

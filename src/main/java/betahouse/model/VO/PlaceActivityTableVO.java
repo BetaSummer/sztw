@@ -2,7 +2,7 @@ package betahouse.model.VO;
 
 public class PlaceActivityTableVO {
 
-    private int id;
+    private Integer id;
 
     private String organization;
 
@@ -64,11 +64,11 @@ public class PlaceActivityTableVO {
 
     private String end;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -5,43 +5,43 @@ package betahouse.model.VO;
  */
 public class ClubMoneyVO {
 
-    private int id;
+    private Integer id;
 
-    private int change;
+    private Integer change;
 
-    private int selfReserve;
+    private Integer selfReserve;
 
-    private int money;
+    private Integer money;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getChange() {
+    public Integer getChange() {
         return change;
     }
 
-    public void setChange(int change) {
+    public void setChange(Integer change) {
         this.change = change;
     }
 
-    public int getSelfReserve() {
+    public Integer getSelfReserve() {
         return selfReserve;
     }
 
-    public void setSelfReserve(int selfReserve) {
+    public void setSelfReserve(Integer selfReserve) {
         this.selfReserve = selfReserve;
     }
 
-    public int getMoney() {
+    public Integer getMoney() {
         return money;
     }
 
-    public void setMoney(int money) {
+    public void setMoney(Integer money) {
         this.money = money;
     }
 }

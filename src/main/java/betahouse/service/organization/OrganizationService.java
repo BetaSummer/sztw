@@ -8,4 +8,6 @@ public interface OrganizationService {
 
     Organization getOrganizationByLeaderId(int leaderId);
 
+    int updateOrganizationById(int id, String name, int userId, String realName, String schoolId, String eMail, String tel);
+
 }

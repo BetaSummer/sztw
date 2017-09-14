@@ -6,48 +6,45 @@
 /****************************************/
 
 //VIEW CONTROL
-var flag1 = false;
-var flag2 = false;
-var flag3 = false;
-var flag4 = false;
-var flag5 = false;
+var menuClubForm = false;//社团活动申请表
+var menuOrganizationForm = false;//学生组织活动申请表
+var menuClubFina = false;//社团财务管理
+var menuClubManage = false;//社团管理
 
 function  licenceControl(index) {
     if(index==0){
         $("#userManage").show();
-        flag3=true;
     }
     if(index==1){
         $("#powerManage").show();
-        flag3=true;
     }
     if(index==2){
         $("#doMessage").show();
-        flag5=true;
+        menuClubManage=true;
     }
     if(index==3){
         $("#form-appli").show();
-        flag1=true;
+        menuClubForm=true;
     }
     if(index==4){
         $("#form-view").show();
-        flag1=true;
+        menuClubForm=true;
     }
     if(index==5){
         $("#form-manage").show();
-        flag1=true;
+        menuClubForm=true;
     }
     if(index==6){
-        $("#clubmanage").show();
-        flag5=true;
+        $("#clubManage").show();
+        menuClubManage=true;
     }
     if(index==7){
         $("#financeT").show();
-        flag4=true;
+        menuClubFina=true;
     }
     if(index==8){
         $("#financeB").show();
-        flag4=true;
+        menuClubFina=true;
     }
 }
 
@@ -55,16 +52,13 @@ function viewControl(arr) {
     for(var i = 0;i<arr.length;i++){
         licenceControl(arr[i]);
     }
-    if(!flag1){
+    if(!menuClubForm){
         $(".flag1").hide();
     }
-    if(!flag3){
-        $(".flag3").hide();
-    }
-    if(!flag4){
+    if(!menuClubFina){
         $(".flag4").hide();
     }
-    if(!flag5){
+    if(!menuClubManage){
         $(".flag5").hide();
     }
 }
@@ -77,44 +71,63 @@ $(function () {
 /* login */
 $(function () {
    $("#login-btn").click(function () {
-       var username = $("#username").val();
-       var password = $("#password").val();
-       if(username!=""&&password!=""){
-           var data={
-               "username":username,
-               "password":password
-           };
-           $.ajax({
-               type: "POST",
-               url: "/user/login",
-               data: data,
-               dataType:"json",
-               success: function(r){
-                   if(r.status === 0){
-                       window.location.href = "/index";
-                       window.location.replace();
-                   }else if(r.status === 1){
-                       alert(r.message);
-                   }
-
-               },
-               error: function(XMLHttpRequest, textStatus, errorThrown){
-                   alert(XMLHttpRequest.status);
-                   alert(XMLHttpRequest.readyState);
-                   alert(textStatus);
-               },
-           });
-       }
-       else{
-           alert("用户名密码不能为空");
-       }
-   }) ;
-   $("#login-reset").click(function () {
-      $("#login-form")[0].reset();
+       login();
    });
+
+    $("#login-reset").click(function () {
+        $("#login-form")[0].reset();
+    });
+
+    document.onkeydown = function(e){
+        var ev = document.all ? window.event : e;
+        if(ev.keyCode==13) {
+            login();
+        }
+    };
+
+    function login() {
+        var username = $("#username").val();
+        var password = $("#password").val();
+        if(username!=""&&password!=""){
+            var data={
+                "username":username,
+                "password":password
+            };
+            $.ajax({
+                type: "POST",
+                url: "/user/login",
+                data: data,
+                dataType:"json",
+                success: function(r){
+                    if(r.status === 0){
+                        window.location.href = "/index";
+                        window.location.replace();
+                    }else if(r.status === 1){
+                        alert(r.message);
+                    }
+
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown){
+                    alert(XMLHttpRequest.status);
+                    alert(XMLHttpRequest.readyState);
+                    alert(textStatus);
+                },
+            });
+        }
+        else{
+            alert("用户名密码不能为空");
+        }
+    }
 });
 
 /* manage */
+$(function () {
+    $("#selfManage").click(function () {
+        $(".content-body").html("");
+        $(".loading").show();
+        $(".content-body").load("/manage/selfManage");
+    });
+});
 $(function () {
    $("#userManage").click(function () {
        $(".content-body").html("");
@@ -233,19 +246,20 @@ $(function () {
     });
 });
 //TODO new table interface
+//表二申请
 $(function () {
     $("#area-appli").click(function () {
-        $(".content-body").load("/applyClubForm/ariaForm");
+        $(".content-body").load("/applyOrganizationForm/apply");
         if( window.screen.width<767){
             $(document.body).height(1050);
         }
-    });
+    });Approve
 });
-
+//表二审批list
 $(function () {
     $("#area-manage").click(function () {
         $.get("/approveForm/listClubActivity",function () {
-            $(".content-body").load("/approveForm/areaApprove",function () {
+            $(".content-body").load("/approveOrganizationForm/approveList",function () {
                 if( window.screen.width<767){
                     $(document.body).height(1050);
                 }
@@ -253,18 +267,17 @@ $(function () {
         });
     });
 });
-
+//表二list
 $(function () {
     $("#area-view").click(function () {
         $(".content-body").html("");
-        $(".content-body").load("/applyClubForm/areaApprove",function () {
+        $(".content-body").load("/applyOrganizationForm/listAllForm",function () {
             if( window.screen.width<767){
                 $(document.body).height(1050);
             }
         }) ;
     });
 });
-
 /* approval */
 $(function () {
     $("#club-entry").click(function () {

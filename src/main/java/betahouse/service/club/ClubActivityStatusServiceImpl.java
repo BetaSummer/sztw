@@ -27,9 +27,6 @@ public class ClubActivityStatusServiceImpl implements ClubActivityStatusService 
     @Autowired
     private ClubActivityFormMapper clubActivityFormMapper;
 
-    @Autowired
-    private UserInfoMapper userInfoMapper;
-
     @Override
     public List<ClubActivityStatus> listAll() {
         return clubActivityStatusMapper.selectAll();

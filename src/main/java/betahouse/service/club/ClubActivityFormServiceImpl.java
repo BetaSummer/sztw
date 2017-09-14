@@ -5,6 +5,7 @@ import betahouse.mapper.ClubMapper;
 import betahouse.model.Club;
 import betahouse.model.ClubActivityForm;
 import betahouse.model.UserInfo;
+import betahouse.service.power.PowerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,13 +25,16 @@ public class ClubActivityFormServiceImpl implements ClubActivityFormService {
     @Autowired
     private ClubMapper clubMapper;
 
+    @Autowired
+    private PowerService powerService;
+
     @Override
     public int commitForm(String club, String activityName, String activityPlace,
                           String activityTime, String activityPeople, String isApplyFine, String activityInfo,
                           String applySelfMoney, String applyReserveMoney, int fileId, UserInfo userInfo) {
         int isApplyFineDTO = Integer.parseInt(isApplyFine);
-        int applySelfMoneyDTO = Integer.parseInt(applySelfMoney);
-        int applyReserveMoneyDTO = Integer.parseInt(applyReserveMoney);
+        float applySelfMoneyDTO = Float.parseFloat(applySelfMoney);
+        float applyReserveMoneyDTO = Float.parseFloat(applyReserveMoney);
         ClubActivityForm clubActivityFormDTO = new ClubActivityForm();
         clubActivityFormDTO.setClub(club);
         clubActivityFormDTO.setChiefName(userInfo.getRealName());
@@ -66,8 +70,11 @@ public class ClubActivityFormServiceImpl implements ClubActivityFormService {
     }
 
     @Override
-    public int deleteFormById(int id) {
-        return clubActivityFormMapper.deleteByPrimaryKey(id);
+    public int deleteFormById(int userId, int id) {
+        if(powerService.checkPower(userId, 9)||powerService.checkPower(userId, 3)){
+            return clubActivityFormMapper.deleteByPrimaryKey(id);
+        }
+        return 0;
     }
 
     @Override
@@ -85,8 +92,11 @@ public class ClubActivityFormServiceImpl implements ClubActivityFormService {
     }
 
     @Override
-    public int deleteFormByClubId(int clubId) {
-        return clubActivityFormMapper.deleteByClubId(clubId);
+    public int deleteFormByClubId(int userId, int clubId) {
+        if(powerService.checkPower(userId, 9)||powerService.checkPower(userId, 3)){
+            return clubActivityFormMapper.deleteByClubId(clubId);
+        }
+        return 0;
     }
 
     @Override

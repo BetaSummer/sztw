@@ -1,8 +1,10 @@
 package betahouse.mapper;
 
 import betahouse.model.OrganizationFinancialFlow;
-import java.util.List;
+import org.springframework.stereotype.Component;
 
+import java.util.List;
+@Component
 public interface OrganizationFinancialFlowMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -13,4 +15,6 @@ public interface OrganizationFinancialFlowMapper {
     List<OrganizationFinancialFlow> selectAll();
 
     int updateByPrimaryKey(OrganizationFinancialFlow record);
+
+    List<OrganizationFinancialFlow> selectByOrganization(Integer organizationId);
 }

@@ -2,17 +2,17 @@ package betahouse.model.VO;
 
 public class PowerVO {
 
-    private int id;
+    private Integer id;
 
     private String powerName;
 
-    private int maxLv;
+    private Integer maxLv;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -24,11 +24,11 @@ public class PowerVO {
         this.powerName = powerName;
     }
 
-    public int getMaxLv() {
+    public Integer getMaxLv() {
         return maxLv;
     }
 
-    public void setMaxLv(int maxLv) {
+    public void setMaxLv(Integer maxLv) {
         this.maxLv = maxLv;
     }
 }

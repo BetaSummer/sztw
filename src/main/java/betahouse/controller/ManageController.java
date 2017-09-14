@@ -1,6 +1,7 @@
 package betahouse.controller;
 
 import betahouse.controller.Base.BaseController;
+import betahouse.core.Base.BaseFile;
 import betahouse.model.VO.UserInformationVO;
 import betahouse.service.club.ClubService;
 import betahouse.service.user.UserInfoService;
@@ -10,11 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+
+import static betahouse.core.constant.FolderNameConstant.FOLDER_OFFICE_EXCEL;
 
 /**
  * Created by x1654 on 2017/7/18.
@@ -57,11 +62,27 @@ public class ManageController extends BaseController{
             String passwordDTO = u.getPassword();
             String tel = u.getTel();
             String eMail = u.geteMail();
-            userInfoService.updateUserInfoById(idDTO, "", "", eMail, tel);
+            if(!"".equals(tel)||!"".equals(eMail)){
+                userInfoService.updateUserInfoById(idDTO, "", "", eMail, tel);
+            }
             if(!"-1".equals(passwordDTO)){
                 userService.updateUserById(idDTO, "", passwordDTO);
             }
         }
         return ajaxReturn(response,null, "修改成功", 0);
+    }
+    @RequestMapping(value = "/selfManage")
+    public String selfManage(HttpServletRequest request, HttpServletResponse response, Model model){
+        model.addAttribute("selfInfo", getCurrentUser(request));
+        return "manage/selfManage";
+    }
+
+    @RequestMapping(value = "/createClub", method = RequestMethod.POST)
+    public String createClub(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam("file") MultipartFile file){
+        BaseFile baseFile = new BaseFile();
+        baseFile.upload(file, FOLDER_OFFICE_EXCEL+"importFile");
+        String fileNamee = file.getOriginalFilename();
+        clubService.createClub("importFile", fileNamee.substring(0, fileNamee.lastIndexOf(".")));
+        return ajaxReturn(response, null);
     }
 }

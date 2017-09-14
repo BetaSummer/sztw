@@ -14,10 +14,10 @@
     <result column="activity_people" jdbcType="VARCHAR" property="activityPeople" />
     <result column="is_apply_fine" jdbcType="INTEGER" property="isApplyFine" />
     <result column="activity_info" jdbcType="VARCHAR" property="activityInfo" />
-    <result column="apply_self_money" jdbcType="INTEGER" property="applySelfMoney" />
-    <result column="apply_reserve_money" jdbcType="INTEGER" property="applyReserveMoney" />
-    <result column="self_money" jdbcType="INTEGER" property="selfMoney" />
-    <result column="reserve_money" jdbcType="INTEGER" property="reserveMoney" />
+    <result column="apply_self_money" jdbcType="REAL" property="applySelfMoney" />
+    <result column="apply_reserve_money" jdbcType="REAL" property="applyReserveMoney" />
+    <result column="self_money" jdbcType="REAL" property="selfMoney" />
+    <result column="reserve_money" jdbcType="REAL" property="reserveMoney" />
     <result column="club_id" jdbcType="INTEGER" property="clubId" />
     <result column="file_id" jdbcType="INTEGER" property="fileId" />
   </resultMap>
@@ -37,10 +37,10 @@
       #{chiefName,jdbcType=VARCHAR}, #{chiefId,jdbcType=VARCHAR}, #{chiefTel,jdbcType=VARCHAR}, 
       #{activityName,jdbcType=VARCHAR}, #{activityPlace,jdbcType=VARCHAR}, #{activityTime,jdbcType=VARCHAR}, 
       #{activityPeople,jdbcType=VARCHAR}, #{isApplyFine,jdbcType=INTEGER}, #{activityInfo,jdbcType=VARCHAR}, 
-      #{applySelfMoney,jdbcType=INTEGER}, #{applyReserveMoney,jdbcType=INTEGER}, #{selfMoney,jdbcType=INTEGER}, 
-      #{reserveMoney,jdbcType=INTEGER}, #{clubId,jdbcType=INTEGER}, #{fileId,jdbcType=INTEGER}
+      #{applySelfMoney,jdbcType=REAL}, #{applyReserveMoney,jdbcType=REAL}, #{selfMoney,jdbcType=REAL}, 
+      #{reserveMoney,jdbcType=REAL}, #{clubId,jdbcType=INTEGER}, #{fileId,jdbcType=INTEGER}
       )
-    <selectKey resultType="Integer" order="AFTER" keyProperty="id">
+    <selectKey keyProperty="id" order="AFTER" resultType="Integer">
       SELECT LAST_INSERT_ID() AS id
     </selectKey>
   </insert>
@@ -81,16 +81,16 @@
         activity_info = #{activityInfo,jdbcType=VARCHAR},
       </if>
       <if test="null != applySelfMoney and '' != applySelfMoney or 0 == applySelfMoney">
-        apply_self_money = #{applySelfMoney,jdbcType=INTEGER},
+        apply_self_money = #{applySelfMoney,jdbcType=REAL},
       </if>
       <if test="null != applyReserveMoney and '' != applyReserveMoney or 0 == applyReserveMoney">
-        apply_reserve_money = #{applyReserveMoney,jdbcType=INTEGER},
+        apply_reserve_money = #{applyReserveMoney,jdbcType=REAL},
       </if>
       <if test="null != selfMoney and '' != selfMoney or 0 == selfMoney">
-        self_money = #{selfMoney,jdbcType=INTEGER},
+        self_money = #{selfMoney,jdbcType=REAL},
       </if>
       <if test="null != reserveMoney and '' != reserveMoney or 0 == reserveMoney">
-        reserve_money = #{reserveMoney,jdbcType=INTEGER},
+        reserve_money = #{reserveMoney,jdbcType=REAL},
       </if>
       <if test="null != clubId and '' != clubId">
         club_id = #{clubId,jdbcType=INTEGER},

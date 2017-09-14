@@ -14,6 +14,7 @@
 .form2-input{
   display: none;
 }
+
 .fb-change{
   width: 72%;
   margin:10px auto;
@@ -48,6 +49,7 @@
   background-color: #00E8D7;
   cursor: pointer;
 }
+
 #club-load {
   border-top: solid #FFF 1px; }
 

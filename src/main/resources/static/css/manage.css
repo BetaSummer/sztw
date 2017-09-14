@@ -1,3 +1,31 @@
+
+.power-child{
+    width: 150px;
+    height: 30px;
+    line-height: 30px;
+    margin:10px;
+    float: left;
+}
+.power-confirm{
+    margin:10px auto;
+    width: 150px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    clear: both;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    background-color: #a28e3d;
+    color:#ffffff;
+}
+.power-confirm:hover{
+    background-color: #b6ad85;
+    cursor: pointer;
+}
+
+
+
 .f-flow{
     display: none;
     width: 100%;

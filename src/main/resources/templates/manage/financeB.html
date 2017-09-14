@@ -6,6 +6,20 @@
 <div class="manage-header">
     <button>删除</button>
     <button id="manageAll">批量操作</button>
+    <button id="manageChange">批量增减</button>
+</div>
+<div class="fb-change">
+    <div class="fb-confirm">确认</div>
+    <input id="fb-comment" placeholder="修改资金事由"/>
+    <input id="fb-num" placeholder="数额（元）"/>
+    <select id="fb-select1">
+        <option value="2" selected="selected">自留资金</option>
+        <option value="1">预留资金</option>
+    </select>
+    <select id="fb-select2">
+        <option value="1" selected="selected">增加</option>
+        <option value="-1">减少</option>
+    </select>
 </div>
 <div class="manage-main manage-five">
     <table id="fin-table">
@@ -49,3 +63,10 @@
 </div>
 <script src="/js/manage.js"></script>
 </html>
+<script>
+    $(function () {
+       $("#manageChange").click(function () {
+           $(".fb-change").toggle();
+       }) ;
+    });
+</script>

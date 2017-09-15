@@ -102,7 +102,7 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/updatePower")
     public String updatePower(HttpServletRequest request, HttpServletResponse response, Model model,
                               @RequestParam int userId, @RequestParam int powerId, @RequestParam int lv){
-        powerService.updatePowerByUserId(userId, powerId);
+        powerService.addPowerByUserId(userId, new int[powerId]);
         if(0!=lv){
             formManagerService.updateFormManagerByApprover(userId, powerId, lv);
         }

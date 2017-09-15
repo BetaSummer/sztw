@@ -42,4 +42,9 @@ public class PowerTypeServiceImpl implements PowerTypeService{
         }
         return powerVOList;
     }
+
+    @Override
+    public PowerType getPowerTypeByPowerId(int powerId) {
+        return powerTypeMapper.selectByPowerId(powerId);
+    }
 }

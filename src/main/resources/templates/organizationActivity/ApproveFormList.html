@@ -2,15 +2,16 @@
     <button>已通过</button>
     <button>未通过</button>
     <button>审批中</button>
-    <button class="on">全部</button>
+    <button  class="on">全部</button>
 </div>
 <ul xmlns:th="http://www.w3.org/1999/xhtml">
     <li th:each="data:${data}">
-        <a class="left clear" target="_blank" th:href="'/approveForm/getFormById?id='+${data.key}" th:text="'【'+${data.value[1]}+'/'+${data.value[2]}+'】'+${data.value[0]}"></a>
+        <a class="left clear" target="_blank" th:href="'/approveOrganizationForm/approve?id='+${data.key}" th:text="'【'+${data.value[1]}+'/'+${data.value[2]}+'】'+${data.value[0]}"></a>
     </li>
 </ul>
 <script>
     //<![CDATA[
+
     $("#apply-btn").click(function () {
         var club = $("#club").val();
         var act_name = $("#activity_name").val();

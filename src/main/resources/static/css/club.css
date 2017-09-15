@@ -11,6 +11,44 @@
   padding: 20px;
   background-color: #5c5a5d;
   color: #FFF; }
+.form2-input{
+  display: none;
+}
+
+.fb-change{
+  width: 72%;
+  margin:10px auto;
+  display: none;
+}
+.fb-confirm{
+  margin-left:1%;
+  margin-right:1%;
+  float: right;
+  width: 70px;
+  height: 25px;
+  background-color: #00C1B3;
+  line-height: 25px;
+  text-align: center;
+  color: #ffffff;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+.fb-change select{
+  margin-left:1%;
+  margin-right:1%;
+  float: right;
+}
+.fb-change input{
+  float:right;
+}
+#fb-comment{
+  margin-left: 1%;
+}
+.fb-confirm:hover{
+  background-color: #00E8D7;
+  cursor: pointer;
+}
 
 #club-load {
   border-top: solid #FFF 1px; }

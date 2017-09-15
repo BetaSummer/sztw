@@ -2,6 +2,10 @@
  * Created by Administrator on 2017/7/19.
  */
 
+
+
+
+
 //financeB
 
 function writeInformation(index) {
@@ -116,6 +120,54 @@ $(function () {
             dataType:"json",
             success: function(r){
                 alert(r.message);
+                $(".loading").show();
+                $(".content-body").load("/finance/financeB",function () {
+                    $(".loading").hide();
+                }) ;
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            }
+        });
+    });
+});
+$(function () {
+    $(".fb-confirm").click(function () {
+        var i = 0;
+        var Arr = new Array();
+        var change = $("#fb-select1").val();
+        var selfReserve = $("#fb-select2").val();
+        var money = $("#fb-num").val();
+        $("input[type='checkbox']").each(function(){
+            if($(this).is(':checked')){
+                Arr[i]=$(this).parent().next().next().next().next().html();
+                i++;
+            }
+        });
+        var dataString ="[";
+        for(var j = 0;j<Arr.length;j++){
+            var id=Arr[j];
+            dataString += "{'id':"+id+",'change':"+change+",'selfReserve':"+selfReserve+",'money':"+money+"},";
+        }
+        dataString =dataString.substring(0,dataString.length-1);
+        dataString += "]";
+        var dataAll = {
+            "data":dataString,
+            "comment":$("#fb-comment").val()
+        };
+        $.ajax({
+            type: "GET",
+            url: "/finance/changClubFinance",
+            data: dataAll,
+            dataType:"json",
+            success: function(r){
+                alert(r.message);
+                $(".loading").show();
+                $(".content-body").load("/finance/financeB",function () {
+                    $(".loading").hide();
+                }) ;
             },
             error: function(XMLHttpRequest, textStatus, errorThrown){
                 alert(XMLHttpRequest.status);
@@ -226,3 +278,4 @@ $(function () {
         dataString+="]";
     });
 })
+

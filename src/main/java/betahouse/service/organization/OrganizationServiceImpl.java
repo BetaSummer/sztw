@@ -42,10 +42,10 @@ public class OrganizationServiceImpl implements OrganizationService{
             int oldUserId = organizationMapper.selectByPrimaryKey(id).getLeaderId();
             if(userId!=0&&oldUserId!=userId){
                 organizationDTO.setLeaderId(userId);
-                powerService.deletePowerByUserId(oldUserId, new int[]{10,11});
-                formManagerService.updateFormManagerByApprover(oldUserId, 2, -1);
-                powerService.addPowerByUserId(userId, new int[]{10,11});
-                formManagerService.updateFormManagerByApprover(userId, 2,1);
+                powerService.updatePowerByUserId(oldUserId, "[10,11]");
+                formManagerService.updateFormManagerByApprover(oldUserId, "[12]", "[-1]");
+                powerService.updatePowerByUserId(userId, "[10,11]");
+                formManagerService.updateFormManagerByApprover(userId, "[12]","[1]");
             }
             organizationMapper.updateByPrimaryKey(organizationDTO);
         }

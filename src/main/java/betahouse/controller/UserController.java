@@ -92,15 +92,11 @@ public class UserController extends BaseController {
         return ajaxReturn(response, powerTypeService.listAll(), "", 0);
     }
 
-    //TODO 原名 addPower @RequestParam int userId, @RequestParam String powList, @RequestParam int lv
     @RequestMapping(value = "/updatePower")
     public String updatePower(HttpServletRequest request, HttpServletResponse response, Model model,
-                              @RequestParam int userId, @RequestParam String powList){
+                              @RequestParam int userId, @RequestParam String powList, @RequestParam String lvList){
         powerService.updatePowerByUserId(userId, powList);
-        //TODO lv 属性不明意义
-//        if(0!=lv){
-//            formManagerService.updateFormManagerByApprover(userId, powerId, lv);
-//        }
+        formManagerService.updateFormManagerByApprover(userId, powList, lvList);
         return ajaxReturn(response, null, USER_UPDATE_POWER_SUCCESS, 0);
     }
 

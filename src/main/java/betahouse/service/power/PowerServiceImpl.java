@@ -1,8 +1,16 @@
 package betahouse.service.power;
 
 import betahouse.mapper.PowerMapper;
+import betahouse.model.FormManager;
+import betahouse.model.FormType;
 import betahouse.model.Power;
+import betahouse.model.PowerType;
+import betahouse.model.VO.PowerVO;
+import betahouse.service.form.FormManagerService;
+import betahouse.service.form.FormTypeService;
 import com.alibaba.fastjson.JSON;
+import org.codehaus.groovy.reflection.stdclasses.IntegerCachedClass;
+import org.omg.CORBA.INTERNAL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +27,12 @@ public class PowerServiceImpl implements PowerService{
     @Autowired
     private PowerMapper powerMapper;
 
+    @Autowired
+    private PowerTypeService powerTypeService;
+
+    @Autowired
+    private FormManagerService formManagerService;
+
     @Override
     public List<Integer> getPowerByUserId(int userId) {
         Power powerDTO =powerMapper.selectByUserId(userId);
@@ -28,6 +42,35 @@ public class PowerServiceImpl implements PowerService{
             return listDTO;
         }
         return JSON.parseArray(powerDTO.getPower(), Integer.class);
+    }
+
+    //根据用户id获取当前用户的权限并取出对应的权限名返回
+    @Override
+    public List<PowerVO> getPowerVOByUserId(int userId) {
+        Power powerDTO = powerMapper.selectByUserId(userId);
+        List<PowerVO> listDTO = new ArrayList<>();
+        if(powerDTO==null){
+            PowerVO powerVO = new PowerVO();
+            powerVO.setId(-1);
+            powerVO.setPowerName("");
+            listDTO.add(powerVO);
+            return listDTO;
+        }
+        List<Integer> powerListDTO = JSON.parseArray(powerDTO.getPower(), Integer.class);
+        for(int power: powerListDTO){
+            PowerType powerTypeDTO = powerTypeService.getPowerTypeByPowerId(power);
+            PowerVO powerVO = new PowerVO();
+            powerVO.setId(power);
+            powerVO.setPowerName(powerTypeDTO.getPowerName());
+            powerVO.setMaxLv(0);
+            if(powerTypeDTO.getFormType()!=null){
+                FormManager formManagerDTO = formManagerService.getFormManagerByApprover(userId);
+                List<Integer> lvListDTO = JSON.parseArray(formManagerDTO.getApproverForm(), Integer.class);
+                powerVO.setMaxLv(lvListDTO.get(powerTypeDTO.getFormType()-1));
+            }
+            listDTO.add(powerVO);
+        }
+        return listDTO;
     }
 
     @Override
@@ -53,7 +96,21 @@ public class PowerServiceImpl implements PowerService{
     @Override
     public int updatePowerByUserId(int userId, String powerList){
         Power powerDTO = powerMapper.selectByUserId(userId);
-        powerDTO.setPower(powerList);
+        List<Integer> listDTO = JSON.parseArray(powerList, Integer.class);
+        List<Integer> powerListDTO = JSON.parseArray(powerDTO.getPower(), Integer.class);
+        for(int power: listDTO){
+            boolean flag = false;
+            for(int i=0;i<powerListDTO.size();i++){
+                if(power==powerListDTO.get(i)){
+                    flag = true;
+                    powerListDTO.remove(power);
+                }
+            }
+            if(!flag){
+                powerListDTO.add(power);
+            }
+        }
+        powerDTO.setPower(powerListDTO.toString());
         return powerMapper.updateByUserId(powerDTO);
     }
 }

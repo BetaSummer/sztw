@@ -14,4 +14,6 @@ public interface PowerTypeService {
 
     List<PowerVO> listAll();
 
+    PowerType getPowerTypeByPowerId(int powerId);
+
 }

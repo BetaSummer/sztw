@@ -11,6 +11,6 @@ public interface FormManagerService {
 
     int insertFormManager(int approver, String approverForm);
 
-    int updateFormManagerByApprover(int approver, int formType, int lv);
+    int updateFormManagerByApprover(int approver, String powerList, String lvList);
 
 }

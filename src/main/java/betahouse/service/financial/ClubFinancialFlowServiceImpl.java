@@ -114,7 +114,7 @@ public class ClubFinancialFlowServiceImpl implements ClubFinancialFlowService{
     }
 
     @Override
-    public int deleteFinaceByClubId(int clubId) {
+    public int deleteFinanceByClubId(int clubId) {
         return clubFinancialFlowMapper.deleteByClubId(clubId);
     }
 }

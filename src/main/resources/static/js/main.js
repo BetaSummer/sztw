@@ -78,12 +78,12 @@ $(function () {
         $("#login-form")[0].reset();
     });
 
-    document.onkeydown = function(e){
-        var ev = document.all ? window.event : e;
-        if(ev.keyCode==13) {
-            login();
-        }
-    };
+    // document.onkeydown = function(e){
+    //     var ev = document.all ? window.event : e;
+    //     if(ev.keyCode==13) {
+    //         login();
+    //     }
+    // };
 
     function login() {
         var username = $("#username").val();

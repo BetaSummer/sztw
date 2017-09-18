@@ -8,6 +8,16 @@ public class PowerVO {
 
     private Integer maxLv;
 
+    private Integer permit;
+
+    public Integer getPermit() {
+        return permit;
+    }
+
+    public void setPermit(Integer permit) {
+        this.permit = permit;
+    }
+
     public Integer getId() {
         return id;
     }

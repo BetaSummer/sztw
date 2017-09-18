@@ -46,7 +46,7 @@
     <hr/>
     <div class="news" id="demo">
             <li class="news-li" th:each="data:${announcement}">
-                    <p th:text="${data.date}"></p>
+                <p th:text="${data.date}"></p>
                 <a  target="_blank" th:href="'/information/getAnnouncementById?id='+${data.id}" th:text="${data.title}"></a>
             </li>
     </div>

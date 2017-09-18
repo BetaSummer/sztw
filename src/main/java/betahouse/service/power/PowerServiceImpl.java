@@ -57,18 +57,19 @@ public class PowerServiceImpl implements PowerService{
             return listDTO;
         }
         List<Integer> powerListDTO = JSON.parseArray(powerDTO.getPower(), Integer.class);
-        for(int power: powerListDTO){
-            PowerType powerTypeDTO = powerTypeService.getPowerTypeByPowerId(power);
-            PowerVO powerVO = new PowerVO();
-            powerVO.setId(power);
-            powerVO.setPowerName(powerTypeDTO.getPowerName());
-            powerVO.setMaxLv(0);
-            if(powerTypeDTO.getFormType()!=null){
-                FormManager formManagerDTO = formManagerService.getFormManagerByApprover(userId);
-                List<Integer> lvListDTO = JSON.parseArray(formManagerDTO.getApproverForm(), Integer.class);
-                powerVO.setMaxLv(lvListDTO.get(powerTypeDTO.getFormType()-1));
+        listDTO = powerTypeService.listAll();
+        for(PowerVO p1: listDTO){
+            for(int p2: powerListDTO){
+                if(p1.getId()==p2){
+                    p1.setPermit(1);
+                    if(p1.getMaxLv()!=0){
+                        FormManager formManagerDTO = formManagerService.getFormManagerByApprover(userId);
+                        List<Integer> lvListDTO = JSON.parseArray(formManagerDTO.getApproverForm(), Integer.class);
+                        int formTypeDTO = powerTypeService.getPowerTypeByPowerId(p2).getFormType();
+                        p1.setMaxLv(lvListDTO.get(formTypeDTO-1));
+                    }
+                }
             }
-            listDTO.add(powerVO);
         }
         return listDTO;
     }

@@ -308,4 +308,33 @@ $(function () {
 
         }
     });
+
+    $("#republish").click(function () {
+        var check = $("input[name='message-type']:checked").val();
+        var title = $("#title").val();
+        var html = editor.$txt.html();
+        if('1'===check){
+            var data = {
+                "id": /*[[$announcement.id]]*/'id',
+                "title": title,
+                "comment": html
+            };
+            $.ajax({
+                type: "POST",
+                url: "/information/republishAnnouncement",
+                data: data,
+                dataType: "json",
+                success: function(r){
+                    alert(r.message);
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown){
+                    alert(XMLHttpRequest.status);
+                    alert(XMLHttpRequest.readyState);
+                    alert(textStatus);
+                }
+            })
+        }else if('2'===check){
+
+        }
+    });
 })

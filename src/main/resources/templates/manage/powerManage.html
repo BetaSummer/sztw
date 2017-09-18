@@ -20,72 +20,12 @@
                 <!--<td><input type="checkbox" name="checkname"/></td>-->
                 <td th:text="${data.realName}"></td>
                 <td th:text="${data.schoolId}"></td>
-                <td><span class="manage-btn manage-btn4">授权</span></td>
+                <td><span th:id="${data.id}" class="manage-btn manage-btn4">授权</span></td>
             </tr>
         </table>
     </div>
     <div class="manage-alert manage-power">
-        <div class="manage-in">
-            <div class="manage-out"></div>
-            <h1>用户权限管理</h1>
-            <div class="power-child">
-                <label>权限管理</label>
-                <input type="checkbox"/>
-            </div>
-            <div class="power-child">
-                <label>写公告</label>
-                <input type="checkbox"/>
-            </div>
-            <div class="power-child">
-                <label>申请社团活动</label>
-                <input type="checkbox"/>
-            </div>
-            <div class="power-child">
-                <label>申请学生活动</label>
-                <input type="checkbox"/>
-            </div>
-            <div class="power-child">
-                <label>查看社团活动</label>
-                <input type="checkbox"/>
-            </div>
-            <div class="power-child">
-                <label>查看学生活动</label>
-                <input type="checkbox"/>
-            </div>
-            <div class="power-child">
-                <label>管理社团活动</label>
-                <input type="checkbox"/>
-            </div>
-            <div class="power-child">
-                <label>管理学生活动</label>
-                <input type="checkbox"/>
-            </div>
-            <div class="power-child">
-                <label>管理财务流水</label>
-                <input type="checkbox"/>
-            </div>
-            <div class="power-child">
-                <label>管理社团财务</label>
-                <input type="checkbox"/>
-            </div>
-            <div class="power-child">
-                <label>删除公告</label>
-                <input type="checkbox"/>
-            </div>
-            <div class="power-child">
-                <label>公共事业部审批</label>
-                <input type="checkbox"/>
-            </div>
-            <div class="power-child">
-                <label>教务审批</label>
-                <input type="checkbox"/>
-            </div>
-            <div class="power-child">
-                <label>学生组织财务</label>
-                <input type="checkbox"/>
-            </div>
-        </div>
-        <div class="power-confirm">确认修改权限</div>
+
     </div>
 </html>
 <script>
@@ -98,6 +38,7 @@
 
         });
         $(".manage-btn4").click(function(){
+            $(".manage-power").load("/user/listAllPower?userId="+$(this).attr("id"));
             $(".manage-alert").show(200);
         });
     });

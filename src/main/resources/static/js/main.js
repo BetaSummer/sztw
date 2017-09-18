@@ -184,6 +184,16 @@ $(function () {
     });
 });
 
+$(function () {
+    $("#changeMessage").click(function () {
+        $(".content-body").html("");
+        $(".loading").show();
+        $(".content-body").load("/information/messageList",function () {
+            $(".loading").hide();
+        }) ;
+    });
+});
+
 /* club */
 /********************************/
 function download() {

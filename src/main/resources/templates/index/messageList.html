@@ -1,0 +1,9 @@
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+    公告
+    <ul>
+        <li target="_blank" class="news-li" th:each="data:${announcement}">
+            <p th:text="${data.date}"></p>
+            <a th:href="'/information/getAnnouncementById?id='+${data.id}" th:text="${data.title}" target="_blank"></a>
+        </li>
+    </ul>
+</html>

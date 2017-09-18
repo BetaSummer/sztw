@@ -78,5 +78,22 @@ public class OrganizationFormController extends BaseController {
         return "organizationActivity/organizationForm";
     }
 
-
+    //表二提交表单
+    @RequestMapping(value = "/commit")
+    public String commitForm(HttpServletRequest request, HttpServletResponse response, Model model,
+                             @RequestParam int userId, @RequestParam String activityName,
+                             @RequestParam String activityPlace, @RequestParam String activityDate,
+                             @RequestParam String list, @RequestParam String content, @RequestParam String budget,
+                             @RequestParam String method, @RequestParam int resourcesStatus, @RequestParam int publicStatus,
+                             @RequestParam String water, @RequestParam String electric, @RequestParam String start,
+                             @RequestParam String end){
+        if(0==publicStatus){
+            formPlaceActivityService.commitForm(userId, activityName, activityPlace, activityDate, list, content,
+                    budget, method, resourcesStatus);
+        }else {
+            formPlaceActivityService.commitForm(userId, activityName, activityPlace, activityDate, list, content,
+                    budget, method, resourcesStatus, water, electric, start, end);
+        }
+        return "redirect:/index";
+    }
 }

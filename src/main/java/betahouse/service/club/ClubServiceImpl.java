@@ -147,8 +147,8 @@ public class ClubServiceImpl implements ClubService {
     @Override
     public int deleteClubById(int clubId) {
         int userIdDTO = clubMapper.selectByPrimaryKey(clubId).getUserId();
-        formManagerService.updateFormManagerByApprover(userIdDTO, 1, -1);
-        powerService.deletePowerByUserId(userIdDTO, new int[]{3,4});
+        formManagerService.updateFormManagerByApprover(userIdDTO, "[5]", "-1");
+        powerService.updatePowerByUserId(userIdDTO, "[3,4]");
         clubMapper.deleteByPrimaryKey(clubId);
         return 0;
     }
@@ -162,10 +162,10 @@ public class ClubServiceImpl implements ClubService {
             clubDTO.setClubName(clubName);
             if(userId!=0&&oldUserId!=userId){
                 clubDTO.setUserId(userId);
-                powerService.deletePowerByUserId(oldUserId, new int[]{3,4});
-                formManagerService.updateFormManagerByApprover(oldUserId, 1, -1);
-                powerService.addPowerByUserId(userId, new int[]{3,4});
-                formManagerService.updateFormManagerByApprover(userId, 1, 1);
+                powerService.updatePowerByUserId(oldUserId, "[3,4]");
+                formManagerService.updateFormManagerByApprover(oldUserId, "[5]", "[-1]");
+                powerService.updatePowerByUserId(userId, "[3,4]");
+                formManagerService.updateFormManagerByApprover(userId, "[5]", "[1]");
             }
             clubMapper.updateByPrimaryKey(clubDTO);
         }

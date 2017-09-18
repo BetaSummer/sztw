@@ -1,5 +1,7 @@
 package betahouse.service.power;
 
+import betahouse.model.VO.PowerVO;
+
 import java.util.List;
 
 /**
@@ -9,9 +11,7 @@ public interface PowerService {
 
     List<Integer> getPowerByUserId(int userId);
 
-    int addPowerByUserId(int userId, int[] power);
-
-    int deletePowerByUserId(int userId, int[] power);
+    List<PowerVO> getPowerVOByUserId(int userId);
 
     int insert(int id, String power);
 

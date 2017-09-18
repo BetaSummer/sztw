@@ -33,4 +33,9 @@
     select id, power_id, power_name, form_type
     from b_power_type
   </select>
+  <select id="selectByPowerId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, power_id, power_name, form_type
+    from b_power_type
+    where power_id = #{powerId,jdbcType=INTEGER}
+  </select>
 </mapper>

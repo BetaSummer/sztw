@@ -15,4 +15,6 @@ public interface PowerTypeMapper {
     List<PowerType> selectAll();
 
     int updateByPrimaryKey(PowerType record);
+
+    PowerType selectByPowerId(Integer powerId);
 }

@@ -26,7 +26,7 @@ $(function () {
     $("#manageAll").click(function(){
         $(".delete-tr").remove();
         $("input[type='checkbox']").each(function(){
-            if($(this).is(':checked')){
+            if($(this).is(':checked')&&($(this).prev().html()!="全选")){
                 var index = $(this).parent().parent().index();
                 writeInformation(index);
             }
@@ -53,7 +53,7 @@ $(function () {
     $("#manageAll2").click(function(){
         $(".delete-tr").remove();
         $("input[type='checkbox']").each(function(){
-            if($(this).is(':checked')){
+            if($(this).is(':checked')&&($(this).prev().html()!="全选")){
                 var index = $(this).parent().parent().index();
                 writeInformation2(index);
             }
@@ -141,7 +141,7 @@ $(function () {
         var selfReserve = $("#fb-select2").val();
         var money = $("#fb-num").val();
         $("input[type='checkbox']").each(function(){
-            if($(this).is(':checked')){
+            if($(this).is(':checked')&&($(this).prev().html()!="全选")){
                 Arr[i]=$(this).parent().next().next().next().next().html();
                 i++;
             }

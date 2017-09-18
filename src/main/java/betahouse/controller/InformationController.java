@@ -93,5 +93,10 @@ public class InformationController extends BaseController{
             e.printStackTrace();
         }
     }
+    @RequestMapping(value = "/messageList")
+    public String  messageList (HttpServletRequest request, HttpServletResponse response, Model model){
+        model.addAttribute("announcement",announcementService.listAll());
+        return "index/messageList";
+    }
 }
 

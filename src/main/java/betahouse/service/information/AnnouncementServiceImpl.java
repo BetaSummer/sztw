@@ -78,4 +78,23 @@ public class AnnouncementServiceImpl implements AnnouncementService{
         }
         return null;
     }
+
+    @Override
+    public int deleteAnnouncementById(int id) {
+        return announcementMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public int editAnnouncement(int id, int fromId, String title, String comment, int fileId) {
+        Announcement announcementDTO = new Announcement();
+        announcementDTO.setFromId(fromId);
+        announcementDTO.setTitle(title);
+        announcementDTO.setComment(comment);
+        Date dateDTO = new Date();
+        SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy/MM/dd");
+        announcementDTO.setDate(sdfDTO.format(dateDTO));
+        announcementDTO.setStatus(1);
+        announcementDTO.setId(id);
+        return announcementMapper.updateByPrimaryKey(announcementDTO);
+    }
 }

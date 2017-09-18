@@ -32,12 +32,14 @@ public class PowerTypeServiceImpl implements PowerTypeService{
         for(PowerType p: listDTO){
             int maxLv = 0;
             PowerVO powerVO = new PowerVO();
-            powerVO.setId(p.getId());
+            powerVO.setId(p.getPowerId());
             powerVO.setPowerName(p.getPowerName());
+            powerVO.setMaxLv(maxLv);
             if(null!=p.getFormType()){
                 maxLv = formTypeService.getFormTypeByFormType(p.getFormType()).getMaxLv();
                 powerVO.setMaxLv(maxLv);
             }
+            powerVO.setPermit(0);
             powerVOList.add(powerVO);
         }
         return powerVOList;

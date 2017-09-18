@@ -26,6 +26,7 @@
         </div>
     </div>
     <script src="/js/myWangEditor.js"></script>
+    <script src="/js/manage.js"></script>
     <script>
 //        3.x版本
 //        var E = window.wangEditor;
@@ -35,36 +36,5 @@
 //        editor.customConfig.uploadImgServer = '/information/uploadFile';
 //        editor.customConfig.uploadFileName = 'yourFileName';
 //        editor.create();
-    </script>
-    <script>
-        $(function () {
-            $("#publish").click(function () {
-                var check = $("input[name='message-type']:checked").val();
-                var title = $("#title").val();
-                var html = editor.txt.html();
-                if('1'===check){
-                    var data = {
-                        "title": title,
-                        "comment": html
-                    };
-                    $.ajax({
-                        type: "POST",
-                        url: "/information/publishAnnouncement",
-                        data: data,
-                        dataType: "json",
-                        success: function(r){
-                            alert(r.message);
-                        },
-                        error: function(XMLHttpRequest, textStatus, errorThrown){
-                            alert(XMLHttpRequest.status);
-                            alert(XMLHttpRequest.readyState);
-                            alert(textStatus);
-                        }
-                    })
-                }else if('2'===check){
-
-                }
-            });
-        })
     </script>
 </html>

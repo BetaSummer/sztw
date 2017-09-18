@@ -5,6 +5,7 @@ import betahouse.mapper.OrganizationMapper;
 import betahouse.mapper.OrganizationMemberMapper;
 import betahouse.model.FormManager;
 import betahouse.service.form.FormManagerService;
+import betahouse.service.place.ApprovePlaceActivityService;
 import betahouse.service.place.FormPlaceActivityService;
 import betahouse.service.place.StatusPlaceActivityService;
 import com.alibaba.fastjson.JSON;
@@ -32,6 +33,9 @@ public class ApproveOrganizationFormController extends BaseController {
 
     @Autowired
     private FormPlaceActivityService formPlaceActivityService;
+
+    @Autowired
+    private ApprovePlaceActivityService approvePlaceActivityService;
 
     //表二审批列表
     @RequestMapping(value = "/approveList")
@@ -63,5 +67,12 @@ public class ApproveOrganizationFormController extends BaseController {
         return "organizationActivity/organizationApprove";
     }
 
+    //表二审批
+    public String saveApprove(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam int formId,
+                              @RequestParam String comment, @RequestParam int isApprove){
+        int userIdDTO = getCurrentUser(request).getId();
+        approvePlaceActivityService.saveApprove(userIdDTO, isApprove, formId, comment);
+        return "redirect:/index";
+    }
 
 }

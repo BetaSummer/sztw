@@ -87,9 +87,11 @@ public class UserController extends BaseController {
         return "user/userInfo";
     }
 
+    //根据用户id获取所有权限以及拥有的权限
     @RequestMapping(value = "/listAllPower")
-    public String listAllPower(HttpServletRequest request, HttpServletResponse response, Model model){
-        return ajaxReturn(response, powerTypeService.listAll(), "", 0);
+    public String listAllPower(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam int userId){
+        model.addAttribute("power", powerService.getPowerVOByUserId(userId));
+        return "index/showPower";
     }
 
     @RequestMapping(value = "/updatePower")

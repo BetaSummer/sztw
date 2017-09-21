@@ -21,4 +21,8 @@ public interface AnnouncementService {
 
     List<Announcement> listAnnouncementByPower(int userId);
 
+    int deleteAnnouncementById(int id);
+
+    int editAnnouncement(int id, int fromId, String title, String comment, int fileId);
+
 }

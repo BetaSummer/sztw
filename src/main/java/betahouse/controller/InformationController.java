@@ -65,6 +65,26 @@ public class InformationController extends BaseController{
         return "index/information";
     }
 
+    @RequestMapping(value = "/deleteAnnouncementById")
+    public String deleteAnnouncementById(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam int id){
+        announcementService.deleteAnnouncementById(id);
+        model.addAttribute("announcement",announcementService.listAll());
+        return "index/messageList";
+    }
+
+    @RequestMapping(value = "/editAnnouncementById")
+    public String editAnnouncementById(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam int id){
+        model.addAttribute("announcement", announcementService.getAnnouncementById(id));
+        return "manage/editMessage";
+    }
+
+    @RequestMapping(value = "/republishAnnouncement")
+    public String republishAnnouncement(HttpServletRequest request, HttpServletResponse response, Model model,
+                                      @RequestParam int id, @RequestParam String title, @RequestParam String comment){
+        announcementService.editAnnouncement(id, getCurrentUser(request).getId(), title, comment, 0);
+        return ajaxReturn(response, null, PUBLISH_SUCCESS, 0);
+    }
+
     @RequestMapping(value = "/publishMessage")
     public String publishMessage(HttpServletRequest request, HttpServletResponse response, Model model,
                                  @RequestParam String title, @RequestParam String comment, @RequestParam String toId){

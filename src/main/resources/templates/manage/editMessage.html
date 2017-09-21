@@ -1,0 +1,34 @@
+<!-- 编辑公告  -->
+
+
+
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+    <link rel="stylesheet" href="/css/wangEditor.min.css"/>
+    <style type="text/css">
+        .content{
+            margin-top: 20px;
+        }
+    </style>
+    <div class="manage-header">
+        <button>重置</button>
+        <button id="republish">发布</button>
+    </div>
+    <div class="manage-main">
+        <div class="manage-form">
+            <label>类型：</label>
+            <input type="radio" value="1" name="message-type"/><span>公告</span>
+            <input type="radio" value="2" name="message-type"/><span>通知</span>
+        </div>
+        <div class="manage-form">
+            <label>主题：</label>
+            <input id="title" type="text" name="message-title" placeholder="请填写主题"/>
+            <div class="content"><div id="contentIn" style="height: 300px;"></div></div>
+        </div>
+    </div>
+    <script src="/js/myWangEditor.js"></script>
+    <script th:inline="javascript">
+        $("#title").val(/*[[${announcement.title}]]*/'title');
+        editor.$txt.html(/*[[${announcement.comment}]]*/'data');
+    </script>
+    <script src="/js/manage.js"></script>
+</html>

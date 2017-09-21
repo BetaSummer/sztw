@@ -1,0 +1,15 @@
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<link rel="stylesheet" href="/css/base.css"/>
+<link rel="stylesheet" href="/css/common.css"/>
+<link rel="stylesheet" href="/css/manage.css"/>
+    <div class="manage-in">
+        <div class="manage-out"></div>
+        <h1>用户权限管理</h1>
+        <div class="power-child" th:each="data:${power}">
+            <label th:id="${data.id}" th:text="${data.powerName}"></label>
+            <input type="checkbox" th:if="${data.permit==1}" checked="checked"/>
+            <input type="checkbox" th:if="${data.permit==0}"/>
+        </div>
+    </div>
+    <div class="power-confirm">确认修改权限</div>
+</html>

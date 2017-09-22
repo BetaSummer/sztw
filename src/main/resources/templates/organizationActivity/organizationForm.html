@@ -61,9 +61,22 @@
         </div>
         <div class="form-group">
             <label>公共事业部</label>
-            <label><input class="form2-control" name="#" type="radio" value="1"/>使用资源</label>
-            <label><input name="#" type="radio" value="0"/>不使用</label>
-            <input class="form2-input" name="#" placeholder="用电"/>
+            <label><input id="form2-control1" name="#" type="radio" value="1"/>用电</label>
+            <label><input id="form2-control2" name="#" type="radio" value="0"/>用水</label>
+        </div>
+        <div class="form-inline form2-input" id="form2-control3">
+            <input name="#" placeholder="用电量"/>
+            <label>活动时间</label>
+            <input id="form-time1" placeholder="开始用电" class="laydate-icon" style="width: 26%; " onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/>  -
+            <input id="form-time2" placeholder="结束用电" class="laydate-icon" style="width: 26%; " onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/>
+            <input id="form-timekey1" type="text" name="#" style="display: none;"/>
+        </div>
+        <div class="form-inline form2-input" id="form2-control4">
+            <input  name="#" placeholder="用水量"/>
+            <label>活动时间</label>
+            <input id="form-time3" placeholder="开始用水" class="laydate-icon" style="width: 26%; " onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/>  -
+            <input id="form-time4" placeholder="结束用水" class="laydate-icon" style="width: 26%; " onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/>
+            <input id="form-timekey2" type="text" name="#" style="display: none;"/>
         </div>
     </div>
     <input id="form-sub" type="submit" value="提交"/>
@@ -71,8 +84,11 @@
 </html>
 <script>
     $(function () {
-        $(".form2-control").click(function(){
-            $(this).parent().next().next().show();
+        $("#form2-control1").click(function(){
+            $("#form2-control3").show();
+        });
+        $("#form2-control2").click(function(){
+            $("#form2-control4").show();
         });
     });
 </script>

@@ -66,7 +66,7 @@ public class PowerServiceImpl implements PowerService{
                         FormManager formManagerDTO = formManagerService.getFormManagerByApprover(userId);
                         List<Integer> lvListDTO = JSON.parseArray(formManagerDTO.getApproverForm(), Integer.class);
                         int formTypeDTO = powerTypeService.getPowerTypeByPowerId(p2).getFormType();
-                        p1.setMaxLv(lvListDTO.get(formTypeDTO-1));
+                        p1.setPermit(lvListDTO.get(formTypeDTO-1));
                     }
                 }
             }

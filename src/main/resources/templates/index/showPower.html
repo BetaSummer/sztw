@@ -6,10 +6,79 @@
         <div class="manage-out"></div>
         <h1>用户权限管理</h1>
         <div class="power-child" th:each="data:${power}">
+            <input class="power-check" type="checkbox" th:if="${data.permit>0}" checked="checked"/>
+            <input class="power-check" type="checkbox" th:if="${data.permit==0}"/>
             <label th:id="${data.id}" th:text="${data.powerName}"></label>
-            <input type="checkbox" th:if="${data.permit==1}" checked="checked"/>
-            <input type="checkbox" th:if="${data.permit==0}"/>
+            <label class="power-permit" th:text="${data.permit}"></label>
+            <div th:if="${data.maxLv==6}" class="power-lv-select">
+                <ul>
+                    <li>0</li>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                    <li>6</li>
+                </ul>
+            </div>
+            <div th:if="${data.maxLv==5}" class="power-lv-select">
+                <ul>
+                    <li>0</li>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                </ul>
+            </div>
+            <div th:if="${data.maxLv==4}" class="power-lv-select">
+                <ul>
+                    <li>0</li>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>
+            </div>
+            <div th:if="${data.maxLv==3}" class="power-lv-select">
+                <ul>
+                    <li>0</li>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                </ul>
+            </div>
+            <div th:if="${data.maxLv==2}" class="power-lv-select">
+                <ul>
+                    <li>0</li>
+                    <li>1</li>
+                    <li>2</li>
+                </ul>
+            </div>
         </div>
     </div>
     <div class="power-confirm">确认修改权限</div>
 </html>
+<script>
+    $(function () {
+        $(".manage-out").click(function () {
+            $(".manage-alert").hide(200);
+        });
+        $(".power-check").click(function () {
+            if(!$(this).is(':checked')){
+                $(this).next().next().html("0");
+            }
+            else {
+                $(this).next().next().next().show();
+                $(".manage-alert").css("height","350px");
+            }
+        });
+        $("ul li").click(function () {
+           $(this).parent().parent().prev().html($(this).html());
+           if($(this).html()==0){
+               $(this).parent().parent().prev().prev().prev().prop("checked","");
+           }
+           $(".power-lv-select").hide();
+        });
+    });
+</script>

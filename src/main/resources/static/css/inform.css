@@ -166,3 +166,24 @@ body::-webkit-scrollbar{display: none;}
         font-size: 22px;
     }
 }
+
+.messageA{
+    text-align: center;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    font-size: 16px!important;
+    display: block;
+    float: right;
+    background-color: #8a98a0;
+    color: #ffffff!important;
+    width: 100px!important;
+    height: 35px!important;
+    line-height: 35px!important;
+    margin: auto 10px !important;
+}
+.messageA:hover{
+    cursor: pointer;
+    background-color: #79858c;
+    text-decoration:none!important;
+}

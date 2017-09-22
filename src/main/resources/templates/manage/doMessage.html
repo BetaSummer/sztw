@@ -22,12 +22,15 @@
         <div class="manage-form">
             <label>主题：</label>
             <input id="title" type="text" name="message-title" placeholder="请填写主题"/>
-            <div class="content"><div id="contentIn" style="height: 300px;"></div></div>
+            <div class="content"><div id="contentIn"></div></div>
         </div>
     </div>
     <script src="/js/myWangEditor.js"></script>
     <script src="/js/manage.js"></script>
     <script>
+        $(function () {
+           $(".wangEditor-container .wangEditor-txt").css("height","300px") ;
+        });
 //        3.x版本
 //        var E = window.wangEditor;
 //        var editor = new E('#contentIn');

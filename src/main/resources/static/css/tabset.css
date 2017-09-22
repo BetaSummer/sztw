@@ -1,3 +1,35 @@
+.tab-icon{
+  float: left;
+  width:25px;
+  height: 25px;
+  margin:12.5px 10px 12.5px 5%;
+  line-height: 25px;
+}
+.tab-icon img{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.tab-li{
+  float: left;
+  width:55%;
+  margin:0 auto;
+}
+@media screen and (min-width: 1450px){
+  .tab-icon{
+    margin:12.5px 10px 12.5px 10%;
+  }
+}
+@media screen and (max-width: 1025px){
+  .tab-icon{
+    display: none;
+  }
+  .tab-li{
+    width: 100%;
+  }
+}
+
+
 content {
   color: #5c5a5d; }
 #form-appli , #form-manage ,#form-view ,#userManage , #powerManage , #financeT,#financeB,#doMessage,#clubManage{
@@ -17,7 +49,9 @@ content {
   box-sizing: border-box; }
 .sub-nav .sub-child {
   display: none; }
-
+.sub-nav .fton{
+  background-color: #dbe6ec;
+}
 
 .sub-content {
   width: 80%;

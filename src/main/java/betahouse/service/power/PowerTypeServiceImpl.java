@@ -26,7 +26,7 @@ public class PowerTypeServiceImpl implements PowerTypeService{
     private FormTypeService formTypeService;
 
     @Override
-    public List<PowerVO> listAll() {
+    public List<PowerVO> listPowerVO() {
         List<PowerVO> powerVOList = new ArrayList<>();
         List<PowerType> listDTO = powerTypeMapper.selectAll();
         for(PowerType p: listDTO){
@@ -43,6 +43,16 @@ public class PowerTypeServiceImpl implements PowerTypeService{
             powerVOList.add(powerVO);
         }
         return powerVOList;
+    }
+
+    @Override
+    public List<Integer> listPower() {
+        List<Integer> listDTO = new ArrayList<>();
+        List<PowerType> listDTO2 = powerTypeMapper.selectAll();
+        for(PowerType p: listDTO2){
+            listDTO.add(p.getPowerId());
+        }
+        return listDTO;
     }
 
     @Override

@@ -12,7 +12,9 @@ import java.util.Map;
  */
 public interface PowerTypeService {
 
-    List<PowerVO> listAll();
+    List<PowerVO> listPowerVO();
+
+    List<Integer> listPower();
 
     PowerType getPowerTypeByPowerId(int powerId);
 

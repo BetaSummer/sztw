@@ -17,5 +17,5 @@ public interface PowerService {
 
     boolean  checkPower(int userId, int powerId);
 
-    int updatePowerByUserId(int userId, String power);
+    int updatePowerByUserId(int userId, String powerList, String permitList);
 }

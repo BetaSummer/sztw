@@ -4,12 +4,14 @@
 <link rel="stylesheet" href="/css/manage.css"/>
     <div class="manage-in">
         <div class="manage-out"></div>
-        <h1>用户权限管理</h1>
+        <h1 id="">用户权限管理</h1>
         <div class="power-child" th:each="data:${power}">
             <input class="power-check" type="checkbox" th:if="${data.permit>0}" checked="checked"/>
             <input class="power-check" type="checkbox" th:if="${data.permit==0}"/>
-            <label th:id="${data.id}" th:text="${data.powerName}"></label>
-            <label class="power-permit" th:text="${data.permit}"></label>
+            <label class="power-id" th:id="${data.id}" th:text="${data.powerName}"></label>
+            <label class="power-permit" th:text="${data.permit}" hidden="hidden"></label>
+            <label class="power-lv" th:text="${data.permit}" th:if="${data.maxLv>0}"></label>
+            <label class="power-lv" th:text="0" th:if="${data.maxLv==0}" hidden="hidden"></label>
             <div th:if="${data.maxLv==6}" class="power-lv-select">
                 <ul>
                     <li>0</li>
@@ -58,8 +60,7 @@
         </div>
     </div>
     <div class="power-confirm">确认修改权限</div>
-</html>
-<script>
+<script th:inline="javascript">
     $(function () {
         $(".manage-out").click(function () {
             $(".manage-alert").hide(200);
@@ -69,16 +70,65 @@
                 $(this).next().next().html("0");
             }
             else {
-                $(this).next().next().next().show();
+                $(this).next().next().html("1");
+                $(this).next().next().next().next().show();
                 $(".manage-alert").css("height","350px");
             }
         });
         $("ul li").click(function () {
-           $(this).parent().parent().prev().html($(this).html());
-           if($(this).html()==0){
-               $(this).parent().parent().prev().prev().prev().prop("checked","");
-           }
-           $(".power-lv-select").hide();
+            $(this).parent().parent().prev().html($(this).html());
+            if($(this).html()==0){
+                $(this).parent().parent().prev().prev().prev().prev().prop("checked","");
+            }
+            $(".power-lv-select").hide();
+        });
+        $(".power-confirm").click(function () {
+            var powerIdList = $(".power-id");
+            var powerPermitList = $(".power-permit");
+            var powerLvList = $(".power-lv");
+            var powerList = "[";
+            powerIdList.each(function () {
+                powerList += $(this).attr("id")+",";
+            });
+            powerList =powerList.substring(0,powerList.length-1);
+            powerList += "]";
+            var permitList = "[";
+            powerPermitList.each(function () {
+                permitList += $(this).html()+",";
+            });
+            permitList =permitList.substring(0,permitList.length-1);
+            permitList += "]";
+            var lvList = "[";
+            powerLvList.each(function () {
+                lvList += $(this).html()+",";
+            });
+            lvList =lvList.substring(0,lvList.length-1);
+            lvList += "]";
+            var data = {
+                "userId": /*[[${userId}]]*/'userId',
+                "powerList": powerList,
+                "permitList": permitList,
+                "lvList": lvList
+            };
+            $.ajax({
+                type: "POST",
+                url: "/user/updatePower",
+                data: data,
+                dataType:"json",
+                success: function(r){
+                    if(r.status === 0){
+                        alert(r.message);
+                    }else if(r.status === 1){
+                        alert(r.message);
+                    }
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown){
+                    alert(XMLHttpRequest.status);
+                    alert(XMLHttpRequest.readyState);
+                    alert(textStatus);
+                }
+            });
         });
     });
 </script>
+</html>

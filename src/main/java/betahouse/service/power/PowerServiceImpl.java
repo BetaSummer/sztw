@@ -57,7 +57,7 @@ public class PowerServiceImpl implements PowerService{
             return listDTO;
         }
         List<Integer> powerListDTO = JSON.parseArray(powerDTO.getPower(), Integer.class);
-        listDTO = powerTypeService.listAll();
+        listDTO = powerTypeService.listPowerVO();
         for(PowerVO p1: listDTO){
             for(int p2: powerListDTO){
                 if(p1.getId()==p2){
@@ -95,23 +95,23 @@ public class PowerServiceImpl implements PowerService{
     }
 
     @Override
-    public int updatePowerByUserId(int userId, String powerList){
+    public int updatePowerByUserId(int userId, String powerList, String permitList){
         Power powerDTO = powerMapper.selectByUserId(userId);
-        List<Integer> listDTO = JSON.parseArray(powerList, Integer.class);
-        List<Integer> powerListDTO = JSON.parseArray(powerDTO.getPower(), Integer.class);
-        for(int power: listDTO){
-            boolean flag = false;
-            for(int i=0;i<powerListDTO.size();i++){
-                if(power==powerListDTO.get(i)){
-                    flag = true;
-                    powerListDTO.remove(power);
-                }
-            }
-            if(!flag){
-                powerListDTO.add(power);
+        List<Integer> powerListDTO = JSON.parseArray(powerList, Integer.class);
+        List<Integer> permitListDTO = JSON.parseArray(permitList, Integer.class);
+        List<Integer> powerListDTO2 = JSON.parseArray(powerDTO.getPower(), Integer.class);
+        for(int i=0;i<powerListDTO.size();i++){
+            if(permitListDTO.get(i)==0){
+                powerListDTO2.remove(powerListDTO.get(i));
+            }else if(permitListDTO.get(i)>0){
+                powerListDTO2.add(powerListDTO.get(i));
             }
         }
-        powerDTO.setPower(powerListDTO.toString());
+        HashSet<Integer> hashSetDTO = new HashSet<>();
+        hashSetDTO.addAll(powerListDTO2);
+        powerListDTO2.clear();
+        powerListDTO2.addAll(hashSetDTO);
+        powerDTO.setPower(powerListDTO2.toString());
         return powerMapper.updateByUserId(powerDTO);
     }
 }

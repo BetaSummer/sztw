@@ -192,6 +192,24 @@ $(function () {
             $(".loading").hide();
         }) ;
     });
+
+    $(".deleteMessage").click(function () {
+        var id = $(this).attr("content");
+        $(".content-body").html("");
+        $(".loading").show();
+        $(".content-body").load("/information/deleteAnnouncementById?id="+id,function () {
+            $(".loading").hide();
+        });
+    });
+
+    $(".editMessage").click(function () {
+        var id = $(this).attr("content");
+        $(".content-body").html("");
+        $(".loading").show();
+        $(".content-body").load("/information/editAnnouncementById?id="+id,function () {
+            $(".loading").hide();
+        });
+    });
 });
 
 /* club */

@@ -12,7 +12,6 @@ import betahouse.service.power.PowerService;
 import betahouse.service.power.PowerTypeService;
 import betahouse.service.user.UserInfoService;
 import betahouse.service.user.UserService;
-import com.alibaba.fastjson.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -92,15 +91,15 @@ public class UserController extends BaseController {
     @RequestMapping(value = "/listAllPower")
     public String listAllPower(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam int userId){
         model.addAttribute("power", powerService.getPowerVOByUserId(userId));
-        logger.error(JSONArray.toJSONString(powerService.getPowerVOByUserId(userId)));
+        model.addAttribute("userId", userId);
         return "index/showPower";
     }
 
     @RequestMapping(value = "/updatePower")
     public String updatePower(HttpServletRequest request, HttpServletResponse response, Model model,
-                              @RequestParam int userId, @RequestParam String powList, @RequestParam String lvList){
-        powerService.updatePowerByUserId(userId, powList);
-        formManagerService.updateFormManagerByApprover(userId, powList, lvList);
+                              @RequestParam int userId, @RequestParam String powerList, @RequestParam String permitList, @RequestParam String lvList){
+        powerService.updatePowerByUserId(userId, powerList, permitList);
+        formManagerService.updateFormManagerByApprover(userId, powerList, lvList);
         return ajaxReturn(response, null, USER_UPDATE_POWER_SUCCESS, 0);
     }
 

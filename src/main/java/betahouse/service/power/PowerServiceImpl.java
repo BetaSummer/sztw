@@ -114,4 +114,23 @@ public class PowerServiceImpl implements PowerService{
         powerDTO.setPower(powerListDTO.toString());
         return powerMapper.updateByUserId(powerDTO);
     }
+
+    public int updatePowerByUserIdFB(int userId, String powerVOList){
+        Power powerDTO = powerMapper.selectByUserId(userId);
+        List<PowerVO> listDTO = JSON.parseArray(powerVOList, PowerVO.class);
+        List<Integer> powerListDTO = JSON.parseArray(powerDTO.getPower(), Integer.class);
+        for(PowerVO p: listDTO){
+            if(p.getPermit()==1){
+                powerListDTO.add(p.getId());
+            }else if(p.getPermit()==0){
+                powerListDTO.remove(p.getId());
+            }
+        }
+        HashSet<Integer> hashSetDTO = new HashSet<>();
+        hashSetDTO.addAll(powerListDTO);
+        powerListDTO.clear();
+        powerListDTO.addAll(hashSetDTO);
+        powerDTO.setPower(powerListDTO.toString());
+        return powerMapper.updateByUserId(powerDTO);
+    }
 }

@@ -13,8 +13,32 @@
   color: #FFF; }
 .form2-input{
   display: none;
+  margin-left:5%!important;
+  margin-bottom: 20px!important;
 }
-
+.power-lv-select{
+  display: none;
+  background-color: #ffffff;
+  color:black;
+  text-align: center;
+  font-size: 16px;
+  border:solid 1px #b6ad85;
+  z-index: 2;
+}
+.power-lv-select ul{
+  width: 120px!important;
+  margin:0!important;
+}
+.power-lv-select li{
+  width: 150px!important;
+  height: 20px!important;
+  line-height: 20px!important;
+  border:none!important;
+}
+.power-lv-select li:hover{
+  background-color: #DEECF8;
+  cursor: pointer;
+}
 .fb-change{
   width: 72%;
   margin:10px auto;

@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="/css/manage.css"/>
     <div class="manage-in">
         <div class="manage-out"></div>
-        <h1 id="">用户权限管理</h1>
+        <h1>用户权限管理</h1>
         <div class="power-child" th:each="data:${power}">
             <input class="power-check" type="checkbox" th:if="${data.permit>0}" checked="checked"/>
             <input class="power-check" type="checkbox" th:if="${data.permit==0}"/>
@@ -60,27 +60,41 @@
         </div>
     </div>
     <div class="power-confirm">确认修改权限</div>
-<script th:inline="javascript">
+</html>
+<script>
+    function hidePermit() {
+        $(".power-permit").each(function () {
+           if($(this).html()==0){
+               $(this).hide();
+           }
+           else {
+               $(this).show();
+           }
+        });
+    }
     $(function () {
+        hidePermit();
         $(".manage-out").click(function () {
             $(".manage-alert").hide(200);
         });
         $(".power-check").click(function () {
             if(!$(this).is(':checked')){
                 $(this).next().next().html("0");
+                $(".power-lv-select").hide();
+                hidePermit();
             }
             else {
-                $(this).next().next().html("1");
-                $(this).next().next().next().next().show();
+                $(this).next().next().next().show();
                 $(".manage-alert").css("height","350px");
             }
         });
         $("ul li").click(function () {
-            $(this).parent().parent().prev().html($(this).html());
-            if($(this).html()==0){
-                $(this).parent().parent().prev().prev().prev().prev().prop("checked","");
-            }
-            $(".power-lv-select").hide();
+           $(this).parent().parent().prev().html($(this).html());
+           if($(this).html()==0){
+               $(this).parent().parent().prev().prev().prev().prop("checked","");
+           }
+           $(".power-lv-select").hide();
+           hidePermit();
         });
         $(".power-confirm").click(function () {
             var powerIdList = $(".power-id");
@@ -131,4 +145,3 @@
         });
     });
 </script>
-</html>

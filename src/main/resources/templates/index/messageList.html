@@ -1,18 +1,17 @@
 <html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
-    <link rel="stylesheet" href="/css/base.css"/>
+<link rel="stylesheet" href="/css/base.css"/>
     <link rel="stylesheet" href="/css/common.css"/>
     <link rel="stylesheet" href="/css/inform.css"/>
     <div>
-        <h1>公告</h1>
-        <div class="news" id="demo">
-            <li class="news-li" th:each="data:${announcement}">
-                <p th:text="${data.date}"></p>
-                <a class="editMessage" href="#" th:text="${data.title}" th:content="${data.id}"></a>
-                <a class="deleteMessage" href="#" th:content="${data.id}">删除</a>
-            </li>
+            <div class="news" id="demo">
+                <li class="news-li" th:each="data:${announcement}" style="width: 70%!important;">
+                    <p th:text="${data.date}"></p>
+                    <a class="deleteMessage messageA" href="#" th:content="${data.id}">删除</a>
+                    <a class="editMessage messageA" href="#"  th:content="${data.id}">编辑</a>
+                </li>
+           </div>
+            <script type="text/javascript" src="/js/jquery.js"></script>
+            <script type="text/javascript" src="/js/main.js"></script>
+            <script type="text/javascript" src="/js/inform.js"></script>
         </div>
-        <script type="text/javascript" src="/js/jquery.js"></script>
-        <script type="text/javascript" src="/js/main.js"></script>
-        <script type="text/javascript" src="/js/inform.js"></script>
-    </div>
 </html>

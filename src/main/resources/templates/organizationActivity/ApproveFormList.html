@@ -1,11 +1,12 @@
 <div class="manage-header">
-    <button>已通过</button>
-    <button>未通过</button>
-    <button>审批中</button>
-    <button  class="on">全部</button>
+    <button class="formlist-radio2">已通过</button>
+    <button class="formlist-radio3">未通过</button>
+    <button class="formlist-radio1">审批中</button>
+    <button  class="on formlist-all">全部</button>
 </div>
-<ul xmlns:th="http://www.w3.org/1999/xhtml">
+<ul xmlns:th="http://www.w3.org/1999/xhtml" class="formlist-ul">
     <li th:each="data:${data}">
+        <label class="formlist-label" th:text="${data.value[1]}" style="display: none;"></label>
         <a class="left clear" target="_blank" th:href="'/approveOrganizationForm/approve?id='+${data.key}" th:text="'【'+${data.value[1]}+'/'+${data.value[2]}+'】'+${data.value[0]}"></a>
     </li>
 </ul>
@@ -50,3 +51,4 @@
     }) ;
     //]]>
 </script>
+<script src="/js/clubForm.js"></script>

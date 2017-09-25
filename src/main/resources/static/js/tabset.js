@@ -2,8 +2,6 @@
  * Created by Administrator on 2017/4/27.
  */
 
-
-var a,b;
 $(function () {
     var width = window.screen.width;
     if (width<768){
@@ -23,7 +21,6 @@ $(function () {
     else {
         $(function () {
             $(".sub-ft").click(function () {
-                b=$(this);
                 if($(this).hasClass('fton')){
                     $(this).removeClass('fton').next().hide(500);
                     $(this).find('div').eq(2).css("transform","rotate(360deg)");

@@ -17,6 +17,7 @@
   margin-bottom: 20px!important;
 }
 .power-lv-select{
+  position: relative;
   display: none;
   background-color: #ffffff;
   color:black;

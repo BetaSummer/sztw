@@ -39,6 +39,9 @@ public class FormManagerServiceImpl implements FormManagerService{
     @Override
     public int updateFormManagerByApprover(int approver, String powerList, String lvList) {
         FormManager formManagerDTO = formManagerMapper.selectByApprover(approver);
+        if(formManagerDTO==null){
+            return -1;
+        }
         List<Integer> listDTO = JSON.parseArray(formManagerDTO.getApproverForm(), Integer.class);
         List<Integer> powerListDTO = JSON.parseArray(powerList, Integer.class);
         List<Integer> lvListDTO = JSON.parseArray(lvList, Integer.class);

@@ -134,6 +134,11 @@ $(function () {
     });
 });
 $(function () {
+    $("#manageChange").click(function () {
+        $(".fb-change").toggle();
+    }) ;
+});
+$(function () {
     $(".fb-confirm").click(function () {
         var i = 0;
         var Arr = new Array();

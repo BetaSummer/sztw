@@ -30,7 +30,8 @@ public class DemoController extends BaseController {
     public String hi(HttpServletRequest request, HttpServletResponse response, Model model,int t){
 //        BaseFile baseFile = new BaseFile();
 //        int t = baseFile.download(response,"千叶思辩社","test01");
-        return ajaxReturn(response,t);
+//        return ajaxReturn(response,t);
+        return "organizationActivity/organizationView";
     }
     @RequestMapping("/download")
     public void up(HttpServletRequest request, HttpServletResponse response, Model model){

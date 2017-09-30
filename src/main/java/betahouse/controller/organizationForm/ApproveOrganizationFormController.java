@@ -41,16 +41,8 @@ public class ApproveOrganizationFormController extends BaseController {
     @RequestMapping(value = "/approveList")
     public String listAllForm(HttpServletRequest request, HttpServletResponse response, Model model){
         int idDTO = getCurrentUser(request).getId();
-        FormManager formManagerDTO = formManagerService.getFormManagerByApprover(idDTO);
-        List<Integer> listDTO = JSON.parseArray(formManagerDTO.getApproverForm(), Integer.class);
         try {
-            int lvDTO = listDTO.get(1);
-            if(lvDTO == 1){
-                Map mapDTO = statusPlaceActivityService.listStatusByUserId(idDTO);
-                model.addAttribute("data",mapDTO);
-                return "organizationActivity/ApproveFormList";
-            }
-            Map mapDTO = statusPlaceActivityService.listStatusOverUserId(idDTO);
+            Map mapDTO = statusPlaceActivityService.listStatusByUserId(idDTO);
             model.addAttribute("data",mapDTO);
             return "organizationActivity/ApproveFormList";
         }catch (NullPointerException e){

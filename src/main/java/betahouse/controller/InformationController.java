@@ -80,8 +80,9 @@ public class InformationController extends BaseController{
 
     @RequestMapping(value = "/republishAnnouncement")
     public String republishAnnouncement(HttpServletRequest request, HttpServletResponse response, Model model,
-                                      @RequestParam int id, @RequestParam String title, @RequestParam String comment){
-        announcementService.editAnnouncement(id, getCurrentUser(request).getId(), title, comment, 0);
+                                      @RequestParam String id, @RequestParam String title, @RequestParam String comment){
+        int idDTO = Integer.parseInt(id);
+        announcementService.editAnnouncement(idDTO, getCurrentUser(request).getId(), title, comment, 0);
         return ajaxReturn(response, null, PUBLISH_SUCCESS, 0);
     }
 

@@ -21,6 +21,8 @@ public interface StatusPlaceActivityMapper {
 
     StatusPlaceActivity selectByFormId(int formId);
 
+    List<StatusPlaceActivity> selectByFormUserId(Integer userId);
+
     List<StatusPlaceActivity> selectByLv(Integer lv);
 
     List<StatusPlaceActivity> selectByLvAndResourcesStatus(@Param("lv") Integer lv, @Param("resourcesStatus") Integer status);

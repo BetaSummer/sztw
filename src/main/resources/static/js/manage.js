@@ -317,10 +317,11 @@ $(function () {
     $("#republish").click(function () {
         var check = $("input[name='message-type']:checked").val();
         var title = $("#title").val();
+        var id = $("#title").prev().attr("id");
         var html = editor.$txt.html();
         if('1'===check){
             var data = {
-                "id": /*[[$announcement.id]]*/'id',
+                "id": id,
                 "title": title,
                 "comment": html
             };

@@ -20,7 +20,7 @@
             <input type="radio" value="2" name="message-type"/><span>通知</span>
         </div>
         <div class="manage-form">
-            <label>主题：</label>
+            <label th:id="${announcement.id}">主题：</label>
             <input id="title" type="text" name="message-title" placeholder="请填写主题"/>
             <div class="content"><div id="contentIn" style="height: 300px;"></div></div>
         </div>
@@ -31,7 +31,7 @@
         $("#title").val(/*[[${announcement.title}]]*/'title');
         editor.$txt.html(/*[[${announcement.comment}]]*/'data');
     </script>
-    <script src="/js/manage.js"></script>
+    <script th:inline="javascript" src="/js/manage.js"></script>
 <script>
     $(function () {
         $(".wangEditor-container .wangEditor-txt").css("height","300px") ;

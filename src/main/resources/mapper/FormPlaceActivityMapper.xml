@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="betahouse.model.FormPlaceActivity">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_tel" jdbcType="VARCHAR" property="userTel" />
     <result column="activity_name" jdbcType="VARCHAR" property="activityName" />
     <result column="activity_place" jdbcType="VARCHAR" property="activityPlace" />
     <result column="activity_date" jdbcType="VARCHAR" property="activityDate" />
@@ -18,18 +19,22 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="betahouse.model.FormPlaceActivity">
-    insert into b_form_place_activity (id, user_id, activity_name, 
-      activity_place, activity_date, list, 
-      content, budget, method, 
-      date)
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{activityName,jdbcType=VARCHAR}, 
-      #{activityPlace,jdbcType=VARCHAR}, #{activityDate,jdbcType=VARCHAR}, #{list,jdbcType=VARCHAR}, 
-      #{content,jdbcType=VARCHAR}, #{budget,jdbcType=REAL}, #{method,jdbcType=VARCHAR}, 
-      #{date,jdbcType=VARCHAR})
+    insert into b_form_place_activity (id, user_id, user_tel, 
+      activity_name, activity_place, activity_date, 
+      list, content, budget, 
+      method, date)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{userTel,jdbcType=VARCHAR}, 
+      #{activityName,jdbcType=VARCHAR}, #{activityPlace,jdbcType=VARCHAR}, #{activityDate,jdbcType=VARCHAR}, 
+      #{list,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{budget,jdbcType=REAL}, 
+      #{method,jdbcType=VARCHAR}, #{date,jdbcType=VARCHAR})
+    <selectKey keyProperty="id" order="AFTER" resultType="Integer">
+      SELECT LAST_INSERT_ID() AS id
+    </selectKey>
   </insert>
   <update id="updateByPrimaryKey" parameterType="betahouse.model.FormPlaceActivity">
     update b_form_place_activity
     set user_id = #{userId,jdbcType=INTEGER},
+      user_tel = #{userTel,jdbcType=VARCHAR},
       activity_name = #{activityName,jdbcType=VARCHAR},
       activity_place = #{activityPlace,jdbcType=VARCHAR},
       activity_date = #{activityDate,jdbcType=VARCHAR},
@@ -41,14 +46,14 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select id, user_id, activity_name, activity_place, activity_date, list, content, 
-    budget, method, date
+    select id, user_id, user_tel, activity_name, activity_place, activity_date, list, 
+    content, budget, method, date
     from b_form_place_activity
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id, user_id, activity_name, activity_place, activity_date, list, content, 
-    budget, method, date
+    select id, user_id, user_tel, activity_name, activity_place, activity_date, list, 
+    content, budget, method, date
     from b_form_place_activity
   </select>
 </mapper>

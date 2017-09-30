@@ -58,7 +58,7 @@ public class ClubActivityApproveServiceImpl implements ClubActivityApproveServic
                 }
                 clubActivityFormService.updateFormById(formId, clubDTO);
                 Date dateDTO = new Date();
-                SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
                 clubActivityStatusService.updateStatusByFormId(formId, 1, 0, sdfDTO.format(dateDTO));
                 clubFinancialFlowService.insert(clubIdDTO, formId, applySelfMoney, applyReserveMoney, 0,
                         clubActivityFormService.getFormById(formId).getActivityName());

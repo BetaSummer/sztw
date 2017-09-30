@@ -53,7 +53,7 @@ public class ClubActivityFormServiceImpl implements ClubActivityFormService {
         clubActivityFormDTO.setChiefId(userInfo.getSchoolId());
         clubActivityFormDTO.setChiefTel(userInfo.getTel());
         Date dateDTO = new Date();
-        SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
         clubActivityFormDTO.setApplyDate(sdfDTO.format(dateDTO));
         clubActivityFormMapper.insert(clubActivityFormDTO);
         return clubActivityFormDTO.getId();

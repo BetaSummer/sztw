@@ -48,25 +48,19 @@ public class PowerServiceImpl implements PowerService{
     @Override
     public List<PowerVO> getPowerVOByUserId(int userId) {
         Power powerDTO = powerMapper.selectByUserId(userId);
-        List<PowerVO> listDTO = new ArrayList<>();
-        if(powerDTO==null){
-            PowerVO powerVO = new PowerVO();
-            powerVO.setId(-1);
-            powerVO.setPowerName("");
-            listDTO.add(powerVO);
-            return listDTO;
-        }
-        List<Integer> powerListDTO = JSON.parseArray(powerDTO.getPower(), Integer.class);
-        listDTO = powerTypeService.listPowerVO();
-        for(PowerVO p1: listDTO){
-            for(int p2: powerListDTO){
-                if(p1.getId()==p2){
-                    p1.setPermit(1);
-                    if(p1.getMaxLv()!=0){
-                        FormManager formManagerDTO = formManagerService.getFormManagerByApprover(userId);
-                        List<Integer> lvListDTO = JSON.parseArray(formManagerDTO.getApproverForm(), Integer.class);
-                        int formTypeDTO = powerTypeService.getPowerTypeByPowerId(p2).getFormType();
-                        p1.setPermit(lvListDTO.get(formTypeDTO-1));
+        List<PowerVO> listDTO = powerTypeService.listPowerVO();
+        if(powerDTO!=null){
+            List<Integer> powerListDTO = JSON.parseArray(powerDTO.getPower(), Integer.class);
+            for(PowerVO p1: listDTO){
+                for(int p2: powerListDTO){
+                    if(p1.getId()==p2){
+                        p1.setPermit(1);
+                        if(p1.getMaxLv()!=0){
+                            FormManager formManagerDTO = formManagerService.getFormManagerByApprover(userId);
+                            List<Integer> lvListDTO = JSON.parseArray(formManagerDTO.getApproverForm(), Integer.class);
+                            int formTypeDTO = powerTypeService.getPowerTypeByPowerId(p2).getFormType();
+                            p1.setPermit(lvListDTO.get(formTypeDTO-1));
+                        }
                     }
                 }
             }
@@ -96,10 +90,16 @@ public class PowerServiceImpl implements PowerService{
 
     @Override
     public int updatePowerByUserId(int userId, String powerList, String permitList){
+        if(powerList.equals("")){
+            return -1;
+        }
         Power powerDTO = powerMapper.selectByUserId(userId);
         List<Integer> powerListDTO = JSON.parseArray(powerList, Integer.class);
         List<Integer> permitListDTO = JSON.parseArray(permitList, Integer.class);
-        List<Integer> powerListDTO2 = JSON.parseArray(powerDTO.getPower(), Integer.class);
+        List<Integer> powerListDTO2 = new ArrayList<>();
+        if(powerDTO!=null){
+            powerListDTO2 = JSON.parseArray(powerDTO.getPower(), Integer.class);
+        }
         for(int i=0;i<powerListDTO.size();i++){
             if(permitListDTO.get(i)==0){
                 powerListDTO2.remove(powerListDTO.get(i));
@@ -111,6 +111,12 @@ public class PowerServiceImpl implements PowerService{
         hashSetDTO.addAll(powerListDTO2);
         powerListDTO2.clear();
         powerListDTO2.addAll(hashSetDTO);
+        if(powerDTO==null){
+            Power powerDTO2 = new Power();
+            powerDTO2.setUserId(userId);
+            powerDTO2.setPower(powerListDTO2.toString());
+            return powerMapper.insert(powerDTO2);
+        }
         powerDTO.setPower(powerListDTO2.toString());
         return powerMapper.updateByUserId(powerDTO);
     }

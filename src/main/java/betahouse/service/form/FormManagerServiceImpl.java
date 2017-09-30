@@ -39,10 +39,10 @@ public class FormManagerServiceImpl implements FormManagerService{
     @Override
     public int updateFormManagerByApprover(int approver, String powerList, String lvList) {
         FormManager formManagerDTO = formManagerMapper.selectByApprover(approver);
-        if(formManagerDTO==null){
-            return -1;
+        List<Integer> listDTO = new ArrayList<>();
+        if(formManagerDTO!=null){
+            listDTO = JSON.parseArray(formManagerDTO.getApproverForm(), Integer.class);
         }
-        List<Integer> listDTO = JSON.parseArray(formManagerDTO.getApproverForm(), Integer.class);
         List<Integer> powerListDTO = JSON.parseArray(powerList, Integer.class);
         List<Integer> lvListDTO = JSON.parseArray(lvList, Integer.class);
         for(int i=0;i<lvListDTO.size();i++){
@@ -58,6 +58,12 @@ public class FormManagerServiceImpl implements FormManagerService{
             }
         }
         String strDTO = JSON.toJSONString(listDTO);
+        if(formManagerDTO==null){
+            FormManager formManagerDTO2 = new FormManager();
+            formManagerDTO2.setApproverForm(strDTO);
+            formManagerDTO2.setApprover(approver);
+            return formManagerMapper.insert(formManagerDTO2);
+        }
         formManagerDTO.setApproverForm(strDTO);
         return formManagerMapper.updateByApprover(formManagerDTO);
     }

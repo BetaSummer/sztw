@@ -52,7 +52,7 @@ public class StatusPlaceActivityServiceImpl implements StatusPlaceActivityServic
 
         int organizationIdDTO = organizationMemberService.getOrganizationByUserId(formUserId).getId();
         int leaderIdDTO = organizationService.getOrganizationById(organizationIdDTO).getLeaderId();
-        if(formId==leaderIdDTO){
+        if(formUserId==leaderIdDTO){
             approvePlaceActivityService.saveApprove(leaderIdDTO, 1, formId, "同意");
         }
         return 0;
@@ -80,7 +80,9 @@ public class StatusPlaceActivityServiceImpl implements StatusPlaceActivityServic
         String approveFormDTO = formManagerMapper.selectByApprover(userId).getApproverForm();
         int lvSDTO = JSON.parseArray(approveFormDTO, Integer.class).get(1);
         List<StatusPlaceActivity> listDTO = null;
-        if(lvSDTO<5){
+        if(lvSDTO==1) {
+            listDTO = statusPlaceActivityMapper.selectByFormUserId(userId);
+        }else if(lvSDTO<5){
             listDTO = statusPlaceActivityMapper.selectByLv(lvSDTO);
         }else if(lvSDTO==5){
             listDTO = statusPlaceActivityMapper.selectByLvAndResourcesStatus(lvSDTO, 1);

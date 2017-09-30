@@ -50,7 +50,7 @@ public class OrganizationFinancialFlowServiceImpl implements OrganizationFinanci
         int organizationIdDIO = organizationMemberDTO.getId();
         int leaderIdDTO = organizationService.getOrganizationById(organizationIdDIO).getLeaderId();
         Date dateDTO = new Date();
-        SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
         OrganizationFinancialFlow organizationFinancialFlowDTO = new OrganizationFinancialFlow();
         organizationFinancialFlowDTO.setOrganizationId(organizationIdDIO);
         organizationFinancialFlowDTO.setFormId(formId);
@@ -76,7 +76,7 @@ public class OrganizationFinancialFlowServiceImpl implements OrganizationFinanci
             organizationFinancialFlowDTO.setIncome(money);
         }
         Date dateDTO = new Date();
-        SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
         organizationFinancialFlowDTO.setDate(sdfDTO.format(dateDTO));
         return organizationFinancialFlowMapper.insert(organizationFinancialFlowDTO);
     }

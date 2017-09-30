@@ -81,18 +81,30 @@ public class OrganizationFormController extends BaseController {
     //表二提交表单
     @RequestMapping(value = "/commit")
     public String commitForm(HttpServletRequest request, HttpServletResponse response, Model model,
-                             @RequestParam int userId, @RequestParam String activityName,
-                             @RequestParam String activityPlace, @RequestParam String activityDate,
-                             @RequestParam String list, @RequestParam String content, @RequestParam String budget,
-                             @RequestParam String method, @RequestParam int resourcesStatus, @RequestParam int publicStatus,
-                             @RequestParam String water, @RequestParam String electric, @RequestParam String start,
-                             @RequestParam String end){
-        if(0==publicStatus){
-            formPlaceActivityService.commitForm(userId, activityName, activityPlace, activityDate, list, content,
-                    budget, method, resourcesStatus);
+                             @RequestParam(name = "tel") String tel,
+                             @RequestParam(name = "activityName") String activityName,
+                             @RequestParam(name = "activityPlace") String activityPlace,
+                             @RequestParam(name = "activityDate") String activityDate,
+                             @RequestParam(name = "list") String list,
+                             @RequestParam(name = "content") String content,
+                             @RequestParam(name = "budget") String budget,
+                             @RequestParam(name = "method") String method,
+                             @RequestParam(name = "resourcesStatus") String resourcesStatus,
+                             @RequestParam(name = "resources") String resources,
+                             @RequestParam(name = "isWater") String isWater,
+                             @RequestParam(name = "isElectric") String isElectric,
+                             @RequestParam(name = "water") String water,
+                             @RequestParam(name = "electric") String electric,
+                             @RequestParam(name = "start") String start,
+                             @RequestParam(name = "end") String end){
+        int resourcesStatusDTO = Integer.parseInt(resourcesStatus);
+        list+=";"+resources;
+        if("".equals(isWater)&&"".equals(isElectric)){
+            formPlaceActivityService.commitForm(getCurrentUser(request).getId(), tel,  activityName, activityPlace, activityDate, list, content,
+                    budget, method, resourcesStatusDTO);
         }else {
-            formPlaceActivityService.commitForm(userId, activityName, activityPlace, activityDate, list, content,
-                    budget, method, resourcesStatus, water, electric, start, end);
+            formPlaceActivityService.commitForm(getCurrentUser(request).getId(), tel, activityName, activityPlace, activityDate, list, content,
+                    budget, method, resourcesStatusDTO, water, electric, start, end);
         }
         return "redirect:/index";
     }

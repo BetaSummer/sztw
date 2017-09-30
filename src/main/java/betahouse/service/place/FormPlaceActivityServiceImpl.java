@@ -38,10 +38,11 @@ public class FormPlaceActivityServiceImpl implements FormPlaceActivityService{
     private FormPublicUtilityMapper formPublicUtilityMapper;
 
     @Override
-    public int commitForm(int formUserId,String activityName, String activityPlace, String activityDate, String list,
+    public int commitForm(int formUserId, String userTel, String activityName, String activityPlace, String activityDate, String list,
                           String content, String budget, String method, int resourcesStatus) {
         FormPlaceActivity formPlaceActivityDTO = new FormPlaceActivity();
         formPlaceActivityDTO.setUserId(formUserId);
+        formPlaceActivityDTO.setUserTel(userTel);
         formPlaceActivityDTO.setActivityName(activityName);
         formPlaceActivityDTO.setActivityPlace(activityPlace);
         formPlaceActivityDTO.setActivityDate(activityDate);
@@ -50,20 +51,22 @@ public class FormPlaceActivityServiceImpl implements FormPlaceActivityService{
         formPlaceActivityDTO.setBudget(Float.parseFloat(budget));
         formPlaceActivityDTO.setMethod(method);
         Date dateDTO = new Date();
-        SimpleDateFormat sdfDTO  = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat sdfDTO  = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
         formPlaceActivityDTO.setDate(sdfDTO.format(dateDTO));
-        int idDTO = formPlaceActivityMapper.insert(formPlaceActivityDTO);
+        formPlaceActivityMapper.insert(formPlaceActivityDTO);
+        int idDTO = formPlaceActivityDTO.getId();
         statusPlaceActivityService.insert(idDTO, formUserId, resourcesStatus, 0);
         return 0;
     }
 
     @Override
-    public int commitForm(int formUserId, String activityName, String activityPlace, String activityDate,
+    public int commitForm(int formUserId, String userTel, String activityName, String activityPlace, String activityDate,
                           String list, String content, String budget, String method, int resourcesStatus,
                           String water, String electric,
                           String start, String end) {
         FormPlaceActivity formPlaceActivityDTO = new FormPlaceActivity();
         formPlaceActivityDTO.setUserId(formUserId);
+        formPlaceActivityDTO.setUserTel(userTel);
         formPlaceActivityDTO.setActivityName(activityName);
         formPlaceActivityDTO.setActivityPlace(activityPlace);
         formPlaceActivityDTO.setActivityDate(activityDate);
@@ -72,9 +75,10 @@ public class FormPlaceActivityServiceImpl implements FormPlaceActivityService{
         formPlaceActivityDTO.setBudget(Float.parseFloat(budget));
         formPlaceActivityDTO.setMethod(method);
         Date dateDTO = new Date();
-        SimpleDateFormat sdfDTO  = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat sdfDTO  = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
         formPlaceActivityDTO.setDate(sdfDTO.format(dateDTO));
-        int idDTO = formPlaceActivityMapper.insert(formPlaceActivityDTO);
+        formPlaceActivityMapper.insert(formPlaceActivityDTO);
+        int idDTO = formPlaceActivityDTO.getId();
         statusPlaceActivityService.insert(idDTO, formUserId, resourcesStatus, 1);
         formPublicUtilityService.insert(idDTO, water, electric, start, end);
         return 0;
@@ -92,7 +96,7 @@ public class FormPlaceActivityServiceImpl implements FormPlaceActivityService{
         placeActivityTableVO.setId(id);
         placeActivityTableVO.setOrganization(organizationDTO);
         placeActivityTableVO.setUsername(userInfoDTO.getRealName());
-        placeActivityTableVO.setTel(userInfoDTO.getTel());
+        placeActivityTableVO.setTel(formPlaceActivityDTO.getUserTel());
         placeActivityTableVO.setActivityName(formPlaceActivityDTO.getActivityName());
         placeActivityTableVO.setActivityPlace(formPlaceActivityDTO.getActivityPlace());
         placeActivityTableVO.setActivityDate(formPlaceActivityDTO.getActivityDate());

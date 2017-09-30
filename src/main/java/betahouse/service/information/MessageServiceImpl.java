@@ -31,7 +31,7 @@ public class MessageServiceImpl implements MessageService {
         messageDTO.setComment(comment);
         messageDTO.setToId(toId);
         Date dateDTO = new Date();
-        SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy年MM月dd日");
         messageDTO.setDate(sdfDTO.format(dateDTO));
         messageDTO.setStatus(1);
         messageDTO.setFileId(fileId);
@@ -46,7 +46,7 @@ public class MessageServiceImpl implements MessageService {
         messageDTO.setComment(comment);
         messageDTO.setToId(toId);
         Date dateDTO = new Date();
-        SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy年MM月dd日");
         messageDTO.setDate(sdfDTO.format(dateDTO));
         messageDTO.setStatus(0);
         messageDTO.setFileId(fileId);

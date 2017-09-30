@@ -5,6 +5,7 @@ import betahouse.mapper.FormManagerMapper;
 import betahouse.mapper.StatusPlaceActivityMapper;
 import betahouse.mapper.UserInfoMapper;
 import betahouse.model.ApprovePlaceActivity;
+import betahouse.model.FormPlaceActivity;
 import betahouse.model.StatusPlaceActivity;
 import betahouse.service.financial.OrganizationFinancialFlowService;
 import com.alibaba.fastjson.JSON;
@@ -33,19 +34,19 @@ public class ApprovePlaceActivityServiceImpl implements ApprovePlaceActivityServ
 
     @Override
     public int saveApprove(int approveUserId, int isApprove, int formId, String comment) {
-        String approveFormDTO = formManagerMapper.selectByApprover(approveUserId).getApproverForm();
         StatusPlaceActivity statusPlaceActivityDTO = statusPlaceActivityService.getStatusByFormId(formId);
-        int lvDTO = JSON.parseArray(approveFormDTO, Integer.class).get(1);
-        int publicStatusDTO = 0;
-        int resourcesStatusDTO = 0;
+        int lvDTO = statusPlaceActivityDTO.getApproveLv();
+        int publicStatusDTO = statusPlaceActivityDTO.getPublicStatus();
+        int resourcesStatusDTO = statusPlaceActivityDTO.getResourcesStatus();
         int statusDTO = 0;
         ApprovePlaceActivity approvePlaceActivityDTO = new ApprovePlaceActivity();
         approvePlaceActivityDTO.setApproveUserId(approveUserId);
         approvePlaceActivityDTO.setIsApprove(isApprove);
         approvePlaceActivityDTO.setFormId(formId);
         approvePlaceActivityDTO.setLv(lvDTO);
+        approvePlaceActivityDTO.setComment(comment);
         Date dateDTO = new Date();
-        SimpleDateFormat sdfDTO  = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat sdfDTO  = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
         approvePlaceActivityDTO.setDate(sdfDTO.format(dateDTO));
         if(0==isApprove){
             if(lvDTO==5){

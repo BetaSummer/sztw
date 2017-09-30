@@ -1,6 +1,6 @@
 
 <!-- saved from url=(0039)file:///C:/Users/Yxm/Desktop/bbbbb.html -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<html xmlns:th="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
  <meta http-equiv="Content-Type" content="text/html; charset=x-cp20936"/>
  <meta name="Generator" content="Microsoft Word 14 (filtered)"/>
  <style>
@@ -98,7 +98,7 @@
 
  <p class="MsoNormal" align="center" style="text-align:center"><b><span style="font-size:16.0pt;font-family:宋体">杭州电子科技大学信息工程学院学生活动及场地申请表</span></b></p>
 
- <p class="MsoNormal" align="left" style="/* margin-right: auto; *//* text-align: right; */text-indent: 66%;"><span style="font-size:9.0pt;font-family:宋体;">编号：</span></p>
+ <p class="MsoNormal" align="left" style="/* margin-right: auto; *//* text-align: right; */text-indent: 66%;"><span style="font-size:9.0pt;font-family:宋体;" th:inline="javascript">编号：[[${data.id}]]</span></p>
 
  <table class="MsoNormalTable" border="1" cellspacing="0" cellpadding="0" width="815" style="
  width:489.05pt;
@@ -114,7 +114,7 @@
    </td>
    <td width="130" style="width:77.95pt;border:solid windowtext 1.0pt;border-left:
   none;padding:0cm 5.4pt 0cm 5.4pt;height:44.9pt">
-    <p class="MsoNormal" align="center" style="text-align:center"><span style="font-size:12.0pt;font-family:楷体_GB2312">院学生会</span></p>
+    <p class="MsoNormal" align="center" style="text-align:center"><span style="font-size:12.0pt;font-family:楷体_GB2312" th:text="${data.organization}"></span></p>
    </td>
    <td width="165" style="width:99.2pt;border:solid windowtext 1.0pt;border-left:
   none;padding:0cm 5.4pt 0cm 5.4pt;height:44.9pt">
@@ -122,7 +122,7 @@
    </td>
    <td width="118" colspan="2" style="width:70.9pt;border:solid windowtext 1.0pt;
   border-left:none;padding:0cm 5.4pt 0cm 5.4pt;height:44.9pt">
-    <p class="MsoNormal" align="center" style="text-align:center"><span style="font-size:12.0pt;font-family:楷体_GB2312">张三</span></p>
+    <p class="MsoNormal" align="center" style="text-align:center"><span style="font-size:12.0pt;font-family:楷体_GB2312" th:text="${data.username}"></span></p>
    </td>
    <td width="142" style="width:3.0cm;border:solid windowtext 1.0pt;border-left:
   none;padding:0cm 5.4pt 0cm 5.4pt;height:44.9pt">
@@ -130,7 +130,7 @@
    </td>
    <td width="130" colspan="2" style="width:77.95pt;border:solid windowtext 1.0pt;
   border-left:none;padding:0cm 5.4pt 0cm 5.4pt;height:44.9pt">
-    <p class="MsoNormal" align="center" style="text-align:center"><span lang="EN-US" style="font-size:12.0pt;font-family:楷体_GB2312">199999999</span></p>
+    <p class="MsoNormal" align="center" style="text-align:center"><span lang="EN-US" style="font-size:12.0pt;font-family:楷体_GB2312" th:text="${data.tel}"></span></p>
    </td>
   </tr>
   <tr style="height:41.9pt">
@@ -141,7 +141,7 @@
    <td width="130" style="width:77.95pt;border-top:none;border-left:none;
   border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt;height:41.9pt">
-    <p class="MsoNormal" align="center" style="text-align:center"><span style="font-size:12.0pt;font-family:楷体_GB2312">哈哈大赛</span></p>
+    <p class="MsoNormal" align="center" style="text-align:center"><span style="font-size:12.0pt;font-family:楷体_GB2312" th:text="${data.activityName}"></span></p>
    </td>
    <td width="165" style="width:99.2pt;border-top:none;border-left:none;
   border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
@@ -151,7 +151,7 @@
    <td width="118" colspan="2" style="width:70.9pt;border-top:none;border-left:none;
   border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt;height:41.9pt">
-    <p class="MsoNormal" align="center" style="text-align:center"><span style="font-size:12.0pt;font-family:楷体_GB2312">格致楼<span lang="EN-US">437</span></span></p>
+    <p class="MsoNormal" align="center" style="text-align:center"><span style="font-size:12.0pt;font-family:楷体_GB2312" th:text="${data.activityPlace}"></span></p>
    </td>
    <td width="142" style="width:3.0cm;border-top:none;border-left:none;border-bottom:
   solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
@@ -161,7 +161,7 @@
    <td width="130" colspan="2" style="width:77.95pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt;height:41.9pt">
-    <p class="MsoNormal" align="center" style="text-align:center"><span lang="EN-US" style="font-size:12.0pt;font-family:楷体_GB2312">&nbsp;</span></p>
+    <p class="MsoNormal" align="center" style="text-align:center"><span lang="EN-US" style="font-size:12.0pt;font-family:楷体_GB2312" th:text="${data.activityDate}">&nbsp;</span></p>
    </td>
   </tr>
   <tr style="height:30.4pt">
@@ -172,7 +172,7 @@
    <td width="555" colspan="6" style="width:333.1pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt;height:30.4pt">
-    <p class="MsoNormal" align="center" style="text-align:center"><span lang="EN-US" style="font-size:12.0pt;font-family:楷体_GB2312">&nbsp;</span></p>
+    <p class="MsoNormal" align="center" style="text-align:center"><span lang="EN-US" style="font-size:12.0pt;font-family:楷体_GB2312" th:text="${data.list}">&nbsp;</span></p>
    </td>
   </tr>
   <tr style="height:89.9pt">
@@ -183,7 +183,7 @@
    <td width="685" colspan="7" style="width:411.05pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt;height:89.9pt">
-    <p class="MsoNormal" align="center" style="text-align:center"><span lang="EN-US" style="font-size:12.0pt;font-family:楷体_GB2312">&nbsp;</span></p>
+    <p class="MsoNormal" align="center" style="text-align:center"><span lang="EN-US" style="font-size:12.0pt;font-family:楷体_GB2312" th:text="${data.content}">&nbsp;</span></p>
    </td>
   </tr>
   <tr style="height:91.9pt">
@@ -194,7 +194,7 @@
    <td width="685" colspan="7" style="width:411.05pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt;height:91.9pt">
-    <p class="MsoNormal" align="center" style="text-align:center"><span lang="EN-US" style="font-size:12.0pt;font-family:楷体_GB2312">&nbsp;</span></p>
+    <p class="MsoNormal" align="center" style="text-align:center"><span lang="EN-US" style="font-size:12.0pt;font-family:楷体_GB2312" th:text="${data.budget}">&nbsp;</span></p>
    </td>
   </tr>
   <tr style="height:84.7pt">
@@ -205,7 +205,7 @@
    <td width="685" colspan="7" style="width:411.05pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt;height:84.7pt">
-    <p class="MsoNormal" align="center" style="text-align:center"><span lang="EN-US" style="font-size:12.0pt;font-family:楷体_GB2312">&nbsp;</span></p>
+    <p class="MsoNormal" align="center" style="text-align:center"><span lang="EN-US" style="font-size:12.0pt;font-family:楷体_GB2312" th:text="${data.method}">&nbsp;</span></p>
    </td>
   </tr>
   <tr style="height:63.55pt">
@@ -217,10 +217,9 @@
    <td width="295" colspan="2" valign="bottom" style="width:177.15pt;border-top:none;
   border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt;height:63.55pt">
-    <p class="MsoNormal" align="center" style="text-align:center"><span style="font-size:12.0pt;font-family:楷体_GB2312">同意</span></p>
-    <p class="MsoNormal" align="right" style="text-align:right"><span style="font-size:12.0pt;font-family:楷体_GB2312">张三</span></p>
-    <p class="MsoNormal" align="right" style="text-align:right;word-break:break-all"><span lang="EN-US" style="font-size:12.0pt;font-family:楷体_GB2312">&nbsp;&nbsp; </span><span style="font-size:12.0pt;font-family:楷体_GB2312">年<span lang="EN-US">&nbsp;&nbsp;&nbsp;
-  </span>月<span lang="EN-US">&nbsp;&nbsp; </span>日</span></p>
+    <p class="MsoNormal" align="center" style="text-align:center"><span style="font-size:12.0pt;font-family:楷体_GB2312" th:text="${data.organizationComment}"></span></p>
+    <p class="MsoNormal" align="right" style="text-align:right"><span style="font-size:12.0pt;font-family:楷体_GB2312" th:text="${data.leaderName}"></span></p>
+    <p class="MsoNormal" align="right" style="text-align:right;word-break:break-all"><span lang="EN-US" style="font-size:12.0pt;font-family:楷体_GB2312">&nbsp;&nbsp; </span><span style="font-size:12.0pt;font-family:楷体_GB2312" th:text="${data.organizationApproveDate}"></span></p>
    </td>
    <td width="106" style="width:63.8pt;border-top:none;border-left:none;
   border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
@@ -231,10 +230,9 @@
    <td width="284" colspan="4" valign="bottom" style="width:6.0cm;border-top:none;
   border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt;height:63.55pt">
-    <p class="MsoNormal" align="center" style="text-align:center"><span style="font-size:12.0pt;font-family:楷体_GB2312">同意</span></p>
-    <p class="MsoNormal" align="right" style="text-align:right"><span style="font-size:12.0pt;font-family:楷体_GB2312">张三</span></p>
-    <p class="MsoNormal" align="right" style="text-align:right"><span style="font-size:12.0pt;font-family:楷体_GB2312">年<span lang="EN-US">&nbsp;&nbsp;&nbsp;
-  </span>月<span lang="EN-US">&nbsp;&nbsp; </span>日</span></p>
+    <p class="MsoNormal" align="center" style="text-align:center"><span style="font-size:12.0pt;font-family:楷体_GB2312" th:text="${data.teacherComment}"></span></p>
+    <p class="MsoNormal" align="right" style="text-align:right"><span style="font-size:12.0pt;font-family:楷体_GB2312" th:text="${data.teacherName}"></span></p>
+    <p class="MsoNormal" align="right" style="text-align:right"><span style="font-size:12.0pt;font-family:楷体_GB2312" th:text="${data.teacherApproveDate}"></span></p>
    </td>
   </tr>
   <tr style="height:63.05pt">
@@ -246,10 +244,9 @@
    <td width="295" colspan="2" valign="bottom" style="width:177.15pt;border-top:none;
   border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt;height:63.05pt">
-    <p class="MsoNormal" align="center" style="text-align:center"><span style="font-size:12.0pt;font-family:楷体_GB2312">同意</span></p>
-    <p class="MsoNormal" align="right" style="text-align:right"><span style="font-size:12.0pt;font-family:楷体_GB2312">张三</span></p>
-    <p class="MsoNormal" align="right" style="text-align:right;word-break:break-all"><span style="font-size:12.0pt;font-family:楷体_GB2312">年<span lang="EN-US">&nbsp;&nbsp;&nbsp;
-  </span>月<span lang="EN-US">&nbsp;&nbsp; </span>日</span></p>
+    <p class="MsoNormal" align="center" style="text-align:center"><span style="font-size:12.0pt;font-family:楷体_GB2312" th:text="${data.committeeComment}"></span></p>
+    <p class="MsoNormal" align="right" style="text-align:right"><span style="font-size:12.0pt;font-family:楷体_GB2312" th:text="${data.committeeName}"></span></p>
+    <p class="MsoNormal" align="right" style="text-align:right;word-break:break-all"><span style="font-size:12.0pt;font-family:楷体_GB2312" th:text="${data.committeeApproveDate}"></span></p>
    </td>
    <td width="106" style="width:63.8pt;border-top:none;border-left:none;
   border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
@@ -260,10 +257,9 @@
    <td width="284" colspan="4" valign="bottom" style="width:6.0cm;border-top:none;
   border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt;height:63.05pt">
-    <p class="MsoNormal" align="center" style="text-align:center"><span style="font-size:12.0pt;font-family:楷体_GB2312">同意</span></p>
-    <p class="MsoNormal" align="right" style="text-align:right"><span style="font-size:12.0pt;font-family:楷体_GB2312">张三</span></p>
-    <p class="MsoNormal" align="right" style="text-align:right;word-break:break-all"><span style="font-size:12.0pt;font-family:楷体_GB2312">年<span lang="EN-US">&nbsp;&nbsp;&nbsp;
-  </span>月<span lang="EN-US">&nbsp;&nbsp; </span>日</span></p>
+    <p class="MsoNormal" align="center" style="text-align:center"><span style="font-size:12.0pt;font-family:楷体_GB2312" th:text="${data.educationComment}"></span></p>
+    <p class="MsoNormal" align="right" style="text-align:right"><span style="font-size:12.0pt;font-family:楷体_GB2312" th:text="${data.educationName}"></span></p>
+    <p class="MsoNormal" align="right" style="text-align:right;word-break:break-all"><span style="font-size:12.0pt;font-family:楷体_GB2312" th:text="${data.educationApproveDate}"></span></p>
    </td>
   </tr>
   <tr style="height:45.0pt">
@@ -276,16 +272,16 @@
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt;height:45.0pt">
     <p class="MsoNormal" align="center" style="text-align:center"><span style="font-family:楷体_GB2312">保卫审批意见</span></p>
-    <p class="MsoNormal" align="center" style="text-align:center"><span style="font-size:12.0pt;font-family:楷体_GB2312">同意</span></p>
-    <p class="MsoNormal" align="right" style="text-align:right"><span style="font-size:12.0pt;font-family:楷体_GB2312">张三</span><span lang="EN-US" style="font-family:楷体_GB2312">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <p class="MsoNormal" align="center" style="text-align:center"><span style="font-size:12.0pt;font-family:楷体_GB2312" th:text="${data.defendComment}"></span></p>
+    <p class="MsoNormal" align="right" style="text-align:right"><span style="font-size:12.0pt;font-family:楷体_GB2312" th:text="${data.defendName}"></span><span lang="EN-US" style="font-family:楷体_GB2312">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   </span></p>
    </td>
    <td width="390" colspan="5" style="width:233.9pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt;height:45.0pt">
     <p class="MsoNormal" align="center" style="text-align:center"><span style="font-family:楷体_GB2312">用电审批意见</span></p>
-    <p class="MsoNormal" align="center" style="text-align:center"><span style="font-size:12.0pt;font-family:楷体_GB2312">同意</span></p>
-    <p class="MsoNormal" align="right" style="margin-right:-5.35pt;text-align:right"><span style="font-size:12.0pt;font-family:楷体_GB2312">张三</span></p>
+    <p class="MsoNormal" align="center" style="text-align:center"><span style="font-size:12.0pt;font-family:楷体_GB2312" th:text="${data.electricComment}"></span></p>
+    <p class="MsoNormal" align="right" style="margin-right:-5.35pt;text-align:right"><span style="font-size:12.0pt;font-family:楷体_GB2312" th:text="${data.electricName}"></span></p>
    </td>
   </tr>
   <tr style="height:21.25pt">
@@ -302,7 +298,7 @@
    <td width="106" style="width:63.8pt;border-top:none;border-left:none;
   border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt;height:21.25pt">
-    <p class="MsoNormal" align="right" style="margin-right:-5.35pt;text-align:right"><span lang="EN-US" style="font-size:10.0pt;font-family:楷体_GB2312">0000000(</span><span style="font-size:10.0pt;font-family:楷体_GB2312">瓦<span lang="EN-US">)</span></span></p>
+    <p class="MsoNormal" align="right" style="margin-right:-5.35pt;text-align:right"><span lang="EN-US" style="font-size:10.0pt;font-family:楷体_GB2312" th:text="${data.water}">(</span><span style="font-size:10.0pt;font-family:楷体_GB2312">瓦<span lang="EN-US">)</span></span></p>
    </td>
    <td width="165" colspan="3" style="width:99.25pt;border-top:none;border-left:
   none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
@@ -312,7 +308,7 @@
    <td width="118" style="width:70.85pt;border-top:none;border-left:none;
   border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt;height:21.25pt">
-    <p class="MsoNormal" align="right" style="margin-right:-5.35pt;text-align:right"><span lang="EN-US" style="font-size:10.0pt;font-family:楷体_GB2312">000000(</span><span style="font-size:10.0pt;font-family:楷体_GB2312">毫米</span><span lang="EN-US" style="font-size:10.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;">)</span></p>
+    <p class="MsoNormal" align="right" style="margin-right:-5.35pt;text-align:right"><span lang="EN-US" style="font-size:10.0pt;font-family:楷体_GB2312" th:text="${data.electric}">(</span><span style="font-size:10.0pt;font-family:楷体_GB2312">毫米</span><span lang="EN-US" style="font-size:10.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;">)</span></p>
    </td>
   </tr>
   <tr style="height:21.25pt">
@@ -324,8 +320,7 @@
    <td width="555" colspan="6" valign="bottom" style="width:333.1pt;border-top:none;
   border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt;height:21.25pt">
-    <p class="MsoNormal" align="center" style="text-align:center;word-break:break-all"><span style="font-family:楷体_GB2312">年<span lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  </span>月<span lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>日<span lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>点（<span lang="EN-US">24</span>小时）<span lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp; </span>分</span></p>
+    <p class="MsoNormal" align="center" style="text-align:center;word-break:break-all"><span style="font-family:楷体_GB2312" th:text="${data.start}"></span></p>
    </td>
   </tr>
   <tr style="height:21.25pt">
@@ -337,8 +332,7 @@
    <td width="555" colspan="6" valign="bottom" style="width:333.1pt;border-top:none;
   border-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
   padding:0cm 5.4pt 0cm 5.4pt;height:21.25pt">
-    <p class="MsoNormal" align="center" style="text-align:center;word-break:break-all"><span style="font-family:楷体_GB2312">年<span lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  </span>月<span lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>日<span lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>点（<span lang="EN-US">24</span>小时）<span lang="EN-US">&nbsp;&nbsp;&nbsp;&nbsp; </span>分</span></p>
+    <p class="MsoNormal" align="center" style="text-align:center;word-break:break-all"><span style="font-family:楷体_GB2312" th:text="${data.end}"></span></p>
    </td>
   </tr>
   <tr height="0">

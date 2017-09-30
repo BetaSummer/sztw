@@ -192,7 +192,7 @@ $(function () {
             $(".loading").hide();
         }) ;
     });
-});
+
 $(".deleteMessage").click(function () {
     var r = confirm("确定要删除吗？");
     if(r==true){

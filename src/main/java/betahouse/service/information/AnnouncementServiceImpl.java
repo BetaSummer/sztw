@@ -35,7 +35,7 @@ public class AnnouncementServiceImpl implements AnnouncementService{
         announcementDTO.setTitle(title);
         announcementDTO.setComment(comment);
         Date dateDTO = new Date();
-        SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy年MM月dd日");
         announcementDTO.setDate(sdfDTO.format(dateDTO));
         announcementDTO.setStatus(1);
         return announcementMapper.insert(announcementDTO);
@@ -48,7 +48,7 @@ public class AnnouncementServiceImpl implements AnnouncementService{
         announcementDTO.setTitle(title);
         announcementDTO.setComment(comment);
         Date dateDTO = new Date();
-        SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy年MM月dd日");
         announcementDTO.setDate(sdfDTO.format(dateDTO));
         announcementDTO.setStatus(0);
         if(id==0){
@@ -91,7 +91,7 @@ public class AnnouncementServiceImpl implements AnnouncementService{
         announcementDTO.setTitle(title);
         announcementDTO.setComment(comment);
         Date dateDTO = new Date();
-        SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy年MM月dd日");
         announcementDTO.setDate(sdfDTO.format(dateDTO));
         announcementDTO.setStatus(1);
         announcementDTO.setId(id);

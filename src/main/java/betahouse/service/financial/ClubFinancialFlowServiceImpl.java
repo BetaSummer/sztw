@@ -86,7 +86,7 @@ public class ClubFinancialFlowServiceImpl implements ClubFinancialFlowService{
         clubFinancialFlowDTO.setCost(applySelfMoney+applyReserveMoney);
         clubFinancialFlowDTO.setIncome(income);
         Date dateDTO = new Date();
-        SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
         clubFinancialFlowDTO.setDate(sdfDTO.format(dateDTO));
         clubFinancialFlowDTO.setComment(cmment);
         int userIdDTO = clubActivityApproveMapper.selectByLvAndFormId(2, formId).getApproveUserId();
@@ -108,7 +108,7 @@ public class ClubFinancialFlowServiceImpl implements ClubFinancialFlowService{
             clubFinancialFlowDTO.setIncome(money);
         }
         Date dateDTO = new Date();
-        SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
         clubFinancialFlowDTO.setDate(sdfDTO.format(dateDTO));
         return clubFinancialFlowMapper.insert(clubFinancialFlowDTO);
     }

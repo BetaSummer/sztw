@@ -41,7 +41,7 @@
         date = #{date,jdbcType=VARCHAR},
       </if>
       <if test="null != status and '' != status">
-        club_name = #{clubName,jdbcType=VARCHAR},
+        status = #{status,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}

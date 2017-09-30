@@ -5,6 +5,8 @@ public class FormPlaceActivity {
 
     private Integer userId;
 
+    private String userTel;
+
     private String activityName;
 
     private String activityPlace;
@@ -35,6 +37,14 @@ public class FormPlaceActivity {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public String getUserTel() {
+        return userTel;
+    }
+
+    public void setUserTel(String userTel) {
+        this.userTel = userTel == null ? null : userTel.trim();
     }
 
     public String getActivityName() {

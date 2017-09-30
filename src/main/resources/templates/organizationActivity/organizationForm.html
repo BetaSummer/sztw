@@ -1,5 +1,5 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml">
-<form action="#"  method="post"  class="appli-form"  id="appli-form">
+<form action="/applyOrganizationForm/commit"  method="post"  class="appli-form"  id="appli-form">
     <div class="form-inline">
         <div class="form-group">
             <label>承办组织</label>
@@ -13,63 +13,63 @@
     <div class="form-inline">
         <div class="form-group">
             <label>联系电话</label>
-            <input   type="text" name="#" th:value="${user.tel}"/>
+            <input type="text" name="tel" th:value="${user.tel}"/>
         </div>
         <div class="form-group">
             <label>活动名称</label>
-            <input   type="text" name="#"/>
+            <input type="text" name="activityName"/>
         </div>
     </div>
     <div class="form-inline">
         <div class="form-group">
             <label>活动地点</label>
-            <input   type="text" name="#"/>
+            <input type="text" name="activityPlace"/>
         </div>
         <div class="form-group">
             <label>活动时间</label>
             <input id="time1" placeholder="开始日期" class="laydate-icon" style="width: 26%; " onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/>  -
             <input id="time2" placeholder="结束日期" class="laydate-icon" style="width: 26%; " onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/>
-            <input id="timekey" type="text" name="#" style="display: none;"/>
+            <input id="timekey" type="text" name="activityDate" style="display: none;"/>
         </div>
     </div>
     <div class="form-inline">
         <div class="form-group">
             <label>物品清单</label>
-            <input   type="text" name="#"/>
+            <input type="text" name="list"/>
         </div>
         <div class="form-group">
             <label>经费预算</label>
-            <input   type="text" name="#"/>
+            <input type="text" name="budget"/>
         </div>
     </div>
     <div class="form-inline">
         <div class="form-group">
             <label class="areatitle">活动内容</label>
-            <textarea></textarea>
+            <textarea name="content"></textarea>
         </div>
         <div class="form-group">
             <label class="areatitle">宣传方式</label>
-            <textarea></textarea>
+            <textarea name="method"></textarea>
         </div>
     </div>
     <div class="form-inline">
         <div class="form-group">
             <label>教务资源</label>
-            <label><input id="formtest" class="form2-control" name="#" type="radio" value="1"/>使用</label>
-            <label><input class="form2-hide" name="#" type="radio" value="0"/>不使用</label>
-            <input class="form2-input2" name="#" placeholder="使用教室/桌椅" hidden="hidden"/>
+            <label><input id="formtest" class="form2-control" name="resourcesStatus" type="radio" value="1"/>使用</label>
+            <label><input class="form2-hide" name="resourcesStatus" type="radio" value="0"/>不使用</label>
+            <input class="form2-input2" name="resources" placeholder="使用教室/桌椅" hidden="hidden"/>
         </div>
         <div class="form-group">
             <label>公共事业部</label>
-            <label><input class="form2-control3 dian" name="#" type="checkbox" value="1"/>用电</label>
-            <label><input class="form2-control3 shui" name="#" type="checkbox" value="0"/>用水</label>
+            <label><input class="form2-control3 dian" name="isWater" type="checkbox" value="1"/>用电</label>
+            <label><input class="form2-control3 shui" name="isElectric" type="checkbox" value="0"/>用水</label>
         </div>
         <div class="form-inline form2-input" id="form2-control3">
-            <input class="dian-input" name="#" placeholder="用电量"/>
-            <input class="shui-input" name="#" placeholder="用水量"/>
+            <input class="dian-input" name="water" placeholder="用电量"/>
+            <input class="shui-input" name="electric" placeholder="用水量"/>
             <label>活动时间</label>
-            <input id="form-time1" placeholder="开始" class="laydate-icon" style="width: 26%; " onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/>  -
-            <input id="form-time2" placeholder="结束" class="laydate-icon" style="width: 26%; " onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/>
+            <input name="start" id="form-time1" placeholder="开始" class="laydate-icon" style="width: 26%; " onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/>  -
+            <input name="end" id="form-time2" placeholder="结束" class="laydate-icon" style="width: 26%; " onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"/>
             <input id="form-timekey1" type="text" name="#" style="display: none;"/>
         </div>
     </div>
@@ -106,4 +106,10 @@
             }
         });
     });
+
+    $(function () {
+        $(".appli-form").submit(function () {
+            $("#timekey").val($("#time1").val()+" 至 "+$("#time2").val());
+        })
+    })
 </script>

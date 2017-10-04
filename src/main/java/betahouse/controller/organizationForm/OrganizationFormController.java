@@ -91,15 +91,14 @@ public class OrganizationFormController extends BaseController {
                              @RequestParam(name = "method") String method,
                              @RequestParam(name = "resourcesStatus") String resourcesStatus,
                              @RequestParam(name = "resources") String resources,
-                             @RequestParam(name = "isWater") String isWater,
-                             @RequestParam(name = "isElectric") String isElectric,
+                             @RequestParam(name = "publicStatus") String publicStatus,
                              @RequestParam(name = "water") String water,
                              @RequestParam(name = "electric") String electric,
                              @RequestParam(name = "start") String start,
                              @RequestParam(name = "end") String end){
         int resourcesStatusDTO = Integer.parseInt(resourcesStatus);
         list+=";"+resources;
-        if("".equals(isWater)&&"".equals(isElectric)){
+        if("0".equals(publicStatus)){
             formPlaceActivityService.commitForm(getCurrentUser(request).getId(), tel,  activityName, activityPlace, activityDate, list, content,
                     budget, method, resourcesStatusDTO);
         }else {

@@ -60,11 +60,13 @@ public class ApproveOrganizationFormController extends BaseController {
     }
 
     //表二审批
-    public String saveApprove(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam int formId,
+    @RequestMapping(value = "/saveApprove")
+    public String saveApprove(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam String formId,
                               @RequestParam String comment, @RequestParam int isApprove){
+        int formIdDTO = Integer.parseInt(formId);
         int userIdDTO = getCurrentUser(request).getId();
-        approvePlaceActivityService.saveApprove(userIdDTO, isApprove, formId, comment);
-        return "redirect:/index";
+        approvePlaceActivityService.saveApprove(userIdDTO, isApprove, formIdDTO, comment);
+        return ajaxReturn(response, null, "审批成功", 0);
     }
 
 }

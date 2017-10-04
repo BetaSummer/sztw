@@ -78,12 +78,6 @@
 </html>
 <script>
     $(function () {
-        $(".shui").click(function () {
-            $(".shui-input").show();
-        });
-        $(".dian").click(function () {
-            $(".dian-input").show();
-        });
         $(".form2-control").click(function () {
             $(".form2-input2").show();
         });
@@ -95,7 +89,21 @@
             var flag = 2;
             $(".form2-control3").each(function () {
                if(!$(this).is(':checked')) {
+                   if($(this).hasClass("dian")){
+                       $(".dian-input").hide();
+                   }
+                   if($(this).hasClass("shui")){
+                       $(".shui-input").hide();
+                   }
                    flag-=1;
+               }
+               else{
+                   if($(this).hasClass("dian")){
+                       $(".dian-input").show();
+                   }
+                   if($(this).hasClass("shui")){
+                       $(".shui-input").show();
+                   }
                }
             });
             console.log(flag);

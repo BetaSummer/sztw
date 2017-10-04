@@ -12,6 +12,7 @@ import betahouse.service.power.PowerService;
 import betahouse.service.power.PowerTypeService;
 import betahouse.service.user.UserInfoService;
 import betahouse.service.user.UserService;
+import com.alibaba.fastjson.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

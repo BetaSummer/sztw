@@ -193,24 +193,6 @@ $(function () {
         }) ;
     });
 
-    $(".deleteMessage").click(function () {
-        var id = $(this).attr("content");
-        $(".content-body").html("");
-        $(".loading").show();
-        $(".content-body").load("/information/deleteAnnouncementById?id="+id,function () {
-            $(".loading").hide();
-        });
-    });
-
-    $(".editMessage").click(function () {
-        var id = $(this).attr("content");
-        $(".content-body").html("");
-        $(".loading").show();
-        $(".content-body").load("/information/editAnnouncementById?id="+id,function () {
-            $(".loading").hide();
-        });
-    });
-});
 $(".deleteMessage").click(function () {
     var r = confirm("确定要删除吗？");
     if(r==true){
@@ -230,6 +212,7 @@ $(".editMessage").click(function () {
     $(".content-body").load("/information/editAnnouncementById?id="+id,function () {
         $(".loading").hide();
     });
+});
 });
 /* club */
 /********************************/
@@ -330,6 +313,55 @@ $(function () {
 $(function () {
     $("#club-entry").click(function () {
        $(".approval-form").toggle(300);
+    });
+    //TODO form2 url
+    $(".agree-btn2").click(function () {
+        var data={
+            "formId": $("#formId").html(),
+            "comment": $("#comment").val(),
+            "applySelfMoney": $("#applySelfMoney").html(),
+            "applyReserveMoney": $("#applyReserveMoney").html(),
+            "isApprove":1
+        };
+        $.ajax({
+            type: "GET",
+            url: "/approveForm/approve",
+            data: data,
+            dataType:"json",
+            success: function(r){
+                alert(r.message);
+                window.close();
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            },
+        });
+    });
+    $(".disgree-btn2").click(function () {
+        var data={
+            "formId": $("#formId").html(),
+            "comment": $("#comment").val(),
+            "applySelfMoney": $("#applySelfMoney").html(),
+            "applyReserveMoney": $("#applyReserveMoney").html(),
+            "isApprove":0
+        };
+        $.ajax({
+            type: "GET",
+            url: "/approveForm/approve",
+            data: data,
+            dataType:"json",
+            success: function(r){
+                alert(r.message);
+                window.close();
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            },
+        });
     });
     $("#agree-btn").click(function () {
         var data={

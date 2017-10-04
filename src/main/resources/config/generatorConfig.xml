@@ -163,6 +163,7 @@
         <!--<table tableName="b_organization_member" domainObjectName="OrganizationMember"/>-->
         <!--<table tableName="b_status_place_activity" domainObjectName="StatusPlaceActivity"/>-->
         <!--<table tableName="b_organization_financial_flow" domainObjectName="OrganizationFinancialFlow"/>-->
+        <!--<table tableName="b_organization_times" domainObjectName="OrganizationTimes"/>-->
 
 
         <!--<table tableName="people" domainObjectName="People"/>-->

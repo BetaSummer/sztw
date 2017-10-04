@@ -46,6 +46,18 @@ function  licenceControl(index) {
         $("#financeB").show();
         menuClubFina=true;
     }
+    if(index==9){
+        $("#area-appli").show();
+        menuOrganizationForm=true;
+    }
+    if(index==10){
+        $("#area-view").show();
+        menuOrganizationForm=true;
+    }
+    if(index==11){
+        $("#area-manage").show();
+        menuOrganizationForm=true;
+    }
 }
 
 function viewControl(arr) {
@@ -60,6 +72,9 @@ function viewControl(arr) {
     }
     if(!menuClubManage){
         $(".flag5").hide();
+    }
+    if(!menuOrganizationForm){
+        $(".flag6").hide();
     }
 }
 

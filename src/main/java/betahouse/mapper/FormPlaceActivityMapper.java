@@ -1,10 +1,8 @@
 package betahouse.mapper;
 
 import betahouse.model.FormPlaceActivity;
-import org.springframework.stereotype.Component;
-
 import java.util.List;
-@Component
+
 public interface FormPlaceActivityMapper {
     int deleteByPrimaryKey(Integer id);
 

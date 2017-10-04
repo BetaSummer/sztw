@@ -3,7 +3,11 @@
 <html xmlns:th="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
  <meta http-equiv="Content-Type" content="text/html; charset=x-cp20936"/>
  <meta name="Generator" content="Microsoft Word 14 (filtered)"/>
+ <link id="base-css" rel="stylesheet" href="/css/base.css" />
+ <link id="common-css" rel="stylesheet" href="/css/common.css" />
+ <link id="club-css" rel="stylesheet" href="/css/club.css" />
  <style>
+
   <!--
   /* Font Definitions */
   @font-face
@@ -360,8 +364,28 @@
 </span></span><span style="font-family:仿宋_GB2312">用电审批部分根据活动实际需要填写，未涉及特殊用电需求该部分可不填写。</span></p>
  </div>
 </div>
+<div class="approval-right">
+ <div class="right">
+  <div class="approval-entry" id="club-entry">
+   审批
+  </div>
+  <div class="approval-entry" id="club-load">
+   下载
+  </div>
+  <a id="extrafile">
+   <div class="approval-entry" id="club-loadfile">
+    附件
+   </div>
+  </a>
+ </div>
+ <form class="approval-form">
+  <p>意见</p><textarea id="comment" type="text"></textarea>
+  <button type="button"  id="agree-btn" class="agree-btn2">同意</button>
+  <button type="button"  id="disgree-btn">否决</button>
+ </form>
+</div>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/main.js"></script>
+</body>
 
-
-
-
-</body></html>
+</html>

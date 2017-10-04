@@ -213,6 +213,7 @@ $(".editMessage").click(function () {
         $(".loading").hide();
     });
 });
+});
 /* club */
 /********************************/
 function download() {
@@ -312,6 +313,55 @@ $(function () {
 $(function () {
     $("#club-entry").click(function () {
        $(".approval-form").toggle(300);
+    });
+    //TODO form2 url
+    $(".agree-btn2").click(function () {
+        var data={
+            "formId": $("#formId").html(),
+            "comment": $("#comment").val(),
+            "applySelfMoney": $("#applySelfMoney").html(),
+            "applyReserveMoney": $("#applyReserveMoney").html(),
+            "isApprove":1
+        };
+        $.ajax({
+            type: "GET",
+            url: "/approveForm/approve",
+            data: data,
+            dataType:"json",
+            success: function(r){
+                alert(r.message);
+                window.close();
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            },
+        });
+    });
+    $(".disgree-btn2").click(function () {
+        var data={
+            "formId": $("#formId").html(),
+            "comment": $("#comment").val(),
+            "applySelfMoney": $("#applySelfMoney").html(),
+            "applyReserveMoney": $("#applyReserveMoney").html(),
+            "isApprove":0
+        };
+        $.ajax({
+            type: "GET",
+            url: "/approveForm/approve",
+            data: data,
+            dataType:"json",
+            success: function(r){
+                alert(r.message);
+                window.close();
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown){
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            },
+        });
     });
     $("#agree-btn").click(function () {
         var data={

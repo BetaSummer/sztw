@@ -3,6 +3,8 @@ package betahouse.service.place;
 import betahouse.mapper.*;
 import betahouse.model.*;
 import betahouse.model.VO.PlaceActivityTableVO;
+import betahouse.service.organization.OrganizationMemberService;
+import betahouse.service.organization.OrganizationTimesServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +37,12 @@ public class FormPlaceActivityServiceImpl implements FormPlaceActivityService{
     private ApprovePlaceActivityService approvePlaceActivityService;
 
     @Autowired
+    private OrganizationTimesServices organizationTimesServices;
+
+    @Autowired
+    private OrganizationMemberService organizationMemberService;
+
+    @Autowired
     private FormPublicUtilityMapper formPublicUtilityMapper;
 
     @Override
@@ -53,6 +61,15 @@ public class FormPlaceActivityServiceImpl implements FormPlaceActivityService{
         Date dateDTO = new Date();
         SimpleDateFormat sdfDTO  = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
         formPlaceActivityDTO.setDate(sdfDTO.format(dateDTO));
+        int organizationIdDTO = organizationMemberService.getOrganizationByUserId(formUserId).getOrganizationId();
+        OrganizationTimes organizationTimesDTO = organizationTimesServices.getTimeByOrganizationId(organizationIdDTO);
+        if(organizationTimesDTO==null){
+            organizationTimesServices.insert(organizationIdDTO, 1);
+            formPlaceActivityDTO.setNumber(1);
+        }else {
+            formPlaceActivityDTO.setNumber(organizationTimesDTO.getTimes()+1);
+            organizationTimesServices.addTime(organizationTimesDTO.getId());
+        }
         formPlaceActivityMapper.insert(formPlaceActivityDTO);
         int idDTO = formPlaceActivityDTO.getId();
         statusPlaceActivityService.insert(idDTO, formUserId, resourcesStatus, 0);
@@ -77,6 +94,15 @@ public class FormPlaceActivityServiceImpl implements FormPlaceActivityService{
         Date dateDTO = new Date();
         SimpleDateFormat sdfDTO  = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
         formPlaceActivityDTO.setDate(sdfDTO.format(dateDTO));
+        int organizationIdDTO = organizationMemberService.getOrganizationByUserId(formUserId).getOrganizationId();
+        OrganizationTimes organizationTimesDTO = organizationTimesServices.getTimeByOrganizationId(organizationIdDTO);
+        if(organizationTimesDTO==null){
+            organizationTimesServices.insert(organizationIdDTO, 1);
+            formPlaceActivityDTO.setNumber(1);
+        }else {
+            formPlaceActivityDTO.setNumber(organizationTimesDTO.getTimes()+1);
+            organizationTimesServices.addTime(organizationTimesDTO.getId());
+        }
         formPlaceActivityMapper.insert(formPlaceActivityDTO);
         int idDTO = formPlaceActivityDTO.getId();
         statusPlaceActivityService.insert(idDTO, formUserId, resourcesStatus, 1);
@@ -94,6 +120,7 @@ public class FormPlaceActivityServiceImpl implements FormPlaceActivityService{
 
         PlaceActivityTableVO placeActivityTableVO = new PlaceActivityTableVO();
         placeActivityTableVO.setId(id);
+        placeActivityTableVO.setNumber(formPlaceActivityDTO.getNumber());
         placeActivityTableVO.setOrganization(organizationDTO);
         placeActivityTableVO.setUsername(userInfoDTO.getRealName());
         placeActivityTableVO.setTel(formPlaceActivityDTO.getUserTel());

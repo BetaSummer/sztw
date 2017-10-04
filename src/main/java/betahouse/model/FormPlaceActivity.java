@@ -21,6 +21,8 @@ public class FormPlaceActivity {
 
     private String method;
 
+    private Integer number;
+
     private String date;
 
     public Integer getId() {
@@ -101,6 +103,14 @@ public class FormPlaceActivity {
 
     public void setMethod(String method) {
         this.method = method == null ? null : method.trim();
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 
     public String getDate() {

@@ -4,6 +4,8 @@ public class PlaceActivityTableVO {
 
     private Integer id;
 
+    private Integer number;
+
     private String organization;
 
     private String username;
@@ -70,6 +72,14 @@ public class PlaceActivityTableVO {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer nmuber) {
+        this.number = nmuber;
     }
 
     public String getOrganization() {

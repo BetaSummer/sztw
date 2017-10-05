@@ -10,7 +10,8 @@
             <input class="power-check" type="checkbox" th:if="${data.permit==0}"/>
             <label class="power-id" th:id="${data.id}" th:text="${data.powerName}"></label>
             <label class="power-permit" th:text="${data.permit}" hidden="hidden"></label>
-            <label class="power-lv" th:text="${data.permit}" th:if="${data.maxLv>0}"></label>
+            <label class="power-lv" th:text="${data.permit}" th:if="${data.maxLv>1}"></label>
+            <label class="power-lv" th:text="1" th:if="${data.maxLv==1}" hidden="hidden"></label>
             <label class="power-lv" th:text="0" th:if="${data.maxLv==0}" hidden="hidden"></label>
             <div th:if="${data.maxLv==6}" class="power-lv-select">
                 <ul>

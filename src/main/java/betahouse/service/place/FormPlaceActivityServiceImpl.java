@@ -162,10 +162,17 @@ public class FormPlaceActivityServiceImpl implements FormPlaceActivityService{
             }
         }
         FormPublicUtility formPublicUtilityDTO = formPublicUtilityMapper.selectByFormId(id);
-        placeActivityTableVO.setWater(formPublicUtilityDTO.getWater());
-        placeActivityTableVO.setElectric(formPublicUtilityDTO.getElectric());
-        placeActivityTableVO.setStart(formPublicUtilityDTO.getStart());
-        placeActivityTableVO.setEnd(formPublicUtilityDTO.getEnd());
+        try{
+            placeActivityTableVO.setWater(formPublicUtilityDTO.getWater());
+            placeActivityTableVO.setElectric(formPublicUtilityDTO.getElectric());
+            placeActivityTableVO.setStart(formPublicUtilityDTO.getStart());
+            placeActivityTableVO.setEnd(formPublicUtilityDTO.getEnd());
+        }catch (Exception e){
+            placeActivityTableVO.setWater("");
+            placeActivityTableVO.setElectric("");
+            placeActivityTableVO.setStart("");
+            placeActivityTableVO.setEnd("");
+        }
         return placeActivityTableVO;
     }
 

@@ -2,8 +2,6 @@ package betahouse.controller;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by x1654 on 2017/7/11.
  */

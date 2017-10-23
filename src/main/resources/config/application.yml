@@ -1,12 +1,12 @@
 server:
-  port: 8088
+  port: 8080
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/xgtw_digital?characterEncoding=utf-8
     username: root
-    password:
+    password: root
   http:
     multipart:
       max-file-size: 10Mb
@@ -24,6 +24,6 @@ logging:
 
 Props:
   mailProps:
-    sendAccount:
-    sendPassword:
-    SMPHost:
+    sendAccount: stlcwjhzx@163.com
+    sendPassword: stl666
+    SMPHost: smtp.163.com

@@ -15,4 +15,6 @@ public interface UserInfoMapper {
     List<UserInfo> selectAll();
 
     int updateByPrimaryKey(UserInfo record);
+
+    UserInfo selectBySchoolId(String schoolId);
 }

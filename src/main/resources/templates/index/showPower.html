@@ -7,13 +7,12 @@
         <h1>用户权限管理</h1>
         <div class="power-child" th:each="data:${power}">
             <input class="power-check" type="checkbox" th:if="${data.permit>0}" checked="checked"/>
-            <input class="power-check" type="checkbox" th:if="${data.permit==0}"/>
+            <input class="power-check" type="checkbox" th:if="${data.permit==0} or ${data.permit==-1}"/>
             <label class="power-id" th:id="${data.id}" th:text="${data.powerName}"></label>
             <label class="power-permit" th:text="${data.permit}" hidden="hidden"></label>
-            <label class="power-lv" th:text="${data.permit}" th:if="${data.maxLv>1}"></label>
-            <label class="power-lv" th:text="1" th:if="${data.maxLv==1}" hidden="hidden"></label>
-            <label class="power-lv" th:text="0" th:if="${data.maxLv==0}" hidden="hidden"></label>
-            <div th:if="${data.maxLv==6}" class="power-lv-select">
+            <label class="power-lv" th:text="${data.permit}" th:if="${data.maxLv>0} and ${data.permit!=-1} and ${data.permit!=1}"></label>
+            <label class="power-lv" th:text="0" th:if="${data.maxLv==0} or ${data.permit==-1} or ${data.permit==1}" hidden="hidden"></label>
+            <div th:if="${data.maxLv==6} and ${data.permit!=-1} and ${data.permit!=1}" class="power-lv-select">
                 <ul>
                     <li>0</li>
                     <li>1</li>
@@ -24,7 +23,7 @@
                     <li>6</li>
                 </ul>
             </div>
-            <div th:if="${data.maxLv==5}" class="power-lv-select">
+            <div th:if="${data.maxLv==5} and ${data.permit!=-1} and ${data.permit!=1}" class="power-lv-select">
                 <ul>
                     <li>0</li>
                     <li>1</li>
@@ -34,7 +33,7 @@
                     <li>5</li>
                 </ul>
             </div>
-            <div th:if="${data.maxLv==4}" class="power-lv-select">
+            <div th:if="${data.maxLv==4} and ${data.permit!=-1} and ${data.permit!=1}" class="power-lv-select">
                 <ul>
                     <li>0</li>
                     <li>1</li>
@@ -43,7 +42,7 @@
                     <li>4</li>
                 </ul>
             </div>
-            <div th:if="${data.maxLv==3}" class="power-lv-select">
+            <div th:if="${data.maxLv==3} and ${data.permit!=-1} and ${data.permit!=1}" class="power-lv-select">
                 <ul>
                     <li>0</li>
                     <li>1</li>
@@ -51,7 +50,7 @@
                     <li>3</li>
                 </ul>
             </div>
-            <div th:if="${data.maxLv==2}" class="power-lv-select">
+            <div th:if="${data.maxLv==2} and ${data.permit!=-1} and ${data.permit!=1}" class="power-lv-select">
                 <ul>
                     <li>0</li>
                     <li>1</li>
@@ -74,11 +73,17 @@
         $(".power-check").click(function () {
             if(!$(this).is(':checked')){
                 $(this).next().next().html("0");
+                if($(this).next().attr("id")==3||$(this).next().attr("id")==10){
+                    $(this).next().next().next().html("-1");
+                }
                 $(this).next().next().next().hide();
                 $(".power-lv-select").hide();
             }
             else {
                 $(this).next().next().html("1");
+                if($(this).next().attr("id")==3||$(this).next().attr("id")==10){
+                    $(this).next().next().next().html("1");
+                }
                 $(this).next().next().next().next().show();
                 $(".manage-alert").css("height","350px");
             }

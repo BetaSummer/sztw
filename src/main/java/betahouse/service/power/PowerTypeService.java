@@ -10,6 +10,7 @@ import java.util.Map;
 /**
  * Created by x1654 on 2017/7/18.
  */
+
 public interface PowerTypeService {
 
     List<PowerVO> listPowerVO();

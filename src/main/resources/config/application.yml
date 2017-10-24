@@ -24,6 +24,6 @@ logging:
 
 Props:
   mailProps:
-    sendAccount: stlcwjhzx@163.com
-    sendPassword: stl666
-    SMPHost: smtp.163.com
+    sendAccount: 
+    sendPassword: 
+    SMPHost: 

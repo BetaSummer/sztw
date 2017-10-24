@@ -4,7 +4,6 @@ import betahouse.mapper.FormManagerMapper;
 import betahouse.model.FormManager;
 import betahouse.service.power.PowerTypeService;
 import com.alibaba.fastjson.JSON;
-import jdk.nashorn.internal.scripts.JO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +32,8 @@ public class FormManagerServiceImpl implements FormManagerService{
         FormManager formManager = new FormManager();
         formManager.setApprover(approver);
         formManager.setApproverForm(approverForm);
+        System.out.println("hhhh");
+        System.out.println("hhhh");
         return formManagerMapper.insert(formManager);
     }
 
@@ -49,6 +50,7 @@ public class FormManagerServiceImpl implements FormManagerService{
             int lv = lvListDTO.get(i);
             if(lv!=0){
                 int formTypeDTO = powerTypeService.getPowerTypeByPowerId(powerListDTO.get(i)).getFormType();
+
                 if(listDTO.size()<formTypeDTO){
                     for(int j=listDTO.size();j<formTypeDTO-1;j++){
                         listDTO.add(j, -1);
@@ -66,5 +68,27 @@ public class FormManagerServiceImpl implements FormManagerService{
         }
         formManagerDTO.setApproverForm(strDTO);
         return formManagerMapper.updateByApprover(formManagerDTO);
+    }
+
+    @Override
+    public List<FormManager> listFormManagerByFormTypeAndLv(int formType, int lv) {
+        List<FormManager> listDTO = new ArrayList<>();
+        List<FormManager> listDTO2 = formManagerMapper.selectAll();
+        for(FormManager f: listDTO2){
+            List<Integer> listDTO3 = JSON.parseArray(f.getApproverForm(), Integer.class);
+            if(listDTO3.get(formType-1)==lv){
+                listDTO.add(f);
+            }
+        }
+        return listDTO;
+    }
+
+    @Override
+    public int updateFormManagerByUserId(int userId, int formType, int lv) {
+        FormManager formManagerDTO = getFormManagerByApprover(userId);
+        List<Integer> listDTO = JSON.parseArray(formManagerDTO.getApproverForm(), Integer.class);
+        listDTO.add(formType-1, lv);
+        formManagerDTO.setApproverForm(listDTO.toString());
+        return formManagerMapper.updateByPrimaryKey(formManagerDTO);
     }
 }

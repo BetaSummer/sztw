@@ -47,4 +47,9 @@ public class UserInfoServiceImpl implements UserInfoService{
         userInfoDTO.setTel(tel);
         return userInfoMapper.updateByPrimaryKey(userInfoDTO);
     }
+
+    @Override
+    public UserInfo getUserInfoBySchoolId(String schoolId) {
+        return userInfoMapper.selectBySchoolId(schoolId);
+    }
 }

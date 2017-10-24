@@ -1,15 +1,22 @@
 package betahouse.service.club;
 
+import betahouse.core.mail.Mail;
+import betahouse.core.mail.MailCore;
 import betahouse.mapper.ClubActivityFormMapper;
 import betahouse.mapper.ClubMapper;
 import betahouse.model.Club;
 import betahouse.model.ClubActivityForm;
+import betahouse.model.FormManager;
 import betahouse.model.UserInfo;
+import betahouse.service.form.FormManagerService;
 import betahouse.service.power.PowerService;
+import betahouse.service.user.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -27,6 +34,15 @@ public class ClubActivityFormServiceImpl implements ClubActivityFormService {
 
     @Autowired
     private PowerService powerService;
+
+    @Autowired
+    private MailCore mailCore;
+
+    @Autowired
+    private FormManagerService formManagerService;
+
+    @Autowired
+    private UserInfoService userInfoService;
 
     @Override
     public int commitForm(String club, String activityName, String activityPlace,
@@ -56,6 +72,36 @@ public class ClubActivityFormServiceImpl implements ClubActivityFormService {
         SimpleDateFormat sdfDTO = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
         clubActivityFormDTO.setApplyDate(sdfDTO.format(dateDTO));
         clubActivityFormMapper.insert(clubActivityFormDTO);
+
+        Mail mailDTO = new Mail();
+        mailDTO.setSubject("社团活动审批表");
+        mailDTO.setPersonal(userInfo.getRealName());
+        mailDTO.setContext(
+                club
+                +userInfo.getRealName()
+                +activityName
+                +activityPlace
+                +activityTime
+                +activityPeople
+                +isApplyFineDTO
+                +activityInfo
+                +applySelfMoneyDTO
+                +applyReserveMoneyDTO);
+        List<FormManager> listDTO = formManagerService.listFormManagerByFormTypeAndLv(1, 2);
+        List<String> addressListDTO = new ArrayList<>();
+        List<String> receiverNamesDTO = new ArrayList<>();
+        for(FormManager f: listDTO){
+            UserInfo userInfoDTO = userInfoService.getUserInfoById(f.getApprover());
+            addressListDTO.add(userInfoDTO.geteMail());
+            receiverNamesDTO.add(userInfoDTO.getRealName());
+        }
+        try {
+            mailDTO.setAddresses(addressListDTO, receiverNamesDTO);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        mailCore.sendMail(mailDTO);
+
         return clubActivityFormDTO.getId();
     }
 

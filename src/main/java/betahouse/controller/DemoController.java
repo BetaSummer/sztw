@@ -2,6 +2,8 @@ package betahouse.controller;
 
 import betahouse.controller.Base.BaseController;
 import betahouse.core.Base.BaseFile;
+import betahouse.core.mail.Mail;
+import betahouse.core.mail.MailCore;
 import betahouse.service.form.FormManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,27 +25,40 @@ public class DemoController extends BaseController {
     @Autowired
     FormManagerService formManagerService;
 
+    @Autowired
+    MailCore mailCore;
+
     @RequestMapping("/json")
     public String json(HttpServletRequest request, HttpServletResponse response, Model model){
         return "index/error";
     }
     @RequestMapping("/hi")
-    public String hi(HttpServletRequest request, HttpServletResponse response, Model model,int t){
+    public String hi(HttpServletRequest request, HttpServletResponse response, Model model){
 //        BaseFile baseFile = new BaseFile();
 //        int t = baseFile.download(response,"千叶思辩社","test01");
 //        return ajaxReturn(response,t);
-        return "organizationActivity/organizationView";
+        Mail mail = new Mail();
+        mail.setSubject("殷晓明大狗比");
+        mail.setPersonal("殷晓明");
+        mail.setContext("殷晓明狗币");
+        try {
+            mail.setAddresses("1654102203@qq.com","zxk");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        int status = mailCore.sendMail(mail);
+        return ajaxReturn(response,status);
     }
-    @RequestMapping("/download")
-    public void up(HttpServletRequest request, HttpServletResponse response, Model model){
+//    @RequestMapping("/download")
+//    public void up(HttpServletRequest request, HttpServletResponse response, Model model){
+////        BaseFile baseFile = new BaseFile();
+////        int t = baseFile.download(response,"千叶思辩社","test01");
 //        BaseFile baseFile = new BaseFile();
-//        int t = baseFile.download(response,"千叶思辩社","test01");
-        BaseFile baseFile = new BaseFile();
-        int t = baseFile.download(response,"千叶思辩社","xtest01.sql");
-        System.out.println(t);
-        if(t==1)this.hi(request,response,model,t);
-        //return "/demo/hello";
-    }
+//        int t = baseFile.download(response,"千叶思辩社","xtest01.sql");
+//        System.out.println(t);
+//        if(t==1)this.hi(request,response,model,t);
+//        //return "/demo/hello";
+//    }
     @RequestMapping("/demo")
     public String demo(HttpServletRequest request, HttpServletResponse response, Model model){
         return "demo/hello";

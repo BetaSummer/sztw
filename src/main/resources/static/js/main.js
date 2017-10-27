@@ -46,15 +46,15 @@ function  licenceControl(index) {
         $("#financeB").show();
         menuClubFina=true;
     }
-    if(index==10){
+    if(index==9){
         $("#area-appli").show();
         menuOrganizationForm=true;
     }
-    if(index==11){
+    if(index==10){
         $("#area-view").show();
         menuOrganizationForm=true;
     }
-    if(index==12){
+    if(index==11){
         $("#area-manage").show();
         menuOrganizationForm=true;
     }
@@ -334,11 +334,13 @@ $(function () {
         var data={
             "formId": $("#formId").html(),
             "comment": $("#comment").val(),
+            "applySelfMoney": $("#applySelfMoney").html(),
+            "applyReserveMoney": $("#applyReserveMoney").html(),
             "isApprove":1
         };
         $.ajax({
             type: "GET",
-            url: "/approveOrganizationForm/saveApprove",
+            url: "/approveForm/approve",
             data: data,
             dataType:"json",
             success: function(r){
@@ -352,15 +354,17 @@ $(function () {
             },
         });
     });
-    $(".disagree-btn2").click(function () {
+    $(".disgree-btn2").click(function () {
         var data={
             "formId": $("#formId").html(),
             "comment": $("#comment").val(),
+            "applySelfMoney": $("#applySelfMoney").html(),
+            "applyReserveMoney": $("#applyReserveMoney").html(),
             "isApprove":0
         };
         $.ajax({
             type: "GET",
-            url: "/approveOrganizationForm/saveApprove",
+            url: "/approveForm/approve",
             data: data,
             dataType:"json",
             success: function(r){

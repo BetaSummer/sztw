@@ -55,7 +55,7 @@ public class ApproveController extends BaseController{
         int lvDTO = listDTO.get(0);
         Map mapDTO = clubActivityStatusService.listStatusByTypeAndLv(1, lvDTO);
         model.addAttribute("data",mapDTO);
-        return "clubActivity/ApproveList";
+        return "clubActivity/approveList";
     }
 
     @RequestMapping(value = "/getFormById")

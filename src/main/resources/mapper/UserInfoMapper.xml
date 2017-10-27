@@ -45,4 +45,9 @@
     select id, real_name, school_id, e_mail, tel
     from b_user_info
   </select>
+  <select id="selectBySchoolId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, real_name, school_id, e_mail, tel
+    from b_user_info
+    where school_id = #{schoolId,jdbcType=VARCHAR}
+  </select>
 </mapper>

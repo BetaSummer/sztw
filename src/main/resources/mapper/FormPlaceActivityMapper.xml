@@ -12,6 +12,7 @@
     <result column="content" jdbcType="VARCHAR" property="content" />
     <result column="budget" jdbcType="REAL" property="budget" />
     <result column="method" jdbcType="VARCHAR" property="method" />
+    <result column="number" jdbcType="INTEGER" property="number" />
     <result column="date" jdbcType="VARCHAR" property="date" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -22,11 +23,13 @@
     insert into b_form_place_activity (id, user_id, user_tel, 
       activity_name, activity_place, activity_date, 
       list, content, budget, 
-      method, date)
+      method, number, date
+      )
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{userTel,jdbcType=VARCHAR}, 
       #{activityName,jdbcType=VARCHAR}, #{activityPlace,jdbcType=VARCHAR}, #{activityDate,jdbcType=VARCHAR}, 
       #{list,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{budget,jdbcType=REAL}, 
-      #{method,jdbcType=VARCHAR}, #{date,jdbcType=VARCHAR})
+      #{method,jdbcType=VARCHAR}, #{number,jdbcType=INTEGER}, #{date,jdbcType=VARCHAR}
+      )
     <selectKey keyProperty="id" order="AFTER" resultType="Integer">
       SELECT LAST_INSERT_ID() AS id
     </selectKey>
@@ -42,18 +45,19 @@
       content = #{content,jdbcType=VARCHAR},
       budget = #{budget,jdbcType=REAL},
       method = #{method,jdbcType=VARCHAR},
+      number = #{number,jdbcType=INTEGER},
       date = #{date,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select id, user_id, user_tel, activity_name, activity_place, activity_date, list, 
-    content, budget, method, date
+    content, budget, method, number, date
     from b_form_place_activity
     where id = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select id, user_id, user_tel, activity_name, activity_place, activity_date, list, 
-    content, budget, method, date
+    content, budget, method, number, date
     from b_form_place_activity
   </select>
 </mapper>

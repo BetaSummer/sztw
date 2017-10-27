@@ -18,4 +18,6 @@ public interface UserInfoService {
     List<UserInfo> listAllUserInfo();
 
     int updateUserInfoById(int id, String realName, String schoolId, String eMail, String tel);
+
+    UserInfo getUserInfoBySchoolId(String schoolId);
 }

@@ -35,11 +35,15 @@ public class PowerTypeServiceImpl implements PowerTypeService{
             powerVO.setId(p.getPowerId());
             powerVO.setPowerName(p.getPowerName());
             powerVO.setMaxLv(maxLv);
+            powerVO.setPermit(0);
             if(null!=p.getFormType()){
                 maxLv = formTypeService.getFormTypeByFormType(p.getFormType()).getMaxLv();
                 powerVO.setMaxLv(maxLv);
+                //强行修改bug
+                if(p.getPowerId()==3||p.getPowerId()==10){
+                    powerVO.setPermit(-1);
+                }
             }
-            powerVO.setPermit(0);
             powerVOList.add(powerVO);
         }
         return powerVOList;

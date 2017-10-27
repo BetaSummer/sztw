@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="betahouse.mapper.OrganizationTimesMapper">
+  <resultMap id="BaseResultMap" type="betahouse.model.OrganizationTimes">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="organization_id" jdbcType="INTEGER" property="organizationId" />
+    <result column="times" jdbcType="INTEGER" property="times" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from b_organization_times
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="betahouse.model.OrganizationTimes">
+    insert into b_organization_times (id, organization_id, times
+      )
+    values (#{id,jdbcType=INTEGER}, #{organizationId,jdbcType=INTEGER}, #{times,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="betahouse.model.OrganizationTimes">
+    update b_organization_times
+    set organization_id = #{organizationId,jdbcType=INTEGER},
+      times = #{times,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, organization_id, times
+    from b_organization_times
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, organization_id, times
+    from b_organization_times
+  </select>
+  <select id="selectTimeByOrganizationId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, organization_id, times
+    from b_organization_times
+    where organization_id = #{organizationId,jdbcType=INTEGER}
+  </select>
+</mapper>

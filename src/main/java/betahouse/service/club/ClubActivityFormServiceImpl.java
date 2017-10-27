@@ -74,19 +74,11 @@ public class ClubActivityFormServiceImpl implements ClubActivityFormService {
         clubActivityFormMapper.insert(clubActivityFormDTO);
 
         Mail mailDTO = new Mail();
-        mailDTO.setSubject("社团活动审批表");
-        mailDTO.setPersonal(userInfo.getRealName());
+        mailDTO.setSubject("社团活动审批表-"+club+"-"+activityName);
+        mailDTO.setPersonal("数字团委");
         mailDTO.setContext(
-                club
-                +userInfo.getRealName()
-                +activityName
-                +activityPlace
-                +activityTime
-                +activityPeople
-                +isApplyFineDTO
-                +activityInfo
-                +applySelfMoneyDTO
-                +applyReserveMoneyDTO);
+                club+"计划于"+clubActivityFormDTO.getActivityTime()+"在"+activityPlace+"举行"+activityName+"活动，希望尽快得到你们的批准。<br>"+
+                "<a href=\"http://120.25.240.194:8080/applyClubForm/getFormById?id="+clubActivityFormDTO.getId()+"\">点击查看</a>");
         List<FormManager> listDTO = formManagerService.listFormManagerByFormTypeAndLv(1, 2);
         List<String> addressListDTO = new ArrayList<>();
         List<String> receiverNamesDTO = new ArrayList<>();

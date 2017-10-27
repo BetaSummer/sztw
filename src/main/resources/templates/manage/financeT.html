@@ -5,8 +5,8 @@
 
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <div class="manage-header">
-    <button>删除</button>
-    <button id="manageAll3">批量操作</button>
+    <!--<button>删除</button>-->
+    <!--<button id="manageAll3">批量操作</button>-->
 </div>
 <div class="manage-main manage-six">
     <table id="fin-table">
@@ -15,8 +15,8 @@
             <td>社团</td>
             <td>总支出</td>
             <td>总收入</td>
-            <td>收支</td>
-            <td>明细</td>
+            <td>总收支</td>
+            <td>下载</td>
         </tr>
         <tr class="manage-body" th:each="data:${clubFinancial}">
             <td><input type="checkbox" name="checkname"/></td>
@@ -24,28 +24,30 @@
             <td th:text="${data.value[1]}"></td>
             <td th:text="${data.value[2]}"></td>
             <td th:text="${data.value[3]}"></td>
-            <td><span class="manage-btn manage-view">查看</span><span th:id="${data.value[0]}" class="manage-btn manage-download">下载</span></td>
+            <td>
+                <!--<span class="manage-btn manage-view">查看</span>-->
+                <span th:id="${data.value[0]}" class="manage-btn manage-download" style="width: 100%">下载</span></td>
         </tr>
     </table>
 </div>
-<div class="manage-alert">
-    <div class="club-manage manage-in">
-        <div class="manage-out"></div>
-        <table id="fin-alert-table">
-            <tr class="manage-alert-title manage-six">
-                <td>内容</td>
-                <td>经办人</td>
-                <td>收入</td>
-                <td>支出</td>
-                <td>收支</td>
-                <td>日期</td>
-            </tr>
-            <tr class="manage-alert-in">
-                <td><span class="manage-alert-btn" id="download-btn">下载</span></td>
-            </tr>
-        </table>
-    </div>
-</div>
+<!--<div class="manage-alert">-->
+    <!--<div class="club-manage manage-in">-->
+        <!--<div class="manage-out"></div>-->
+        <!--<table id="fin-alert-table">-->
+            <!--<tr class="manage-alert-title manage-six">-->
+                <!--<td>内容</td>-->
+                <!--<td>经办人</td>-->
+                <!--<td>收入</td>-->
+                <!--<td>支出</td>-->
+                <!--<td>收支</td>-->
+                <!--<td>日期</td>-->
+            <!--</tr>-->
+            <!--<tr class="manage-alert-in">-->
+                <!--<td><span class="manage-alert-btn" id="download-btn">下载</span></td>-->
+            <!--</tr>-->
+        <!--</table>-->
+    <!--</div>-->
+<!--</div>-->
 <script src="/js/manage.js"></script>
 <script>
     //checkbox全选

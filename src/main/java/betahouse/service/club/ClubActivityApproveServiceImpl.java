@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static betahouse.core.constant.FormConstant.CLUB_ACTIVITY_STATUS_2;
+
 /**
  * Created by x1654 on 2017/7/5.
  */
@@ -76,12 +78,10 @@ public class ClubActivityApproveServiceImpl implements ClubActivityApproveServic
                         clubActivityFormService.getFormById(formId).getActivityName());
 
                 Mail mailDTO = new Mail();
-                mailDTO.setSubject("社团活动申请结果");
-                mailDTO.setPersonal(userInfo.getRealName());
-                mailDTO.setContext(
-                        clubActivityFormDTO.getClub()
-                                +clubActivityFormDTO.getActivityName()
-                                +comment);
+                mailDTO.setSubject("【通过】社团活动审批表-"+clubActivityFormDTO.getClub()+"-"+clubActivityFormDTO.getActivityName());
+                mailDTO.setPersonal("数字团委");
+                mailDTO.setContext(clubActivityFormDTO.getClub()+"社长，很高兴通知你，你申请的"+clubActivityFormDTO.getActivityName()+"已经审批通过，你可以尽快准备活动"+
+                        "如需帮助请与社团联取得联系。<br><p style=\"text-align:center;\">感谢您使用由β-house提供的数字团学系统");
                 try {
                     mailDTO.setAddresses(
                             userInfoService.getUserInfoBySchoolId(clubActivityFormDTO.getChiefId()).geteMail(),
@@ -93,20 +93,11 @@ public class ClubActivityApproveServiceImpl implements ClubActivityApproveServic
 
             }else {
                 Mail mailDTO = new Mail();
-                mailDTO.setSubject("社团活动申请表");
-                mailDTO.setPersonal(userInfo.getRealName());
+                mailDTO.setSubject("社团活动审批表-"+clubActivityFormDTO.getClub()+"-"+clubActivityFormDTO.getActivityName());
+                mailDTO.setPersonal("数字团委");
                 mailDTO.setContext(
-                        clubActivityFormDTO.getClub()
-                        +clubActivityFormDTO.getChiefName()
-                        +clubActivityFormDTO.getActivityName()
-                        +clubActivityFormDTO.getActivityPlace()
-                        +clubActivityFormDTO.getActivityTime()
-                        +clubActivityFormDTO.getActivityPeople()
-                        +clubActivityFormDTO.getIsApplyFine()
-                        +clubActivityFormDTO.getActivityInfo()
-                        +clubActivityFormDTO.getSelfMoney()
-                        +clubActivityFormDTO.getReserveMoney()
-                );
+                        clubActivityFormDTO.getClub()+"计划于"+clubActivityFormDTO.getActivityTime()+"在"+clubActivityFormDTO.getActivityPlace()+"举行"+clubActivityFormDTO.getActivityName()+"活动，已经"+CLUB_ACTIVITY_STATUS_2[approveLvDTO]+"望您尽快审批。<br>"+
+                        "<a href=\"http://120.25.240.194:8080/applyClubForm/getFormById?id="+clubActivityFormDTO.getId()+"\">点击查看</a>");
                 List<FormManager> listDTO = formManagerService.listFormManagerByFormTypeAndLv(1, approveLvDTO+1);
                 List<String> addressListDTO = new ArrayList<>();
                 List<String> receiverNamesDTO = new ArrayList<>();
@@ -130,12 +121,10 @@ public class ClubActivityApproveServiceImpl implements ClubActivityApproveServic
             clubActivityStatusService.updateStatusByFormId(formId, 2, 99, null);
 
             Mail mailDTO = new Mail();
-            mailDTO.setSubject("社团活动申请结果");
-            mailDTO.setPersonal(userInfo.getRealName());
-            mailDTO.setContext(
-                    clubActivityFormDTO.getClub()
-                            +clubActivityFormDTO.getActivityName()
-                            +comment);
+            mailDTO.setSubject("【未通过】社团活动审批表-"+clubActivityFormDTO.getClub()+"-"+clubActivityFormDTO.getActivityName());
+            mailDTO.setPersonal("数字团委");
+            mailDTO.setContext(clubActivityFormDTO.getClub()+"社长，很遗憾通知你，你申请的"+clubActivityFormDTO.getActivityName()+"审批未通过，"+
+                    "如有疑问请与社团联取得联系。<br><p style=\"text-align:center;\">感谢您使用由β-house提供的数字团学系统");
             List<ClubActivityApprove>listDTO = listApproveByFormId(formId);
             List<String> addressListDTO = new ArrayList<>();
             List<String> receiverNamesDTO = new ArrayList<>();

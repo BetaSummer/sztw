@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -97,16 +98,25 @@ public class ClubServiceImpl implements ClubService {
         int i=1;
         int idDTO = 0;
         while (!"".equals(hssf.get(0,i,1))){
-            String clubNameDTO = hssf.get(0, i,1);
-            String userRealNameDTO = hssf.get(0, i,2);
-            String userNameDTO = hssf.get(0,i,3);
-            String telDTO = hssf.get(0,i,4);
-            String eMailDTO = hssf.get(0,i,6);
-            String reserveMoneyDTO = hssf.get(0,i,7);
-            String reserveMoneyDTO2 = hssf.get(0,i,8);
-            String reserveMoneyDTO3 = hssf.get(0,i,9);
-            String reserveMoneyDTO4 = hssf.get(0,i,10);
-            String selfMoneyDTO = hssf.get(0,i,11);
+
+            int colunm = 0;
+
+            String clubNameDTO = hssf.get(0, i,colunm++);
+            String userRealNameDTO = hssf.get(0, i,colunm++);
+            String userNameDTO = hssf.get(0,i,colunm++);
+            String telDTO = hssf.get(0,i,colunm++);
+
+            colunm++;
+
+            String eMailDTO = hssf.get(0,i,colunm++);
+            String reserveMoneyDTO1 = hssf.get(0,i,colunm++);
+            String reserveMoneyDTO2 = hssf.get(0,i,colunm++);
+            String reserveMoneyDTO3 = hssf.get(0,i,colunm++);
+            String reserveMoneyDTO4 = hssf.get(0,i,colunm++);
+            String reserveMoneyDTO5 = hssf.get(0,i,colunm++);
+            String reserveMoneyDTO6 = hssf.get(0,i,colunm++);
+            String selfMoneyDTO = hssf.get(0,i,colunm++);
+            String reserveMoneyDTO = hssf.get(0,i,colunm);
 
             if(!"".equals(userNameDTO)){
                 User userDTO = new User();
@@ -129,15 +139,20 @@ public class ClubServiceImpl implements ClubService {
 
             Club clubDTO = new Club();
             clubDTO.setClubName(clubNameDTO);
-            clubDTO.setReserveMoney(Float.parseFloat(reserveMoneyDTO4));
+            clubDTO.setReserveMoney(Float.parseFloat(reserveMoneyDTO));
             clubDTO.setSelfMoney(Float.parseFloat(selfMoneyDTO));
             clubDTO.setUserId(idDTO);
             clubMapper.insert(clubDTO);
             int idDTO2 = clubDTO.getId();
 
-            clubFinancialFlowService.insert(idDTO2, "2015年剩余预留金额", idDTO, 1, Float.parseFloat(reserveMoneyDTO));
-            clubFinancialFlowService.insert(idDTO2, "2016年上交预留金额", idDTO, 1, Float.parseFloat(reserveMoneyDTO2));
-            clubFinancialFlowService.insert(idDTO2, "2016学年预留经费使用", idDTO, -1, Float.parseFloat(reserveMoneyDTO3));
+            DecimalFormat df = new DecimalFormat("#.00");
+
+            clubFinancialFlowService.insert(idDTO2, "2015年原始预留", idDTO, 1, Float.parseFloat(df.format(Float.parseFloat(reserveMoneyDTO1))));
+            clubFinancialFlowService.insert(idDTO2, "2015年公摊", idDTO, -1, Float.parseFloat(df.format(Float.parseFloat(reserveMoneyDTO2))));
+            clubFinancialFlowService.insert(idDTO2, "2016社联晚会抽取", idDTO, -1, Float.parseFloat(df.format(Float.parseFloat(reserveMoneyDTO3))));
+            clubFinancialFlowService.insert(idDTO2, "2016年原始预留", idDTO, 1, Float.parseFloat(df.format(Float.parseFloat(reserveMoneyDTO4))));
+            clubFinancialFlowService.insert(idDTO2, "2016年公摊", idDTO, -1, Float.parseFloat(df.format(Float.parseFloat(reserveMoneyDTO5))));
+            clubFinancialFlowService.insert(idDTO2, "预留使用", idDTO, -1, Float.parseFloat(df.format(Float.parseFloat(reserveMoneyDTO6))));
 
             i++;
         }

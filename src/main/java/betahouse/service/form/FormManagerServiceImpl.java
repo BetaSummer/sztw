@@ -49,14 +49,19 @@ public class FormManagerServiceImpl implements FormManagerService{
         for(int i=0;i<lvListDTO.size();i++){
             int lv = lvListDTO.get(i);
             if(lv!=0){
-                int formTypeDTO = powerTypeService.getPowerTypeByPowerId(powerListDTO.get(i)).getFormType();
+                int formTypeDTO = 0;
+                try{
+                    formTypeDTO = powerTypeService.getPowerTypeByPowerId(powerListDTO.get(i)).getFormType();
+                }catch (Exception e){
+                    continue;
+                }
 
                 if(listDTO.size()<formTypeDTO){
                     for(int j=listDTO.size();j<formTypeDTO-1;j++){
                         listDTO.add(j, -1);
                     }
                 }
-                listDTO.add(formTypeDTO-1, lv);
+                listDTO.set(formTypeDTO-1, lv);
             }
         }
         String strDTO = JSON.toJSONString(listDTO);

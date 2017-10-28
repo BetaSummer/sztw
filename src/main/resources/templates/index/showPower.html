@@ -73,17 +73,13 @@
         $(".power-check").click(function () {
             if(!$(this).is(':checked')){
                 $(this).next().next().html("0");
-                if($(this).next().attr("id")==3||$(this).next().attr("id")==10){
                     $(this).next().next().next().html("-1");
-                }
                 $(this).next().next().next().hide();
                 $(".power-lv-select").hide();
             }
             else {
                 $(this).next().next().html("1");
-                if($(this).next().attr("id")==3||$(this).next().attr("id")==10){
                     $(this).next().next().next().html("1");
-                }
                 $(this).next().next().next().next().show();
                 $(".manage-alert").css("height","350px");
             }

@@ -4,6 +4,7 @@ import betahouse.controller.Base.BaseController;
 import betahouse.core.Base.BaseFile;
 import betahouse.service.information.AnnouncementService;
 import betahouse.service.information.MessageService;
+import betahouse.service.power.PowerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +35,9 @@ public class InformationController extends BaseController{
 
     @Autowired
     private MessageService messageService;
+
+    @Autowired
+    private PowerService powerService;
 
     @RequestMapping(value = "/doMessage")
     public String doMessage(HttpServletRequest request, HttpServletResponse response, Model model){
@@ -116,7 +120,7 @@ public class InformationController extends BaseController{
     }
     @RequestMapping(value = "/messageList")
     public String  messageList (HttpServletRequest request, HttpServletResponse response, Model model){
-        model.addAttribute("announcement",announcementService.listAll());
+        model.addAttribute("announcement",announcementService.listAnnouncementByPower(getCurrentUser(request).getId()));
         return "index/messageList";
     }
 }

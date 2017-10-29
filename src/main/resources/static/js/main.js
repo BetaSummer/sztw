@@ -24,7 +24,9 @@ function  licenceControl(index) {
     }
     if(index==3){
         $("#form-appli").show();
+        $("#financeS").show();
         menuClubForm=true;
+        menuClubFina=true;
     }
     if(index==4){
         $("#form-view").show();
@@ -166,6 +168,15 @@ $(function () {
         $(".content-body").html("");
         $(".loading").show();
         $(".content-body").load("/finance/financeT",function () {
+            $(".loading").hide();
+        }) ;
+    });
+});
+$(function () {
+    $("#financeS").click(function () {
+        $(".content-body").html("");
+        $(".loading").show();
+        $(".content-body").load("/finance/financeS",function () {
             $(".loading").hide();
         }) ;
     });

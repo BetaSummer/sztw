@@ -71,7 +71,7 @@ public class AnnouncementServiceImpl implements AnnouncementService{
     @Override
     public List<Announcement> listAnnouncementByPower(int userId) {
         if(powerService.checkPower(userId, 15)){
-            listAll();
+            return listAll();
         }
         if(powerService.checkPower(userId, 2)){
             return announcementMapper.selectByFromId(userId);

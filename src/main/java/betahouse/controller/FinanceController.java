@@ -48,6 +48,14 @@ public class FinanceController extends BaseController{
         model.addAttribute("club", clubService.listAll());
         return "manage/financeB";
     }
+    @RequestMapping(value = "/financeS")
+    public String financeS(HttpServletRequest request, HttpServletResponse response, Model model){
+        int clubId = clubService.getClubByUserId(getCurrentUser(request).getId()).getId();
+        model.addAttribute("clubFinancial", clubFinancialFlowService.listClubFinancialFlowByClubId_t(clubId));
+        model.addAttribute("clubId", clubId);
+        //        return  ajaxReturn(response, model);
+        return "manage/financeS";
+    }
 
     @RequestMapping(value = "/download")
     public void download(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam String clubId){

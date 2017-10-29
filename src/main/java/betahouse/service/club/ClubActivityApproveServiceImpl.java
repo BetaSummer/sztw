@@ -125,18 +125,20 @@ public class ClubActivityApproveServiceImpl implements ClubActivityApproveServic
             mailDTO.setPersonal("数字团委");
             mailDTO.setContext(clubActivityFormDTO.getClub()+"社长，很遗憾通知你，你申请的"+clubActivityFormDTO.getActivityName()+"审批未通过，"+
                     "如有疑问请与社团联取得联系。<br><p style=\"text-align:center;\">感谢您使用由β-house提供的数字团学系统");
-            List<ClubActivityApprove>listDTO = listApproveByFormId(formId);
-            List<String> addressListDTO = new ArrayList<>();
-            List<String> receiverNamesDTO = new ArrayList<>();
-            for(ClubActivityApprove c: listDTO){
-                UserInfo userInfoDTO = userInfoService.getUserInfoById(c.getApproveUserId());
-                addressListDTO.add(userInfoDTO.geteMail());
-                receiverNamesDTO.add(userInfoDTO.getRealName());
-            }
-            addressListDTO.add(userInfoService.getUserInfoBySchoolId(clubActivityFormDTO.getChiefId()).geteMail());
-            receiverNamesDTO.add(clubActivityFormDTO.getChiefName());
+//            List<ClubActivityApprove>listDTO = listApproveByFormId(formId);
+//            List<String> addressListDTO = new ArrayList<>();
+//            List<String> receiverNamesDTO = new ArrayList<>();
+//            for(ClubActivityApprove c: listDTO){
+//                UserInfo userInfoDTO = userInfoService.getUserInfoById(c.getApproveUserId());
+//                addressListDTO.add(userInfoDTO.geteMail());
+//                receiverNamesDTO.add(userInfoDTO.getRealName());
+//            }
+//            addressListDTO.add(userInfoService.getUserInfoBySchoolId(clubActivityFormDTO.getChiefId()).geteMail());
+//            receiverNamesDTO.add(clubActivityFormDTO.getChiefName());
             try {
-                mailDTO.setAddresses(addressListDTO, receiverNamesDTO);
+                mailDTO.setAddresses(
+                        userInfoService.getUserInfoBySchoolId(clubActivityFormDTO.getChiefId()).geteMail(),
+                        clubActivityFormDTO.getChiefName());
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }

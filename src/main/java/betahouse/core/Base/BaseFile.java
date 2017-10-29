@@ -4,6 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.net.URLEncoder;
 
 /**
  * Created by Yxm on 2017/7/7.
@@ -58,7 +59,11 @@ public class BaseFile {
         File file = new File(FOLDER+File.separator+folderName+File.separator+fileName);
         if (file.exists()) {
             response.setContentType("application/force-download");// 设置下载后不打开
-            response.addHeader("Content-Disposition","attachment;fileName=" +  fileName);// 设置下载后文件名
+            try {
+                response.setHeader("content-disposition", "attachment;filename=" + URLEncoder.encode(fileName, "UTF-8"));
+            } catch (UnsupportedEncodingException e) {
+                response.addHeader("Content-Disposition","attachment;fileName=" +  fileName);// 设置下载后文件名
+            }
             byte[] buffer = new byte[1024];
             FileInputStream fis = null;
             BufferedInputStream bis = null;
@@ -86,7 +91,11 @@ public class BaseFile {
         File file = new File(FOLDER+File.separator+folderName+File.separator+fileName);
         if (file.exists()) {
             response.setContentType("application/force-download");// 设置下载后不打开
-            response.addHeader("Content-Disposition","attachment;fileName=" +  targetName);// 设置下载后文件名
+            try {
+                response.setHeader("content-disposition", "attachment;filename=" + URLEncoder.encode(fileName, "UTF-8"));
+            } catch (UnsupportedEncodingException e) {
+                response.addHeader("Content-Disposition","attachment;fileName=" +  fileName);// 设置下载后文件名
+            }
             byte[] buffer = new byte[1024];
             FileInputStream fis = null;
             BufferedInputStream bis = null;

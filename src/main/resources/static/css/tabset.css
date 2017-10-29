@@ -32,7 +32,7 @@
 
 content {
   color: #5c5a5d; }
-#form-appli , #form-manage ,#form-view ,#userManage , #powerManage , #financeT,#financeB,#doMessage,#clubManage,#area-appli,#area-view,#area-manage{
+#form-appli ,#financeS, #form-manage ,#form-view ,#userManage , #powerManage , #financeT,#financeB,#doMessage,#clubManage,#area-appli,#area-view,#area-manage{
   display: none;  }
 .sub-nav {
   width: 20%;

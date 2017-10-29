@@ -1,0 +1,54 @@
+
+<!--  财务流水  -->
+
+
+
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<div class="manage-header">
+    <button th:id="${clubId}" class="manage-btn manage-download">下载</button>
+    <!--<button id="manageAll3">批量操作</button>-->
+</div>
+<div class="manage-main manage-six">
+    <table id="fin-table">
+        <tr class="manage-title manage-four">
+            <td>时间</td>
+            <td>理由</td>
+            <td>收支</td>
+            <td>经办人</td>
+        </tr>
+        <tr class="manage-body" th:each="data:${clubFinancial}">
+            <!--<td><input type="checkbox" name="checkname"/></td>-->
+            <!--<td th:text="${data.key}"></td>-->
+            <td th:text="${data.date}"></td>
+            <td th:text="${data.comment}"></td>
+            <td th:text="${data.payments}"></td>
+            <td th:text="${data.userName}"></td>
+            <!--<td>-->
+                <!--&lt;!&ndash;<span class="manage-btn manage-view">查看</span>&ndash;&gt;-->
+                <!--<span th:id="${data.value[0]}" class="manage-btn manage-download" style="width: 100%">下载</span></td>-->
+        </tr>
+    </table>
+</div>
+<!--<div class="manage-alert">-->
+    <!--<div class="club-manage manage-in">-->
+        <!--<div class="manage-out"></div>-->
+        <!--<table id="fin-alert-table">-->
+            <!--<tr class="manage-alert-title manage-six">-->
+                <!--<td>内容</td>-->
+                <!--<td>经办人</td>-->
+                <!--<td>收入</td>-->
+                <!--<td>支出</td>-->
+                <!--<td>收支</td>-->
+                <!--<td>日期</td>-->
+            <!--</tr>-->
+            <!--<tr class="manage-alert-in">-->
+                <!--<td><span class="manage-alert-btn" id="download-btn">下载</span></td>-->
+            <!--</tr>-->
+        <!--</table>-->
+    <!--</div>-->
+<!--</div>-->
+<script src="/js/manage.js"></script>
+<script>
+
+</script>
+</html>

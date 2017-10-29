@@ -2,15 +2,10 @@ package betahouse.service.power;
 
 import betahouse.mapper.PowerMapper;
 import betahouse.model.FormManager;
-import betahouse.model.FormType;
 import betahouse.model.Power;
-import betahouse.model.PowerType;
 import betahouse.model.VO.PowerVO;
 import betahouse.service.form.FormManagerService;
-import betahouse.service.form.FormTypeService;
 import com.alibaba.fastjson.JSON;
-import org.codehaus.groovy.reflection.stdclasses.IntegerCachedClass;
-import org.omg.CORBA.INTERNAL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -59,7 +54,11 @@ public class PowerServiceImpl implements PowerService{
                             FormManager formManagerDTO = formManagerService.getFormManagerByApprover(userId);
                             List<Integer> lvListDTO = JSON.parseArray(formManagerDTO.getApproverForm(), Integer.class);
                             int formTypeDTO = powerTypeService.getPowerTypeByPowerId(p2).getFormType();
-                            p1.setPermit(lvListDTO.get(formTypeDTO-1));
+                            try {
+                                p1.setPermit(lvListDTO.get(formTypeDTO - 1));
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
                         }
                     }
                 }

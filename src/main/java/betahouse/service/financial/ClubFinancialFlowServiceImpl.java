@@ -53,6 +53,29 @@ public class ClubFinancialFlowServiceImpl implements ClubFinancialFlowService{
         }
         return listDTO;
     }
+    @Override
+    public List<ClubFinanceVO> listClubFinancialFlowByClubId_t(int clubId) {
+        List<ClubFinanceVO> listDTO = new ArrayList<>();
+        List<ClubFinancialFlow> listDTO2 = clubFinancialFlowMapper.selectByClubId(clubId);
+        float total = 0;
+        for(int i=0;i<listDTO2.size();i++){
+            ClubFinanceVO clubFinanceVODTO = new ClubFinanceVO();
+            clubFinanceVODTO.setId(i+1);
+            clubFinanceVODTO.setComment(listDTO2.get(i).getComment());
+            clubFinanceVODTO.setUserName(userInfoMapper.selectByPrimaryKey(listDTO2.get(i).getHandler()).getRealName());
+            clubFinanceVODTO.setIncome(listDTO2.get(i).getIncome());
+            clubFinanceVODTO.setCost(listDTO2.get(i).getCost());
+            clubFinanceVODTO.setPayments(listDTO2.get(i).getIncome()-listDTO2.get(i).getCost());
+            clubFinanceVODTO.setDate(listDTO2.get(i).getDate().split("日")[0]+"日");
+            total += clubFinanceVODTO.getPayments();
+            listDTO.add(clubFinanceVODTO);
+        }
+        ClubFinanceVO clubFinanceVODTO = new ClubFinanceVO();
+        clubFinanceVODTO.setDate("总计");
+        clubFinanceVODTO.setPayments(total);
+        listDTO.add(clubFinanceVODTO);
+        return listDTO;
+    }
 
     @Override
     public Map<String, int[]> listAllClubFinance() {

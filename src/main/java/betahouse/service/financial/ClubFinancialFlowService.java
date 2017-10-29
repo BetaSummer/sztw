@@ -15,6 +15,8 @@ public interface ClubFinancialFlowService {
 
     List<ClubFinanceVO> listClubFinancialFlowByClubId(int clubId);
 
+    List<ClubFinanceVO> listClubFinancialFlowByClubId_t(int clubId);
+
     Map<String, int[]> listAllClubFinance();
 
     ClubFinancialFlow getClubFinancialFlowByFormId(int formId);

@@ -66,6 +66,9 @@
 .manage-six td{
     width: 16.66%;
 }
+.manage-four td{
+    width: 25%;
+}
 .manage-main .on{
     background-color: #eef4f7;
 }

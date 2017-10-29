@@ -287,6 +287,7 @@ $(function () {
 //发布公告和通知
 $(function () {
     $("#publish").click(function () {
+        $("#publish").attr('disabled',"true");
         var check = $("input[name='message-type']:checked").val();
         var title = $("#title").val();
         var html = editor.$txt.html();
@@ -302,6 +303,7 @@ $(function () {
                 dataType: "json",
                 success: function(r){
                     alert(r.message);
+                    window.location.href = "/index";
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown){
                     alert(XMLHttpRequest.status);

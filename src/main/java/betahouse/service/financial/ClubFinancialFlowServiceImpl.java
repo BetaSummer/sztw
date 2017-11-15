@@ -78,18 +78,18 @@ public class ClubFinancialFlowServiceImpl implements ClubFinancialFlowService{
     }
 
     @Override
-    public Map<String, int[]> listAllClubFinance() {
-        Map<String, int[]> mapDTO = new HashMap<>();
+    public Map<String, String[]> listAllClubFinance() {
+        Map<String, String[]> mapDTO = new HashMap<>();
         List<Club> listDTO = clubMapper.selectAll();
         for(Club c: listDTO){
             List<ClubFinancialFlow> listDTO2 = clubFinancialFlowMapper.selectByClubId(c.getId());
-            int cost = 0;
-            int income = 0;
+            float cost = 0;
+            float income = 0;
             for(ClubFinancialFlow c2: listDTO2){
                 cost+=c2.getCost();
                 income+=c2.getIncome();
             }
-            mapDTO.put(c.getClubName(), new int[]{c.getId(), cost, income, income-cost});
+            mapDTO.put(c.getClubName(), new String[]{c.getId().toString(), String.format("%.2f",cost), String.format("%.2f",income), String.format("%.2f",income-cost)});
         }
         return mapDTO;
     }
@@ -118,7 +118,7 @@ public class ClubFinancialFlowServiceImpl implements ClubFinancialFlowService{
     }
 
     @Override
-    public int insert(int clubId, String comment, int handler, int change, float money) {
+    public int insert(int clubId, String comment, int handler, float change, float money) {
         ClubFinancialFlow clubFinancialFlowDTO = new ClubFinancialFlow();
         clubFinancialFlowDTO.setClubId(clubId);
         clubFinancialFlowDTO.setComment(comment);

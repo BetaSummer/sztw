@@ -2,7 +2,6 @@ package betahouse.service.club;
 
 import betahouse.model.Club;
 import betahouse.model.UserInfo;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
@@ -22,7 +21,7 @@ public interface ClubService {
 
     Map<String, UserInfo> listClubAndChief();
 
-    int updateMoneyById(int id, int change, int selfReserve, float money);
+    int updateMoneyById(int id, float change, float selfReserve, float money);
 
     int createClub(String folderName, String fileName);
 

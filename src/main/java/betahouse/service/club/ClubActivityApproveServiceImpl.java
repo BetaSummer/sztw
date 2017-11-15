@@ -97,7 +97,7 @@ public class ClubActivityApproveServiceImpl implements ClubActivityApproveServic
                 mailDTO.setPersonal("数字团委");
                 mailDTO.setContext(
                         clubActivityFormDTO.getClub()+"计划于"+clubActivityFormDTO.getActivityTime()+"在"+clubActivityFormDTO.getActivityPlace()+"举行"+clubActivityFormDTO.getActivityName()+"活动，已经"+CLUB_ACTIVITY_STATUS_2[approveLvDTO]+"望您尽快审批。<br>"+
-                        "<a href=\"http://120.25.240.194:8080/applyClubForm/getFormById?id="+clubActivityFormDTO.getId()+"\">点击查看</a>");
+                        "<a href=\"http://120.25.240.194:80/applyClubForm/getFormById?id="+clubActivityFormDTO.getId()+"\">点击查看</a>");
                 List<FormManager> listDTO = formManagerService.listFormManagerByFormTypeAndLv(1, approveLvDTO+1);
                 List<String> addressListDTO = new ArrayList<>();
                 List<String> receiverNamesDTO = new ArrayList<>();

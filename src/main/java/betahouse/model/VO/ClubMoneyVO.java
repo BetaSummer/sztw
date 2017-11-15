@@ -7,11 +7,11 @@ public class ClubMoneyVO {
 
     private Integer id;
 
-    private Integer change;
+    private Float change;
 
-    private Integer selfReserve;
+    private Float selfReserve;
 
-    private Integer money;
+    private Float money;
 
     public Integer getId() {
         return id;
@@ -21,27 +21,27 @@ public class ClubMoneyVO {
         this.id = id;
     }
 
-    public Integer getChange() {
+    public Float getChange() {
         return change;
     }
 
-    public void setChange(Integer change) {
+    public void setChange(Float change) {
         this.change = change;
     }
 
-    public Integer getSelfReserve() {
+    public Float getSelfReserve() {
         return selfReserve;
     }
 
-    public void setSelfReserve(Integer selfReserve) {
+    public void setSelfReserve(Float selfReserve) {
         this.selfReserve = selfReserve;
     }
 
-    public Integer getMoney() {
+    public Float getMoney() {
         return money;
     }
 
-    public void setMoney(Integer money) {
+    public void setMoney(Float money) {
         this.money = money;
     }
 }

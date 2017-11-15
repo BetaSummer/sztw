@@ -85,6 +85,9 @@
                $("#apply_reserve_money").val("0")
            }
         });
+        if($("#now_self_money").val()==0){
+            $("#apply_reserve_money").removeAttr('disabled');
+        }
         $("#apply_self_money").focus(function () {
             if($(this).val()==0){
                 $(this).val("");

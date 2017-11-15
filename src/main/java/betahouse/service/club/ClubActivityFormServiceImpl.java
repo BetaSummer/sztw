@@ -78,7 +78,7 @@ public class ClubActivityFormServiceImpl implements ClubActivityFormService {
         mailDTO.setPersonal("数字团委");
         mailDTO.setContext(
                 club+"计划于"+clubActivityFormDTO.getActivityTime()+"在"+activityPlace+"举行"+activityName+"活动，希望尽快得到你们的批准。<br>"+
-                "<a href=\"http://120.25.240.194:8080/applyClubForm/getFormById?id="+clubActivityFormDTO.getId()+"\">点击查看</a>");
+                "<a href=\"http://120.25.240.194:80/applyClubForm/getFormById?id="+clubActivityFormDTO.getId()+"\">点击查看</a>");
         List<FormManager> listDTO = formManagerService.listFormManagerByFormTypeAndLv(1, 2);
         List<String> addressListDTO = new ArrayList<>();
         List<String> receiverNamesDTO = new ArrayList<>();

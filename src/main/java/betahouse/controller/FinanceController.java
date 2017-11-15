@@ -82,9 +82,9 @@ public class FinanceController extends BaseController{
         List<ClubMoneyVO> listDTO = JSON.parseArray(data, ClubMoneyVO.class);
         for(ClubMoneyVO c: listDTO){
             int idDTO = c.getId();
-            int changeDTO = c.getChange();
-            int selfReserveDTO = c.getSelfReserve();
-            int moneyDTO = c.getMoney();
+            float changeDTO = c.getChange();
+            float selfReserveDTO = c.getSelfReserve();
+            float moneyDTO = c.getMoney();
             int status = clubService.updateMoneyById(idDTO, changeDTO, selfReserveDTO, moneyDTO);
             if(-1==status){
                 return ajaxReturn(response, null, CLUB_FINANCE_CHANGE_MESSAGE[1], 1);
@@ -92,7 +92,6 @@ public class FinanceController extends BaseController{
             int handlerDTO = getCurrentUser(request).getId();
             clubFinancialFlowService.insert(idDTO, comment, handlerDTO, changeDTO, moneyDTO);
         }
-
         return ajaxReturn(response, null, CLUB_FINANCE_CHANGE_MESSAGE[0], 0);
     }
 }

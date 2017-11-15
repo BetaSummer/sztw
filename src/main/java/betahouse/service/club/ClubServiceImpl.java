@@ -5,14 +5,15 @@ import betahouse.core.office.HSSF;
 import betahouse.mapper.ClubMapper;
 import betahouse.mapper.UserInfoMapper;
 import betahouse.mapper.UserMapper;
-import betahouse.model.*;
+import betahouse.model.Club;
+import betahouse.model.User;
+import betahouse.model.UserInfo;
 import betahouse.service.financial.ClubFinancialFlowService;
 import betahouse.service.form.FormManagerService;
 import betahouse.service.power.PowerService;
 import betahouse.service.user.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.text.DecimalFormat;
 import java.util.HashMap;
@@ -68,7 +69,7 @@ public class ClubServiceImpl implements ClubService {
     }
 
     @Override
-    public int updateMoneyById(int id, int change, int selfReserve, float money) {
+    public int updateMoneyById(int id, float change, float selfReserve, float money) {
         Club clubDTO = clubMapper.selectByPrimaryKey(id);
         if(-1==change){
             money = -money;

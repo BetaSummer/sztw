@@ -16,10 +16,6 @@ import static betahouse.core.constant.UserConstant.SESSION_USER_POWER;
  */
 public class BaseController extends betahouse.core.Base.BaseController {
 
-    public String demo (){
-        return SESSION_CURRENT_USER;
-    }
-
     protected HttpSession getHttpSession(HttpServletRequest request) {
         return request.getSession();
     }

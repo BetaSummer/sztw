@@ -18,18 +18,13 @@
 <body style="background-image: none;">
 <nav>
     <ul class="nav-right">
-        <nav>
-            <ul class="nav-right">
-
-            </ul>
-        </nav>
     </ul>
 </nav>
 
 
 <div class="article">
     <h1 th:text="${announcement.title}"></h1>
-    <p th:inline="text">来源：[[${announcement.fromId}]]   发布时间：[[${announcement.date}]]</p><hr/>
+    <p th:inline="text">来源：[[${name}]]   发布时间：[[${announcement.date}]]</p><hr/>
     <div class="main" th:utext="${announcement.comment}"></div>
 </div>
 

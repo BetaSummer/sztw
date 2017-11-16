@@ -2,7 +2,11 @@ package betahouse.service.club;
 
 import betahouse.core.mail.Mail;
 import betahouse.core.mail.MailCore;
-import betahouse.mapper.*;
+import betahouse.core.props.ServerProps;
+import betahouse.mapper.ClubActivityApproveMapper;
+import betahouse.mapper.ClubActivityFormMapper;
+import betahouse.mapper.ClubActivityStatusMapper;
+import betahouse.mapper.ClubMapper;
 import betahouse.model.*;
 import betahouse.service.financial.ClubFinancialFlowService;
 import betahouse.service.form.FormManagerService;
@@ -12,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
+import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -58,9 +63,18 @@ public class ClubActivityApproveServiceImpl implements ClubActivityApproveServic
     @Autowired
     private FormManagerService formManagerService;
 
+    @Autowired
+    private ServerProps serverProps;
+
 
     @Override
     public int saveApprove(UserInfo userInfo, int isApprove, int formId, String comment, float applySelfMoney, float applyReserveMoney) {
+        String address = "120.25.240.194";
+        try {
+            address = InetAddress.getLocalHost().getHostAddress();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         ClubActivityForm clubActivityFormDTO = clubActivityFormService.getFormById(formId);
         int clubIdDTO = clubActivityFormDTO.getClubId();
         int approveLvDTO = clubActivityStatusService.getStatusByFormId(formId).getApproveLv();
@@ -97,7 +111,7 @@ public class ClubActivityApproveServiceImpl implements ClubActivityApproveServic
                 mailDTO.setPersonal("数字团委");
                 mailDTO.setContext(
                         clubActivityFormDTO.getClub()+"计划于"+clubActivityFormDTO.getActivityTime()+"在"+clubActivityFormDTO.getActivityPlace()+"举行"+clubActivityFormDTO.getActivityName()+"活动，已经"+CLUB_ACTIVITY_STATUS_2[approveLvDTO]+"望您尽快审批。<br>"+
-                        "<a href=\"http://120.25.240.194:80/applyClubForm/getFormById?id="+clubActivityFormDTO.getId()+"\">点击查看</a>");
+                        "<a href=\"http://"+address+":"+serverProps.getPort()+"/applyClubForm/getFormById?id="+clubActivityFormDTO.getId()+"\">点击查看</a>");
                 List<FormManager> listDTO = formManagerService.listFormManagerByFormTypeAndLv(1, approveLvDTO+1);
                 List<String> addressListDTO = new ArrayList<>();
                 List<String> receiverNamesDTO = new ArrayList<>();

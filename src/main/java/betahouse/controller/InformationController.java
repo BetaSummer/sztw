@@ -2,9 +2,12 @@ package betahouse.controller;
 
 import betahouse.controller.Base.BaseController;
 import betahouse.core.Base.BaseFile;
+import betahouse.core.props.ServerProps;
+import betahouse.model.Announcement;
 import betahouse.service.information.AnnouncementService;
 import betahouse.service.information.MessageService;
 import betahouse.service.power.PowerService;
+import betahouse.service.user.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.net.InetAddress;
 
 import static betahouse.core.constant.FolderNameConstant.RESOURCES;
 import static betahouse.core.constant.InformationConstant.PUBLISH_SUCCESS;
@@ -37,7 +41,13 @@ public class InformationController extends BaseController{
     private MessageService messageService;
 
     @Autowired
+    private UserInfoService userInfoService;
+
+    @Autowired
     private PowerService powerService;
+
+    @Autowired
+    private ServerProps serverProps;
 
     @RequestMapping(value = "/doMessage")
     public String doMessage(HttpServletRequest request, HttpServletResponse response, Model model){
@@ -65,7 +75,9 @@ public class InformationController extends BaseController{
 
     @RequestMapping(value = "/getAnnouncementById")
     public String getAnnouncementById(HttpServletRequest request, HttpServletResponse response, Model model, @RequestParam int id){
-        model.addAttribute("announcement", announcementService.getAnnouncementById(id));
+        Announcement announcement = announcementService.getAnnouncementById(id);
+        model.addAttribute("announcement", announcement);
+        model.addAttribute("name", userInfoService.getUserInfoById(announcement.getFromId()).getRealName());
         return "index/information";
     }
 
@@ -109,9 +121,15 @@ public class InformationController extends BaseController{
     public void uploadFile(HttpServletRequest request, HttpServletResponse response, Model model,
                              RedirectAttributes redirectAttributes,
                              @RequestParam("picture") MultipartFile file){
+        String address = "120.25.240.194";
+        try {
+            address = InetAddress.getLocalHost().getHostAddress();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         BaseFile baseFileDTO = new BaseFile();
         baseFileDTO.upload(file, RESOURCES+ File.separator+"Img");
-        String str = "http://localhost:8080/resources/"+file.getOriginalFilename();
+        String str = "http://"+address+":"+serverProps.getPort()+"/resources/"+file.getOriginalFilename();
         try {
             response.getWriter().write(str);
         } catch (IOException e) {
